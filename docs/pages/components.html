@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dopamine Fluid — Components</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/components/accordion.css">
+  <script src="../search.js" defer></script>
+</head>
+<body>
+
+<nav class="docs-nav">
+  <a href="index.html" class="docs-nav__brand">Dopamine Fluid</a>
+  <a href="typography.html">Typography</a>
+  <a href="spacing.html">Spacing</a>
+  <a href="sizing.html">Sizing</a>
+  <a href="grid.html">Grid</a>
+  <a href="flexbox.html">Flexbox</a>
+  <a href="utilities.html">Utilities</a>
+  <a href="components.html" class="active">Components</a>
+</nav>
+
+<div class="docs-search container-1200 px-16-48">
+  <input type="text" placeholder="Search... (e.g. accordion, dp.fluid, sass)">
+</div>
+
+<div class="docs-content container-860 px-16-48">
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Accordion</h2>
+    <p class="fs-14-18 mb-16-32">CSS-only accordion using native <code>&lt;details&gt;</code> / <code>&lt;summary&gt;</code> elements. No JavaScript. Styled with <code>dp.fluid()</code> in a separate component file: <code>scss/components/accordion.scss</code></p>
+    <div class="accordion">
+      <details class="accordion__item">
+        <summary class="accordion__title">What is Dopamine Fluid?</summary>
+        <div class="accordion__body"><div class="accordion__content">A CSS utility generator that creates fluid clamp() values and grid layouts from class names in your HTML. No runtime, no JavaScript — just scan your templates and generate pure CSS.</div></div>
+      </details>
+      <details class="accordion__item">
+        <summary class="accordion__title">How does the Sass function work?</summary>
+        <div class="accordion__body"><div class="accordion__content">Import _dopamine-functions.scss and use dp.fluid(16, 48) anywhere in your Sass. Same clamp() math as the utility classes, for elements where you can't add class names.</div></div>
+      </details>
+      <details class="accordion__item">
+        <summary class="accordion__title">Can I use it with Drupal?</summary>
+        <div class="accordion__body"><div class="accordion__content">Yes — scan your Twig templates, generate SCSS, and compile alongside your theme's existing Sass pipeline. Each component gets its own CSS file for Drupal's library system.</div></div>
+      </details>
+      <details class="accordion__item">
+        <summary class="accordion__title">What browsers are supported?</summary>
+        <div class="accordion__body"><div class="accordion__content">All modern browsers. This accordion uses native &lt;details&gt;/&lt;summary&gt; elements — works in Chrome, Firefox, Safari, and Edge.</div></div>
+      </details>
+    </div>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Sass Integration <code>dp.fluid()</code></h2>
+    <p class="fs-14-18 mb-16-32">When Dopamine outputs to <code>.scss</code>, it generates a <code>_dopamine-functions.scss</code> file with a <code>fluid()</code> Sass function. Use it for elements where you can't add utility classes (e.g. Drupal-rendered content).</p>
+
+    <h3 class="fs-18-24 mb-8-16">Import and use</h3>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-24-32">@use 'dopamine-functions' as dp;
+
+// Elements you can't add classes to
+.node--article .field--body p {
+  font-size: dp.fluid(16, 48);
+  margin-bottom: dp.fluid(8, 24);
+}
+
+// Custom viewport override
+.hero-banner h1 {
+  font-size: dp.fluid(32, 96, 480, 1920);
+}</code></pre>
+
+    <h3 class="fs-18-24 mb-8-16">Function signature</h3>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-24-32">@function fluid($min, $max, $vpMin: 320, $vpMax: 1440)
+// $min    — minimum value in pixels
+// $max    — maximum value in pixels
+// $vpMin  — viewport min (defaults from config)
+// $vpMax  — viewport max (defaults from config)
+// Returns: clamp(minRem, calc(Xvw + Yrem), maxRem)</code></pre>
+
+    <p class="fs-14-18">Same math as the utility classes. Same viewport defaults from your <code>dopamine.config.json</code>.</p>
+  </section>
+
+  <section class="docs-section mt-40-80 mb-40-80">
+    <h2 class="fs-24-48 mb-12-24">Component File Structure</h2>
+    <p class="fs-14-18 mb-16-32">Each <code>.scss</code> file in <code>scss/components/</code> compiles to its own CSS file. This means you can load them per-page in Drupal's library system.</p>
+
+    <h3 class="fs-18-24 mb-8-16">File layout</h3>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-24-32">scss/components/
+  accordion.scss     → css/components/accordion.css
+  hero.scss          → css/components/hero.css
+  slider.scss        → css/components/slider.css</code></pre>
+
+    <h3 class="fs-18-24 mb-8-16">Example component</h3>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-24-32">// scss/components/accordion.scss
+@use '../dopamine-functions' as dp;
+
+.accordion__title {
+  font-size: dp.fluid(18, 24);
+  padding: dp.fluid(12, 24);
+  font-weight: 600;
+  background: #1a1a2e;
+  color: #fff;
+}</code></pre>
+
+    <h3 class="fs-18-24 mb-8-16">Drupal libraries.yml</h3>
+    <pre class="p-16-32 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18 lh-24-32">global-styling:
+  css:
+    theme:
+      css/main.css: {}
+
+accordion:
+  css:
+    component:
+      css/components/accordion.css: {}</code></pre>
+  </section>
+
+</div>
+
+<footer class="container-1200 px-16-48 pt-24-48 mb-24-48">
+  <p class="fs-12-16">&copy; 2026 Dopamine Fluid</p>
+</footer>
+
+</body>
+</html>

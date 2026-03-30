@@ -1,0 +1,42 @@
+{
+  "name": "dopamine-fluid",
+  "version": "0.1.0",
+  "description": "Dopamine Fluid — generate fluid CSS and grid layouts from class names",
+  "main": "lib/runner.js",
+  "bin": {
+    "dopamine": "./bin/dopamine.js"
+  },
+  "scripts": {
+    "build": "npm run dopamine && npm run sass",
+    "dopamine": "node bin/dopamine.js ./scss --ext scss --out ./scss/_dopamine.scss",
+    "sass": "sass scss/main.scss:css/main.css scss/components:css/components --no-source-map",
+    "dry": "node bin/dopamine.js ./docs/pages --ext html --dry-run",
+
+    "docs:build": "npm run docs:dopamine && npm run docs:sass",
+    "docs:dopamine": "node bin/dopamine.js ./docs/pages --ext html --out ./docs/scss/_dopamine.scss --config ./docs/dopamine.config.json",
+    "docs:sass": "sass docs/scss/main.scss:docs/css/main.css docs/scss/components:docs/css/components --no-source-map",
+    "docs:dev": "concurrently \"npm run docs:dopamine -- --watch\" \"npm run docs:sass -- --watch\" \"browser-sync start --server docs --files 'docs/css/**/*.css' 'docs/pages/*.html' --startPath pages/index.html --no-notify\"",
+
+    "dev:ddev": "concurrently \"npm run dopamine -- --watch\" \"npm run sass -- --watch\" \"browser-sync start --proxy $DDEV_URL --port $BS_PORT --files 'css/**/*.css' --no-notify\""
+  },
+  "keywords": [
+    "css",
+    "clamp",
+    "fluid",
+    "grid",
+    "typography",
+    "dopamine",
+    "sass"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "chokidar": "^3.6.0",
+    "commander": "^12.1.0",
+    "glob": "^10.4.5"
+  },
+  "devDependencies": {
+    "browser-sync": "^3.0.4",
+    "concurrently": "^9.2.1",
+    "sass": "^1.98.0"
+  }
+}

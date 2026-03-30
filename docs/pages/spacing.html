@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dopamine Fluid — Spacing</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <script src="../search.js" defer></script>
+</head>
+<body>
+
+<nav class="docs-nav">
+  <a href="index.html" class="docs-nav__brand">Dopamine Fluid</a>
+  <a href="typography.html">Typography</a>
+  <a href="spacing.html" class="active">Spacing</a>
+  <a href="sizing.html">Sizing</a>
+  <a href="grid.html">Grid</a>
+  <a href="flexbox.html">Flexbox</a>
+  <a href="utilities.html">Utilities</a>
+  <a href="components.html">Components</a>
+</nav>
+
+<div class="docs-search container-1200 px-16-48">
+  <input type="text" placeholder="Search classes... (e.g. p-16-32, mb, mx-auto, py)">
+</div>
+
+<div class="docs-content container-1200 px-16-48">
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Padding — All Sides <code>p-{min}-{max}</code></h2>
+    <div class="grid cols-1 cols-md-2 cols-lg-4 gap-8-16">
+      <div class="p-8-16 radius-4-8 demo-box--blue"><p class="fs-14-18">p-8-16</p></div>
+      <div class="p-16-32 radius-4-8 demo-box--blue"><p class="fs-14-18">p-16-32</p></div>
+      <div class="p-24-48 radius-4-8 demo-box--blue"><p class="fs-14-18">p-24-48</p></div>
+      <div class="p-32-64 radius-4-8 demo-box--blue"><p class="fs-14-18">p-32-64</p></div>
+    </div>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Padding — Individual Sides <code>pt pb pl pr</code></h2>
+    <div class="grid cols-1 cols-md-2 cols-lg-4 gap-8-16">
+      <div class="pt-24 radius-4-8 demo-box--blue"><p class="fs-14-18">pt-24</p></div>
+      <div class="pb-24 radius-4-8 demo-box--blue"><p class="fs-14-18">pb-24</p></div>
+      <div class="pl-24 radius-4-8 demo-box--blue"><p class="fs-14-18">pl-24</p></div>
+      <div class="pr-24 radius-4-8 demo-box--blue"><p class="fs-14-18">pr-24</p></div>
+    </div>
+    <p class="fs-14-18 mt-16-32">Fluid: <code>pt-16-48</code>, <code>pb-8-24</code>, <code>pl-12-32</code>, <code>pr-12-32</code></p>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Padding — Axes <code>px</code> / <code>py</code></h2>
+    <div class="grid cols-1 cols-md-2 gap-8-16">
+      <div class="px-24-48 radius-4-8 demo-box--blue"><p class="fs-14-18">px-24-48 (left + right)</p></div>
+      <div class="py-24-48 radius-4-8 demo-box--blue"><p class="fs-14-18">py-24-48 (top + bottom)</p></div>
+    </div>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Padding — Breakpoint <code>p-{bp}-{min}-{max}</code></h2>
+    <div class="p-md-16-48 radius-4-8 demo-box--blue mb-8-16"><p class="fs-14-18">p-md-16-48 — fluid padding from md up</p></div>
+    <div class="p-lg-24-64 radius-4-8 demo-box--blue"><p class="fs-14-18">p-lg-24-64 — fluid padding from lg up</p></div>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Margin — All Sides <code>m-{value}</code></h2>
+    <div class="grid cols-1 cols-md-3 gap-8-16">
+      <div class="radius-4-8 demo-box--dashed p-8">
+        <div class="m-16 radius-4-8 demo-box--blue p-8"><p class="fs-14-18">m-16</p></div>
+      </div>
+      <div class="radius-4-8 demo-box--dashed p-8">
+        <div class="mt-16 mb-16 radius-4-8 demo-box--blue p-8"><p class="fs-14-18">mt-16 mb-16</p></div>
+      </div>
+      <div class="radius-4-8 demo-box--dashed p-8">
+        <div class="ml-16 mr-16 radius-4-8 demo-box--blue p-8"><p class="fs-14-18">ml-16 mr-16</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Margin — Fluid <code>m-{min}-{max}</code></h2>
+    <div class="grid cols-1 cols-md-2 gap-8-16">
+      <div class="radius-4-8 demo-box--dashed p-8">
+        <div class="mt-16-48 radius-4-8 demo-box--blue p-8"><p class="fs-14-18">mt-16-48 (fluid)</p></div>
+      </div>
+      <div class="radius-4-8 demo-box--dashed p-8">
+        <div class="mb-16-48 radius-4-8 demo-box--blue p-8"><p class="fs-14-18">mb-16-48 (fluid)</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Margin — Axes <code>mx</code> / <code>my</code></h2>
+    <div class="grid cols-1 cols-md-2 gap-8-16">
+      <div class="radius-4-8 demo-box--dashed p-8">
+        <div class="mx-24-48 radius-4-8 demo-box--blue p-8"><p class="fs-14-18">mx-24-48 (left + right)</p></div>
+      </div>
+      <div class="radius-4-8 demo-box--dashed p-8">
+        <div class="my-24-48 radius-4-8 demo-box--blue p-8"><p class="fs-14-18">my-24-48 (top + bottom)</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="docs-section mt-40-80 mb-40-80">
+    <h2 class="fs-24-48 mb-12-24">Margin — Breakpoint <code>mb-{bp}-{min}-{max}</code></h2>
+    <div class="radius-4-8 demo-box--dashed p-8 mb-8-16">
+      <div class="mb-md-16-32 radius-4-8 demo-box--blue p-8"><p class="fs-14-18">mb-md-16-32 — fluid margin-bottom from md up</p></div>
+    </div>
+    <div class="radius-4-8 demo-box--dashed p-8">
+      <div class="mt-lg-24-48 radius-4-8 demo-box--blue p-8"><p class="fs-14-18">mt-lg-24-48 — fluid margin-top from lg up</p></div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="container-1200 px-16-48 pt-24-48 mb-24-48">
+  <p class="fs-12-16">&copy; 2026 Dopamine Fluid</p>
+</footer>
+
+</body>
+</html>

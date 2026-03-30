@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dopamine Fluid — Typography</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <script src="../search.js" defer></script>
+</head>
+<body>
+
+<nav class="docs-nav">
+  <a href="index.html" class="docs-nav__brand">Dopamine Fluid</a>
+  <a href="typography.html" class="active">Typography</a>
+  <a href="spacing.html">Spacing</a>
+  <a href="sizing.html">Sizing</a>
+  <a href="grid.html">Grid</a>
+  <a href="flexbox.html">Flexbox</a>
+  <a href="utilities.html">Utilities</a>
+  <a href="components.html">Components</a>
+</nav>
+
+<div class="docs-search container-1200 px-16-48">
+  <input type="text" placeholder="Search classes... (e.g. fs-16-48, fw-bold, lh)">
+</div>
+
+<div class="docs-content container-960 px-16-48">
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Font Size — Fluid <code>fs-{min}-{max}</code></h2>
+    <div class="mb-4-8"><span class="fs-48-96">fs-48-96</span></div>
+    <div class="mb-4-8"><span class="fs-32-72">fs-32-72</span></div>
+    <div class="mb-4-8"><span class="fs-24-48">fs-24-48</span></div>
+    <div class="mb-4-8"><span class="fs-20-32">fs-20-32</span></div>
+    <div class="mb-4-8"><span class="fs-16-24">fs-16-24</span></div>
+    <div class="mb-4-8"><span class="fs-14-18">fs-14-18</span></div>
+    <div class="mb-4-8"><span class="fs-12-16">fs-12-16</span></div>
+    <p class="fs-14-18 mt-16-32">Scales smoothly between min and max using <code>clamp()</code>. Values are in pixels, output is in rem.</p>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Font Size — Fixed <code>fs-{value}</code></h2>
+    <div class="mb-4-8"><span class="fs-12">fs-12 (0.75rem)</span></div>
+    <div class="mb-4-8"><span class="fs-16">fs-16 (1rem)</span></div>
+    <div class="mb-4-8"><span class="fs-20">fs-20 (1.25rem)</span></div>
+    <div class="mb-4-8"><span class="fs-24">fs-24 (1.5rem)</span></div>
+    <div class="mb-4-8"><span class="fs-32">fs-32 (2rem)</span></div>
+    <p class="fs-14-18 mt-16-32">Single value — no scaling. Converted to rem.</p>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Font Size — Breakpoint <code>fs-{bp}-{min}-{max}</code></h2>
+    <p class="fs-14-18 mb-16-32">Only applies from the breakpoint and up (mobile-first).</p>
+    <div class="p-16-32 radius-4-8 demo-box mb-8-16">
+      <p class="fs-sm-16-24">fs-sm-16-24 — fluid from sm (576px) up</p>
+    </div>
+    <div class="p-16-32 radius-4-8 demo-box mb-8-16">
+      <p class="fs-md-18-32">fs-md-18-32 — fluid from md (768px) up</p>
+    </div>
+    <div class="p-16-32 radius-4-8 demo-box">
+      <p class="fs-lg-24-48">fs-lg-24-48 — fluid from lg (992px) up</p>
+    </div>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Viewport Override <code>fs-{min}-{max}--{vpMin}-{vpMax}</code></h2>
+    <div class="p-16-32 radius-4-8 demo-box">
+      <p class="fs-16-48--480-1920">fs-16-48--480-1920</p>
+    </div>
+    <p class="fs-14-18 mt-16-32">Uses 480px–1920px viewport range instead of the config default (320px–1440px).</p>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Font Weight — Named <code>fw-{name}</code></h2>
+    <div class="mb-4-8"><span class="fs-20-28 fw-light">fw-light — 300</span></div>
+    <div class="mb-4-8"><span class="fs-20-28 fw-normal">fw-normal — 400</span></div>
+    <div class="mb-4-8"><span class="fs-20-28 fw-medium">fw-medium — 500</span></div>
+    <div class="mb-4-8"><span class="fs-20-28 fw-bold">fw-bold — 700</span></div>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Font Weight — Numeric <code>fw-{value}</code></h2>
+    <div class="mb-4-8"><span class="fs-18-24 fw-100">fw-100</span></div>
+    <div class="mb-4-8"><span class="fs-18-24 fw-200">fw-200</span></div>
+    <div class="mb-4-8"><span class="fs-18-24 fw-300">fw-300</span></div>
+    <div class="mb-4-8"><span class="fs-18-24 fw-400">fw-400</span></div>
+    <div class="mb-4-8"><span class="fs-18-24 fw-500">fw-500</span></div>
+    <div class="mb-4-8"><span class="fs-18-24 fw-600">fw-600</span></div>
+    <div class="mb-4-8"><span class="fs-18-24 fw-700">fw-700</span></div>
+    <div class="mb-4-8"><span class="fs-18-24 fw-800">fw-800</span></div>
+    <div class="mb-4-8"><span class="fs-18-24 fw-900">fw-900</span></div>
+    <p class="fs-14-18 mt-16-32">Unitless — <code>fw-700</code> outputs <code>font-weight: 700</code>. No fluid range.</p>
+  </section>
+
+  <section class="docs-section mt-40-80 mb-40-80">
+    <h2 class="fs-24-48 mb-12-24">Line Height <code>lh-{min}-{max}</code></h2>
+    <div class="grid cols-1 cols-md-2 gap-16-32">
+      <div class="p-12-24 radius-4-8 demo-box">
+        <h3 class="fs-18-24 mb-8-16">Tight <code>lh-20-24</code></h3>
+        <p class="fs-16-20 lh-20-24">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+      <div class="p-12-24 radius-4-8 demo-box">
+        <h3 class="fs-18-24 mb-8-16">Loose <code>lh-28-40</code></h3>
+        <p class="fs-16-20 lh-28-40">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="container-1200 px-16-48 pt-24-48 mb-24-48">
+  <p class="fs-12-16">&copy; 2026 Dopamine Fluid</p>
+</footer>
+
+</body>
+</html>

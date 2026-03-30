@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Build output (generated from Sass / Dopamine build scripts)
+css/
+scss/_dopamine.scss
+
+# Sass/cache artifacts
+.sass-cache/
+*.css.map
+*.map
+
+# Coverage/temp
+coverage/
+tmp/
+temp/
+*.tmp
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

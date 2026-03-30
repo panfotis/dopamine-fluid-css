@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dopamine Fluid — Sizing</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <script src="../search.js" defer></script>
+</head>
+<body>
+
+<nav class="docs-nav">
+  <a href="index.html" class="docs-nav__brand">Dopamine Fluid</a>
+  <a href="typography.html">Typography</a>
+  <a href="spacing.html">Spacing</a>
+  <a href="sizing.html" class="active">Sizing</a>
+  <a href="grid.html">Grid</a>
+  <a href="flexbox.html">Flexbox</a>
+  <a href="utilities.html">Utilities</a>
+  <a href="components.html">Components</a>
+</nav>
+
+<div class="docs-search container-1200 px-16-48">
+  <input type="text" placeholder="Search classes... (e.g. w-200, maxw, minh, radius)">
+</div>
+
+<div class="docs-content container-1100 px-16-48">
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Width & Height <code>w-{value}</code> / <code>h-{value}</code></h2>
+    <div class="grid cols-1 cols-md-2 gap-8-16">
+      <div class="w-200 h-80 radius-4-8 demo-box--orange p-8 flex align-center justify-center"><p class="fs-14-18">w-200 h-80 (fixed)</p></div>
+      <div class="w-100-400 h-60-120 radius-4-8 demo-box--orange p-8 flex align-center justify-center"><p class="fs-14-18">w-100-400 h-60-120 (fluid)</p></div>
+    </div>
+    <p class="fs-14-18 mt-16-32">Fixed: single pixel value → rem. Fluid: scales between min and max.</p>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Max Width <code>maxw-{value}</code> / Min Width <code>minw-{value}</code></h2>
+    <div class="maxw-600 p-12-24 radius-4-8 demo-box--orange mb-8-16"><p class="fs-14-18">maxw-600</p></div>
+    <div class="maxw-400 p-12-24 radius-4-8 demo-box--orange mb-8-16"><p class="fs-14-18">maxw-400</p></div>
+    <div class="minw-320 maxw-800 p-12-24 radius-4-8 demo-box--orange"><p class="fs-14-18">minw-320 maxw-800 (constrained)</p></div>
+    <p class="fs-14-18 mt-16-32">Fluid max-width: <code>maxw-400-800</code> scales the constraint itself.</p>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Max Height <code>maxh-{value}</code> / Min Height <code>minh-{value}</code></h2>
+    <div class="grid cols-1 cols-md-2 gap-8-16">
+      <div class="maxh-100 overflow-auto p-12-24 radius-4-8 demo-box--orange">
+        <p class="fs-14-18">maxh-100 overflow-auto — This box has a max-height and scrolls. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+      </div>
+      <div class="minh-150 p-12-24 radius-4-8 demo-box--orange flex align-center justify-center">
+        <p class="fs-14-18">minh-150 (centered with flex)</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Border Radius <code>radius-{value}</code> / <code>radius-{min}-{max}</code></h2>
+    <div class="flex flex-wrap gap-16">
+      <div class="w-80 h-80 radius-4 demo-box--purple flex align-center justify-center"><p class="fs-12-16">radius-4</p></div>
+      <div class="w-80 h-80 radius-8 demo-box--purple flex align-center justify-center"><p class="fs-12-16">radius-8</p></div>
+      <div class="w-80 h-80 radius-16 demo-box--purple flex align-center justify-center"><p class="fs-12-16">radius-16</p></div>
+      <div class="w-80 h-80 radius-4-16 demo-box--purple flex align-center justify-center"><p class="fs-12-16">radius-4-16</p></div>
+      <div class="w-80 h-80 radius-40 demo-box--purple flex align-center justify-center"><p class="fs-12-16">radius-40</p></div>
+    </div>
+    <p class="fs-14-18 mt-16-32">Fluid: <code>radius-4-16</code> scales from 4px to 16px. Fixed: <code>radius-8</code> stays at 0.5rem.</p>
+  </section>
+
+  <section class="docs-section mt-40-80 mb-40-80">
+    <h2 class="fs-24-48 mb-12-24">Sizing at Breakpoint</h2>
+    <div class="w-md-300 p-12-24 radius-4-8 demo-box--orange mb-8-16"><p class="fs-14-18">w-md-300 — 300px width from md up</p></div>
+    <div class="maxw-lg-600 p-12-24 radius-4-8 demo-box--orange mb-8-16"><p class="fs-14-18">maxw-lg-600 — max-width 600px from lg up</p></div>
+    <div class="minh-md-200 p-12-24 radius-4-8 demo-box--orange"><p class="fs-14-18">minh-md-200 — min-height 200px from md up</p></div>
+  </section>
+
+</div>
+
+<footer class="container-1200 px-16-48 pt-24-48 mb-24-48">
+  <p class="fs-12-16">&copy; 2026 Dopamine Fluid</p>
+</footer>
+
+</body>
+</html>

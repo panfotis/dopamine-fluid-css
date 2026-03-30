@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dopamine Fluid</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/components/accordion.css">
+</head>
+<body>
+
+<!-- ========================================
+     1. HERO — container-1920
+     ======================================== -->
+<section class="container-1920 p-24-80">
+  <h1 class="fs-48-120 mb-8-24">Dopamine Fluid</h1>
+  <p class="fs-18-28 lh-28-40 mb-16-40">
+    The CSS that makes you feel good. Fluid typography, spacing,
+    and grid layouts — all generated from class names.
+  </p>
+  <p class="fs-14-18">Resize the browser to see everything scale smoothly.</p>
+</section>
+
+<!-- ========================================
+     2. TYPOGRAPHY — container-860
+     ======================================== -->
+<section class="container-860 px-16-48 mt-40-80">
+  <h2 class="fs-24-48 mb-12-24">Typography</h2>
+
+  <h3 class="fs-18-24 mb-8-16">Font Size Scale <code>fs-{min}-{max}</code></h3>
+  <div class="mb-4-8"><span class="fs-48-96">fs-48-96</span></div>
+  <div class="mb-4-8"><span class="fs-32-72">fs-32-72</span></div>
+  <div class="mb-4-8"><span class="fs-24-48">fs-24-48</span></div>
+  <div class="mb-4-8"><span class="fs-20-32">fs-20-32</span></div>
+  <div class="mb-4-8"><span class="fs-16-24">fs-16-24</span></div>
+  <div class="mb-4-8"><span class="fs-14-18">fs-14-18</span></div>
+  <div class="mb-16-32"><span class="fs-12-16">fs-12-16</span></div>
+
+  <h3 class="fs-18-24 mb-8-16">Fixed Font Size <code>fs-{value}</code></h3>
+  <div class="mb-16-32"><span class="fs-20">fs-20 (fixed 1.25rem)</span></div>
+
+  <h3 class="fs-18-24 mb-8-16">Font Weight <code>fw-{value}</code></h3>
+  <div class="mb-4-8"><span class="fs-20-28 fw-100">fw-100 — Thin</span></div>
+  <div class="mb-4-8"><span class="fs-20-28 fw-light">fw-light — 300</span></div>
+  <div class="mb-4-8"><span class="fs-20-28 fw-normal">fw-normal — 400</span></div>
+  <div class="mb-4-8"><span class="fs-20-28 fw-medium">fw-medium — 500</span></div>
+  <div class="mb-4-8"><span class="fs-20-28 fw-bold">fw-bold — 700</span></div>
+  <div class="mb-16-32"><span class="fs-20-28 fw-900">fw-900 — Black</span></div>
+
+  <h3 class="fs-18-24 mb-8-16">Line Height <code>lh-{min}-{max}</code></h3>
+  <div class="grid cols-1 cols-md-2 gap-16-32">
+    <div class="p-12-24 radius-4-8">
+      <p class="fs-16-20 lh-20-24">lh-20-24 — Tight line height. Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
+    </div>
+    <div class="p-12-24 radius-4-8">
+      <p class="fs-16-20 lh-28-40">lh-28-40 — Loose line height. Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     3. TEXT ALIGNMENT — container-1100
+     ======================================== -->
+<section class="container-1100 px-16-48 mt-40-80">
+  <h2 class="fs-24-48 mb-12-24">Text Alignment</h2>
+  <div class="grid cols-1 cols-md-3 gap-16-32 mb-16-32">
+    <div class="p-12-32 radius-4-12 text-left">
+      <h3 class="fs-18-24 mb-8-16">text-left</h3>
+      <p class="fs-14-18">Left aligned text.</p>
+    </div>
+    <div class="p-12-32 radius-4-12 text-center">
+      <h3 class="fs-18-24 mb-8-16">text-center</h3>
+      <p class="fs-14-18">Center aligned text.</p>
+    </div>
+    <div class="p-12-32 radius-4-12 text-right">
+      <h3 class="fs-18-24 mb-8-16">text-right</h3>
+      <p class="fs-14-18">Right aligned text.</p>
+    </div>
+  </div>
+  <p class="fs-14-18 p-12-24 radius-4-8 text-center text-left-lg">
+    <code>text-center text-left-lg</code> — Centered on mobile, left from lg up.
+  </p>
+</section>
+
+<!-- ========================================
+     4. SPACING — container-1200
+     ======================================== -->
+<section class="container-1200 px-16-48 mt-40-80">
+  <h2 class="fs-24-48 mb-12-24">Spacing</h2>
+
+  <h3 class="fs-18-24 mb-8-16">Padding — all sides <code>p-{min}-{max}</code></h3>
+  <div class="grid cols-1 cols-md-2 cols-lg-4 gap-8-16 mb-16-32">
+    <div class="p-8-16 radius-4-8"><p class="fs-14-18">p-8-16</p></div>
+    <div class="p-16-32 radius-4-8"><p class="fs-14-18">p-16-32</p></div>
+    <div class="p-24-48 radius-4-8"><p class="fs-14-18">p-24-48</p></div>
+    <div class="p-32-64 radius-4-8"><p class="fs-14-18">p-32-64</p></div>
+  </div>
+
+  <h3 class="fs-18-24 mb-8-16">Padding — individual sides</h3>
+  <div class="grid cols-1 cols-md-2 cols-lg-4 gap-8-16 mb-16-32">
+    <div class="pt-24 radius-4-8"><p class="fs-14-18">pt-24</p></div>
+    <div class="pb-24 radius-4-8"><p class="fs-14-18">pb-24</p></div>
+    <div class="pl-24 radius-4-8"><p class="fs-14-18">pl-24</p></div>
+    <div class="pr-24 radius-4-8"><p class="fs-14-18">pr-24</p></div>
+  </div>
+
+  <h3 class="fs-18-24 mb-8-16">Padding — axes <code>px-*</code> / <code>py-*</code></h3>
+  <div class="grid cols-1 cols-md-2 gap-8-16 mb-16-32">
+    <div class="px-24-48 radius-4-8"><p class="fs-14-18">px-24-48 (left + right)</p></div>
+    <div class="py-24-48 radius-4-8"><p class="fs-14-18">py-24-48 (top + bottom)</p></div>
+  </div>
+
+  <h3 class="fs-18-24 mb-8-16">Margin — all variants</h3>
+  <div class="grid cols-1 cols-md-3 gap-8-16 mb-16-32">
+    <div class="radius-4-8 p-8">
+      <div class="m-16 radius-4-8 p-8"><p class="fs-14-18">m-16</p></div>
+    </div>
+    <div class="radius-4-8 p-8">
+      <div class="mt-16 mb-16 radius-4-8 p-8"><p class="fs-14-18">mt-16 mb-16</p></div>
+    </div>
+    <div class="radius-4-8 p-8">
+      <div class="ml-16 mr-16 radius-4-8 p-8"><p class="fs-14-18">ml-16 mr-16</p></div>
+    </div>
+  </div>
+
+  <h3 class="fs-18-24 mb-8-16">Margin — axes <code>mx-*</code> / <code>my-*</code></h3>
+  <div class="grid cols-1 cols-md-2 gap-8-16">
+    <div class="radius-4-8 p-8">
+      <div class="mx-24-48 radius-4-8 p-8"><p class="fs-14-18">mx-24-48 (left + right)</p></div>
+    </div>
+    <div class="radius-4-8 p-8">
+      <div class="my-24-48 radius-4-8 p-8"><p class="fs-14-18">my-24-48 (top + bottom)</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     5. SIZING — container-1100
+     ======================================== -->
+<section class="container-1100 px-16-48 mt-40-80">
+  <h2 class="fs-24-48 mb-12-24">Sizing</h2>
+
+  <h3 class="fs-18-24 mb-8-16">Width & Height <code>w-*</code> / <code>h-*</code></h3>
+  <div class="grid cols-1 cols-md-2 gap-8-16 mb-16-32">
+    <div class="w-200 h-80 radius-4-8 p-8 flex align-center justify-center"><p class="fs-14-18">w-200 h-80</p></div>
+    <div class="w-100-400 h-60-120 radius-4-8 p-8 flex align-center justify-center"><p class="fs-14-18">w-100-400 h-60-120 (fluid)</p></div>
+  </div>
+
+  <h3 class="fs-18-24 mb-8-16">Max/Min Width <code>maxw-*</code> / <code>minw-*</code></h3>
+  <div class="maxw-600 p-12-24 radius-4-8 mb-8-16"><p class="fs-14-18">maxw-600</p></div>
+  <div class="maxw-400 p-12-24 radius-4-8 mb-8-16"><p class="fs-14-18">maxw-400</p></div>
+  <div class="minw-320 maxw-800 p-12-24 radius-4-8 mb-16-32"><p class="fs-14-18">minw-320 maxw-800</p></div>
+
+  <h3 class="fs-18-24 mb-8-16">Max/Min Height <code>maxh-*</code> / <code>minh-*</code></h3>
+  <div class="grid cols-1 cols-md-2 gap-8-16">
+    <div class="maxh-100 overflow-auto p-12-24 radius-4-8">
+      <p class="fs-14-18">maxh-100 overflow-auto — This box has a max-height and scrolls. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+    </div>
+    <div class="minh-150 p-12-24 radius-4-8 flex align-center justify-center">
+      <p class="fs-14-18">minh-150 (centered with flex)</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     6. BORDER RADIUS — container-960
+     ======================================== -->
+<section class="container-960 px-16-48 mt-40-80">
+  <h2 class="fs-24-48 mb-12-24">Border Radius <code>radius-{min}-{max}</code></h2>
+  <div class="flex flex-wrap gap-16">
+    <div class="w-80 h-80 radius-4 flex align-center justify-center"><p class="fs-12-16">radius-4</p></div>
+    <div class="w-80 h-80 radius-8 flex align-center justify-center"><p class="fs-12-16">radius-8</p></div>
+    <div class="w-80 h-80 radius-16 flex align-center justify-center"><p class="fs-12-16">radius-16</p></div>
+    <div class="w-80 h-80 radius-4-16 flex align-center justify-center"><p class="fs-12-16">radius-4-16</p></div>
+    <div class="w-80 h-80 radius-40 flex align-center justify-center"><p class="fs-12-16">radius-40</p></div>
+  </div>
+</section>
+
+<!-- ========================================
+     7. CONTAINERS
+     ======================================== -->
+<section class="mt-40-80">
+  <div class="container-1200 px-16-48">
+    <h2 class="fs-24-48 mb-12-24">Containers</h2>
+  </div>
+  <div class="container-960 container-demo-960 px-16-48 p-12-24 radius-4-8 mb-8-16"><p class="fs-14-18">container-960</p></div>
+  <div class="container-1100 container-demo-1200 px-16-48 p-12-24 radius-4-8 mb-8-16"><p class="fs-14-18">container-1100</p></div>
+  <div class="container-1200 container-demo-1200 px-16-48 p-12-24 radius-4-8 mb-8-16"><p class="fs-14-18">container-1200</p></div>
+  <div class="container-1440 container-demo-1440 px-16-48 p-12-24 radius-4-8 mb-8-16"><p class="fs-14-18">container-1440</p></div>
+  <div class="container-1920 container-demo-1920 px-16-48 p-12-24 radius-4-8 mb-8-16"><p class="fs-14-18">container-1920</p></div>
+  <div class="container-1200 container-demo-1200 px-16-48 mt-16-32 p-12-24 radius-4-8">
+    <h3 class="fs-18-24 mb-8-16">Nested Containers</h3>
+    <div class="container-800 container-demo-800 px-16-32 p-16-32 radius-8-16">
+      <p class="fs-14-18">container-800 nested inside container-1200</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     8. GRID COLUMNS — container-1440
+     ======================================== -->
+<section class="container-1440 px-16-48 mt-40-80">
+  <h2 class="fs-24-48 mb-12-24">Grid — Columns</h2>
+
+  <h3 class="fs-18-24 mb-8-16">Equal <code>grid cols-1 cols-md-2 cols-lg-4</code></h3>
+  <div class="grid cols-1 cols-md-2 cols-lg-4 gap-16-32 mb-24-40">
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">1</p></div>
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">2</p></div>
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">3</p></div>
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">4</p></div>
+  </div>
+
+  <h3 class="fs-18-24 mb-8-16">Sidebar <code>grid cols-1 cols-md-1.3</code></h3>
+  <div class="grid cols-1 cols-md-1.3 gap-16-32 mb-24-40">
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">Sidebar (1fr)</p></div>
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">Main content (3fr)</p></div>
+  </div>
+
+  <h3 class="fs-18-24 mb-8-16">Holy Grail <code>grid cols-1 cols-md-1.3.1</code></h3>
+  <div class="grid cols-1 cols-md-1.3.1 gap-16-32 mb-24-40">
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">Left (1fr)</p></div>
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">Main (3fr)</p></div>
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">Right (1fr)</p></div>
+  </div>
+
+  <h3 class="fs-18-24 mb-8-16">Responsive <code>grid cols-1 cols-sm-2 cols-md-3 cols-lg-4 cols-xl-6 cols-xxl-4</code></h3>
+  <div class="grid cols-1 cols-sm-2 cols-md-3 cols-lg-4 cols-xl-6 cols-xxl-4 gap-8-16">
+    <div class="p-8-16 radius-4-8"><p class="fs-12-16">1</p></div>
+    <div class="p-8-16 radius-4-8"><p class="fs-12-16">2</p></div>
+    <div class="p-8-16 radius-4-8"><p class="fs-12-16">3</p></div>
+    <div class="p-8-16 radius-4-8"><p class="fs-12-16">4</p></div>
+    <div class="p-8-16 radius-4-8"><p class="fs-12-16">5</p></div>
+    <div class="p-8-16 radius-4-8"><p class="fs-12-16">6</p></div>
+  </div>
+</section>
+
+<!-- ========================================
+     9. GRID GAPS — container-1200
+     ======================================== -->
+<section class="container-1200 px-16-48 mt-40-80">
+  <h2 class="fs-24-48 mb-12-24">Grid — Gaps</h2>
+
+  <h3 class="fs-18-24 mb-8-16">Fixed <code>gap-16</code></h3>
+  <div class="grid cols-3 gap-16 mb-16-32">
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">A</p></div>
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">B</p></div>
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">C</p></div>
+  </div>
+
+  <h3 class="fs-18-24 mb-8-16">Fluid <code>gap-8-40</code></h3>
+  <div class="grid cols-3 gap-8-40 mb-16-32">
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">A</p></div>
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">B</p></div>
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">C</p></div>
+  </div>
+
+  <h3 class="fs-18-24 mb-8-16">Split <code>gapx-32-48 gapy-4-8</code></h3>
+  <div class="grid cols-2 gapx-32-48 gapy-4-8">
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">A</p></div>
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">B</p></div>
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">C</p></div>
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">D</p></div>
+  </div>
+</section>
+
+<!-- ========================================
+     10. GRID ALIGNMENT — container-1100
+     ======================================== -->
+<section class="container-1100 px-16-48 mt-40-80">
+  <h2 class="fs-24-48 mb-12-24">Grid — Alignment</h2>
+
+  <h3 class="fs-18-24 mb-8-16"><code>align-center</code> (vertical)</h3>
+  <div class="grid cols-3 align-center gap-16-32 mb-16-32">
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">Short</p></div>
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">Tall column with more content to show vertical centering works.</p></div>
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">Short</p></div>
+  </div>
+
+  <h3 class="fs-18-24 mb-8-16"><code>justify-items-center</code> (horizontal)</h3>
+  <div class="grid cols-3 justify-items-center gap-16-32 mb-16-32">
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">Centered</p></div>
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">Centered</p></div>
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">Centered</p></div>
+  </div>
+
+  <h3 class="fs-18-24 mb-8-16"><code>place-center</code> (both axes)</h3>
+  <div class="grid cols-3 place-center gap-16-32 minh-150 mb-16-32">
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">Centered</p></div>
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">Centered</p></div>
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">Centered</p></div>
+  </div>
+
+  <h3 class="fs-18-24 mb-8-16">Self Alignment</h3>
+  <div class="grid cols-4 gap-16-32 minh-200 mb-16-32">
+    <div class="p-12-24 radius-4-8 self-start"><p class="fs-14-18">self-start</p></div>
+    <div class="p-12-24 radius-4-8 self-center"><p class="fs-14-18">self-center</p></div>
+    <div class="p-12-24 radius-4-8 self-end"><p class="fs-14-18">self-end</p></div>
+    <div class="p-12-24 radius-4-8 self-stretch"><p class="fs-14-18">self-stretch</p></div>
+  </div>
+
+  <h3 class="fs-18-24 mb-8-16">Justify Self</h3>
+  <div class="grid cols-4 gap-16-32">
+    <div class="p-12-24 radius-4-8 justify-self-start"><p class="fs-14-18">justify-self-start</p></div>
+    <div class="p-12-24 radius-4-8 justify-self-center"><p class="fs-14-18">justify-self-center</p></div>
+    <div class="p-12-24 radius-4-8 justify-self-end"><p class="fs-14-18">justify-self-end</p></div>
+    <div class="p-12-24 radius-4-8 justify-self-stretch"><p class="fs-14-18">justify-self-stretch</p></div>
+  </div>
+</section>
+
+<!-- ========================================
+     11. DISPLAY — container-960
+     ======================================== -->
+<section class="container-960 px-16-48 mt-40-80">
+  <h2 class="fs-24-48 mb-12-24">Display</h2>
+  <div class="grid cols-1 cols-md-2 gap-16-32">
+    <div class="p-12-24 radius-4-8">
+      <h3 class="fs-18-24 mb-8-16">Responsive Show/Hide</h3>
+      <p class="hidden block-md fs-14-18 mb-4-8">hidden block-md — visible from md up</p>
+      <p class="block hidden-md fs-14-18 mb-4-8">block hidden-md — visible below md</p>
+      <p class="hidden block-lg fs-14-18 mb-4-8">hidden block-lg — visible from lg up</p>
+      <p class="hidden block-xxl fs-14-18">hidden block-xxl — visible from xxl up</p>
+    </div>
+    <div class="p-12-24 radius-4-8">
+      <h3 class="fs-18-24 mb-8-16">Display Types</h3>
+      <span class="block p-4 radius-4-8 mb-4-8 fs-14-18">block</span>
+      <span class="inline p-4 radius-4-8 mb-4-8 fs-14-18">inline</span>
+      <span class="inline-block p-4 radius-4-8 mb-4-8 fs-14-18">inline-block</span>
+      <div class="inline-flex gap-4 p-4 radius-4-8 mb-4-8"><span class="fs-14-18">inline-flex</span><span class="fs-14-18">items</span></div>
+      <div class="inline-grid cols-2 gap-4 p-4 radius-4-8"><span class="fs-14-18">inline-grid</span><span class="fs-14-18">items</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     12. FLEXBOX — container-1200
+     ======================================== -->
+<section class="container-1200 px-16-48 mt-40-80">
+  <h2 class="fs-24-48 mb-12-24">Flexbox</h2>
+
+  <h3 class="fs-18-24 mb-8-16">Direction <code>flex-row</code> / <code>flex-col</code></h3>
+  <div class="grid cols-1 cols-md-2 gap-16-32 mb-16-32">
+    <div>
+      <p class="fs-14-18 mb-8-16"><code>flex flex-row</code></p>
+      <div class="flex flex-row gap-8">
+        <div class="p-8-16 radius-4-8"><p class="fs-14-18">A</p></div>
+        <div class="p-8-16 radius-4-8"><p class="fs-14-18">B</p></div>
+        <div class="p-8-16 radius-4-8"><p class="fs-14-18">C</p></div>
+      </div>
+    </div>
+    <div>
+      <p class="fs-14-18 mb-8-16"><code>flex flex-col</code></p>
+      <div class="flex flex-col gap-8">
+        <div class="p-8-16 radius-4-8"><p class="fs-14-18">A</p></div>
+        <div class="p-8-16 radius-4-8"><p class="fs-14-18">B</p></div>
+        <div class="p-8-16 radius-4-8"><p class="fs-14-18">C</p></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="fs-18-24 mb-8-16">Direction Reverse</h3>
+  <div class="grid cols-1 cols-md-2 gap-16-32 mb-16-32">
+    <div>
+      <p class="fs-14-18 mb-8-16"><code>flex flex-row-reverse</code></p>
+      <div class="flex flex-row-reverse gap-8">
+        <div class="p-8-16 radius-4-8"><p class="fs-14-18">1</p></div>
+        <div class="p-8-16 radius-4-8"><p class="fs-14-18">2</p></div>
+        <div class="p-8-16 radius-4-8"><p class="fs-14-18">3</p></div>
+      </div>
+    </div>
+    <div>
+      <p class="fs-14-18 mb-8-16"><code>flex flex-col-reverse</code></p>
+      <div class="flex flex-col-reverse gap-8">
+        <div class="p-8-16 radius-4-8"><p class="fs-14-18">1</p></div>
+        <div class="p-8-16 radius-4-8"><p class="fs-14-18">2</p></div>
+        <div class="p-8-16 radius-4-8"><p class="fs-14-18">3</p></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="fs-18-24 mb-8-16">Responsive <code>flex flex-col flex-row-md</code></h3>
+  <div class="flex flex-col flex-row-md gap-8-16 mb-16-32">
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">Stacks on mobile</p></div>
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">Row from md up</p></div>
+    <div class="p-12-24 radius-4-8"><p class="fs-14-18">Fluid gap</p></div>
+  </div>
+
+  <h3 class="fs-18-24 mb-8-16">Wrap <code>flex-wrap</code> / <code>flex-nowrap</code></h3>
+  <div class="flex flex-wrap gap-8 mb-16-32">
+    <div class="p-8-16 radius-4-8"><p class="fs-14-18">Tag 1</p></div>
+    <div class="p-8-16 radius-4-8"><p class="fs-14-18">Tag 2</p></div>
+    <div class="p-8-16 radius-4-8"><p class="fs-14-18">Tag 3</p></div>
+    <div class="p-8-16 radius-4-8"><p class="fs-14-18">Tag 4</p></div>
+    <div class="p-8-16 radius-4-8"><p class="fs-14-18">Tag 5</p></div>
+    <div class="p-8-16 radius-4-8"><p class="fs-14-18">Tag 6</p></div>
+    <div class="p-8-16 radius-4-8"><p class="fs-14-18">Tag 7</p></div>
+    <div class="p-8-16 radius-4-8"><p class="fs-14-18">Tag 8</p></div>
+  </div>
+
+  <h3 class="fs-18-24 mb-8-16">Justify Content</h3>
+  <div class="flex justify-start gap-8 mb-8-16"><div class="p-8 radius-4-8"><p class="fs-12-16">A</p></div><div class="p-8 radius-4-8"><p class="fs-12-16">B</p></div><div class="p-8 radius-4-8"><p class="fs-12-16">justify-start</p></div></div>
+  <div class="flex justify-center gap-8 mb-8-16"><div class="p-8 radius-4-8"><p class="fs-12-16">A</p></div><div class="p-8 radius-4-8"><p class="fs-12-16">B</p></div><div class="p-8 radius-4-8"><p class="fs-12-16">justify-center</p></div></div>
+  <div class="flex justify-end gap-8 mb-8-16"><div class="p-8 radius-4-8"><p class="fs-12-16">A</p></div><div class="p-8 radius-4-8"><p class="fs-12-16">B</p></div><div class="p-8 radius-4-8"><p class="fs-12-16">justify-end</p></div></div>
+  <div class="flex justify-between mb-8-16"><div class="p-8 radius-4-8"><p class="fs-12-16">A</p></div><div class="p-8 radius-4-8"><p class="fs-12-16">justify-between</p></div><div class="p-8 radius-4-8"><p class="fs-12-16">C</p></div></div>
+  <div class="flex justify-around mb-8-16"><div class="p-8 radius-4-8"><p class="fs-12-16">A</p></div><div class="p-8 radius-4-8"><p class="fs-12-16">justify-around</p></div><div class="p-8 radius-4-8"><p class="fs-12-16">C</p></div></div>
+  <div class="flex justify-evenly"><div class="p-8 radius-4-8"><p class="fs-12-16">A</p></div><div class="p-8 radius-4-8"><p class="fs-12-16">justify-evenly</p></div><div class="p-8 radius-4-8"><p class="fs-12-16">C</p></div></div>
+</section>
+
+<!-- ========================================
+     13. FLEX ALIGN — container-1440
+     ======================================== -->
+<section class="container-1440 px-16-48 mt-40-80">
+  <h2 class="fs-24-48 mb-12-24">Flex — Align Items</h2>
+  <div class="grid cols-1 cols-md-2 cols-lg-3 gap-16-32">
+    <div>
+      <p class="fs-14-18 mb-8-16"><code>align-start</code></p>
+      <div class="flex align-start gap-8 minh-100">
+        <div class="p-8 radius-4-8"><p class="fs-12-16">A</p></div>
+        <div class="p-16 radius-4-8"><p class="fs-12-16">B tall</p></div>
+        <div class="p-8 radius-4-8"><p class="fs-12-16">C</p></div>
+      </div>
+    </div>
+    <div>
+      <p class="fs-14-18 mb-8-16"><code>align-center</code></p>
+      <div class="flex align-center gap-8 minh-100">
+        <div class="p-8 radius-4-8"><p class="fs-12-16">A</p></div>
+        <div class="p-16 radius-4-8"><p class="fs-12-16">B tall</p></div>
+        <div class="p-8 radius-4-8"><p class="fs-12-16">C</p></div>
+      </div>
+    </div>
+    <div>
+      <p class="fs-14-18 mb-8-16"><code>align-end</code></p>
+      <div class="flex align-end gap-8 minh-100">
+        <div class="p-8 radius-4-8"><p class="fs-12-16">A</p></div>
+        <div class="p-16 radius-4-8"><p class="fs-12-16">B tall</p></div>
+        <div class="p-8 radius-4-8"><p class="fs-12-16">C</p></div>
+      </div>
+    </div>
+    <div>
+      <p class="fs-14-18 mb-8-16"><code>align-stretch</code></p>
+      <div class="flex align-stretch gap-8 minh-100">
+        <div class="p-8 radius-4-8"><p class="fs-12-16">A</p></div>
+        <div class="p-8 radius-4-8"><p class="fs-12-16">B</p></div>
+      </div>
+    </div>
+    <div>
+      <p class="fs-14-18 mb-8-16"><code>align-baseline</code></p>
+      <div class="flex align-baseline gap-8">
+        <div class="p-8 radius-4-8"><p class="fs-12-16">small</p></div>
+        <div class="p-8 radius-4-8"><p class="fs-24-48">BIG</p></div>
+        <div class="p-8 radius-4-8"><p class="fs-12-16">small</p></div>
+      </div>
+    </div>
+    <div>
+      <p class="fs-14-18 mb-8-16"><code>self-auto</code></p>
+      <div class="flex gap-8 minh-100">
+        <div class="p-8 radius-4-8 self-auto"><p class="fs-12-16">self-auto</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     14. POSITION — container-960
+     ======================================== -->
+<section class="container-960 px-16-48 mt-40-80">
+  <h2 class="fs-24-48 mb-12-24">Position</h2>
+  <div class="grid cols-1 cols-md-2 gap-16-32">
+    <div class="relative p-12-24 radius-4-8 minh-120">
+      <p class="fs-14-18 mb-4-8"><code>relative</code> parent</p>
+      <div class="absolute p-8 radius-4-8" style="bottom:8px;right:8px;">
+        <p class="fs-12-16"><code>absolute</code> child</p>
+      </div>
+    </div>
+    <div class="p-12-24 radius-4-8">
+      <p class="fs-14-18 mb-4-8"><code>sticky</code> / <code>sticky-md</code></p>
+      <p class="fs-14-18 mb-4-8"><code>fixed</code> — fixed to viewport</p>
+      <p class="fs-14-18">All support breakpoint variants</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     15. OVERFLOW — container-1100
+     ======================================== -->
+<section class="container-1100 px-16-48 mt-40-80">
+  <h2 class="fs-24-48 mb-12-24">Overflow</h2>
+  <div class="grid cols-1 cols-md-3 gap-16-32">
+    <div class="overflow-hidden maxh-100 p-12-24 radius-4-8">
+      <p class="fs-14-18"><code>overflow-hidden</code> — Content is clipped. Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt.</p>
+    </div>
+    <div class="overflow-auto maxh-100 p-12-24 radius-4-8">
+      <p class="fs-14-18"><code>overflow-auto</code> — Scrolls when needed. Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt.</p>
+    </div>
+    <div class="overflow-scroll maxh-100 p-12-24 radius-4-8">
+      <p class="fs-14-18"><code>overflow-scroll</code> — Always shows scrollbar. Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod.</p>
+    </div>
+  </div>
+  <p class="fs-14-18 mt-8-16 p-12-24 radius-4-8 overflow-visible">
+    <code>overflow-visible</code> — Content can overflow its container.
+  </p>
+</section>
+
+<!-- ========================================
+     16. Z-INDEX — container-960
+     ======================================== -->
+<section class="container-960 px-16-48 mt-40-80">
+  <h2 class="fs-24-48 mb-12-24">Z-Index</h2>
+  <div class="relative minh-120">
+    <div class="absolute z-0 p-8 radius-4-8" style="top:0;left:0;"><p class="fs-12-16">z-0</p></div>
+    <div class="absolute z-1 p-8 radius-4-8" style="top:10px;left:30px;"><p class="fs-12-16">z-1</p></div>
+    <div class="absolute z-2 p-8 radius-4-8" style="top:20px;left:60px;"><p class="fs-12-16">z-2</p></div>
+    <div class="absolute z-3 p-8 radius-4-8" style="top:30px;left:90px;"><p class="fs-12-16">z-3</p></div>
+    <div class="absolute z-4 p-8 radius-4-8" style="top:40px;left:120px;"><p class="fs-12-16">z-4</p></div>
+    <div class="absolute z-5 p-8 radius-4-8" style="top:50px;left:150px;"><p class="fs-12-16">z-5</p></div>
+    <div class="absolute z-10 p-8 radius-4-8" style="top:60px;left:180px;"><p class="fs-12-16">z-10</p></div>
+    <div class="absolute z-50 p-8 radius-4-8" style="top:70px;left:210px;"><p class="fs-12-16">z-50</p></div>
+    <div class="absolute z-100 p-8 radius-4-8" style="top:80px;left:240px;"><p class="fs-12-16">z-100</p></div>
+  </div>
+</section>
+
+<!-- ========================================
+     17. ACCORDION — container-860
+     ======================================== -->
+<section class="container-860 px-16-48 mt-40-80 mb-40-80">
+  <h2 class="fs-24-48 mb-12-24">Component: Accordion <code>css/components/accordion.css</code></h2>
+  <p class="fs-14-18 mb-16-32">CSS-only accordion using <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code>. Styled with <code>dp.fluid()</code> in a separate component file.</p>
+  <div class="accordion">
+    <details class="accordion__item">
+      <summary class="accordion__title">What is Dopamine Fluid?</summary>
+      <div class="accordion__body"><div class="accordion__content">A CSS utility generator that creates fluid clamp() values and grid layouts from class names in your HTML. No runtime, no JavaScript — just scan your templates and generate pure CSS.</div></div>
+    </details>
+    <details class="accordion__item">
+      <summary class="accordion__title">How does the Sass function work?</summary>
+      <div class="accordion__body"><div class="accordion__content">Import _dopamine-functions.scss and use dp.fluid(16, 48) anywhere in your Sass. Same clamp() math as the utility classes, for elements where you can't add class names.</div></div>
+    </details>
+    <details class="accordion__item">
+      <summary class="accordion__title">Can I use it with Drupal?</summary>
+      <div class="accordion__body"><div class="accordion__content">Yes — scan your Twig templates, generate SCSS, and compile alongside your theme's existing Sass pipeline. Each component gets its own CSS file for Drupal's library system.</div></div>
+    </details>
+    <details class="accordion__item">
+      <summary class="accordion__title">What browsers are supported?</summary>
+      <div class="accordion__body"><div class="accordion__content">All modern browsers. This accordion uses native &lt;details&gt;/&lt;summary&gt; elements — works in Chrome, Firefox, Safari, and Edge.</div></div>
+    </details>
+  </div>
+</section>
+
+<!-- ========================================
+     FOOTER — container-1200
+     ======================================== -->
+<footer class="container-1200 px-16-48 mt-24-48 pt-24-48 mb-24-48">
+  <div class="grid cols-1 cols-md-1.1.1 gap-16-32">
+    <div>
+      <h3 class="fs-18-24 mb-8-16">Dopamine Fluid</h3>
+      <p class="fs-14-16 lh-20-24">The CSS that makes you feel good.</p>
+    </div>
+    <div>
+      <h3 class="fs-18-24 mb-8-16">Prefixes</h3>
+      <p class="fs-12-14">fs, fw, p, pt, pb, pl, pr, px, py</p>
+      <p class="fs-12-14">m, mt, mb, ml, mr, mx, my</p>
+      <p class="fs-12-14">gap, gapx, gapy, w, h, maxw, minw, maxh, minh, lh, radius, cols</p>
+    </div>
+    <div>
+      <h3 class="fs-18-24 mb-8-16">Keywords</h3>
+      <p class="fs-12-14">block, inline, inline-block, flex, inline-flex, grid, inline-grid, hidden</p>
+      <p class="fs-12-14">flex-row, flex-col, flex-wrap, flex-nowrap, flex-*-reverse</p>
+      <p class="fs-12-14">justify-*, align-*, self-*, place-center, text-*</p>
+      <p class="fs-12-14">relative, absolute, fixed, sticky, overflow-*, z-*</p>
+    </div>
+  </div>
+  <p class="mt-24-48 fs-12-16">&copy; 2026 Dopamine Fluid</p>
+</footer>
+
+</body>
+</html>

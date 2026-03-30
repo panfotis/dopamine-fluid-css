@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dopamine Fluid — Grid</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <script src="../search.js" defer></script>
+</head>
+<body>
+
+<nav class="docs-nav">
+  <a href="index.html" class="docs-nav__brand">Dopamine Fluid</a>
+  <a href="typography.html">Typography</a>
+  <a href="spacing.html">Spacing</a>
+  <a href="sizing.html">Sizing</a>
+  <a href="grid.html" class="active">Grid</a>
+  <a href="flexbox.html">Flexbox</a>
+  <a href="utilities.html">Utilities</a>
+  <a href="components.html">Components</a>
+</nav>
+
+<div class="docs-search container-1200 px-16-48">
+  <input type="text" placeholder="Search classes... (e.g. container, cols-md-2, gap, place-center)">
+</div>
+
+<div class="docs-content">
+
+  <!-- CONTAINERS -->
+  <section class="docs-section mt-40-80">
+    <div class="container-1200 px-16-48"><h2 class="fs-24-48 mb-12-24">Containers <code>container-{width}</code></h2></div>
+    <div class="container-960 container-demo-960 px-16-48 p-12-24 radius-4-8 mb-8-16"><p class="fs-14-18">container-960</p></div>
+    <div class="container-1100 container-demo-1100 px-16-48 p-12-24 radius-4-8 mb-8-16"><p class="fs-14-18">container-1100</p></div>
+    <div class="container-1200 container-demo-1200 px-16-48 p-12-24 radius-4-8 mb-8-16"><p class="fs-14-18">container-1200</p></div>
+    <div class="container-1440 container-demo-1440 px-16-48 p-12-24 radius-4-8 mb-8-16"><p class="fs-14-18">container-1440</p></div>
+    <div class="container-1920 container-demo-1920 px-16-48 p-12-24 radius-4-8 mb-8-16"><p class="fs-14-18">container-1920</p></div>
+    <div class="container-1200 container-demo-1200 px-16-48 mt-16-32 p-12-24 radius-4-8">
+      <h3 class="fs-18-24 mb-8-16">Nested</h3>
+      <div class="container-800 container-demo-800 px-16-32 p-16-32 radius-8-16">
+        <p class="fs-14-18">container-800 inside container-1200</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EQUAL COLUMNS -->
+  <section class="docs-section mt-40-80 container-1440 px-16-48">
+    <h2 class="fs-24-48 mb-12-24">Equal Columns <code>grid cols-{n}</code></h2>
+    <h3 class="fs-18-24 mb-8-16"><code>grid cols-1 cols-md-2 cols-lg-4</code></h3>
+    <div class="grid cols-1 cols-md-2 cols-lg-4 gap-16-32 mb-24-40">
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">1</p></div>
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">2</p></div>
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">3</p></div>
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">4</p></div>
+    </div>
+    <h3 class="fs-18-24 mb-8-16"><code>grid cols-2</code></h3>
+    <div class="grid cols-2 gap-16 mb-24-40">
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">1</p></div>
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">2</p></div>
+    </div>
+    <h3 class="fs-18-24 mb-8-16"><code>grid cols-3</code></h3>
+    <div class="grid cols-3 gap-8-16">
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">1</p></div>
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">2</p></div>
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">3</p></div>
+    </div>
+  </section>
+
+  <!-- CUSTOM RATIOS -->
+  <section class="docs-section mt-40-80 container-1200 px-16-48">
+    <h2 class="fs-24-48 mb-12-24">Column Ratios <code>cols-{ratio}</code> (dot notation)</h2>
+    <h3 class="fs-18-24 mb-8-16">Sidebar <code>cols-1 cols-md-1.3</code></h3>
+    <div class="grid cols-1 cols-md-1.3 gap-16-32 mb-24-40">
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">Sidebar (1fr)</p></div>
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">Main (3fr)</p></div>
+    </div>
+    <h3 class="fs-18-24 mb-8-16">Holy Grail <code>cols-1 cols-md-1.3.1</code></h3>
+    <div class="grid cols-1 cols-md-1.3.1 gap-16-32 mb-24-40">
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">Left (1fr)</p></div>
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">Main (3fr)</p></div>
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">Right (1fr)</p></div>
+    </div>
+    <h3 class="fs-18-24 mb-8-16">Wide + Narrow <code>cols-1 cols-md-2.1</code></h3>
+    <div class="grid cols-1 cols-md-2.1 gap-16-32">
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">Wide (2fr)</p></div>
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">Narrow (1fr)</p></div>
+    </div>
+  </section>
+
+  <!-- RESPONSIVE -->
+  <section class="docs-section mt-40-80 container-1440 px-16-48">
+    <h2 class="fs-24-48 mb-12-24">Responsive Columns</h2>
+    <h3 class="fs-18-24 mb-8-16"><code>cols-1 cols-sm-2 cols-md-3 cols-lg-4 cols-xl-6 cols-xxl-4</code></h3>
+    <div class="grid cols-1 cols-sm-2 cols-md-3 cols-lg-4 cols-xl-6 cols-xxl-4 gap-8-16">
+      <div class="p-8-16 radius-4-8"><p class="fs-12-16">1</p></div>
+      <div class="p-8-16 radius-4-8"><p class="fs-12-16">2</p></div>
+      <div class="p-8-16 radius-4-8"><p class="fs-12-16">3</p></div>
+      <div class="p-8-16 radius-4-8"><p class="fs-12-16">4</p></div>
+      <div class="p-8-16 radius-4-8"><p class="fs-12-16">5</p></div>
+      <div class="p-8-16 radius-4-8"><p class="fs-12-16">6</p></div>
+    </div>
+  </section>
+
+  <!-- GAPS -->
+  <section class="docs-section mt-40-80 container-1200 px-16-48">
+    <h2 class="fs-24-48 mb-12-24">Gaps <code>gap</code> / <code>gapx</code> / <code>gapy</code></h2>
+    <h3 class="fs-18-24 mb-8-16">Fixed <code>gap-16</code></h3>
+    <div class="grid cols-3 gap-16 mb-16-32">
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">A</p></div>
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">B</p></div>
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">C</p></div>
+    </div>
+    <h3 class="fs-18-24 mb-8-16">Fluid <code>gap-8-40</code></h3>
+    <div class="grid cols-3 gap-8-40 mb-16-32">
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">A</p></div>
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">B</p></div>
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">C</p></div>
+    </div>
+    <h3 class="fs-18-24 mb-8-16">Split <code>gapx-32-48 gapy-4-8</code></h3>
+    <div class="grid cols-2 gapx-32-48 gapy-4-8">
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">A</p></div>
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">B</p></div>
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">C</p></div>
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">D</p></div>
+    </div>
+  </section>
+
+  <!-- GRID ALIGNMENT -->
+  <section class="docs-section mt-40-80 mb-40-80 container-1100 px-16-48">
+    <h2 class="fs-24-48 mb-12-24">Grid Alignment</h2>
+    <h3 class="fs-18-24 mb-8-16"><code>align-center</code></h3>
+    <div class="grid cols-3 align-center gap-16-32 mb-16-32">
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">Short</p></div>
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">Tall column with more content to show vertical centering.</p></div>
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">Short</p></div>
+    </div>
+    <h3 class="fs-18-24 mb-8-16"><code>justify-items-center</code></h3>
+    <div class="grid cols-3 justify-items-center gap-16-32 mb-16-32">
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">Centered</p></div>
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">Centered</p></div>
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">Centered</p></div>
+    </div>
+    <h3 class="fs-18-24 mb-8-16"><code>place-center</code></h3>
+    <div class="grid cols-3 place-center gap-16-32 minh-150 mb-16-32">
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">Both axes</p></div>
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">Both axes</p></div>
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">Both axes</p></div>
+    </div>
+    <h3 class="fs-18-24 mb-8-16">Self Alignment</h3>
+    <div class="grid cols-4 gap-16-32 minh-200 mb-16-32">
+      <div class="p-12-24 radius-4-8 self-start"><p class="fs-14-18">self-start</p></div>
+      <div class="p-12-24 radius-4-8 self-center"><p class="fs-14-18">self-center</p></div>
+      <div class="p-12-24 radius-4-8 self-end"><p class="fs-14-18">self-end</p></div>
+      <div class="p-12-24 radius-4-8 self-stretch"><p class="fs-14-18">self-stretch</p></div>
+    </div>
+    <h3 class="fs-18-24 mb-8-16">Justify Self</h3>
+    <div class="grid cols-4 gap-16-32">
+      <div class="p-12-24 radius-4-8 justify-self-start"><p class="fs-14-18">start</p></div>
+      <div class="p-12-24 radius-4-8 justify-self-center"><p class="fs-14-18">center</p></div>
+      <div class="p-12-24 radius-4-8 justify-self-end"><p class="fs-14-18">end</p></div>
+      <div class="p-12-24 radius-4-8 justify-self-stretch"><p class="fs-14-18">stretch</p></div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="container-1200 px-16-48 pt-24-48 mb-24-48">
+  <p class="fs-12-16">&copy; 2026 Dopamine Fluid</p>
+</footer>
+
+</body>
+</html>
