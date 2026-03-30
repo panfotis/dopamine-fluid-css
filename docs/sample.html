@@ -14,7 +14,7 @@
      ======================================== -->
 <section class="container-1920 p-24-80">
   <h1 class="fs-48-120 mb-8-24">Dopamine Fluid</h1>
-  <p class="fs-18-28 lh-28-40 mb-16-40">
+  <p class="fs-18-28 lh-16 mb-16-40">
     The CSS that makes you feel good. Fluid typography, spacing,
     and grid layouts — all generated from class names.
   </p>
@@ -47,13 +47,17 @@
   <div class="mb-4-8"><span class="fs-20-28 fw-bold">fw-bold — 700</span></div>
   <div class="mb-16-32"><span class="fs-20-28 fw-900">fw-900 — Black</span></div>
 
-  <h3 class="fs-18-24 mb-8-16">Line Height <code>lh-{min}-{max}</code></h3>
-  <div class="grid cols-1 cols-md-2 gap-16-32">
+  <h3 class="fs-18-24 mb-8-16">Line Height <code>lh-{value}</code></h3>
+  <p class="fs-14-18 mb-8-16">Unitless, fixed only. <code>lh-15</code> → 1.5, <code>lh-2</code> → 2. Supports breakpoints: <code>lh-md-15</code>.</p>
+  <div class="grid cols-1 cols-md-3 gap-16-32">
     <div class="p-12-24 radius-4-8">
-      <p class="fs-16-20 lh-20-24">lh-20-24 — Tight line height. Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
+      <p class="fs-16-20 lh-12">lh-12 — Tight (1.2). Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
     </div>
     <div class="p-12-24 radius-4-8">
-      <p class="fs-16-20 lh-28-40">lh-28-40 — Loose line height. Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
+      <p class="fs-16-20 lh-15">lh-15 — Normal (1.5). Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
+    </div>
+    <div class="p-12-24 radius-4-8">
+      <p class="fs-16-20 lh-2">lh-2 — Loose (2). Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
     </div>
   </div>
 </section>
@@ -130,6 +134,17 @@
     </div>
     <div class="radius-4-8 p-8">
       <div class="my-24-48 radius-4-8 p-8"><p class="fs-14-18">my-24-48 (top + bottom)</p></div>
+    </div>
+  </div>
+
+  <h3 class="fs-18-24 mb-8-16 mt-16-32">Margin — auto <code>mx-auto</code> / <code>ml-auto</code></h3>
+  <p class="fs-14-18 mb-8-16">Breakpoints: <code>mx-md-auto</code>, <code>ml-lg-auto</code></p>
+  <div class="grid cols-1 cols-md-2 gap-8-16">
+    <div class="radius-4-8 p-8">
+      <div class="mx-auto maxw-400 radius-4-8 p-8"><p class="fs-14-18">mx-auto maxw-400</p></div>
+    </div>
+    <div class="radius-4-8 p-8">
+      <div class="ml-auto maxw-400 radius-4-8 p-8"><p class="fs-14-18">ml-auto maxw-400</p></div>
     </div>
   </div>
 </section>
@@ -527,19 +542,19 @@
   <div class="accordion">
     <details class="accordion__item">
       <summary class="accordion__title p-12-24 fs-16-20 fw-bold">What is Dopamine Fluid?</summary>
-      <div class="accordion__body"><div class="accordion__content p-12-24 fs-14-18 lh-24-32">A CSS utility generator that creates fluid clamp() values and grid layouts from class names in your HTML. No runtime, no JavaScript — just scan your templates and generate pure CSS.</div></div>
+      <div class="accordion__body"><div class="accordion__content p-12-24 fs-14-18 lh-15">A CSS utility generator that creates fluid clamp() values and grid layouts from class names in your HTML. No runtime, no JavaScript — just scan your templates and generate pure CSS.</div></div>
     </details>
     <details class="accordion__item">
       <summary class="accordion__title p-12-24 fs-16-20 fw-bold">How does the Sass function work?</summary>
-      <div class="accordion__body"><div class="accordion__content p-12-24 fs-14-18 lh-24-32">Import _dopamine-functions.scss and use dp.fluid(16, 48) anywhere in your Sass. Same clamp() math as the utility classes, for elements where you can't add class names.</div></div>
+      <div class="accordion__body"><div class="accordion__content p-12-24 fs-14-18 lh-15">Import _dopamine-functions.scss and use dp.fluid(16, 48) anywhere in your Sass. Same clamp() math as the utility classes, for elements where you can't add class names.</div></div>
     </details>
     <details class="accordion__item">
       <summary class="accordion__title p-12-24 fs-16-20 fw-bold">Can I use it with Drupal?</summary>
-      <div class="accordion__body"><div class="accordion__content p-12-24 fs-14-18 lh-24-32">Yes — scan your Twig templates, generate SCSS, and compile alongside your theme's existing Sass pipeline. Each component gets its own CSS file for Drupal's library system.</div></div>
+      <div class="accordion__body"><div class="accordion__content p-12-24 fs-14-18 lh-15">Yes — scan your Twig templates, generate SCSS, and compile alongside your theme's existing Sass pipeline. Each component gets its own CSS file for Drupal's library system.</div></div>
     </details>
     <details class="accordion__item">
       <summary class="accordion__title p-12-24 fs-16-20 fw-bold">What browsers are supported?</summary>
-      <div class="accordion__body"><div class="accordion__content p-12-24 fs-14-18 lh-24-32">All modern browsers. This accordion uses native &lt;details&gt;/&lt;summary&gt; elements — works in Chrome, Firefox, Safari, and Edge.</div></div>
+      <div class="accordion__body"><div class="accordion__content p-12-24 fs-14-18 lh-15">All modern browsers. This accordion uses native &lt;details&gt;/&lt;summary&gt; elements — works in Chrome, Firefox, Safari, and Edge.</div></div>
     </details>
   </div>
 </section>
@@ -551,7 +566,7 @@
   <div class="grid cols-1 cols-md-1.1.1 gap-16-32">
     <div>
       <h3 class="fs-18-24 mb-8-16">Dopamine Fluid</h3>
-      <p class="fs-14-16 lh-20-24">The CSS that makes you feel good.</p>
+      <p class="fs-14-16 lh-13">The CSS that makes you feel good.</p>
     </div>
     <div>
       <h3 class="fs-18-24 mb-8-16">Prefixes</h3>

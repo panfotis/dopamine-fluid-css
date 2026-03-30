@@ -161,7 +161,7 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 | **Typography** | | | | |
 | `fs` | `font-size` | `fs-16` | `fs-16-48` | `fs-md-16` / `fs-md-16-48` |
 | `fw` | `font-weight` | `fw-700` | — | — |
-| `lh` | `line-height` | `lh-24` | `lh-24-32` | `lh-md-24` / `lh-md-24-32` |
+| `lh` | `line-height` | `lh-15` → 1.5 | — | `lh-md-15` |
 | **Padding** | | | | |
 | `p` | `padding` | `p-16` | `p-16-48` | `p-md-16` / `p-md-16-48` |
 | `pt` | `padding-top` | `pt-16` | `pt-16-48` | `pt-md-16` / `pt-md-16-48` |
@@ -178,6 +178,13 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 | `mr` | `margin-right` | `mr-16` | `mr-16-48` | `mr-md-16` |
 | `mx` | `margin-left` + `right` | `mx-16` | `mx-16-48` | `mx-md-16` / `mx-md-16-48` |
 | `my` | `margin-top` + `bottom` | `my-16` | `my-16-48` | `my-md-16` / `my-md-16-48` |
+| **Margin Auto** | | | | |
+| `mx-auto` | `margin-left: auto` + `right: auto` | — | — | `mx-md-auto` |
+| `my-auto` | `margin-top: auto` + `bottom: auto` | — | — | `my-md-auto` |
+| `ml-auto` | `margin-left: auto` | — | — | `ml-md-auto` |
+| `mr-auto` | `margin-right: auto` | — | — | `mr-md-auto` |
+| `mt-auto` | `margin-top: auto` | — | — | `mt-md-auto` |
+| `mb-auto` | `margin-bottom: auto` | — | — | `mb-md-auto` |
 | **Sizing** | | | | |
 | `w` | `width` | `w-200` | `w-200-600` | `w-md-200` / `w-md-200-600` |
 | `h` | `height` | `h-100` | `h-100-300` | `h-md-100` |
@@ -196,6 +203,7 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 
 > **Notes:**
 > - `fw` is unitless — `fw-700` outputs `font-weight: 700`, not rem. No fluid range.
+> - `lh` is unitless, fixed only (no fluid range). Values ≥ 10 are divided by 10: `lh-15` → `1.5`, `lh-12` → `1.2`. Values < 10 are whole numbers: `lh-2` → `2`. Supports breakpoints: `lh-md-15`
 > - `cols` supports dot notation for ratios: `cols-1.3` = `1fr 3fr`, `cols-1.2.1` = `1fr 2fr 1fr`
 > - `container` is standalone — any number works, containers can be nested
 > - All pixel values are converted to `rem` (divided by 16) in the output

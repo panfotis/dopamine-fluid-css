@@ -43,24 +43,24 @@
     <div class="accordion radius-8">
       <details class="accordion__item">
         <summary class="accordion__title p-12-24 fs-16-20 fw-bold">What is Dopamine Fluid?</summary>
-        <div class="accordion__body"><div class="accordion__content p-12-24 fs-14-18 lh-24-32">A CSS utility generator that creates fluid clamp() values and grid layouts from class names in your HTML. No runtime, no JavaScript — just scan your templates and generate pure CSS.</div></div>
+        <div class="accordion__body"><div class="accordion__content p-12-24 fs-14-18 lh-15">A CSS utility generator that creates fluid clamp() values and grid layouts from class names in your HTML. No runtime, no JavaScript — just scan your templates and generate pure CSS.</div></div>
       </details>
       <details class="accordion__item">
         <summary class="accordion__title p-12-24 fs-16-20 fw-bold">How does the Sass function work?</summary>
-        <div class="accordion__body"><div class="accordion__content p-12-24 fs-14-18 lh-24-32">Import the Sass addon and use dp.fluid(16, 48) anywhere in your Sass. Same clamp() math as the utility classes, for elements where you can't add class names.</div></div>
+        <div class="accordion__body"><div class="accordion__content p-12-24 fs-14-18 lh-15">Import the Sass addon and use dp.fluid(16, 48) anywhere in your Sass. Same clamp() math as the utility classes, for elements where you can't add class names.</div></div>
       </details>
       <details class="accordion__item">
         <summary class="accordion__title p-12-24 fs-16-20 fw-bold">Can I use it with Drupal?</summary>
-        <div class="accordion__body"><div class="accordion__content p-12-24 fs-14-18 lh-24-32">Yes — scan your Twig templates, generate SCSS, and compile alongside your theme's existing Sass pipeline. Each component gets its own CSS file for Drupal's library system.</div></div>
+        <div class="accordion__body"><div class="accordion__content p-12-24 fs-14-18 lh-15">Yes — scan your Twig templates, generate SCSS, and compile alongside your theme's existing Sass pipeline. Each component gets its own CSS file for Drupal's library system.</div></div>
       </details>
       <details class="accordion__item">
         <summary class="accordion__title p-12-24 fs-16-20 fw-bold">What browsers are supported?</summary>
-        <div class="accordion__body"><div class="accordion__content p-12-24 fs-14-18 lh-24-32">All modern browsers. This accordion uses native &lt;details&gt;/&lt;summary&gt; elements — works in Chrome, Firefox, Safari, and Edge.</div></div>
+        <div class="accordion__body"><div class="accordion__content p-12-24 fs-14-18 lh-15">All modern browsers. This accordion uses native &lt;details&gt;/&lt;summary&gt; elements — works in Chrome, Firefox, Safari, and Edge.</div></div>
       </details>
     </div>
 
     <h3 class="fs-18-24 mb-8-16 mt-24-40">Minimum HTML</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-24-32">&lt;div class="accordion"&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;div class="accordion"&gt;
   &lt;details class="accordion__item"&gt;
     &lt;summary class="accordion__title"&gt;Question&lt;/summary&gt;
     &lt;div class="accordion__body"&gt;
@@ -71,18 +71,18 @@
 
     <h3 class="fs-18-24 mb-8-16">Include the component CSS</h3>
     <p class="fs-14-18 mb-8-16">Option 1 — Link the CSS file directly (no Sass needed):</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-24-32">&lt;link rel="stylesheet" href="css/components/accordion.css"&gt;</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/accordion.css"&gt;</code></pre>
     <p class="fs-14-18 mb-8-16">Option 2 — Import via Sass (if you use a Sass pipeline):</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-24-32">@use 'dopamine-fluid/addons/components/accordion';</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/accordion';</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Add styling with Dopamine classes</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-24-32">&lt;div class="accordion radius-8"&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;div class="accordion radius-8"&gt;
   &lt;details class="accordion__item"&gt;
     &lt;summary class="accordion__title p-12-24 fs-16-20 fw-bold"&gt;
       Question
     &lt;/summary&gt;
     &lt;div class="accordion__body"&gt;
-      &lt;div class="accordion__content p-12-24 fs-14-18 lh-24-32"&gt;
+      &lt;div class="accordion__content p-12-24 fs-14-18 lh-15"&gt;
         Answer
       &lt;/div&gt;
     &lt;/div&gt;
@@ -101,7 +101,7 @@
     <button data-modal-open="demo-slide" class="p-12-24 fs-14-18 fw-bold radius-8 mb-16-32">Open Slide Modal</button>
 
     <h3 class="fs-18-24 mb-8-16 mt-24-40">Minimum HTML</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-24-32">&lt;button data-modal-open="my-modal"&gt;Open&lt;/button&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;button data-modal-open="my-modal"&gt;Open&lt;/button&gt;
 
 &lt;div id="my-modal" class="modal"&gt;
   &lt;div class="modal__overlay"&gt;&lt;/div&gt;
@@ -113,13 +113,13 @@
 
     <h3 class="fs-18-24 mb-8-16">Include</h3>
     <p class="fs-14-18 mb-8-16">CSS file + JS file:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-24-32">&lt;link rel="stylesheet" href="css/components/modal.css"&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/modal.css"&gt;
 &lt;script src="addons/components/modal.js" defer&gt;&lt;/script&gt;</code></pre>
     <p class="fs-14-18 mb-8-16">Or via Sass:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-24-32">@use 'dopamine-fluid/addons/components/modal';</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/modal';</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Styled with Dopamine classes</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-24-32">&lt;button data-modal-open="my-modal" class="p-12-24 fs-14-18 fw-bold radius-8"&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;button data-modal-open="my-modal" class="p-12-24 fs-14-18 fw-bold radius-8"&gt;
   Open Modal
 &lt;/button&gt;
 
