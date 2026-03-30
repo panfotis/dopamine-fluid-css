@@ -3,8 +3,8 @@
  *
  * Default viewport : 320px – 1440px
  * Breakpoints      : sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px, xxxl: 1600px, xxxxl: 1920px
- * Generated        : 3/30/2026, 4:21:09 PM
- * Rules            : 204
+ * Generated        : 3/30/2026, 4:58:59 PM
+ * Rules            : 210
  * ============================================== */
 
 /* Reset */
@@ -43,6 +43,10 @@ p, h1, h2, h3, h4, h5, h6 {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.fw-medium {
+  font-weight: 500;
 }
 
 .container-960 {
@@ -128,6 +132,18 @@ p, h1, h2, h3, h4, h5, h6 {
   z-index: 100;
 }
 
+.inline-flex {
+  display: inline-flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.fw-bold {
+  font-weight: 700;
+}
+
 .sticky {
   position: sticky;
 }
@@ -144,14 +160,6 @@ p, h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
 }
 
-.fw-medium {
-  font-weight: 500;
-}
-
-.fw-bold {
-  font-weight: 700;
-}
-
 .container-1100 {
   width: 100%;
   max-width: 1100px;
@@ -161,10 +169,6 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .flex {
   display: flex;
-}
-
-.align-center {
-  align-items: center;
 }
 
 .justify-center {
@@ -259,10 +263,6 @@ p, h1, h2, h3, h4, h5, h6 {
   display: inline-block;
 }
 
-.inline-flex {
-  display: inline-flex;
-}
-
 .inline-grid {
   display: inline-grid;
 }
@@ -332,6 +332,39 @@ p, h1, h2, h3, h4, h5, h6 {
 .px-16-48 {
   padding-left: clamp(1rem, calc(2.8571vw + 0.4286rem), 3rem);
   padding-right: clamp(1rem, calc(2.8571vw + 0.4286rem), 3rem);
+}
+
+.py-16 {
+  /* fixed at 16px */
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.maxw-360 {
+  /* fixed at 360px */
+  max-width: 22.5rem;
+}
+
+.px-16 {
+  /* fixed at 16px */
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.py-8 {
+  /* fixed at 8px */
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.fs-14 {
+  /* fixed at 14px */
+  font-size: 0.875rem;
+}
+
+.radius-100 {
+  /* fixed at 100px */
+  border-radius: 6.25rem;
 }
 
 .mt-40-80 {
@@ -427,6 +460,11 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .mb-24-48 {
   margin-bottom: clamp(1.5rem, calc(2.1429vw + 1.0714rem), 3rem);
+}
+
+.gap-8 {
+  /* fixed at 8px */
+  gap: 0.5rem;
 }
 
 .fs-48-96 {
@@ -800,11 +838,6 @@ p, h1, h2, h3, h4, h5, h6 {
 .gap-4 {
   /* fixed at 4px */
   gap: 0.25rem;
-}
-
-.gap-8 {
-  /* fixed at 8px */
-  gap: 0.5rem;
 }
 
 .minh-100 {

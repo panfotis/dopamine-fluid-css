@@ -4,8 +4,8 @@
  *
  * Default viewport : 320px – 1440px
  * Breakpoints      : sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px, xxxl: 1600px, xxxxl: 1920px
- * Generated        : 3/30/2026, 4:21:09 PM
- * Rules            : 204
+ * Generated        : 3/30/2026, 4:58:59 PM
+ * Rules            : 210
  * ============================================== */
 /* Reset */
 *, *::before, *::after {
@@ -41,6 +41,10 @@ p, h1, h2, h3, h4, h5, h6 {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.fw-medium {
+  font-weight: 500;
 }
 
 .container-960 {
@@ -126,6 +130,18 @@ p, h1, h2, h3, h4, h5, h6 {
   z-index: 100;
 }
 
+.inline-flex {
+  display: inline-flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.fw-bold {
+  font-weight: 700;
+}
+
 .sticky {
   position: sticky;
 }
@@ -142,14 +158,6 @@ p, h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
 }
 
-.fw-medium {
-  font-weight: 500;
-}
-
-.fw-bold {
-  font-weight: 700;
-}
-
 .container-1100 {
   width: 100%;
   max-width: 1100px;
@@ -159,10 +167,6 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .flex {
   display: flex;
-}
-
-.align-center {
-  align-items: center;
 }
 
 .justify-center {
@@ -257,10 +261,6 @@ p, h1, h2, h3, h4, h5, h6 {
   display: inline-block;
 }
 
-.inline-flex {
-  display: inline-flex;
-}
-
 .inline-grid {
   display: inline-grid;
 }
@@ -329,6 +329,39 @@ p, h1, h2, h3, h4, h5, h6 {
 .px-16-48 {
   padding-left: clamp(1rem, 2.8571vw + 0.4286rem, 3rem);
   padding-right: clamp(1rem, 2.8571vw + 0.4286rem, 3rem);
+}
+
+.py-16 {
+  /* fixed at 16px */
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.maxw-360 {
+  /* fixed at 360px */
+  max-width: 22.5rem;
+}
+
+.px-16 {
+  /* fixed at 16px */
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.py-8 {
+  /* fixed at 8px */
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.fs-14 {
+  /* fixed at 14px */
+  font-size: 0.875rem;
+}
+
+.radius-100 {
+  /* fixed at 100px */
+  border-radius: 6.25rem;
 }
 
 .mt-40-80 {
@@ -424,6 +457,11 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .mb-24-48 {
   margin-bottom: clamp(1.5rem, 2.1429vw + 1.0714rem, 3rem);
+}
+
+.gap-8 {
+  /* fixed at 8px */
+  gap: 0.5rem;
 }
 
 .fs-48-96 {
@@ -799,11 +837,6 @@ p, h1, h2, h3, h4, h5, h6 {
   gap: 0.25rem;
 }
 
-.gap-8 {
-  /* fixed at 8px */
-  gap: 0.5rem;
-}
-
 .minh-100 {
   /* fixed at 100px */
   min-height: 6.25rem;
@@ -1022,24 +1055,33 @@ body {
 
 code {
   background: rgba(0, 0, 0, 0.06);
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.82em;
   color: #0f0f0f;
+  font-weight: 600;
 }
 
 pre {
   background: #0f0f0f !important;
+  border-radius: 16px !important;
+  padding: 1.5rem !important;
 }
 pre code {
   background: none;
   color: #6ee7b7;
+  font-weight: 400;
+  font-size: 0.875rem;
+  padding: 0;
+  border-radius: 0;
 }
 
 a {
   color: #0f0f0f;
-  text-decoration: underline;
-  text-underline-offset: 2px;
+  text-decoration: none;
 }
 a:hover {
-  text-decoration-thickness: 2px;
+  text-decoration: underline;
 }
 
 .docs-nav {
@@ -1095,7 +1137,6 @@ a:hover {
 }
 
 .docs-search {
-  padding: 1rem 1.25rem;
   background: #fff;
   border-bottom: 2px solid #0f0f0f;
   position: sticky;
@@ -1104,12 +1145,7 @@ a:hover {
 }
 .docs-search input {
   width: 100%;
-  max-width: 360px;
-  padding: 0.55rem 1rem;
-  font-size: 0.85rem;
-  font-weight: 500;
   border: 2px solid #0f0f0f;
-  border-radius: 100px;
   outline: none;
   transition: box-shadow 0.15s;
 }
@@ -1192,7 +1228,6 @@ a:hover {
 .docs-content .flex > span {
   background: #fde047;
   border: 2px solid #0f0f0f;
-  border-radius: 100px;
 }
 
 .container-demo-960 {
@@ -1278,16 +1313,9 @@ a[class*=radius-]:nth-child(7) {
   bottom: 1.25rem;
   left: 1.25rem;
   z-index: 100;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
   background: #fde047;
   border: 2px solid #0f0f0f;
-  border-radius: 100px;
   color: #0f0f0f;
-  font-size: 0.85rem;
-  font-weight: 700;
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.02em;
