@@ -40,14 +40,25 @@ a {
   &:hover { text-decoration-thickness: 2px; }
 }
 
-// Nav — colors, borders, transitions (layout via classes in HTML)
+// Nav — layout + colors
 .docs-nav {
   background: $dark;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  padding: 0.6rem 1rem;
 
   a {
     color: rgba(255,255,255,0.5);
+    font-size: 0.8rem;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.04em;
+    padding: 0.4rem 0.85rem;
     border: 1.5px solid transparent;
     border-radius: 100px;
     text-decoration: none;
@@ -56,19 +67,37 @@ a {
     &.active { color: $dark; background: #fff; border-color: #fff; }
   }
 
+  .docs-nav__github {
+    margin-left: auto;
+  }
+
   .docs-nav__brand {
     color: #fff;
+    font-weight: 900;
+    font-size: 1rem;
     text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-right: auto;
     &.active { background: none; border-color: transparent; color: #fff; }
     &:hover { border-color: transparent; }
   }
 }
 
-// Search — colors, border, focus effect
+// Search
 .docs-search {
+  padding: 1rem 1.25rem;
+  background: #fff;
   border-bottom: 2px solid $dark;
+  position: sticky;
+  top: 44px;
+  z-index: 99;
 
   input {
+    width: 100%;
+    max-width: 360px;
+    padding: 0.55rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
     border: 2px solid $dark;
     border-radius: 100px;
     outline: none;
@@ -156,6 +185,39 @@ a[class*="radius-"]:nth-child(4) { background: $mint; }
 a[class*="radius-"]:nth-child(5) { background: $yellow; }
 a[class*="radius-"]:nth-child(6) { background: $pink; }
 a[class*="radius-"]:nth-child(7) { background: $lime; }
+
+// GitHub button — fixed bottom left
+.github-btn {
+  position: fixed;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: $yellow;
+  border: 2px solid $dark;
+  border-radius: 100px;
+  color: $dark;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  transition: box-shadow 0.15s, transform 0.15s;
+  &:hover {
+    box-shadow: 4px 4px 0 $dark;
+    transform: translate(-2px, -2px);
+    text-decoration: none;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: $dark;
+  }
+}
 
 // Footer
 footer {

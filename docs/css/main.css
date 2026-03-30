@@ -4,7 +4,7 @@
  *
  * Default viewport : 320px – 1440px
  * Breakpoints      : sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px, xxxl: 1600px, xxxxl: 1920px
- * Generated        : 3/30/2026, 3:44:18 PM
+ * Generated        : 3/30/2026, 4:21:09 PM
  * Rules            : 204
  * ============================================== */
 /* Reset */
@@ -1044,11 +1044,22 @@ a:hover {
 
 .docs-nav {
   background: #0f0f0f;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  padding: 0.6rem 1rem;
 }
 .docs-nav a {
   color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  padding: 0.4rem 0.85rem;
   border: 1.5px solid transparent;
   border-radius: 100px;
   text-decoration: none;
@@ -1063,9 +1074,16 @@ a:hover {
   background: #fff;
   border-color: #fff;
 }
+.docs-nav .docs-nav__github {
+  margin-left: auto;
+}
 .docs-nav .docs-nav__brand {
   color: #fff;
+  font-weight: 900;
+  font-size: 1rem;
   text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-right: auto;
 }
 .docs-nav .docs-nav__brand.active {
   background: none;
@@ -1077,9 +1095,19 @@ a:hover {
 }
 
 .docs-search {
+  padding: 1rem 1.25rem;
+  background: #fff;
   border-bottom: 2px solid #0f0f0f;
+  position: sticky;
+  top: 44px;
+  z-index: 99;
 }
 .docs-search input {
+  width: 100%;
+  max-width: 360px;
+  padding: 0.55rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
   border: 2px solid #0f0f0f;
   border-radius: 100px;
   outline: none;
@@ -1243,6 +1271,37 @@ a[class*=radius-]:nth-child(6) {
 
 a[class*=radius-]:nth-child(7) {
   background: #bef264;
+}
+
+.github-btn {
+  position: fixed;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #fde047;
+  border: 2px solid #0f0f0f;
+  border-radius: 100px;
+  color: #0f0f0f;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.github-btn:hover {
+  box-shadow: 4px 4px 0 #0f0f0f;
+  transform: translate(-2px, -2px);
+  text-decoration: none;
+}
+.github-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: #0f0f0f;
 }
 
 footer {
