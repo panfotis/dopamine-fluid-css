@@ -29,8 +29,6 @@ code {
 
 pre {
   background: $dark !important;
-  border-radius: 16px !important;
-  padding: 1.5rem !important;
 
   code {
     background: none;
@@ -45,7 +43,6 @@ pre {
 a {
   color: $dark;
   text-decoration: none;
-  &:hover { text-decoration: underline; }
 }
 
 // Nav — layout + colors
@@ -69,7 +66,6 @@ a {
     padding: 0.4rem 0.85rem;
     border: 1.5px solid transparent;
     border-radius: 100px;
-    text-decoration: none;
     transition: all 0.15s ease;
     &:hover { color: #fff; border-color: rgba(255,255,255,0.2); }
     &.active { color: $dark; background: #fff; border-color: #fff; }
@@ -163,29 +159,26 @@ a {
 .container-demo-800  { background: $pink;     border: 2px solid $dark; }
 
 // Index cards — colors and hover
-.docs-content a[class*="radius-"] {
-  display: block;
-  text-decoration: none;
+.docs-cards a {
   color: $dark;
   border: 2px solid $dark;
   transition: box-shadow 0.15s, transform 0.15s;
   &:hover {
     box-shadow: 6px 6px 0 $dark;
     transform: translate(-3px, -3px);
-    text-decoration: none;
   }
   h3 { text-transform: uppercase; letter-spacing: -0.01em; }
   p { color: #374151; }
 }
 
 // Index card backgrounds
-a[class*="radius-"]:nth-child(1) { background: $lavender; }
-a[class*="radius-"]:nth-child(2) { background: $sky; }
-a[class*="radius-"]:nth-child(3) { background: $peach; }
-a[class*="radius-"]:nth-child(4) { background: $mint; }
-a[class*="radius-"]:nth-child(5) { background: $yellow; }
-a[class*="radius-"]:nth-child(6) { background: $pink; }
-a[class*="radius-"]:nth-child(7) { background: $lime; }
+.docs-cards a:nth-child(1) { background: $lavender; }
+.docs-cards a:nth-child(2) { background: $sky; }
+.docs-cards a:nth-child(3) { background: $peach; }
+.docs-cards a:nth-child(4) { background: $mint; }
+.docs-cards a:nth-child(5) { background: $yellow; }
+.docs-cards a:nth-child(6) { background: $pink; }
+.docs-cards a:nth-child(7) { background: $lime; }
 
 // GitHub button — fixed bottom left
 .github-btn {
@@ -196,14 +189,12 @@ a[class*="radius-"]:nth-child(7) { background: $lime; }
   background: $yellow;
   border: 2px solid $dark;
   color: $dark;
-  text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.02em;
   transition: box-shadow 0.15s, transform 0.15s;
   &:hover {
     box-shadow: 4px 4px 0 $dark;
     transform: translate(-2px, -2px);
-    text-decoration: none;
   }
 
   svg {

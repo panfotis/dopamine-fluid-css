@@ -4,7 +4,7 @@
  *
  * Default viewport : 320px – 1440px
  * Breakpoints      : sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px, xxxl: 1600px, xxxxl: 1920px
- * Generated        : 3/30/2026, 4:58:59 PM
+ * Generated        : 3/30/2026, 5:08:53 PM
  * Rules            : 210
  * ============================================== */
 /* Reset */
@@ -1064,8 +1064,6 @@ code {
 
 pre {
   background: #0f0f0f !important;
-  border-radius: 16px !important;
-  padding: 1.5rem !important;
 }
 pre code {
   background: none;
@@ -1079,9 +1077,6 @@ pre code {
 a {
   color: #0f0f0f;
   text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
 }
 
 .docs-nav {
@@ -1104,7 +1099,6 @@ a:hover {
   padding: 0.4rem 0.85rem;
   border: 1.5px solid transparent;
   border-radius: 100px;
-  text-decoration: none;
   transition: all 0.15s ease;
 }
 .docs-nav a:hover {
@@ -1260,51 +1254,48 @@ a:hover {
   border: 2px solid #0f0f0f;
 }
 
-.docs-content a[class*=radius-] {
-  display: block;
-  text-decoration: none;
+.docs-cards a {
   color: #0f0f0f;
   border: 2px solid #0f0f0f;
   transition: box-shadow 0.15s, transform 0.15s;
 }
-.docs-content a[class*=radius-]:hover {
+.docs-cards a:hover {
   box-shadow: 6px 6px 0 #0f0f0f;
   transform: translate(-3px, -3px);
-  text-decoration: none;
 }
-.docs-content a[class*=radius-] h3 {
+.docs-cards a h3 {
   text-transform: uppercase;
   letter-spacing: -0.01em;
 }
-.docs-content a[class*=radius-] p {
+.docs-cards a p {
   color: #374151;
 }
 
-a[class*=radius-]:nth-child(1) {
+.docs-cards a:nth-child(1) {
   background: #c4b5fd;
 }
 
-a[class*=radius-]:nth-child(2) {
+.docs-cards a:nth-child(2) {
   background: #7dd3fc;
 }
 
-a[class*=radius-]:nth-child(3) {
+.docs-cards a:nth-child(3) {
   background: #fdba74;
 }
 
-a[class*=radius-]:nth-child(4) {
+.docs-cards a:nth-child(4) {
   background: #6ee7b7;
 }
 
-a[class*=radius-]:nth-child(5) {
+.docs-cards a:nth-child(5) {
   background: #fde047;
 }
 
-a[class*=radius-]:nth-child(6) {
+.docs-cards a:nth-child(6) {
   background: #f9a8d4;
 }
 
-a[class*=radius-]:nth-child(7) {
+.docs-cards a:nth-child(7) {
   background: #bef264;
 }
 
@@ -1316,7 +1307,6 @@ a[class*=radius-]:nth-child(7) {
   background: #fde047;
   border: 2px solid #0f0f0f;
   color: #0f0f0f;
-  text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.02em;
   transition: box-shadow 0.15s, transform 0.15s;
@@ -1324,7 +1314,6 @@ a[class*=radius-]:nth-child(7) {
 .github-btn:hover {
   box-shadow: 4px 4px 0 #0f0f0f;
   transform: translate(-2px, -2px);
-  text-decoration: none;
 }
 .github-btn svg {
   width: 20px;
