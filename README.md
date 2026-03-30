@@ -148,7 +148,6 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 |--------|-------------|-------|-----------------|------------|
 | **Typography** | | | | |
 | `fs` | `font-size` | `fs-16` | `fs-16-48` | `fs-md-16` / `fs-md-16-48` |
-| `text` | `font-size` | `text-16` | `text-16-48` | `text-md-16` |
 | `fw` | `font-weight` | `fw-700` | — | — |
 | `lh` | `line-height` | `lh-24` | `lh-24-32` | `lh-md-24` / `lh-md-24-32` |
 | **Padding** | | | | |
