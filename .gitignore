@@ -9,8 +9,13 @@ pnpm-debug.log*
 *.log
 
 # Build output (generated from Sass / Dopamine build scripts)
-css/
-scss/_dopamine.scss
+/css/
+/scss/_dopamine.scss
+/scss/_dopamine-functions.scss
+
+# Docs generated SCSS (but NOT docs/css — that's committed for GitHub Pages)
+/docs/scss/_dopamine.scss
+/docs/scss/_dopamine-functions.scss
 
 # Sass/cache artifacts
 .sass-cache/
