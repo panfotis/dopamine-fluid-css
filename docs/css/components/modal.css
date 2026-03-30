@@ -1,0 +1,74 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.25s, opacity 0.25s ease;
+}
+
+.modal--open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal__overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.modal__dialog {
+  position: relative;
+  width: calc(100% - 32px);
+}
+
+.modal__dialog--fade {
+  transform: scale(0.95);
+  opacity: 0;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.modal--open .modal__dialog--fade {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.modal__dialog--slide {
+  transform: translateY(-20px);
+  opacity: 0;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.modal--open .modal__dialog--slide {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.modal__close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  background: none;
+  border: none;
+  line-height: 1;
+}
+
+.modal__overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal__dialog {
+  background: #fff;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.modal__close {
+  color: #666;
+}
+.modal__close:hover {
+  color: #0f0f0f;
+}

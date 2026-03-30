@@ -21,10 +21,10 @@ docs/
 ├── scss/
 │   ├── _dopamine.scss      ← generated (gitignored)
 │   ├── _dopamine-functions.scss  ← generated (gitignored)
-│   ├── _docs.scss          ← hand-written docs styles
+│   ├── _docs.scss          ← hand-written docs styles (colors, borders, hover effects)
 │   ├── main.scss           ← imports dopamine + docs
 │   └── components/
-│       └── accordion.scss  ← example component
+│       └── accordion.scss  ← imports structure from addons, adds docs colors
 └── css/
     ├── main.css             ← compiled (committed for GitHub Pages)
     └── components/
@@ -45,7 +45,7 @@ npm run docs:dev
 
 ### What happens
 
-1. `docs:dopamine` — scans `docs/*.html` for Dopamine classes → generates `docs/scss/_dopamine.scss` + `_dopamine-functions.scss`
+1. `docs:dopamine` — scans `docs/*.html` for Dopamine classes → generates `docs/scss/_dopamine.scss`
 2. `docs:sass` — compiles `docs/scss/main.scss` → `docs/css/main.css` + component CSS
 
 ### Adding a new page
@@ -54,11 +54,11 @@ npm run docs:dev
 2. Use the same nav and structure as existing pages
 3. Run `npm run docs:build` — Dopamine picks up any new classes automatically
 
-### Adding a new component
+### Adding a component demo
 
-1. Create a `.scss` file in `docs/scss/components/`
-2. Use `@use '../dopamine-functions' as dp;` for the `dp.fluid()` function
-3. Link the compiled CSS in your HTML: `<link rel="stylesheet" href="css/components/yourfile.css">`
+1. Import the component structure from `addons/components/`
+2. Add docs-specific colors in your component scss file
+3. Style with Dopamine classes in the HTML
 4. Run `npm run docs:build`
 
 ## GitHub Pages
@@ -71,6 +71,6 @@ The compiled CSS (`docs/css/`) is committed to git so GitHub Pages can serve it 
 
 ## Styling
 
-- `_docs.scss` — all docs-specific styles (nav, hero, demo boxes, etc.)
+- `_docs.scss` — docs-specific styles: colors, borders, hover effects, transitions
 - Utility classes from Dopamine handle spacing, typography, grid, and layout
-- The `dp.fluid()` Sass function is available for custom component styles
+- Components use structure from `addons/components/` + Dopamine classes for sizing

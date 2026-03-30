@@ -1,84 +1,29 @@
-// Accordion component — CSS-only using <details>/<summary>
-@use '../dopamine-functions' as dp;
+// Docs accordion — imports structure from addons, adds docs-specific colors
+@use '../../../addons/components/accordion';
 
+// Docs styling for the accordion demo
 .accordion {
-  border-radius: 8px;
   overflow: hidden;
-  border: 1px solid #e0e0e0;
+}
 
-  &__item {
-    border-bottom: 1px solid #e0e0e0;
+.accordion__item {
+  border-bottom: 1px solid #e0e0e0;
+  &:last-child { border-bottom: none; }
+}
 
-    &:last-child {
-      border-bottom: none;
-    }
-  }
+.accordion__title {
+  background: #0f0f0f;
+  color: #fff;
+  transition: background 0.2s ease;
+  &:hover { background: #1a1a1a; }
+  &::after { color: #fff; }
+}
 
-  &__title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: dp.fluid(14, 24);
-    font-size: dp.fluid(16, 20);
-    font-weight: 600;
-    background: #1a1a2e;
-    color: #fff;
-    cursor: pointer;
-    list-style: none;
-    transition: background 0.2s ease;
+.accordion__item[open] .accordion__title {
+  background: #1a1a1a;
+}
 
-    &:hover {
-      background: #16213e;
-    }
-
-    // Remove default marker
-    &::-webkit-details-marker {
-      display: none;
-    }
-
-    // Chevron indicator
-    &::after {
-      content: '+';
-      font-size: dp.fluid(18, 24);
-      font-weight: 300;
-      transition: transform 0.3s ease;
-      flex-shrink: 0;
-      margin-left: dp.fluid(8, 16);
-    }
-  }
-
-  // Open state
-  &__item[open] {
-    .accordion__title {
-      background: #16213e;
-
-      &::after {
-        content: '−';
-      }
-    }
-  }
-
-  &__body {
-    // Animated open/close via grid trick
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 0.3s ease;
-
-    > div {
-      overflow: hidden;
-    }
-  }
-
-  &__item[open] &__body {
-    grid-template-rows: 1fr;
-  }
-
-  &__content {
-    padding: dp.fluid(14, 24);
-    font-size: dp.fluid(14, 18);
-    line-height: 1.6;
-    color: #333;
-    background: #fafafa;
-  }
+.accordion__content {
+  color: #333;
+  background: #fafafa;
 }

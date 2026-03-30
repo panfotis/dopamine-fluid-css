@@ -3,8 +3,8 @@
  *
  * Default viewport : 320px – 1440px
  * Breakpoints      : sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px, xxxl: 1600px, xxxxl: 1920px
- * Generated        : 3/30/2026, 5:08:53 PM
- * Rules            : 210
+ * Generated        : 3/30/2026, 6:09:41 PM
+ * Rules            : 212
  * ============================================== */
 
 /* Reset */
@@ -179,16 +179,16 @@ p, h1, h2, h3, h4, h5, h6 {
   flex-wrap: wrap;
 }
 
-.container-1920 {
+.container-860 {
   width: 100%;
-  max-width: 1920px;
+  max-width: 860px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.container-860 {
+.container-1920 {
   width: 100%;
-  max-width: 860px;
+  max-width: 1920px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -766,6 +766,18 @@ p, h1, h2, h3, h4, h5, h6 {
   max-width: clamp(25rem, calc(35.7143vw + 17.8571rem), 50rem);
 }
 
+.radius-8-16 {
+  border-radius: clamp(0.5rem, calc(0.7143vw + 0.3571rem), 1rem);
+}
+
+.mb-16-40 {
+  margin-bottom: clamp(1rem, calc(2.1429vw + 0.5714rem), 2.5rem);
+}
+
+.lh-24-32 {
+  line-height: clamp(1.5rem, calc(0.7143vw + 1.3571rem), 2rem);
+}
+
 .p-24-80 {
   padding: clamp(1.5rem, calc(5vw + 0.5rem), 5rem);
 }
@@ -784,17 +796,9 @@ p, h1, h2, h3, h4, h5, h6 {
   font-size: clamp(1.125rem, calc(0.939vw + 0.9049rem), 1.75rem);
 }
 
-.mb-16-40 {
-  margin-bottom: clamp(1rem, calc(2.1429vw + 0.5714rem), 2.5rem);
-}
-
 .px-16-32 {
   padding-left: clamp(1rem, calc(1.4286vw + 0.7143rem), 2rem);
   padding-right: clamp(1rem, calc(1.4286vw + 0.7143rem), 2rem);
-}
-
-.radius-8-16 {
-  border-radius: clamp(0.5rem, calc(0.7143vw + 0.3571rem), 1rem);
 }
 
 .mb-24-40 {
@@ -877,8 +881,13 @@ p, h1, h2, h3, h4, h5, h6 {
   font-size: clamp(1.75rem, calc(1.8779vw + 1.3099rem), 3rem);
 }
 
-.lh-24-32 {
-  line-height: clamp(1.5rem, calc(0.7143vw + 1.3571rem), 2rem);
+.mt-24-40 {
+  margin-top: clamp(1.5rem, calc(1.4286vw + 1.2143rem), 2.5rem);
+}
+
+.maxw-500 {
+  /* fixed at 500px */
+  max-width: 31.25rem;
 }
 
 /* sm — min-width: 576px */

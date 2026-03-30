@@ -36,8 +36,8 @@ dopamine ./templates --ext twig --out ./scss/_dopamine.scss
 - **CSS Grid** — `grid cols-1 cols-md-1.3 cols-lg-4` with custom ratios via dot notation
 - **Keyword utilities** — display, flexbox, alignment, position, overflow, z-index
 - **Breakpoint variants** — any class + `-md`, `-lg`, `-xl` etc. for responsive behavior
-- **Sass integration** — generates `dp.fluid()` function for custom styles
-- **Component output** — each `.scss` component compiles to its own CSS file
+- **Sass addon** — `dp.fluid()` function for custom styles (optional, independent)
+- **Components addon** — pre-built structural CSS for accordion, modal, etc. (optional, independent)
 - **Modern CSS reset** — included automatically in every build
 - **Only what you use** — scans your files, generates only the classes found
 - **Fast** — 100 files in ~50ms, deduplicates across all files
@@ -70,19 +70,17 @@ dopamine-fluid/
 │   ├── parser.js                 # class extraction & fluid parsing
 │   ├── runner.js                 # orchestrator (build + watch)
 │   └── scanner.js                # file resolver
+├── addons/
+│   ├── sass/
+│   │   └── _functions.scss       # Sass addon — fluid() function
+│   └── components/
+│       └── accordion.scss        # Component addon — structure only
 ├── scss/
 │   ├── _dopamine.scss            # generated — utility classes
-│   ├── _dopamine-functions.scss  # generated — fluid() Sass function
-│   ├── _global.scss              # your global custom styles
-│   ├── main.scss                 # imports everything
-│   └── components/               # each file → separate CSS
-│       └── accordion.scss
+│   └── main.scss                 # imports dopamine
 ├── css/
-│   ├── main.css                  # compiled from main.scss
-│   └── components/
-│       └── accordion.css         # compiled independently
-├── test/
-│   └── sample.html               # showcase of all classes
+│   └── main.css                  # compiled
+├── docs/                         # docs site (uses Dopamine itself)
 ├── dopamine.config.json
 ├── package.json
 └── README.md
@@ -407,47 +405,51 @@ All keywords support breakpoint variants: append `-sm`, `-md`, `-lg`, `-xl`, `-x
 
 ---
 
-## Sass Integration
+## Addons
 
-When you output to `.scss`, Dopamine generates a `fluid()` Sass function alongside the utility classes:
+Dopamine has two optional addons. Both are independent — use either, both, or neither.
 
-```bash
-dopamine ./templates --ext twig --out ./scss/_dopamine.scss
-# Creates: scss/_dopamine.scss + scss/_dopamine-functions.scss
-```
+### Sass Addon — `dp.fluid()`
 
-Use it in your custom styles for elements you can't add classes to:
+For elements you can't add classes to (e.g. Drupal-rendered content). Import the function from `addons/sass/`:
 
 ```scss
-@use 'dopamine-functions' as dp;
+@use 'dopamine-fluid/addons/sass/functions' as dp;
 
-// Drupal renders this — you can't add utility classes
 .node--article .field--body p {
   font-size: dp.fluid(16, 48);
   margin-bottom: dp.fluid(8, 24);
 }
 
-// Custom viewport override
 .hero-banner h1 {
-  font-size: dp.fluid(32, 96, 480, 1920);
+  font-size: dp.fluid(32, 96, 480, 1920);  // custom viewport
 }
 ```
 
-### Component files
+When you output to `.scss`, Dopamine also auto-generates a `_dopamine-functions.scss` with your config's viewport defaults.
 
-Each `.scss` file in `scss/components/` compiles to its own CSS file:
+### Components Addon
+
+Pre-built structural CSS for common UI patterns. No colors, no sizing — just behavior (transitions, open/close, visibility). Style with Dopamine classes in your HTML.
 
 ```scss
-// scss/components/accordion.scss
-@use '../dopamine-functions' as dp;
-
-.accordion__title {
-  font-size: dp.fluid(18, 24);
-  padding: dp.fluid(12, 24);
-}
+// Import the structure
+@use 'dopamine-fluid/addons/components/accordion';
 ```
 
-Output: `css/components/accordion.css` — load it per-page in Drupal's library system.
+```html
+<!-- Style with Dopamine classes -->
+<details class="accordion__item radius-8 mb-8">
+  <summary class="accordion__title p-12-24 fs-16-20 fw-bold">
+    Question
+  </summary>
+  <div class="accordion__body">
+    <div class="accordion__content p-12-24 fs-14-18">Answer</div>
+  </div>
+</details>
+```
+
+Available components: `accordion` (more coming).
 
 ---
 
@@ -524,7 +526,7 @@ p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
 ```bash
 cd /path/to/your/drupal-theme
 dopamine ./templates --ext twig --out ./scss/_dopamine.scss
-sass scss/main.scss:css/main.css scss/components:css/components
+sass scss/main.scss:css/main.css
 ```
 
 ### Libraries
@@ -535,11 +537,6 @@ global-styling:
   css:
     theme:
       css/main.css: {}
-
-accordion:
-  css:
-    component:
-      css/components/accordion.css: {}
 ```
 
 ### Gulp integration

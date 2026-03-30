@@ -1,0 +1,17 @@
+// Docs modal — imports structure from addons, adds docs-specific colors
+@use '../../../addons/components/modal';
+
+// Docs styling for the modal demo
+.modal__overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal__dialog {
+  background: #fff;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.modal__close {
+  color: #666;
+  &:hover { color: #0f0f0f; }
+}
