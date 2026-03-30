@@ -1,8 +1,7 @@
-// Global styles for Dopamine Fluid docs
-// Inspired by slush.app — bold colors, black type, pill buttons
-@use 'dopamine-functions' as dp;
+// Docs-only styles — only things Dopamine classes can't handle
+// Colors, borders, hover effects, transitions
 
-// Bold section colors
+// Palette
 $mint: #6ee7b7;
 $yellow: #fde047;
 $sky: #7dd3fc;
@@ -12,36 +11,28 @@ $lavender: #c4b5fd;
 $lime: #bef264;
 $dark: #0f0f0f;
 
-// Base
+// Base — font family and smoothing (no class for these)
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  color: $dark;
-  background: #fff;
   -webkit-font-smoothing: antialiased;
 }
 
+// Code — colors only
 code {
   background: rgba(0,0,0,0.06);
-  padding: 3px 8px;
-  border-radius: 6px;
-  font-size: 0.82em;
   color: $dark;
-  font-weight: 600;
 }
 
 pre {
   background: $dark !important;
-  border: none !important;
-  border-radius: 16px !important;
-  padding: dp.fluid(16, 32) !important;
 
   code {
     background: none;
     color: $mint;
-    font-weight: 400;
   }
 }
 
+// Links — style only
 a {
   color: $dark;
   text-decoration: underline;
@@ -49,27 +40,16 @@ a {
   &:hover { text-decoration-thickness: 2px; }
 }
 
-// Nav — black bar with pill links
+// Nav — colors, borders, transitions (layout via classes in HTML)
 .docs-nav {
   background: $dark;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  padding: 0.6rem 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  flex-wrap: wrap;
 
   a {
     color: rgba(255,255,255,0.5);
-    font-size: 0.8rem;
-    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.04em;
-    padding: 0.4rem 0.85rem;
-    border-radius: 100px;
     border: 1.5px solid transparent;
+    border-radius: 100px;
     text-decoration: none;
     transition: all 0.15s ease;
     &:hover { color: #fff; border-color: rgba(255,255,255,0.2); }
@@ -78,33 +58,19 @@ a {
 
   .docs-nav__brand {
     color: #fff;
-    font-weight: 900;
-    font-size: 1rem;
     text-transform: uppercase;
-    letter-spacing: 0.02em;
-    margin-right: auto;
     &.active { background: none; border-color: transparent; color: #fff; }
     &:hover { border-color: transparent; }
   }
 }
 
-// Search — clean
+// Search — colors, border, focus effect
 .docs-search {
-  padding: 1rem 1.25rem;
-  background: #fff;
   border-bottom: 2px solid $dark;
-  position: sticky;
-  top: 44px;
-  z-index: 99;
 
   input {
-    width: 100%;
-    max-width: 360px;
-    padding: 0.55rem 1rem;
     border: 2px solid $dark;
     border-radius: 100px;
-    font-size: 0.85rem;
-    font-weight: 500;
     outline: none;
     transition: box-shadow 0.15s;
     &:focus { box-shadow: 4px 4px 0 $dark; }
@@ -114,146 +80,75 @@ a {
 
 .docs-section[hidden] { display: none; }
 
-// Hero — bold mint background
+// Hero — background color
 .docs-hero {
   background: $mint;
   color: $dark;
   border-bottom: 3px solid $dark;
-
-
 }
 
-// Section headings — big, bold, uppercase
+// Section headings — uppercase, border
 .docs-content section > h2 {
-  color: $dark;
-  font-weight: 900;
-  letter-spacing: -0.02em;
   text-transform: uppercase;
+  letter-spacing: -0.02em;
   border-bottom: 3px solid $dark;
-  padding-bottom: dp.fluid(8, 16);
 }
 
-.docs-content section > h3 {
-  color: $dark;
-  font-weight: 700;
-}
-
-// Demo boxes — solid colors with dark borders
+// Demo boxes — colors and hover effects
 .demo-box {
-  background: #fff;
   border: 2px solid $dark;
-  border-radius: 16px;
   transition: box-shadow 0.15s, transform 0.15s;
   &:hover { box-shadow: 4px 4px 0 $dark; transform: translate(-2px, -2px); }
 }
 
-.demo-box--blue {
-  background: $sky;
-  border: 2px solid $dark;
-  border-radius: 16px;
-}
+.demo-box--blue   { background: $sky;      border: 2px solid $dark; }
+.demo-box--green  { background: $mint;     border: 2px solid $dark; }
+.demo-box--orange { background: $peach;    border: 2px solid $dark; }
+.demo-box--purple { background: $lavender; border: 2px solid $dark; }
+.demo-box--red    { background: $pink;     border: 2px solid $dark; }
+.demo-box--dashed { background: #fafafa;   border: 2px dashed $dark; }
 
-.demo-box--green {
-  background: $mint;
-  border: 2px solid $dark;
-  border-radius: 16px;
-}
-
-.demo-box--orange {
-  background: $peach;
-  border: 2px solid $dark;
-  border-radius: 16px;
-}
-
-.demo-box--purple {
-  background: $lavender;
-  border: 2px solid $dark;
-  border-radius: 16px;
-}
-
-.demo-box--red {
-  background: $pink;
-  border: 2px solid $dark;
-  border-radius: 16px;
-}
-
-.demo-box--dashed {
-  background: #fafafa;
-  border: 2px dashed $dark;
-  border-radius: 16px;
-}
-
-// Grid/flex items — white cards with bold borders
+// Grid/flex items — border, hover
 .docs-content .grid > div,
 .docs-content .grid > aside,
 .docs-content .grid > main {
-  background: #fff;
   border: 2px solid $dark;
-  border-radius: 12px;
   transition: box-shadow 0.15s, transform 0.15s;
-  &:hover {
-    box-shadow: 3px 3px 0 $dark;
-    transform: translate(-1px, -1px);
-  }
+  &:hover { box-shadow: 3px 3px 0 $dark; transform: translate(-1px, -1px); }
 }
 
 .docs-content .flex > div,
 .docs-content .flex > span {
   background: $yellow;
   border: 2px solid $dark;
-  color: $dark;
   border-radius: 100px;
-  font-weight: 600;
 }
 
-.docs-content .flex > div p,
-.docs-content .flex > span p {
-  color: $dark !important;
-}
+// Container demo colors
+.container-demo-960  { background: $sky;      border: 2px solid $dark; }
+.container-demo-1100 { background: $mint;     border: 2px solid $dark; }
+.container-demo-1200 { background: $yellow;   border: 2px solid $dark; }
+.container-demo-1440 { background: $peach;    border: 2px solid $dark; }
+.container-demo-1920 { background: $lavender; border: 2px solid $dark; }
+.container-demo-800  { background: $pink;     border: 2px solid $dark; }
 
-.docs-content .grid > div h3,
-.docs-content .grid > aside h3,
-.docs-content .grid > main h3 {
-  color: $dark;
-  font-weight: 800;
-}
-
-.docs-content .grid > div p,
-.docs-content .grid > aside p,
-.docs-content .grid > main p {
-  color: #374151;
-}
-
-// Container demo colors — bold solid fills
-.container-demo-960  { background: $sky;      border: 2px solid $dark; border-radius: 16px; }
-.container-demo-1100 { background: $mint;     border: 2px solid $dark; border-radius: 16px; }
-.container-demo-1200 { background: $yellow;   border: 2px solid $dark; border-radius: 16px; }
-.container-demo-1440 { background: $peach;    border: 2px solid $dark; border-radius: 16px; }
-.container-demo-1920 { background: $lavender; border: 2px solid $dark; border-radius: 16px; }
-.container-demo-800  { background: $pink;     border: 2px solid $dark; border-radius: 16px; }
-
-// Index page cards — lift with shadow on hover
-.docs-content a.demo-box,
-a[class*="demo-box"],
-a[class*="radius-"] {
+// Index cards — colors and hover
+.docs-content a[class*="radius-"] {
   display: block;
   text-decoration: none;
   color: $dark;
-  background: #fff;
   border: 2px solid $dark;
-  border-radius: 16px;
   transition: box-shadow 0.15s, transform 0.15s;
   &:hover {
     box-shadow: 6px 6px 0 $dark;
     transform: translate(-3px, -3px);
     text-decoration: none;
   }
-  h3 { color: $dark; font-weight: 800; text-transform: uppercase; letter-spacing: -0.01em; }
+  h3 { text-transform: uppercase; letter-spacing: -0.01em; }
   p { color: #374151; }
-  code { font-size: 0.72em; }
 }
 
-// Each card gets a different background color
+// Index card backgrounds
 a[class*="radius-"]:nth-child(1) { background: $lavender; }
 a[class*="radius-"]:nth-child(2) { background: $sky; }
 a[class*="radius-"]:nth-child(3) { background: $peach; }
@@ -262,25 +157,7 @@ a[class*="radius-"]:nth-child(5) { background: $yellow; }
 a[class*="radius-"]:nth-child(6) { background: $pink; }
 a[class*="radius-"]:nth-child(7) { background: $lime; }
 
-// TOC
-.docs-toc {
-  background: #fff;
-  border: 2px solid $dark;
-  border-radius: 16px;
-
-  a {
-    display: block;
-    padding: 0.35rem 0;
-    color: #374151;
-    font-size: 0.875rem;
-    font-weight: 500;
-    text-decoration: none;
-    &:hover { color: $dark; }
-  }
-}
-
 // Footer
 footer {
   border-top: 3px solid $dark;
-  p { color: #6b7280; }
 }
