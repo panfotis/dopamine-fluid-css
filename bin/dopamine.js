@@ -2,6 +2,7 @@
 
 'use strict';
 
+const fs   = require('fs');
 const path = require('path');
 const { program } = require('commander');
 const { version } = require('../package.json');
@@ -21,7 +22,18 @@ program
   .parse(process.argv);
 
 const opts = program.opts();
-const [input = '.'] = program.args;
+const [inputArg] = program.args;
+
+// Peek at config file for input/ext/out defaults (full config is loaded in runner)
+let configHints = {};
+const configFile = path.resolve(process.cwd(), opts.config);
+if (fs.existsSync(configFile)) {
+  try { configHints = JSON.parse(fs.readFileSync(configFile, 'utf8')); } catch {}
+}
+
+const input = inputArg || configHints.input || '.';
+if (!inputArg && configHints.ext && opts.ext === 'twig,html,htm') opts.ext = configHints.ext;
+if (!inputArg && configHints.out && opts.out === 'fluid.css') opts.out = configHints.out;
 
 run(input, opts).catch(err => {
   console.error('\x1b[31m✖\x1b[0m', err.message);

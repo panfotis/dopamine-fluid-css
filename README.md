@@ -48,7 +48,21 @@ dopamine ./templates --ext twig --out ./scss/_dopamine.scss
 
 ```bash
 npm install
-npm link              # registers the `dopamine` command globally
+```
+
+1. Set your template path in `dopamine.config.json`:
+
+```json
+{
+  "input": "./templates",
+  "ext": "html",
+  "out": "./scss/_dopamine.scss"
+}
+```
+
+2. Build or watch:
+
+```bash
 npm run build         # scan → generate SCSS → compile CSS
 npm run dev           # watch + Sass + browser auto-reload
 ```
@@ -459,6 +473,10 @@ Create a `dopamine.config.json` in your project root:
 
 ```json
 {
+  "input": "./templates",
+  "ext": "html",
+  "out": "./scss/_dopamine.scss",
+
   "viewport": {
     "min": 320,
     "max": 1440
@@ -477,6 +495,24 @@ Create a `dopamine.config.json` in your project root:
     }
   }
 }
+```
+
+### Input / Output
+
+| Key | Description | Default |
+|-----|-------------|---------|
+| `input` | File, directory, or glob to scan | `.` |
+| `ext` | File extensions to scan (comma-separated) | `twig,html,htm` |
+| `out` | Output file (.css or .scss) | `fluid.css` |
+
+These can also be passed as CLI flags — CLI args override config values.
+
+```bash
+# Uses config values
+dopamine
+
+# CLI overrides
+dopamine ./src --ext twig --out ./scss/_dopamine.scss
 ```
 
 ### Viewport priority
