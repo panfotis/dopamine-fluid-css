@@ -4,7 +4,8 @@
   "description": "Dopamine Fluid — generate fluid CSS and grid layouts from class names",
   "main": "lib/runner.js",
   "bin": {
-    "dopamine": "./bin/dopamine.js"
+    "dopamine": "./bin/dopamine.js",
+    "dopamine-audit": "./bin/dopamine-audit.js"
   },
   "scripts": {
     "build": "npm run dopamine && npm run sass",

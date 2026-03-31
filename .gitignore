@@ -12,6 +12,7 @@ pnpm-debug.log*
 /css/
 /scss/_dopamine.scss
 /scss/_dopamine-functions.scss
+/fluid.css
 
 # Docs generated SCSS (but NOT docs/css — that's committed for GitHub Pages)
 /docs/scss/_dopamine.scss
