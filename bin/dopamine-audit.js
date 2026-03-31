@@ -2,6 +2,8 @@
 
 'use strict';
 
+const fs   = require('fs');
+const path = require('path');
 const { program } = require('commander');
 const { version } = require('../package.json');
 const { loadConfig } = require('../lib/config');
@@ -14,7 +16,7 @@ program
   .name('dopamine-audit')
   .description('Analyze numeric utility classes and suggest near-duplicate range combinations')
   .version(version)
-  .argument('[input]', 'Input file, glob pattern, or directory', './test')
+  .argument('[input]', 'Input file, glob pattern, or directory')
   .option('-c, --config <file>', 'Path to config file', 'dopamine.config.json')
   .option('--ext <extensions>', 'File extensions to scan (comma-separated)', 'twig,html,htm')
   .option('--prefix <list>', 'Only include these prefixes (comma-separated)')
@@ -25,7 +27,17 @@ program
   .parse(process.argv);
 
 const opts = program.opts();
-const [input = './test'] = program.args;
+const [inputArg] = program.args;
+
+// Read config hints for input/ext defaults (same as main CLI)
+let configHints = {};
+const configFile = path.resolve(process.cwd(), opts.config);
+if (fs.existsSync(configFile)) {
+  try { configHints = JSON.parse(fs.readFileSync(configFile, 'utf8')); } catch {}
+}
+
+const input = inputArg || configHints.input || '.';
+if (!inputArg && configHints.ext && opts.ext === 'twig,html,htm') opts.ext = configHints.ext;
 
 const closeMin = parseInt(opts.closeMin, 10);
 const closeMax = parseInt(opts.closeMax, 10);
