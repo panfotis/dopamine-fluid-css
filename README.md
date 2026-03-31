@@ -136,6 +136,7 @@ dopamine [input] [options]
 | `-w, --watch` | Watch for changes and rebuild | — |
 | `--ext <exts>` | Extensions to scan (comma-separated) | `twig,html,htm` |
 | `--no-header` | Omit the generated header comment | — |
+| `--no-reset` | Omit the CSS reset | — |
 | `--dry-run` | Print to stdout, don't write | — |
 
 When `--out` ends in `.scss`, Dopamine also generates `_dopamine-functions.scss` alongside it.
@@ -550,7 +551,7 @@ Add any you need. Set to `null` to remove a default:
 
 ## CSS Reset
 
-Every build includes a modern CSS reset:
+Every build includes a modern CSS reset by default. Disable with `--no-reset` or `"reset": false` in config:
 
 ```css
 *, *::before, *::after { box-sizing: border-box; }
