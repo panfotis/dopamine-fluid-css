@@ -4,8 +4,8 @@
  *
  * Default viewport : 320px – 1440px
  * Breakpoints      : sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px, xxxl: 1600px, xxxxl: 1920px
- * Generated        : 3/31/2026, 11:21:21 AM
- * Rules            : 226
+ * Generated        : 3/31/2026, 11:48:28 AM
+ * Rules            : 227
  * ============================================== */
 /* Reset */
 *, *::before, *::after {
@@ -52,6 +52,10 @@ p, h1, h2, h3, h4, h5, h6 {
   max-width: 960px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.fw-bold {
+  font-weight: 700;
 }
 
 .grid {
@@ -136,10 +140,6 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .align-center {
   align-items: center;
-}
-
-.fw-bold {
-  font-weight: 700;
 }
 
 .sticky {
@@ -364,8 +364,30 @@ p, h1, h2, h3, h4, h5, h6 {
   border-radius: 6.25rem;
 }
 
+.fs-32-72 {
+  /* viewport: 375px–1440px [prefix-config] */
+  font-size: clamp(2rem, 3.7559vw + 1.1197rem, 4.5rem);
+}
+
 .mt-40-80 {
   margin-top: clamp(2.5rem, 3.5714vw + 1.7857rem, 5rem);
+}
+
+.mb-8-16 {
+  margin-bottom: clamp(0.5rem, 0.7143vw + 0.3571rem, 1rem);
+}
+
+.fs-16-24 {
+  /* viewport: 375px–1440px [prefix-config] */
+  font-size: clamp(1rem, 0.7512vw + 0.8239rem, 1.5rem);
+}
+
+.lh-15 {
+  line-height: 1.5;
+}
+
+.mb-40-80 {
+  margin-bottom: clamp(2.5rem, 3.5714vw + 1.7857rem, 5rem);
 }
 
 .fs-24-48 {
@@ -400,10 +422,6 @@ p, h1, h2, h3, h4, h5, h6 {
 .fs-18-24 {
   /* viewport: 375px–1440px [prefix-config] */
   font-size: clamp(1.125rem, 0.5634vw + 0.993rem, 1.5rem);
-}
-
-.mb-8-16 {
-  margin-bottom: clamp(0.5rem, 0.7143vw + 0.3571rem, 1rem);
 }
 
 .fs-14-18 {
@@ -443,10 +461,6 @@ p, h1, h2, h3, h4, h5, h6 {
   max-height: 6.25rem;
 }
 
-.mb-40-80 {
-  margin-bottom: clamp(2.5rem, 3.5714vw + 1.7857rem, 5rem);
-}
-
 .mt-16-32 {
   margin-top: clamp(1rem, 1.4286vw + 0.7143rem, 2rem);
 }
@@ -469,19 +483,9 @@ p, h1, h2, h3, h4, h5, h6 {
   font-size: clamp(3rem, 4.507vw + 1.9437rem, 6rem);
 }
 
-.fs-32-72 {
-  /* viewport: 375px–1440px [prefix-config] */
-  font-size: clamp(2rem, 3.7559vw + 1.1197rem, 4.5rem);
-}
-
 .fs-20-32 {
   /* viewport: 375px–1440px [prefix-config] */
   font-size: clamp(1.25rem, 1.1268vw + 0.9859rem, 2rem);
-}
-
-.fs-16-24 {
-  /* viewport: 375px–1440px [prefix-config] */
-  font-size: clamp(1rem, 0.7512vw + 0.8239rem, 1.5rem);
 }
 
 .fs-12 {
@@ -566,10 +570,6 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .lh-12 {
   line-height: 1.2;
-}
-
-.lh-15 {
-  line-height: 1.5;
 }
 
 .lh-2 {
@@ -893,6 +893,10 @@ p, h1, h2, h3, h4, h5, h6 {
 .fs-28-48 {
   /* viewport: 375px–1440px [prefix-config] */
   font-size: clamp(1.75rem, 1.8779vw + 1.3099rem, 3rem);
+}
+
+.mt-12-24 {
+  margin-top: clamp(0.75rem, 1.0714vw + 0.5357rem, 1.5rem);
 }
 
 .mt-24-40 {
