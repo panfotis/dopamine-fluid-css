@@ -549,6 +549,50 @@ Add any you need. Set to `null` to remove a default:
 
 ---
 
+## Class Audit
+
+Scan your templates and find near-duplicate fluid classes that could be merged:
+
+```bash
+dopamine-audit ./templates --ext html
+```
+
+Uses the same `input`, `ext` values from `dopamine.config.json` if no args are passed.
+
+### Options
+
+| Flag | Description | Default |
+|------|-------------|---------|
+| `input` | File, directory, or glob to scan | from config or `.` |
+| `--ext <exts>` | Extensions to scan | from config or `twig,html,htm` |
+| `--prefix <list>` | Only audit these prefixes (comma-separated) | all |
+| `--close-min <px>` | Max min-value delta for merge suggestions | `2` |
+| `--close-max <px>` | Max max-value delta for merge suggestions | `4` |
+| `--include-breakpoints` | Include breakpoint variants in suggestions | — |
+| `--include-inline-vp` | Include inline viewport overrides in suggestions | — |
+
+### Example output
+
+```
+Dopamine Class Audit
+─────────────────────────────────
+Files scanned              1
+Numeric classes (unique)   31
+Fluid ranges               24
+Fixed values               7
+
+Range Inventory
+- fs@base: fs-16-20(9), fs-18-24(2), fs-24-48(7), fs-32-84(3)
+- mb@base: mb-8-16(12), mb-16-32(2), mb-24-48(2)
+
+Close-Range Merge Suggestions
+Threshold: Δmin <= 2px and Δmax <= 4px
+- fs @ base: keep `fs-16-20` (9 uses)
+  replace `fs-18-24` (2 uses, Δmin 2px, Δmax 4px)
+```
+
+---
+
 ## CSS Reset
 
 Every build includes a modern CSS reset by default. Disable with `--no-reset` or `"reset": false` in config:

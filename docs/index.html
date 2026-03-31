@@ -30,6 +30,13 @@
 </section>
 
 <section class="container-960 px-16-48 mt-40-80">
+  <p class="fs-16-24 lh-15 mb-12-24">Write a class name. Get fluid CSS. That's it. Dopamine Fluid turns class names into fluid CSS: typography, spacing, and layout that scale smoothly from mobile to ultrawide. No breakpoint-heavy clamp boilerplate. No pixel babysitting. One class, smooth everywhere.</p>
+  <p class="fs-16-24 lh-15 mb-12-24">Built for real-world projects, it includes a lightweight grid system with containers, ratio columns, and flexbox utilities. Everything you need for structure, nothing you do not: no colors, no tokens, no themes, no visual opinions. It does not fight your design system. It sits underneath it.</p>
+  <p class="fs-16-24 lh-15 mb-12-24">Drop it into a Drupal theme, a static site, or that legacy codebase everyone avoids. The CLI scans your templates, picks up only the classes you wrote, and outputs pure CSS. If it is not in your markup, it is not in your bundle.</p>
+  <p class="fs-16-24 lh-15 fw-bold">Class name equals spec. Build and done. CSS that makes you feel good.</p>
+</section>
+
+<section class="container-960 px-16-48 mt-40-80">
   <h2 class="fs-24-48 mb-12-24">Quick Start</h2>
   <p class="fs-14-18 mb-12-24">1. Set your template path in <code>dopamine.config.json</code>:</p>
   <pre class="block p-16-32 radius-8-16 demo-box mb-12-24" style="overflow-x:auto;"><code class="fs-14-18 lh-15">{
@@ -41,6 +48,13 @@
   <pre class="block p-16-32 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18 lh-15">npm install
 npm run build         # scan HTML → generate SCSS → compile CSS
 npm run dev           # watch + Sass + browser auto-reload</code></pre>
+</section>
+
+<section class="container-960 px-16-48 mt-40-80">
+  <h2 class="fs-24-48 mb-12-24">Class Audit</h2>
+  <p class="fs-14-18 mb-12-24">Find near-duplicate fluid classes across your templates and get merge suggestions to keep your CSS lean:</p>
+  <pre class="block p-16-32 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18 lh-15">dopamine-audit</code></pre>
+  <p class="fs-14-18 mt-12-24">Reads <code>input</code> and <code>ext</code> from your config. Flags classes like <code>fs-16-20</code> and <code>fs-18-24</code> that are close enough to merge into one.</p>
 </section>
 
 <section class="container-1200 px-16-48 mt-40-80 mb-40-80">
