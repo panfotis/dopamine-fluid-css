@@ -24,6 +24,7 @@ program
   .option('--close-max <px>', 'Max allowed max-value delta in px', '4')
   .option('--include-breakpoints', 'Include breakpoint variants in merge suggestions')
   .option('--include-inline-vp', 'Include inline viewport override variants in merge suggestions')
+  .option('-o, --out [file]', 'Write audit report to a file (plain text)', false)
   .parse(process.argv);
 
 const opts = program.opts();
@@ -59,6 +60,13 @@ if (files.length === 0) {
   process.exit(0);
 }
 
+// Capture output for both terminal and file
+const output = [];
+function log(line = '') {
+  console.log(line);
+  output.push(line);
+}
+
 const counts = collectClassCounts(files);
 const parsed = [];
 
@@ -75,18 +83,18 @@ const fluid = parsed.filter(item => item.descriptor.mode === 'fluid');
 const fixed = parsed.filter(item => item.descriptor.mode === 'fixed');
 const totalUses = parsed.reduce((sum, item) => sum + item.uses, 0);
 
-console.log('');
-console.log('\x1b[1mDopamine Class Audit\x1b[0m');
-console.log('─────────────────────────────────');
-console.log(`Files scanned              ${files.length}`);
-console.log(`Numeric classes (unique)   ${parsed.length}`);
-console.log(`Numeric classes (uses)     ${totalUses}`);
-console.log(`Fluid ranges               ${fluid.length}`);
-console.log(`Fixed values               ${fixed.length}`);
+log('');
+log('\x1b[1mDopamine Class Audit\x1b[0m');
+log('─────────────────────────────────');
+log(`Files scanned              ${files.length}`);
+log(`Numeric classes (unique)   ${parsed.length}`);
+log(`Numeric classes (uses)     ${totalUses}`);
+log(`Fluid ranges               ${fluid.length}`);
+log(`Fixed values               ${fixed.length}`);
 if (prefixFilter) {
-  console.log(`Prefix filter              ${[...prefixFilter].join(', ')}`);
+  log(`Prefix filter              ${[...prefixFilter].join(', ')}`);
 }
-console.log('');
+log('');
 
 printRangeInventory(fluid, fixed);
 
@@ -149,11 +157,11 @@ function printRangeInventory(fluidItems, fixedItems) {
 
   const keys = [...buckets.keys()].sort((a, b) => a.localeCompare(b));
   if (keys.length === 0) {
-    console.log('No numeric classes found for the selected input/filter.');
+    log('No numeric classes found for the selected input/filter.');
     return;
   }
 
-  console.log('\x1b[1mRange Inventory\x1b[0m');
+  log('\x1b[1mRange Inventory\x1b[0m');
   for (const key of keys) {
     const items = buckets.get(key).slice().sort((a, b) => {
       const aMin = a.descriptor.minPx ?? Number.MAX_SAFE_INTEGER;
@@ -168,9 +176,9 @@ function printRangeInventory(fluidItems, fixedItems) {
       .map(item => `${item.cls}(${item.uses})`)
       .join(', ');
 
-    console.log(`- ${key}: ${compact}`);
+    log(`- ${key}: ${compact}`);
   }
-  console.log('');
+  log('');
 }
 
 function buildMergeSuggestions(items, maxMinDelta, maxMaxDelta) {
@@ -238,24 +246,35 @@ function scoreRepresentative(item) {
 }
 
 function printMergeSuggestions(groups, maxMinDelta, maxMaxDelta) {
-  console.log('\x1b[1mClose-Range Merge Suggestions\x1b[0m');
-  console.log(`Threshold: Δmin <= ${maxMinDelta}px and Δmax <= ${maxMaxDelta}px`);
+  log('\x1b[1mClose-Range Merge Suggestions\x1b[0m');
+  log(`Threshold: Δmin <= ${maxMinDelta}px and Δmax <= ${maxMaxDelta}px`);
 
   if (groups.length === 0) {
-    console.log('- No close combinations found.');
-    console.log('');
+    log('- No close combinations found.');
+    log('');
     return;
   }
 
   for (const group of groups) {
     const bucketLabel = group.bucket.replace('|', ' @ ');
-    console.log(`- ${bucketLabel}: keep \`${group.keep.cls}\` (${group.keep.uses} uses)`);
+    log(`- ${bucketLabel}: keep \`${group.keep.cls}\` (${group.keep.uses} uses)`);
     for (const item of group.replace) {
       const minDelta = Math.abs(item.descriptor.minPx - group.keep.descriptor.minPx);
       const maxDelta = Math.abs(item.descriptor.maxPx - group.keep.descriptor.maxPx);
-      console.log(`  replace \`${item.cls}\` (${item.uses} uses, Δmin ${minDelta}px, Δmax ${maxDelta}px)`);
+      log(`  replace \`${item.cls}\` (${item.uses} uses, Δmin ${minDelta}px, Δmax ${maxDelta}px)`);
     }
   }
 
-  console.log('');
+  log('');
+}
+
+// Write plain-text report to file (strip ANSI codes)
+if (opts.out !== false) {
+  const fileName = typeof opts.out === 'string' ? opts.out : 'audit';
+  const plain = output.map(line => line.replace(/\x1b\[[0-9;]*m/g, '')).join('\n');
+  const outPath = path.resolve(process.cwd(), fileName);
+  const dir = path.dirname(outPath);
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(outPath, plain, 'utf8');
+  console.log(`\x1b[32m✔\x1b[0m  Audit written → ${path.relative(process.cwd(), outPath)}`);
 }

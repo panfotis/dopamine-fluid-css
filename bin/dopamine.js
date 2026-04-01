@@ -14,7 +14,7 @@ program
   .version(version)
   .argument('[input]', 'Input file, glob pattern, or directory', '.')
   .option('-c, --config <file>', 'Path to config file', 'dopamine.config.json')
-  .option('-o, --out <file>', 'Output CSS file', 'fluid.css')
+  .option('-o, --out <file>', 'Output file (.css or .scss)', 'scss/_dopamine.scss')
   .option('-w, --watch', 'Watch for file changes')
   .option('--ext <extensions>', 'File extensions to scan (comma-separated)', 'twig,html,htm')
   .option('--no-header', 'Omit the generated-by comment header')
