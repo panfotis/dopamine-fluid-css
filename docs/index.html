@@ -129,8 +129,9 @@ npm run dev           # watch + Sass + browser auto-reload</code></pre>
 <section class="container-960 px-16-48 my-40-80">
   <h2 class="fs-24-48 mb-12-24">Class Audit</h2>
   <p class="fs-14-18 mb-12-24">Find near-duplicate fluid classes across your templates and get merge suggestions to keep your CSS lean:</p>
-  <pre class="block p-16-32 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18 lh-15">dopamine-audit</code></pre>
-  <p class="fs-14-18 mt-12-24">Reads <code>input</code> and <code>ext</code> from your config. Flags classes like <code>fs-16-20</code> and <code>fs-18-24</code> that are close enough to merge into one.</p>
+  <pre class="block p-16-32 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18 lh-15">npm run audit:classes</code></pre>
+  <p class="fs-14-18 mt-12-24">Reads <code>input</code> and <code>ext</code> from your config. Flags classes like <code>fs-16-20</code> and <code>fs-18-24</code> that are close enough to merge into one. Use <code>-o</code> to write the report to a file:</p>
+  <pre class="block p-16-32 radius-8-16 demo-box mt-12-24" style="overflow-x:auto;"><code class="fs-14-18 lh-15">npm run audit:classes -- -o</code></pre>
 </section>
 
 <section class="container-960 px-16-48 my-40-80">
@@ -142,7 +143,7 @@ fs-16-48
 cols-3</code></pre>
   <p class="fs-14-18 mb-12-24">Empty lines and lines starting with <code>#</code> are ignored.</p>
   <p class="fs-14-18 mb-12-24">Run it via CLI:</p>
-  <pre class="block p-16-32 radius-8-16 demo-box mb-12-24" style="overflow-x:auto;"><code class="fs-14-18 lh-15">dopamine --classes extra.classes.to.compile</code></pre>
+  <pre class="block p-16-32 radius-8-16 demo-box mb-12-24" style="overflow-x:auto;"><code class="fs-14-18 lh-15">npm run dopamine -- --classes extra.classes.to.compile</code></pre>
   <p class="fs-14-18 mb-12-24">Or set it in <code>dopamine.config.json</code>:</p>
   <pre class="block p-16-32 radius-8-16 demo-box mb-12-24" style="overflow-x:auto;"><code class="fs-14-18 lh-15">{
   "classes": "./extra.classes.to.compile"

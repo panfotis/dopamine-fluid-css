@@ -606,7 +606,7 @@ Add any you need. Set to `null` to remove a default:
 Scan your templates and find near-duplicate fluid classes that could be merged:
 
 ```bash
-dopamine-audit ./templates --ext html
+npm run audit:classes
 ```
 
 Uses the same `input`, `ext` values from `dopamine.config.json` if no args are passed.
@@ -622,6 +622,7 @@ Uses the same `input`, `ext` values from `dopamine.config.json` if no args are p
 | `--close-max <px>` | Max max-value delta for merge suggestions | `4` |
 | `--include-breakpoints` | Include breakpoint variants in suggestions | — |
 | `--include-inline-vp` | Include inline viewport overrides in suggestions | — |
+| `-o, --out [file]` | Write report to a file (plain text) | `audit` |
 
 ### Example output
 
@@ -662,7 +663,7 @@ Empty lines and lines starting with `#` are ignored.
 Run via CLI:
 
 ```bash
-dopamine --classes extra.classes.to.compile
+npm run dopamine -- --classes extra.classes.to.compile
 ```
 
 Or set it in `dopamine.config.json`:
