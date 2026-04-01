@@ -11,7 +11,7 @@
   "scripts": {
     "build": "npm run dopamine && npm run sass",
     "dopamine": "node bin/dopamine.js",
-    "sass": "sass scss/main.scss:css/main.css --no-source-map",
+    "sass": "sass scss/main.scss:css/main.css scss/custom:css/custom addons/components:css/components --no-source-map",
     "dev": "concurrently \"npm run dopamine -- --watch\" \"npm run sass -- --watch\" \"browser-sync start --server . --files 'css/**/*.css' 'templates/**/*.html' --startPath templates/index.html --no-notify\"",
     "dev:ddev": "concurrently \"npm run dopamine -- --watch\" \"npm run sass -- --watch\" \"browser-sync start --proxy $DDEV_URL --port $BS_PORT --files 'css/**/*.css' --no-notify\"",
     "dry": "node bin/dopamine.js --dry-run",

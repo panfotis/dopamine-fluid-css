@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="css/components/modal.css">
   <link rel="stylesheet" href="css/components/menu.css">
   <script src="search.js" defer></script>
+  <script src="accordion.js" defer></script>
   <script src="modal.js" defer></script>
   <script src="menu.js" defer></script>
 </head>
@@ -49,23 +50,23 @@
 
   <section class="docs-section mt-40-80">
     <h2 class="fs-24-48 mb-12-24">Accordion</h2>
-    <p class="fs-14-18 mb-16-32">CSS-only accordion using native <code>&lt;details&gt;</code> / <code>&lt;summary&gt;</code> elements. No JavaScript. Structure comes from <code>addons/components/accordion.scss</code> — styling via Dopamine classes.</p>
-    <div class="accordion radius-8">
-      <details class="accordion__item">
-        <summary class="accordion__title p-12-24 fs-16-20 fw-bold">What is Dopamine Fluid?</summary>
-        <div class="accordion__body"><div class="accordion__content p-12-24 fs-14-18 lh-15">A CSS utility generator that creates fluid clamp() values and grid layouts from class names in your HTML. No runtime, no JavaScript — just scan your templates and generate pure CSS.</div></div>
+    <p class="fs-14-18 mb-16-32">Accordion using native <code>&lt;details&gt;</code> / <code>&lt;summary&gt;</code> elements. Works without JavaScript — optional <code>accordion.js</code> adds smooth close animation. Structure comes from <code>addons/components/accordion.scss</code> — styling via Dopamine classes.</p>
+    <div class="accordion">
+      <details class="accordion__item" open>
+        <summary class="accordion__title accordion__title--dark p-12-24 fs-16-20 fw-bold">What is Dopamine Fluid?</summary>
+        <div class="accordion__body"><div class="accordion__content"><div class="p-12-24 fs-14-18 lh-15">A CSS utility generator that creates fluid clamp() values and grid layouts from class names in your HTML. No runtime, no JavaScript — just scan your templates and generate pure CSS.</div></div></div>
       </details>
       <details class="accordion__item">
-        <summary class="accordion__title p-12-24 fs-16-20 fw-bold">How does the Sass function work?</summary>
-        <div class="accordion__body"><div class="accordion__content p-12-24 fs-14-18 lh-15">Import the Sass addon and use dp.fluid(16, 48) anywhere in your Sass. Same clamp() math as the utility classes, for elements where you can't add class names.</div></div>
+        <summary class="accordion__title accordion__title--dark p-12-24 fs-16-20 fw-bold">How does the Sass function work?</summary>
+        <div class="accordion__body"><div class="accordion__content"><div class="p-12-24 fs-14-18 lh-15">Import the Sass addon and use dp.fluid(16, 48) anywhere in your Sass. Same clamp() math as the utility classes, for elements where you can't add class names.</div></div></div>
       </details>
       <details class="accordion__item">
-        <summary class="accordion__title p-12-24 fs-16-20 fw-bold">Can I use it with Drupal?</summary>
-        <div class="accordion__body"><div class="accordion__content p-12-24 fs-14-18 lh-15">Yes — scan your Twig templates, generate SCSS, and compile alongside your theme's existing Sass pipeline. Each component gets its own CSS file for Drupal's library system.</div></div>
+        <summary class="accordion__title accordion__title--dark p-12-24 fs-16-20 fw-bold">Can I use it with Drupal?</summary>
+        <div class="accordion__body"><div class="accordion__content"><div class="p-12-24 fs-14-18 lh-15">Yes — scan your Twig templates, generate SCSS, and compile alongside your theme's existing Sass pipeline. Each component gets its own CSS file for Drupal's library system.</div></div></div>
       </details>
       <details class="accordion__item">
-        <summary class="accordion__title p-12-24 fs-16-20 fw-bold">What browsers are supported?</summary>
-        <div class="accordion__body"><div class="accordion__content p-12-24 fs-14-18 lh-15">All modern browsers. This accordion uses native &lt;details&gt;/&lt;summary&gt; elements — works in Chrome, Firefox, Safari, and Edge.</div></div>
+        <summary class="accordion__title accordion__title--dark p-12-24 fs-16-20 fw-bold">What browsers are supported?</summary>
+        <div class="accordion__body"><div class="accordion__content"><div class="p-12-24 fs-14-18 lh-15">All modern browsers. This accordion uses native &lt;details&gt;/&lt;summary&gt; elements — works in Chrome, Firefox, Safari, and Edge.</div></div></div>
       </details>
     </div>
 
@@ -74,26 +75,29 @@
   &lt;details class="accordion__item"&gt;
     &lt;summary class="accordion__title"&gt;Question&lt;/summary&gt;
     &lt;div class="accordion__body"&gt;
-      &lt;div class="accordion__content"&gt;Answer&lt;/div&gt;
+      &lt;div class="accordion__content"&gt;
+        &lt;div&gt;Answer&lt;/div&gt;
+      &lt;/div&gt;
     &lt;/div&gt;
   &lt;/details&gt;
 &lt;/div&gt;</code></pre>
 
-    <h3 class="fs-18-24 mb-8-16">Include the component CSS</h3>
-    <p class="fs-14-18 mb-8-16">Option 1 — Link the CSS file directly (no Sass needed):</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/accordion.css"&gt;</code></pre>
-    <p class="fs-14-18 mb-8-16">Option 2 — Import via Sass (if you use a Sass pipeline):</p>
+    <h3 class="fs-18-24 mb-8-16">Include</h3>
+    <p class="fs-14-18 mb-8-16">CSS + optional JS for smooth close animation:</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/accordion.css"&gt;
+&lt;script src="addons/components/accordion.js" defer&gt;&lt;/script&gt;</code></pre>
+    <p class="fs-14-18 mb-8-16">Or via Sass:</p>
     <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/accordion';</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Add styling with Dopamine classes</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;div class="accordion radius-8"&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;div class="accordion"&gt;
   &lt;details class="accordion__item"&gt;
     &lt;summary class="accordion__title p-12-24 fs-16-20 fw-bold"&gt;
       Question
     &lt;/summary&gt;
     &lt;div class="accordion__body"&gt;
-      &lt;div class="accordion__content p-12-24 fs-14-18 lh-15"&gt;
-        Answer
+      &lt;div class="accordion__content"&gt;
+        &lt;div class="p-12-24 fs-14-18 lh-15"&gt;Answer&lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/details&gt;

@@ -90,7 +90,8 @@ dopamine-fluid/
 │   ├── sass/
 │   │   └── _functions.scss       # Sass addon — fluid(), breakpoint mixins
 │   └── components/
-│       ├── accordion.scss        # Accordion — CSS only, no JS
+│       ├── accordion.scss        # Accordion — optional accordion.js for close animation
+│       ├── accordion.js          # Accordion — smooth close transition
 │       ├── menu.scss             # Menu — side drawer, configurable breakpoint
 │       ├── menu.js               # Menu — toggle, overlay close, ESC
 │       ├── modal.scss            # Modal — fade/slide transitions
@@ -98,9 +99,11 @@ dopamine-fluid/
 ├── scss/
 │   ├── _dopamine.scss            # generated — utility classes
 │   ├── _dopamine-functions.scss  # generated — fluid() + breakpoint mixins
-│   └── main.scss                 # imports dopamine
+│   ├── main.scss                 # imports dopamine
+│   └── custom/                   # your SCSS → compiled individually to css/custom/
 ├── css/
-│   └── main.css                  # compiled output
+│   ├── main.css                  # compiled output
+│   └── custom/                   # individual CSS files from scss/custom/
 ├── docs/                         # documentation site
 ├── extra.classes.to.compile      # optional — class names to compile (one per line)
 ├── dopamine.config.json          # configuration
@@ -121,6 +124,10 @@ dopamine-fluid/
 | `npm run dopamine` | Only scan HTML → generate `_dopamine.scss` |
 | `npm run audit:classes` | Audit numeric classes and suggest close min-max merge candidates |
 | `npm run sass` | Only compile SCSS → CSS |
+
+### Custom SCSS
+
+Any `.scss` file in `scss/custom/` (without a `_` prefix) is compiled to its own `.css` file in `css/custom/`. Useful for Drupal libraries or page-specific styles.
 
 ### Development with DDEV
 

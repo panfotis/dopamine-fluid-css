@@ -114,12 +114,13 @@ npm run dev           # watch + Sass + browser auto-reload</code></pre>
 │   ├── sass/
 │   │   └── _functions.scss       # fluid(), breakpoint mixins
 │   └── components/
-│       ├── accordion.scss        # CSS only, no JS
+│       ├── accordion.scss + .js   # CSS + optional close animation
 │       ├── menu.scss + menu.js   # side drawer, configurable breakpoint
 │       └── modal.scss + modal.js # fade/slide transitions
 ├── scss/
 │   ├── _dopamine.scss            # generated — utility classes
-│   └── _dopamine-functions.scss  # generated — fluid() + mixins
+│   ├── _dopamine-functions.scss  # generated — fluid() + mixins
+│   └── custom/                   # your SCSS → css/custom/
 ├── extra.classes.to.compile      # optional — class names (one per line)
 ├── dopamine.config.json          # configuration
 └── docs/                         # documentation site</code></pre>

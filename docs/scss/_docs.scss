@@ -241,6 +241,14 @@ a {
   }
 }
 
+// Accordion demo — dark header
+.accordion__title--dark {
+  background: $dark;
+  color: #fff;
+
+  &::after { color: #fff; }
+}
+
 // Footer
 footer {
   border-top: 3px solid $dark;

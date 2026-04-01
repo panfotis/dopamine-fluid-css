@@ -1,6 +1,6 @@
 // Dopamine Fluid — Accordion Component
 // Structure only — style with Dopamine classes in HTML
-// Uses native <details>/<summary> — no JavaScript needed
+// Uses native <details>/<summary> — optional accordion.js for smooth close animation
 
 .accordion__title {
   display: flex;
@@ -32,6 +32,7 @@
 
   > * {
     overflow: hidden;
+    min-height: 0;
   }
 }
 
