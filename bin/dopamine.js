@@ -19,6 +19,7 @@ program
   .option('--ext <extensions>', 'File extensions to scan (comma-separated)', 'twig,html,htm')
   .option('--no-header', 'Omit the generated-by comment header')
   .option('--no-reset', 'Omit the CSS reset')
+  .option('--classes <file>', 'Path to a file with class names to compile (one per line)')
   .option('--dry-run', 'Print CSS to stdout without writing file')
   .parse(process.argv);
 
@@ -35,6 +36,7 @@ if (fs.existsSync(configFile)) {
 const input = inputArg || configHints.input || '.';
 if (!inputArg && configHints.ext && opts.ext === 'twig,html,htm') opts.ext = configHints.ext;
 if (!inputArg && configHints.out && opts.out === 'fluid.css') opts.out = configHints.out;
+if (!opts.classes && configHints.classes) opts.classes = configHints.classes;
 if (configHints.reset === false && opts.reset !== false) opts.reset = false;
 
 run(input, opts).catch(err => {
