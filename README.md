@@ -137,6 +137,7 @@ dopamine [input] [options]
 | `--ext <exts>` | Extensions to scan (comma-separated) | `twig,html,htm` |
 | `--no-header` | Omit the generated header comment | — |
 | `--no-reset` | Omit the CSS reset | — |
+| `--classes <file>` | Path to a file with class names to compile (one per line) | — |
 | `--dry-run` | Print to stdout, don't write | — |
 
 When `--out` ends in `.scss`, Dopamine also generates `_dopamine-functions.scss` alongside it.
@@ -485,6 +486,7 @@ Create a `dopamine.config.json` in your project root:
   "input": "./templates",
   "ext": "html",
   "out": "./scss/_dopamine.scss",
+  "classes": "./extra.classes.to.compile",
 
   "viewport": {
     "min": 320,
@@ -513,6 +515,7 @@ Create a `dopamine.config.json` in your project root:
 | `input` | File, directory, or glob to scan | `.` |
 | `ext` | File extensions to scan (comma-separated) | `twig,html,htm` |
 | `out` | Output file (.css or .scss) | `fluid.css` |
+| `classes` | Path to a classes file (one class per line) | — |
 
 These can also be passed as CLI flags — CLI args override config values.
 
@@ -590,6 +593,38 @@ Threshold: Δmin <= 2px and Δmax <= 4px
 - fs @ base: keep `fs-16-20` (9 uses)
   replace `fs-18-24` (2 uses, Δmin 2px, Δmax 4px)
 ```
+
+---
+
+## Classes File
+
+You can provide classes directly in a plain text file — one class per line. Useful for prototyping, generating a utility stylesheet from a curated list, or integrating with tools that output class lists.
+
+Create a file (e.g. `extra.classes.to.compile`):
+
+```
+# One class per line
+fs-16-48
+cols-3
+```
+
+Empty lines and lines starting with `#` are ignored.
+
+Run via CLI:
+
+```bash
+dopamine --classes extra.classes.to.compile
+```
+
+Or set it in `dopamine.config.json`:
+
+```json
+{
+  "classes": "./extra.classes.to.compile"
+}
+```
+
+Classes from the file are merged with any template-scanned classes. Unrecognized class names will trigger a warning so you can spot typos early. In watch mode, the classes file is also watched for changes.
 
 ---
 

@@ -4,8 +4,8 @@
  *
  * Default viewport : 320px – 1440px
  * Breakpoints      : sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px, xxxl: 1600px, xxxxl: 1920px
- * Generated        : 3/31/2026, 11:48:28 AM
- * Rules            : 227
+ * Generated        : 4/1/2026, 5:32:40 PM
+ * Rules            : 228
  * ============================================== */
 /* Reset */
 *, *::before, *::after {
@@ -893,6 +893,11 @@ p, h1, h2, h3, h4, h5, h6 {
 .fs-28-48 {
   /* viewport: 375px–1440px [prefix-config] */
   font-size: clamp(1.75rem, 1.8779vw + 1.3099rem, 3rem);
+}
+
+.my-40-80 {
+  margin-top: clamp(2.5rem, 3.5714vw + 1.7857rem, 5rem);
+  margin-bottom: clamp(2.5rem, 3.5714vw + 1.7857rem, 5rem);
 }
 
 .mt-12-24 {

@@ -2,6 +2,7 @@
   "input": "./templates",
   "ext": "html",
   "out": "./scss/_dopamine.scss",
+  "classes": "./extra.classes.to.compile",
 
   "viewport": {
     "min": 320,
