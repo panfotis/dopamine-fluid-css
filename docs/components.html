@@ -7,21 +7,28 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/components/accordion.css">
   <link rel="stylesheet" href="css/components/modal.css">
+  <link rel="stylesheet" href="css/components/menu.css">
   <script src="search.js" defer></script>
   <script src="modal.js" defer></script>
+  <script src="menu.js" defer></script>
 </head>
 <body>
 
-<nav class="docs-nav">
+<nav class="docs-nav menu">
   <a href="index.html" class="docs-nav__brand">Dopamine Fluid</a>
-  <a href="typography.html">Typography</a>
-  <a href="spacing.html">Spacing</a>
-  <a href="sizing.html">Sizing</a>
-  <a href="grid.html">Grid</a>
-  <a href="flexbox.html">Flexbox</a>
-  <a href="utilities.html">Utilities</a>
-  <a href="sass.html">Sass</a>
-  <a href="components.html" class="active">Components</a>
+  <button class="menu__toggle">&#9776;</button>
+  <div class="menu__overlay"></div>
+  <div class="menu__drawer">
+    <button class="menu__close p-8 fs-24">&times;</button>
+    <a href="typography.html">Typography</a>
+    <a href="spacing.html">Spacing</a>
+    <a href="sizing.html">Sizing</a>
+    <a href="grid.html">Grid</a>
+    <a href="flexbox.html">Flexbox</a>
+    <a href="utilities.html">Utilities</a>
+    <a href="sass.html">Sass</a>
+    <a href="components.html" class="active">Components</a>
+  </div>
 </nav>
 
 <div class="docs-search container-1200 px-16-48 py-16">
@@ -37,7 +44,7 @@
     <h2 class="fs-24-48 mb-12-24">How Components Work</h2>
     <p class="fs-14-18 mb-8-16">Components provide <strong>structure only</strong> — display, transitions, open/close behavior.</p>
     <p class="fs-14-18 mb-8-16">All sizing and colors come from Dopamine classes in your HTML.</p>
-    <p class="fs-14-18">Available components: <code>accordion</code> (more coming).</p>
+    <p class="fs-14-18">Available components: <code>accordion</code>, <code>modal</code>, <code>menu</code>.</p>
   </section>
 
   <section class="docs-section mt-40-80">
@@ -138,6 +145,51 @@
     <p class="fs-14-18 mb-4-8"><code>modal__dialog--fade</code> — fade + scale transition</p>
     <p class="fs-14-18 mb-4-8"><code>modal__dialog--slide</code> — slide down transition</p>
     <p class="fs-14-18"><code>maxw-*</code> — controls modal width (e.g. <code>maxw-400</code>, <code>maxw-600</code>, <code>maxw-800</code>)</p>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Menu</h2>
+    <p class="fs-14-18 mb-16-32">A side-drawer menu for mobile navigation. Full width, full height, slides from the left with <code>overflow-y: auto</code> for scrollable content. On desktop (≥768px) the drawer is disabled and the nav displays inline. Requires a tiny JS file (~10 lines).</p>
+
+    <h3 class="fs-18-24 mb-8-16">Minimum HTML</h3>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;nav class="menu"&gt;
+  &lt;button class="menu__toggle"&gt;☰&lt;/button&gt;
+  &lt;div class="menu__overlay"&gt;&lt;/div&gt;
+  &lt;div class="menu__drawer"&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="#"&gt;Link&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+
+    <h3 class="fs-18-24 mb-8-16">Include</h3>
+    <p class="fs-14-18 mb-8-16">CSS file + JS file:</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/menu.css"&gt;
+&lt;script src="addons/components/menu.js" defer&gt;&lt;/script&gt;</code></pre>
+    <p class="fs-14-18 mb-8-16">Or via Sass:</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/menu';</code></pre>
+
+    <h3 class="fs-18-24 mb-8-16">Custom breakpoint</h3>
+    <p class="fs-14-18 mb-8-16">The drawer switches to inline nav at 768px by default. Override via Sass:</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/menu' with ($menu-bp: 992px);</code></pre>
+
+    <h3 class="fs-18-24 mb-8-16">Styled with Dopamine classes</h3>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;nav class="menu"&gt;
+  &lt;button class="menu__toggle p-8 fs-24"&gt;☰&lt;/button&gt;
+  &lt;div class="menu__overlay"&gt;&lt;/div&gt;
+  &lt;div class="menu__drawer p-24-48"&gt;
+    &lt;ul class="flex-col gap-8-16"&gt;
+      &lt;li&gt;&lt;a class="fs-16-20 fw-bold" href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a class="fs-16-20" href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a class="fs-16-20" href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+
+    <p class="fs-14-18 mb-4-8"><code>menu__toggle</code> — burger button, hidden on desktop (≥768px)</p>
+    <p class="fs-14-18 mb-4-8"><code>menu__overlay</code> — backdrop, click to close</p>
+    <p class="fs-14-18 mb-4-8"><code>menu__drawer</code> — side drawer, full width/height, slides from left</p>
+    <p class="fs-14-18"><code>menu--open</code> — added/removed by JS to toggle the drawer</p>
   </section>
 
 </div>

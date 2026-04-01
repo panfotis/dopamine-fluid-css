@@ -1,0 +1,69 @@
+.menu__toggle {
+  cursor: pointer;
+  background: none;
+  border: none;
+  line-height: 1;
+}
+
+.menu__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.3s, opacity 0.3s ease;
+}
+
+.menu--open .menu__overlay {
+  visibility: visible;
+  opacity: 1;
+}
+
+.menu__drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  overflow-y: auto;
+  visibility: hidden;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease, visibility 0.3s;
+}
+
+.menu--open .menu__drawer {
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.menu__close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  background: none;
+  border: none;
+  line-height: 1;
+}
+
+@media (min-width: 768px) {
+  .menu__toggle {
+    display: none;
+  }
+  .menu__overlay {
+    display: none;
+  }
+  .menu__close {
+    display: none;
+  }
+  .menu__drawer {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow-y: visible;
+    visibility: visible;
+    transform: none;
+    transition: none;
+  }
+}

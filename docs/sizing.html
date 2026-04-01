@@ -5,20 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dopamine Fluid — Sizing</title>
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components/menu.css">
   <script src="search.js" defer></script>
+  <script src="menu.js" defer></script>
 </head>
 <body>
 
-<nav class="docs-nav">
+<nav class="docs-nav menu">
   <a href="index.html" class="docs-nav__brand">Dopamine Fluid</a>
-  <a href="typography.html">Typography</a>
-  <a href="spacing.html">Spacing</a>
-  <a href="sizing.html" class="active">Sizing</a>
-  <a href="grid.html">Grid</a>
-  <a href="flexbox.html">Flexbox</a>
-  <a href="utilities.html">Utilities</a>
-  <a href="sass.html">Sass</a>
-  <a href="components.html">Components</a>
+  <button class="menu__toggle">&#9776;</button>
+  <div class="menu__overlay"></div>
+  <div class="menu__drawer">
+    <button class="menu__close p-8 fs-24">&times;</button>
+    <a href="typography.html">Typography</a>
+    <a href="spacing.html">Spacing</a>
+    <a href="sizing.html" class="active">Sizing</a>
+    <a href="grid.html">Grid</a>
+    <a href="flexbox.html">Flexbox</a>
+    <a href="utilities.html">Utilities</a>
+    <a href="sass.html">Sass</a>
+    <a href="components.html">Components</a>
+  </div>
 </nav>
 
 <div class="docs-search container-1200 px-16-48 py-16">

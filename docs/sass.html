@@ -6,89 +6,58 @@
   <title>Dopamine Fluid — Sass Addon</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components/menu.css">
   <script src="search.js" defer></script>
+  <script src="menu.js" defer></script>
 </head>
 <body>
 
-<nav class="docs-nav">
+<nav class="docs-nav menu">
   <a href="index.html" class="docs-nav__brand">Dopamine Fluid</a>
-  <a href="typography.html">Typography</a>
-  <a href="spacing.html">Spacing</a>
-  <a href="sizing.html">Sizing</a>
-  <a href="grid.html">Grid</a>
-  <a href="flexbox.html">Flexbox</a>
-  <a href="utilities.html">Utilities</a>
-  <a href="sass.html" class="active">Sass</a>
-  <a href="components.html">Components</a>
+  <button class="menu__toggle">&#9776;</button>
+  <div class="menu__overlay"></div>
+  <div class="menu__drawer">
+    <button class="menu__close p-8 fs-24">&times;</button>
+    <a href="typography.html">Typography</a>
+    <a href="spacing.html">Spacing</a>
+    <a href="sizing.html">Sizing</a>
+    <a href="grid.html">Grid</a>
+    <a href="flexbox.html">Flexbox</a>
+    <a href="utilities.html">Utilities</a>
+    <a href="sass.html" class="active">Sass</a>
+    <a href="components.html">Components</a>
+  </div>
 </nav>
 
 <div class="docs-search container-1200 px-16-48 py-16">
-  <input type="text" class="maxw-360 px-16 py-8 fs-14 fw-medium radius-100" placeholder="Search... (e.g. dp.fluid, sass, function)">
+  <input type="text" class="maxw-360 px-16 py-8 fs-14 fw-medium radius-100" placeholder="Search... (e.g. dp.fluid, breakpoint-up, sass)">
 </div>
 
 <div class="docs-content container-860 px-16-48">
 
   <h1 class="fs-32-72 fw-bold mt-40-80 mb-8-16">Sass Addon</h1>
-  <p class="fs-16-24 lh-15 mb-40-80">The <code>dp.fluid()</code> function for custom styles where you can't add classes to the HTML.</p>
+  <p class="fs-16-24 lh-15 mb-16-32">Optional Sass functions and mixins for when you need more than utility classes. Independent from the core — you don't need it to use Dopamine classes.</p>
 
+  <!-- Setup -->
   <section class="docs-section">
-    <h2 class="fs-24-48 mb-12-24">Sass Addon <code>dp.fluid()</code></h2>
-    <p class="fs-14-18 mb-16-32">
-      An optional Sass function that gives you the same fluid <code>clamp()</code> math as Dopamine's utility classes — for use in custom SCSS where you can't add classes to the HTML.
-    </p>
-    <p class="fs-14-18 mb-16-32">
-      This addon is <strong>independent</strong> from the core and from components. You don't need it to use Dopamine classes.
-    </p>
-  </section>
-
-</div>
-
-<section class="docs-section mt-40-80 container-1200 px-16-48">
-  <h2 class="fs-24-48 mb-12-24">When to use it</h2>
-  <div class="grid cols-1 cols-md-2 gap-16-32">
-    <div class="">
-      <h3 class="fs-18-24 mb-8-16 fw-bold">Use Dopamine classes</h3>
-      <p class="fs-14-18 mb-8-16">When you control the HTML:</p>
-      <pre class="p-12-24 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18">&lt;h1 class="fs-32-72 mb-16-40"&gt;Title&lt;/h1&gt;</code></pre>
-    </div>
-    <div class="">
-      <h3 class="fs-18-24 mb-8-16 fw-bold">Use dp.fluid()</h3>
-      <p class="fs-14-18 mb-8-16">When you can't add classes (Drupal renders it):</p>
-      <pre class="p-12-24 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18">.field--body h1 {
-  font-size: dp.fluid(32, 72);
-  margin-bottom: dp.fluid(16, 40);
-}</code></pre>
-    </div>
-  </div>
-</section>
-
-<div class="docs-content container-860 px-16-48">
-
-  <section class="docs-section mt-40-80">
     <h2 class="fs-24-48 mb-12-24">Setup</h2>
 
     <h3 class="fs-18-24 mb-8-16">Option 1: Import the addon directly</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/sass/functions' as dp;
-
-.my-component {
-  font-size: dp.fluid(16, 48);
-  padding: dp.fluid(12, 32);
-}</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/sass/functions' as dp;</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Option 2: Use the auto-generated file</h3>
-    <p class="fs-14-18 mb-8-16">When you output to <code>.scss</code>, Dopamine generates a <code>_dopamine-functions.scss</code> alongside the utility classes with your config's viewport defaults:</p>
+    <p class="fs-14-18 mb-8-16">When you output to <code>.scss</code>, Dopamine generates <code>_dopamine-functions.scss</code> alongside the utility classes with your config's viewport defaults and breakpoints:</p>
     <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">dopamine ./templates --ext twig --out ./scss/_dopamine.scss
 # Creates: _dopamine.scss + _dopamine-functions.scss</code></pre>
-    <pre class="p-16-32 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-functions' as dp;
-
-.node--article .field--body p {
-  font-size: dp.fluid(16, 48);
-  margin-bottom: dp.fluid(8, 24);
-}</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-functions' as dp;</code></pre>
   </section>
 
+  <!-- dp.fluid() -->
   <section class="docs-section mt-40-80">
-    <h2 class="fs-24-48 mb-12-24">Function signature</h2>
+    <h2 class="fs-24-48 mb-12-24"><code>dp.fluid()</code></h2>
+    <p class="fs-14-18 mb-16-32">The same fluid <code>clamp()</code> math as Dopamine's utility classes — for use in custom SCSS where you can't add classes to the HTML (e.g. Drupal-rendered content).</p>
+
+    <h3 class="fs-18-24 mb-8-16">Signature</h3>
     <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@function fluid($min, $max, $vpMin: 320, $vpMax: 1440)
 
 // $min    — minimum value in pixels
@@ -96,11 +65,6 @@
 // $vpMin  — viewport min (default from config)
 // $vpMax  — viewport max (default from config)
 // Returns — clamp(minRem, calc(Xvw + Yrem), maxRem)</code></pre>
-    <p class="fs-14-18">Same math as the utility classes. Values in pixels, output in rem.</p>
-  </section>
-
-  <section class="docs-section mt-40-80">
-    <h2 class="fs-24-48 mb-12-24">Examples</h2>
 
     <h3 class="fs-18-24 mb-8-16">Basic usage</h3>
     <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-functions' as dp;
@@ -127,21 +91,52 @@ p  { font-size: dp.fluid(16, 20); }
 }</code></pre>
   </section>
 
+  <!-- Breakpoint Mixins -->
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Breakpoint Mixins</h2>
+    <p class="fs-14-18 mb-16-32">Mobile-first and desktop-first breakpoint mixins. Values are generated from your <code>dopamine.config.json</code> breakpoints so they always stay in sync.</p>
+
+    <h3 class="fs-18-24 mb-8-16">Available breakpoints</h3>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px, ...</code></pre>
+
+    <h3 class="fs-18-24 mb-8-16"><code>breakpoint-up($name)</code></h3>
+    <p class="fs-14-18 mb-8-16">Applies styles at a minimum viewport width (mobile-first):</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-functions' as dp;
+
+.sidebar {
+  display: none;
+
+  @include dp.breakpoint-up(lg) {
+    display: block;    // visible at 992px+
+  }
+}</code></pre>
+
+    <h3 class="fs-18-24 mb-8-16"><code>breakpoint-down($name)</code></h3>
+    <p class="fs-14-18 mb-8-16">Applies styles below a viewport width (desktop-first):</p>
+    <pre class="p-16-32 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-functions' as dp;
+
+.mobile-banner {
+  @include dp.breakpoint-down(md) {
+    display: block;    // visible below 768px
+  }
+}</code></pre>
+  </section>
+
+  <!-- When to use what -->
   <section class="docs-section mt-40-80 mb-40-80">
-    <h2 class="fs-24-48 mb-12-24">Independence</h2>
-    <p class="fs-14-18 mb-8-16">The Sass addon is completely independent:</p>
+    <h2 class="fs-24-48 mb-12-24">When to use what</h2>
     <div class="grid cols-1 cols-md-3 gap-16-32">
       <div class="p-12-24 radius-8-16">
-        <h3 class="fs-18-24 mb-8-16 fw-bold">Core only</h3>
-        <p class="fs-14-18">Scan HTML, generate CSS. No Sass needed.</p>
+        <h3 class="fs-18-24 mb-8-16 fw-bold">Classes only</h3>
+        <p class="fs-14-18">You control the HTML. Scan templates, generate CSS. No Sass needed.</p>
       </div>
       <div class="p-12-24 radius-8-16">
-        <h3 class="fs-18-24 mb-8-16 fw-bold">Core + Sass</h3>
-        <p class="fs-14-18">Classes in HTML + dp.fluid() for custom styles.</p>
+        <h3 class="fs-18-24 mb-8-16 fw-bold">Classes + dp.fluid()</h3>
+        <p class="fs-14-18">Classes in HTML for most things. dp.fluid() for elements you can't add classes to.</p>
       </div>
       <div class="p-12-24 radius-8-16">
-        <h3 class="fs-18-24 mb-8-16 fw-bold">Core + Components</h3>
-        <p class="fs-14-18">Classes + pre-built structure. No dp.fluid() needed.</p>
+        <h3 class="fs-18-24 mb-8-16 fw-bold">Classes + Mixins</h3>
+        <p class="fs-14-18">Classes in HTML. Breakpoint mixins in custom SCSS for responsive logic.</p>
       </div>
     </div>
   </section>

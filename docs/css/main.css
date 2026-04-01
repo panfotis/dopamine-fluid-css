@@ -4,7 +4,7 @@
  *
  * Default viewport : 320px – 1440px
  * Breakpoints      : sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px, xxxl: 1600px, xxxxl: 1920px
- * Generated        : 4/1/2026, 5:32:40 PM
+ * Generated        : 4/1/2026, 6:27:16 PM
  * Rules            : 228
  * ============================================== */
 /* Reset */
@@ -184,6 +184,10 @@ p, h1, h2, h3, h4, h5, h6 {
   margin-right: auto;
 }
 
+.block {
+  display: block;
+}
+
 .container-1920 {
   width: 100%;
   max-width: 1920px;
@@ -247,10 +251,6 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .hidden {
   display: none;
-}
-
-.block {
-  display: block;
 }
 
 .inline {
@@ -326,6 +326,16 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 /* Base */
+.p-8 {
+  /* fixed at 8px */
+  padding: 0.5rem;
+}
+
+.fs-24 {
+  /* fixed at 24px */
+  font-size: 1.5rem;
+}
+
 .px-16-48 {
   padding-left: clamp(1rem, 2.8571vw + 0.4286rem, 3rem);
   padding-right: clamp(1rem, 2.8571vw + 0.4286rem, 3rem);
@@ -446,11 +456,6 @@ p, h1, h2, h3, h4, h5, h6 {
   margin-bottom: clamp(0.25rem, 0.3571vw + 0.1786rem, 0.5rem);
 }
 
-.p-8 {
-  /* fixed at 8px */
-  padding: 0.5rem;
-}
-
 .fs-12-16 {
   /* viewport: 375px–1440px [prefix-config] */
   font-size: clamp(0.75rem, 0.3756vw + 0.662rem, 1rem);
@@ -501,11 +506,6 @@ p, h1, h2, h3, h4, h5, h6 {
 .fs-20 {
   /* fixed at 20px */
   font-size: 1.25rem;
-}
-
-.fs-24 {
-  /* fixed at 24px */
-  font-size: 1.5rem;
 }
 
 .fs-32 {
@@ -780,10 +780,6 @@ p, h1, h2, h3, h4, h5, h6 {
   border-radius: clamp(0.5rem, 0.7143vw + 0.3571rem, 1rem);
 }
 
-.mb-16-40 {
-  margin-bottom: clamp(1rem, 2.1429vw + 0.5714rem, 2.5rem);
-}
-
 .p-24-80 {
   padding: clamp(1.5rem, 5vw + 0.5rem, 5rem);
 }
@@ -804,6 +800,10 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .lh-16 {
   line-height: 1.6;
+}
+
+.mb-16-40 {
+  margin-bottom: clamp(1rem, 2.1429vw + 0.5714rem, 2.5rem);
 }
 
 .px-16-32 {
@@ -1072,7 +1072,6 @@ a {
   z-index: 100;
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   gap: 0.35rem;
   padding: 0.6rem 1rem;
 }
@@ -1114,6 +1113,33 @@ a {
 }
 .docs-nav .docs-nav__brand:hover {
   border-color: transparent;
+}
+.docs-nav .menu__toggle {
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 0.25rem 0.5rem;
+}
+.docs-nav .menu__close {
+  color: #fff;
+}
+.docs-nav .menu__drawer {
+  background: #0f0f0f;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.5rem 1rem;
+}
+.docs-nav .menu__overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+@media (min-width: 768px) {
+  .docs-nav .menu__drawer {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0;
+    background: none;
+  }
 }
 
 .docs-search {

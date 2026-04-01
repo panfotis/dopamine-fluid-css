@@ -74,11 +74,13 @@ npm run dev           # watch + Sass + browser auto-reload
 ```
 dopamine-fluid/
 ├── bin/
-│   └── dopamine.js               # CLI entry point
+│   ├── dopamine.js               # CLI — generate fluid CSS
+│   ├── dopamine-audit.js         # CLI — audit classes for duplicates
+│   └── dopamine-update.js        # CLI — update utility
 ├── lib/
 │   ├── config.js                 # PREFIX_MAP, breakpoints, config loading
 │   ├── generator.js              # clamp() builder, CSS rule generator
-│   ├── generator-sass.js         # Sass function file generator
+│   ├── generator-sass.js         # Sass functions + breakpoint mixins generator
 │   ├── grid-parser.js            # keyword class parser (display, flex, etc.)
 │   ├── grid-generator.js         # keyword CSS generator
 │   ├── parser.js                 # class extraction & fluid parsing
@@ -86,16 +88,22 @@ dopamine-fluid/
 │   └── scanner.js                # file resolver
 ├── addons/
 │   ├── sass/
-│   │   └── _functions.scss       # Sass addon — fluid() function
+│   │   └── _functions.scss       # Sass addon — fluid(), breakpoint mixins
 │   └── components/
-│       └── accordion.scss        # Component addon — structure only
+│       ├── accordion.scss        # Accordion — CSS only, no JS
+│       ├── menu.scss             # Menu — side drawer, configurable breakpoint
+│       ├── menu.js               # Menu — toggle, overlay close, ESC
+│       ├── modal.scss            # Modal — fade/slide transitions
+│       └── modal.js              # Modal — open/close, ESC, click-outside
 ├── scss/
 │   ├── _dopamine.scss            # generated — utility classes
+│   ├── _dopamine-functions.scss  # generated — fluid() + breakpoint mixins
 │   └── main.scss                 # imports dopamine
 ├── css/
-│   └── main.css                  # compiled
-├── docs/                         # docs site (uses Dopamine itself)
-├── dopamine.config.json
+│   └── main.css                  # compiled output
+├── docs/                         # documentation site
+├── extra.classes.to.compile      # optional — class names to compile (one per line)
+├── dopamine.config.json          # configuration
 ├── package.json
 └── README.md
 ```
@@ -452,28 +460,62 @@ For elements you can't add classes to (e.g. Drupal-rendered content). Import the
 
 When you output to `.scss`, Dopamine also auto-generates a `_dopamine-functions.scss` with your config's viewport defaults.
 
+### Breakpoint Mixins
+
+Both the standalone addon and the auto-generated functions file include breakpoint mixins that match your config:
+
+```scss
+@use 'dopamine-functions' as dp;
+
+.sidebar {
+  display: none;
+  @include dp.breakpoint-up(lg) { display: block; }
+}
+
+.mobile-only {
+  @include dp.breakpoint-down(md) { display: block; }
+}
+```
+
+Available: `breakpoint-up($name)` (min-width) and `breakpoint-down($name)` (max-width). Breakpoint names come from your `dopamine.config.json`.
+
 ### Components Addon
 
 Pre-built structural CSS for common UI patterns. No colors, no sizing — just behavior (transitions, open/close, visibility). Style with Dopamine classes in your HTML.
 
 ```scss
-// Import the structure
 @use 'dopamine-fluid/addons/components/accordion';
+@use 'dopamine-fluid/addons/components/menu';
 ```
 
 ```html
-<!-- Style with Dopamine classes -->
+<!-- Accordion — style with Dopamine classes -->
 <details class="accordion__item radius-8 mb-8">
-  <summary class="accordion__title p-12-24 fs-16-20 fw-bold">
-    Question
-  </summary>
+  <summary class="accordion__title p-12-24 fs-16-20 fw-bold">Question</summary>
   <div class="accordion__body">
     <div class="accordion__content p-12-24 fs-14-18">Answer</div>
   </div>
 </details>
+
+<!-- Menu — side drawer on mobile, inline on desktop -->
+<nav class="menu">
+  <button class="menu__toggle p-8 fs-24">&#9776;</button>
+  <div class="menu__overlay"></div>
+  <div class="menu__drawer p-24-48">
+    <button class="menu__close p-8 fs-24">&times;</button>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+  </div>
+</nav>
 ```
 
-Available components: `accordion` (more coming).
+The menu switches from drawer to inline at 768px by default. Override via Sass:
+
+```scss
+@use 'dopamine-fluid/addons/components/menu' with ($menu-bp: 992px);
+```
+
+Available components: `accordion`, `modal`, `menu`.
 
 ---
 

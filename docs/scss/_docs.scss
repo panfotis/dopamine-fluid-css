@@ -53,7 +53,6 @@ a {
   z-index: 100;
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   gap: 0.35rem;
   padding: 0.6rem 1rem;
 
@@ -84,6 +83,44 @@ a {
     margin-right: auto;
     &.active { background: none; border-color: transparent; color: #fff; }
     &:hover { border-color: transparent; }
+  }
+
+  // Burger button styling
+  .menu__toggle {
+    color: #fff;
+    font-size: 1.5rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  // Close button styling
+  .menu__close {
+    color: #fff;
+  }
+
+  // Drawer on mobile — dark background to match nav
+  .menu__drawer {
+    background: $dark;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1.5rem 1rem;
+  }
+
+  // Overlay — semi-transparent dark
+  .menu__overlay {
+    background: rgba(0,0,0,0.5);
+  }
+
+  // Desktop — drawer becomes inline flex row
+  $menu-bp: 768px;
+  @media (min-width: $menu-bp) {
+    .menu__drawer {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 0;
+      background: none;
+    }
   }
 }
 
