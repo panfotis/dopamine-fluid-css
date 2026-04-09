@@ -4,7 +4,7 @@
  *
  * Default viewport : 320px – 1440px
  * Breakpoints      : sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px, xxxl: 1600px, xxxxl: 1920px
- * Generated        : 4/1/2026, 8:37:07 PM
+ * Generated        : 4/1/2026, 9:39:08 PM
  * Rules            : 228
  * ============================================== */
 /* Reset */
@@ -1167,11 +1167,19 @@ a {
 }
 
 .docs-hero {
-  background: #6ee7b7;
   color: #0f0f0f;
   border-bottom: 3px solid #0f0f0f;
+  animation: hero-colors 20s ease infinite;
 }
 
+@keyframes hero-colors {
+  0%, 100% {
+    background: #6ee7b7;
+  }
+  50% {
+    background: #bef264;
+  }
+}
 .docs-content section > h2 {
   text-transform: uppercase;
   letter-spacing: -0.02em;

@@ -144,11 +144,16 @@ a {
 
 .docs-section[hidden] { display: none; }
 
-// Hero — background color
+// Hero — cycling background colors
 .docs-hero {
-  background: $mint;
   color: $dark;
   border-bottom: 3px solid $dark;
+  animation: hero-colors 20s ease infinite;
+}
+
+@keyframes hero-colors {
+  0%, 100% { background: $mint; }
+  50%      { background: $lime; }
 }
 
 // Section headings — uppercase, border
