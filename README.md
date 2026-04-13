@@ -27,6 +27,8 @@ dopamine ./templates --ext twig --out ./scss/_dopamine.scss
 
 177 rules. 12KB. 20ms.
 
+> Documentation: https://panfotis.github.io/dopamine-fluid-css/
+
 ---
 
 ## Features
