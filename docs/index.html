@@ -44,16 +44,12 @@
 
 <section class="container-960 px-16-48 mt-40-80">
   <h2 class="fs-24-48 mb-12-24">Quick Start</h2>
-  <p class="fs-14-18 mb-12-24">1. Set your template path in <code>dopamine.config.json</code>:</p>
-  <pre class="block p-16-32 radius-8-16 demo-box mb-12-24" style="overflow-x:auto;"><code class="fs-14-18 lh-15">{
-  "input": "./templates",
-  "ext": "html",
-  "out": "./scss/_dopamine.scss"
-}</code></pre>
-  <p class="fs-14-18 mb-12-24">2. Install and build:</p>
-  <pre class="block p-16-32 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18 lh-15">npm install
-npm run build         # scan HTML → generate SCSS → compile CSS
-npm run dev           # watch + Sass + browser auto-reload</code></pre>
+  <p class="fs-14-18 mb-12-24">Install the package, scaffold the starter structure, then build it:</p>
+  <pre class="block p-16-32 radius-8-16 demo-box mb-12-24" style="overflow-x:auto;"><code class="fs-14-18 lh-15">npm install --save-dev dopamine-fluid sass concurrently browser-sync
+npx dopamine-fluid init
+npm run build         # if init added package.json scripts
+npm run dev           # watch + live reload</code></pre>
+  <p class="fs-14-18">Run <code>npm run dev</code> for watch + live reload. If your project does not use package.json scripts, run <code>npx dopamine</code> and <code>npx sass scss/main.scss:css/main.css scss/custom:css/custom --no-source-map</code> directly.</p>
 </section>
 
 <section class="container-1200 px-16-48 mt-40-80 mb-40-80">
@@ -96,7 +92,7 @@ npm run dev           # watch + Sass + browser auto-reload</code></pre>
     </a>
     <a href="components.html" class="block p-16-32 radius-8-16 demo-box">
       <h3 class="fs-20-28 mb-8-16">Components</h3>
-      <p class="fs-14-18">Pre-built structural CSS for accordion, modal, dropdown. Style with classes.</p>
+      <p class="fs-14-18">Pre-built structural CSS for accordion, modal, menu. Style with classes.</p>
       <p class="fs-12-16 mt-8-16"><code>addons/components/</code></p>
     </a>
   </div>
@@ -104,34 +100,30 @@ npm run dev           # watch + Sass + browser auto-reload</code></pre>
 
 <section class="container-960 px-16-48 my-40-80">
   <h2 class="fs-24-48 mb-12-24">Project Structure</h2>
-  <pre class="block p-16-32 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18 lh-15">dopamine-fluid/
-├── bin/
-│   ├── dopamine.js               # CLI — generate fluid CSS
-│   ├── dopamine-audit.js         # CLI — audit classes for duplicates
-│   └── dopamine-update.js        # CLI — update utility
-├── lib/                          # core logic
-├── addons/
-│   ├── sass/
-│   │   └── _functions.scss       # fluid(), breakpoint mixins
-│   └── components/
-│       ├── accordion.scss + .js   # CSS + optional close animation
-│       ├── menu.scss + menu.js   # side drawer, configurable breakpoint
-│       └── modal.scss + modal.js # fade/slide transitions
+  <p class="fs-14-18 mb-12-24">The scaffolded project uses this structure. Generated files appear after the first build.</p>
+  <pre class="block p-16-32 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18 lh-15">your-project/
+├── package.json                   # optional — init adds missing starter scripts
+├── dopamine.config.json           # scan/output configuration
+├── extra.classes.to.compile       # optional extra classes
+├── templates/
+│   └── index.html                 # starter markup
 ├── scss/
-│   ├── _dopamine.scss            # generated — utility classes
-│   ├── _dopamine-functions.scss  # generated — fluid() + mixins
-│   └── custom/                   # your SCSS → css/custom/
-├── extra.classes.to.compile      # optional — class names (one per line)
-├── dopamine.config.json          # configuration
-└── docs/                         # documentation site</code></pre>
+│   ├── _dopamine.scss             # generated — utility classes
+│   ├── _dopamine-functions.scss   # generated — fluid() + mixins
+│   ├── main.scss                  # your SCSS entrypoint
+│   └── custom/                    # optional extra SCSS files
+└── css/
+    ├── main.css                   # compiled output
+    └── custom/                    # compiled custom styles</code></pre>
+  <p class="fs-14-18 mt-12-24">Each <code>.scss</code> file in <code>scss/custom/</code> compiles to its own <code>css/custom/&lt;name&gt;.css</code>.</p>
 </section>
 
 <section class="container-960 px-16-48 my-40-80">
   <h2 class="fs-24-48 mb-12-24">Class Audit</h2>
   <p class="fs-14-18 mb-12-24">Find near-duplicate fluid classes across your templates and get merge suggestions to keep your CSS lean:</p>
-  <pre class="block p-16-32 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18 lh-15">npm run audit:classes</code></pre>
+  <pre class="block p-16-32 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18 lh-15">npx dopamine-audit</code></pre>
   <p class="fs-14-18 mt-12-24">Reads <code>input</code> and <code>ext</code> from your config. Flags classes like <code>fs-16-20</code> and <code>fs-18-24</code> that are close enough to merge into one. Use <code>-o</code> to write the report to a file:</p>
-  <pre class="block p-16-32 radius-8-16 demo-box mt-12-24" style="overflow-x:auto;"><code class="fs-14-18 lh-15">npm run audit:classes -- -o</code></pre>
+  <pre class="block p-16-32 radius-8-16 demo-box mt-12-24" style="overflow-x:auto;"><code class="fs-14-18 lh-15">npx dopamine-audit -o</code></pre>
 </section>
 
 <section class="container-960 px-16-48 my-40-80">
@@ -143,7 +135,7 @@ fs-16-48
 cols-3</code></pre>
   <p class="fs-14-18 mb-12-24">Empty lines and lines starting with <code>#</code> are ignored.</p>
   <p class="fs-14-18 mb-12-24">Run it via CLI:</p>
-  <pre class="block p-16-32 radius-8-16 demo-box mb-12-24" style="overflow-x:auto;"><code class="fs-14-18 lh-15">npm run dopamine -- --classes extra.classes.to.compile</code></pre>
+  <pre class="block p-16-32 radius-8-16 demo-box mb-12-24" style="overflow-x:auto;"><code class="fs-14-18 lh-15">npx dopamine --classes extra.classes.to.compile</code></pre>
   <p class="fs-14-18 mb-12-24">Or set it in <code>dopamine.config.json</code>:</p>
   <pre class="block p-16-32 radius-8-16 demo-box mb-12-24" style="overflow-x:auto;"><code class="fs-14-18 lh-15">{
   "classes": "./extra.classes.to.compile"
