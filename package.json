@@ -3,8 +3,16 @@
   "version": "0.1.0",
   "description": "Dopamine Fluid — generate fluid CSS and grid layouts from class names",
   "main": "lib/runner.js",
+  "files": [
+    "bin",
+    "lib",
+    "addons",
+    "starter",
+    "README.md"
+  ],
   "bin": {
     "dopamine": "./bin/dopamine.js",
+    "dopamine-fluid": "./bin/dopamine.js",
     "dopamine-audit": "./bin/dopamine-audit.js",
     "dopamine-update": "./bin/dopamine-update.js"
   },
@@ -16,6 +24,7 @@
     "dev:ddev": "concurrently \"npm run dopamine -- --watch\" \"npm run sass -- --watch\" \"browser-sync start --proxy $DDEV_URL --port $BS_PORT --files 'css/**/*.css' --no-notify\"",
     "dry": "node bin/dopamine.js --dry-run",
     "audit:classes": "node bin/dopamine-audit.js",
+    "test": "node --test",
 
     "docs:build": "npm run docs:dopamine && npm run docs:sass",
     "docs:dopamine": "node bin/dopamine.js ./docs --ext html --out ./docs/scss/_dopamine.scss --config ./docs/dopamine.config.json",
@@ -32,6 +41,21 @@
     "sass"
   ],
   "license": "MIT",
+  "author": {
+    "name": "Fotis Pan",
+    "url": "https://www.npmjs.com/~fotispan"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/panfotis/dopamine-fluid-css.git"
+  },
+  "homepage": "https://github.com/panfotis/dopamine-fluid-css#readme",
+  "bugs": {
+    "url": "https://github.com/panfotis/dopamine-fluid-css/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
   "dependencies": {
     "chokidar": "^3.6.0",
     "commander": "^12.1.0",

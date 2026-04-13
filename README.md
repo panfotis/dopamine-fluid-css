@@ -47,107 +47,112 @@ dopamine ./templates --ext twig --out ./scss/_dopamine.scss
 ## Quick Start
 
 ```bash
-npm install
+npm install --save-dev dopamine-fluid sass concurrently browser-sync
+npx dopamine-fluid init
 ```
 
-1. Set your template path in `dopamine.config.json`:
+`dopamine init` copies a starter `templates/` folder, `scss/` entrypoint, `dopamine.config.json`, and `extra.classes.to.compile` into your project. If a `package.json` already exists, it also adds missing `dopamine`, `sass`, `build`, and `dev` scripts without overwriting your existing scripts.
 
-```json
-{
-  "input": "./templates",
-  "ext": "html",
-  "out": "./scss/_dopamine.scss"
-}
-```
-
-2. Build or watch:
+Build the starter project:
 
 ```bash
-npm run build         # scan → generate SCSS → compile CSS
-npm run dev           # watch + Sass + browser auto-reload
+npm run build         # if init added package.json scripts
+npm run dev           # watch + BrowserSync live reload
+
+# Or run the tools directly
+npx dopamine
+npx sass scss/main.scss:css/main.css scss/custom:css/custom --no-source-map
 ```
 
 ---
 
-## Project Structure
+## Starter Structure
+
+The scaffolded project uses this structure. Files marked as generated appear after the first build:
 
 ```
-dopamine-fluid/
-├── bin/
-│   ├── dopamine.js               # CLI — generate fluid CSS
-│   ├── dopamine-audit.js         # CLI — audit classes for duplicates
-│   └── dopamine-update.js        # CLI — update utility
-├── lib/
-│   ├── config.js                 # PREFIX_MAP, breakpoints, config loading
-│   ├── generator.js              # clamp() builder, CSS rule generator
-│   ├── generator-sass.js         # Sass functions + breakpoint mixins generator
-│   ├── grid-parser.js            # keyword class parser (display, flex, etc.)
-│   ├── grid-generator.js         # keyword CSS generator
-│   ├── parser.js                 # class extraction & fluid parsing
-│   ├── runner.js                 # orchestrator (build + watch)
-│   └── scanner.js                # file resolver
-├── addons/
-│   ├── sass/
-│   │   └── _functions.scss       # Sass addon — fluid(), breakpoint mixins
-│   └── components/
-│       ├── accordion.scss        # Accordion — optional accordion.js for close animation
-│       ├── accordion.js          # Accordion — smooth close transition
-│       ├── menu.scss             # Menu — side drawer, configurable breakpoint
-│       ├── menu.js               # Menu — toggle, overlay close, ESC
-│       ├── modal.scss            # Modal — fade/slide transitions
-│       └── modal.js              # Modal — open/close, ESC, click-outside
+your-project/
+├── package.json                   # optional — if present, init adds missing scripts
+├── dopamine.config.json           # scan/output configuration
+├── extra.classes.to.compile       # optional extra classes to compile
+├── templates/
+│   └── index.html                 # starter markup
 ├── scss/
-│   ├── _dopamine.scss            # generated — utility classes
-│   ├── _dopamine-functions.scss  # generated — fluid() + breakpoint mixins
-│   ├── main.scss                 # imports dopamine
-│   └── custom/                   # your SCSS → compiled individually to css/custom/
-├── css/
-│   ├── main.css                  # compiled output
-│   └── custom/                   # individual CSS files from scss/custom/
-├── docs/                         # documentation site
-├── extra.classes.to.compile      # optional — class names to compile (one per line)
-├── dopamine.config.json          # configuration
-├── package.json
-└── README.md
+│   ├── _dopamine.scss             # generated — utility classes
+│   ├── _dopamine-functions.scss   # generated — fluid() + breakpoint mixins
+│   ├── main.scss                  # your SCSS entrypoint
+│   └── custom/                    # optional extra SCSS files
+└── css/
+    ├── main.css                   # compiled output
+    └── custom/                    # compiled custom styles
 ```
 
 ---
 
-## NPM Scripts
+## Starter Scripts
+
+If `package.json` exists, `dopamine init` adds these scripts when they are missing:
 
 | Command | What it does |
 |---------|-------------|
-| `npm run build` | Scan HTML → generate SCSS → compile CSS (one-time) |
-| `npm run dev` | Watch HTML + SCSS + auto-reload browser |
+| `npm run dopamine` | Only scan HTML → generate `_dopamine.scss` |
+| `npm run sass` | Only compile SCSS → CSS |
+| `npm run build` | Run `dopamine` + `sass` together |
+| `npm run dev` | Watch templates and SCSS, then live-reload with BrowserSync |
+
+### Direct Commands
+
+If you do not want package.json scripts, run the tools directly:
+
+```bash
+npx dopamine
+npx sass scss/main.scss:css/main.css scss/custom:css/custom --no-source-map
+
+# Watch mode
+npx dopamine --watch
+npx sass scss/main.scss:css/main.css scss/custom:css/custom --no-source-map --watch
+```
+
+### Repository Development
+
+These scripts are for working on the `dopamine-fluid` repository itself, not for projects that install it from npm:
+
+| Command | What it does |
+|---------|-------------|
+| `npm run dev` | Watch the repo demo templates + Sass + BrowserSync |
 | `npm run dev:ddev` | Same but proxies a DDEV URL for Drupal |
 | `npm run dry` | Preview generated CSS in terminal |
-| `npm run dopamine` | Only scan HTML → generate `_dopamine.scss` |
-| `npm run audit:classes` | Audit numeric classes and suggest close min-max merge candidates |
-| `npm run sass` | Only compile SCSS → CSS |
+| `npm test` | Run CLI/config regression tests |
+| `npm run docs:build` | Build the docs site |
+| `npm run docs:dev` | Watch the docs site |
 
 ### Custom SCSS
 
 Any `.scss` file in `scss/custom/` (without a `_` prefix) is compiled to its own `.css` file in `css/custom/`. Useful for Drupal libraries or page-specific styles.
-
-### Development with DDEV
-
-```bash
-DDEV_URL=https://mysite.ddev.site BS_PORT=3001 npm run dev:ddev
-```
 
 ---
 
 ## CLI Usage
 
 ```bash
+dopamine init [target]
 dopamine [input] [options]
 ```
+
+### Commands
+
+| Command | What it does |
+|---------|-------------|
+| `dopamine init [target]` | Copy the starter files into a project directory. Adds missing `dopamine`, `sass`, `build`, and `dev` scripts when `package.json` exists |
+| `dopamine [input] [options]` | Scan templates and generate CSS/SCSS |
+
+### Generate Options
 
 | Flag | Description | Default |
 |------|-------------|---------|
 | `input` | File, directory, or glob to scan | `.` |
 | `-c, --config <file>` | Config file path | `dopamine.config.json` |
-| `-o, --out <file>` | Output file (.css or .scss) | `fluid.css` |
+| `-o, --out <file>` | Output file (.css or .scss) | `scss/_dopamine.scss` |
 | `-w, --watch` | Watch for changes and rebuild | — |
 | `--ext <exts>` | Extensions to scan (comma-separated) | `twig,html,htm` |
 | `--no-header` | Omit the generated header comment | — |
@@ -563,7 +568,7 @@ Create a `dopamine.config.json` in your project root:
 |-----|-------------|---------|
 | `input` | File, directory, or glob to scan | `.` |
 | `ext` | File extensions to scan (comma-separated) | `twig,html,htm` |
-| `out` | Output file (.css or .scss) | `fluid.css` |
+| `out` | Output file (.css or .scss) | `scss/_dopamine.scss` |
 | `classes` | Path to a classes file (one class per line) | — |
 
 These can also be passed as CLI flags — CLI args override config values.
@@ -584,6 +589,8 @@ dopamine ./src --ext twig --out ./scss/_dopamine.scss
 3. Per-prefix config    →  prefixes.fs.vpMin / vpMax
 4. Global default       →  viewport.min / max
 ```
+
+For the largest breakpoint, Dopamine uses the next breakpoint when available; otherwise it falls back to `viewport.max`, or extrapolates one final range if your last breakpoint is already above `viewport.max`.
 
 ### Custom breakpoints
 
@@ -606,7 +613,7 @@ Add any you need. Set to `null` to remove a default:
 Scan your templates and find near-duplicate fluid classes that could be merged:
 
 ```bash
-npm run audit:classes
+npx dopamine-audit
 ```
 
 Uses the same `input`, `ext` values from `dopamine.config.json` if no args are passed.
@@ -663,7 +670,7 @@ Empty lines and lines starting with `#` are ignored.
 Run via CLI:
 
 ```bash
-npm run dopamine -- --classes extra.classes.to.compile
+npx dopamine --classes extra.classes.to.compile
 ```
 
 Or set it in `dopamine.config.json`:
