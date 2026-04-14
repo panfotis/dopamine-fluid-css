@@ -5,19 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dopamine Fluid — Components</title>
   <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/components/accordion.css">
-  <link rel="stylesheet" href="css/components/modal.css">
-  <link rel="stylesheet" href="css/components/menu.css">
-  <link rel="stylesheet" href="css/components/tabs.css">
-  <link rel="stylesheet" href="css/components/dropdown.css">
-  <link rel="stylesheet" href="css/components/collapse.css">
+  <link rel="stylesheet" href="css/components/accordion/accordion.css">
+  <link rel="stylesheet" href="css/components/modal/modal.css">
+  <link rel="stylesheet" href="css/components/menu/menu.css">
+  <link rel="stylesheet" href="css/components/tabs/tabs.css">
+  <link rel="stylesheet" href="css/components/dropdown/dropdown.css">
+  <link rel="stylesheet" href="css/components/collapse/collapse.css">
   <script src="search.js" defer></script>
-  <script src="accordion.js" defer></script>
-  <script src="modal.js" defer></script>
-  <script src="menu.js" defer></script>
-  <script src="tabs.js" defer></script>
-  <script src="dropdown.js" defer></script>
-  <script src="collapse.js" defer></script>
+  <script src="components/accordion.js" defer></script>
+  <script src="components/modal.js" defer></script>
+  <script src="components/menu.js" defer></script>
+  <script src="components/tabs.js" defer></script>
+  <script src="components/dropdown.js" defer></script>
+  <script src="components/collapse.js" defer></script>
 </head>
 <body>
 
@@ -57,7 +57,7 @@
 
   <section class="docs-section mt-40-80">
     <h2 class="fs-24-48 mb-12-24">Accordion</h2>
-    <p class="fs-14-18 mb-16-32">Accordion using native <code>&lt;details&gt;</code> / <code>&lt;summary&gt;</code> elements. Works without JavaScript — optional <code>accordion.js</code> adds smooth close animation. Structure comes from <code>addons/components/accordion.scss</code> — styling via Dopamine classes.</p>
+    <p class="fs-14-18 mb-16-32">Accordion using native <code>&lt;details&gt;</code> / <code>&lt;summary&gt;</code> elements. Works without JavaScript — optional <code>accordion.js</code> adds smooth close animation. Structure comes from <code>addons/components/accordion/accordion.scss</code> — styling via Dopamine classes.</p>
     <div class="accordion">
       <details class="accordion__item" open>
         <summary class="accordion__title accordion__title--dark p-12-24 fs-16-20 fw-bold">What is Dopamine Fluid?</summary>
@@ -91,10 +91,10 @@
 
     <h3 class="fs-18-24 mb-8-16">Include</h3>
     <p class="fs-14-18 mb-8-16">CSS + optional JS for smooth close animation:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/accordion.css"&gt;
-&lt;script src="addons/components/accordion.js" defer&gt;&lt;/script&gt;</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/accordion/accordion.css"&gt;
+&lt;script src="addons/components/accordion/accordion.js" defer&gt;&lt;/script&gt;</code></pre>
     <p class="fs-14-18 mb-8-16">Or via Sass:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/accordion';</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/accordion/accordion';</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Add styling with Dopamine classes</h3>
     <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;div class="accordion"&gt;
@@ -134,10 +134,10 @@
 
     <h3 class="fs-18-24 mb-8-16">Include</h3>
     <p class="fs-14-18 mb-8-16">CSS file + JS file:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/modal.css"&gt;
-&lt;script src="addons/components/modal.js" defer&gt;&lt;/script&gt;</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/modal/modal.css"&gt;
+&lt;script src="addons/components/modal/modal.js" defer&gt;&lt;/script&gt;</code></pre>
     <p class="fs-14-18 mb-8-16">Or via Sass:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/modal';</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/modal/modal';</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Styled with Dopamine classes</h3>
     <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;button data-modal-open="my-modal" class="p-12-24 fs-14-18 fw-bold radius-8"&gt;
@@ -175,14 +175,14 @@
 
     <h3 class="fs-18-24 mb-8-16">Include</h3>
     <p class="fs-14-18 mb-8-16">CSS file + JS file:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/menu.css"&gt;
-&lt;script src="addons/components/menu.js" defer&gt;&lt;/script&gt;</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/menu/menu.css"&gt;
+&lt;script src="addons/components/menu/menu.js" defer&gt;&lt;/script&gt;</code></pre>
     <p class="fs-14-18 mb-8-16">Or via Sass:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/menu';</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/menu/menu';</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Custom breakpoint</h3>
     <p class="fs-14-18 mb-8-16">The drawer switches to inline nav at 768px by default. Override via Sass:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/menu' with ($menu-bp: 992px);</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/menu/menu' with ($menu-bp: 992px);</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Styled with Dopamine classes</h3>
     <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;nav class="menu"&gt;
@@ -235,10 +235,10 @@
 
     <h3 class="fs-18-24 mb-8-16">Include</h3>
     <p class="fs-14-18 mb-8-16">CSS file + JS file:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/tabs.css"&gt;
-&lt;script src="addons/components/tabs.js" defer&gt;&lt;/script&gt;</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/tabs/tabs.css"&gt;
+&lt;script src="addons/components/tabs/tabs.js" defer&gt;&lt;/script&gt;</code></pre>
     <p class="fs-14-18 mb-8-16">Or via Sass:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/tabs';</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/tabs/tabs';</code></pre>
 
     <p class="fs-14-18 mb-4-8"><code>tabs</code> — outer wrapper</p>
     <p class="fs-14-18 mb-4-8"><code>tab__buttons</code> — row that holds the triggers (style with your own utility classes, e.g. <code>flex</code>)</p>
@@ -272,10 +272,10 @@
 
     <h3 class="fs-18-24 mb-8-16">Include</h3>
     <p class="fs-14-18 mb-8-16">CSS file + JS file:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/dropdown.css"&gt;
-&lt;script src="addons/components/dropdown.js" defer&gt;&lt;/script&gt;</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/dropdown/dropdown.css"&gt;
+&lt;script src="addons/components/dropdown/dropdown.js" defer&gt;&lt;/script&gt;</code></pre>
     <p class="fs-14-18 mb-8-16">Or via Sass:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/dropdown';</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/dropdown/dropdown';</code></pre>
 
     <p class="fs-14-18 mb-4-8"><code>dropdown</code> — wrapper, sets <code>position: relative</code></p>
     <p class="fs-14-18 mb-4-8"><code>dropdown__menu</code> — absolutely positioned panel, hidden by default</p>
@@ -333,10 +333,10 @@
 
     <h3 class="fs-18-24 mb-8-16">Include</h3>
     <p class="fs-14-18 mb-8-16">CSS file + JS file:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/collapse.css"&gt;
-&lt;script src="addons/components/collapse.js" defer&gt;&lt;/script&gt;</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/collapse/collapse.css"&gt;
+&lt;script src="addons/components/collapse/collapse.js" defer&gt;&lt;/script&gt;</code></pre>
     <p class="fs-14-18 mb-8-16">Or via Sass:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/collapse';</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/collapse/collapse';</code></pre>
 
     <p class="fs-14-18 mb-4-8"><code>collapse</code> — target element / grid container.</p>
     <p class="fs-14-18 mb-4-8"><code>collapse__content</code> — required direct child. <strong>Must not have padding of its own</strong> — padding on the grid item prevents the closed state from truly collapsing to 0. Put your padded / styled content inside it.</p>

@@ -1,0 +1,5 @@
+// Docs forms bundle — imports the aggregate from addons.
+// The per-component docs stubs (checkbox.scss, radio.scss, switch.scss, input.scss)
+// add the docs-specific colors; this file is here so docs/css/components/forms.css
+// exists and the "include everything" demo snippet is honest.
+@use '../../../../addons/components/forms/forms';

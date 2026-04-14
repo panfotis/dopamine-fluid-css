@@ -507,16 +507,24 @@ Available: `breakpoint-up($name)` (min-width) and `breakpoint-down($name)` (max-
 Pre-built structural CSS for common UI patterns. No colors, no sizing — just behavior (transitions, open/close, visibility). Style with Dopamine classes in your HTML.
 
 ```scss
-@use 'dopamine-fluid/addons/components/accordion';
-@use 'dopamine-fluid/addons/components/menu';
-@use 'dopamine-fluid/addons/components/tabs';
-@use 'dopamine-fluid/addons/components/dropdown';
-@use 'dopamine-fluid/addons/components/collapse';
-@use 'dopamine-fluid/addons/components/checkbox';
-@use 'dopamine-fluid/addons/components/radio';
-@use 'dopamine-fluid/addons/components/switch';
-@use 'dopamine-fluid/addons/components/input';
+@use 'dopamine-fluid/addons/components/accordion/accordion';
+@use 'dopamine-fluid/addons/components/menu/menu';
+@use 'dopamine-fluid/addons/components/tabs/tabs';
+@use 'dopamine-fluid/addons/components/dropdown/dropdown';
+@use 'dopamine-fluid/addons/components/collapse/collapse';
+@use 'dopamine-fluid/addons/components/forms/checkbox';
+@use 'dopamine-fluid/addons/components/forms/radio';
+@use 'dopamine-fluid/addons/components/forms/switch';
+@use 'dopamine-fluid/addons/components/forms/input';
 ```
+
+Or pull all four form controls in with a single import:
+
+```scss
+@use 'dopamine-fluid/addons/components/forms/forms';   // bundles checkbox, radio, switch, input
+```
+
+The bundle also ships as a single `css/components/forms/forms.css` for non-Sass consumers — one `<link>` tag instead of four. Pick whichever fits: the bundle for "give me a working form", individual files for "I only need a switch".
 
 ```html
 <!-- Accordion — style with Dopamine classes -->
@@ -542,7 +550,7 @@ Pre-built structural CSS for common UI patterns. No colors, no sizing — just b
 The menu switches from drawer to inline at 768px by default. Override via Sass:
 
 ```scss
-@use 'dopamine-fluid/addons/components/menu' with ($menu-bp: 992px);
+@use 'dopamine-fluid/addons/components/menu/menu' with ($menu-bp: 992px);
 ```
 
 Available components: `accordion`, `modal`, `menu`, `tabs`, `dropdown`, `collapse`, `checkbox`, `radio`, `switch`, `input`.

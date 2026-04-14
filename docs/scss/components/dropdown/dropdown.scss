@@ -1,5 +1,5 @@
 // Docs dropdown — imports structure from addons, adds docs-specific colors
-@use '../../../addons/components/dropdown';
+@use '../../../../addons/components/dropdown/dropdown';
 
 .dropdown__toggle {
   background: #0f0f0f;

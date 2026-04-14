@@ -1,0 +1,10 @@
+// Dopamine Fluid — Forms Bundle
+// Single-import wrapper for all four form components.
+// Individual files still work — import this OR the individuals, not both.
+//
+//   @use 'dopamine-fluid/addons/components/forms/forms';
+
+@forward 'checkbox';
+@forward 'radio';
+@forward 'switch';
+@forward 'input';

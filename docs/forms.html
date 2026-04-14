@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dopamine Fluid — Forms</title>
   <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/components/menu.css">
-  <link rel="stylesheet" href="css/components/checkbox.css">
-  <link rel="stylesheet" href="css/components/radio.css">
-  <link rel="stylesheet" href="css/components/switch.css">
-  <link rel="stylesheet" href="css/components/input.css">
+  <link rel="stylesheet" href="css/components/menu/menu.css">
+  <link rel="stylesheet" href="css/components/forms/checkbox.css">
+  <link rel="stylesheet" href="css/components/forms/radio.css">
+  <link rel="stylesheet" href="css/components/forms/switch.css">
+  <link rel="stylesheet" href="css/components/forms/input.css">
   <script src="search.js" defer></script>
-  <script src="menu.js" defer></script>
+  <script src="components/menu.js" defer></script>
 </head>
 <body>
 
@@ -46,7 +46,14 @@
     <h2 class="fs-24-48 mb-12-24">How Form Components Work</h2>
     <p class="fs-14-18 mb-8-16">Every form component uses the same pattern: the native <code>&lt;input&gt;</code> is visually hidden (but stays in the DOM for keyboard + screen-reader support), and a styled sibling element is rendered next to it.</p>
     <p class="fs-14-18 mb-8-16">The visual element reads its size and color from the wrapping <code>&lt;label&gt;</code> (<code>currentColor</code> + <code>em</code> units), so you scale the whole control by applying Dopamine classes to the label.</p>
-    <p class="fs-14-18"><strong>Markup contract:</strong> the <code>&lt;input&gt;</code> must come before the visual sibling in the DOM. The CSS uses <code>:checked ~ .foo__box</code> to flip the visual on state change.</p>
+    <p class="fs-14-18 mb-16-32"><strong>Markup contract:</strong> the <code>&lt;input&gt;</code> must come before the visual sibling in the DOM. The CSS uses <code>:checked ~ .foo__box</code> to flip the visual on state change.</p>
+
+    <h3 class="fs-18-24 mb-8-16 mt-24-40">Include everything at once</h3>
+    <p class="fs-14-18 mb-8-16">All four form controls in one file (CSS):</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/forms/forms.css"&gt;</code></pre>
+    <p class="fs-14-18 mb-8-16">Or via Sass:</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/forms/forms';</code></pre>
+    <p class="fs-14-18">Each control is also available as its own individual file — use those if you only need one or two (see the per-control sections below).</p>
   </section>
 
   <section class="docs-section mt-40-80">
@@ -82,9 +89,9 @@
     <p class="fs-14-18 mb-16-32">Pair the <code>&lt;label for&gt;</code> with the input's <code>id</code> so clicking the label text focuses the input. Apply Dopamine classes directly on the <code>.input</code> for padding, radius, and font-size.</p>
 
     <h3 class="fs-18-24 mb-8-16">Include</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/input.css"&gt;</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/forms/input.css"&gt;</code></pre>
     <p class="fs-14-18 mb-8-16">Or via Sass:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/input';</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/forms/input';</code></pre>
 
     <p class="fs-14-18 mb-4-8"><code>input</code> — applies to any text-like <code>&lt;input&gt;</code> or <code>&lt;textarea&gt;</code>. Border uses <code>currentColor</code>; font + color are inherited.</p>
     <p class="fs-14-18"><code>textarea.input</code> — automatically gets <code>resize: vertical</code> and a sensible minimum height.</p>
@@ -117,9 +124,9 @@
     <p class="fs-14-18 mb-16-32">The <code>&lt;input&gt;</code> must come before <code>.checkbox__box</code> in the DOM (the sibling selector depends on it). The box and label inherit <code>currentColor</code> and <code>font-size</code> — scale with Dopamine classes on <code>.checkbox</code>.</p>
 
     <h3 class="fs-18-24 mb-8-16">Include</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/checkbox.css"&gt;</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/forms/checkbox.css"&gt;</code></pre>
     <p class="fs-14-18 mb-8-16">Or via Sass:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/checkbox';</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/forms/checkbox';</code></pre>
 
     <p class="fs-14-18 mb-4-8"><code>checkbox</code> — wrapping <code>&lt;label&gt;</code> (click anywhere inside it toggles the input).</p>
     <p class="fs-14-18 mb-4-8"><code>checkbox__input</code> — the real <code>&lt;input type="checkbox"&gt;</code>, visually hidden but keyboard-focusable.</p>
@@ -163,9 +170,9 @@
 &lt;/label&gt;</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Include</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/radio.css"&gt;</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/forms/radio.css"&gt;</code></pre>
     <p class="fs-14-18 mb-8-16">Or via Sass:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/radio';</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/forms/radio';</code></pre>
 
     <p class="fs-14-18 mb-4-8"><code>radio</code> — wrapping <code>&lt;label&gt;</code>.</p>
     <p class="fs-14-18 mb-4-8"><code>radio__input</code> — the real <code>&lt;input type="radio"&gt;</code>.</p>
@@ -199,9 +206,9 @@
 &lt;/label&gt;</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Include</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/switch.css"&gt;</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/forms/switch.css"&gt;</code></pre>
     <p class="fs-14-18 mb-8-16">Or via Sass:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/switch';</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/forms/switch';</code></pre>
 
     <p class="fs-14-18 mb-4-8"><code>switch</code> — wrapping <code>&lt;label&gt;</code>.</p>
     <p class="fs-14-18 mb-4-8"><code>switch__input</code> — the real <code>&lt;input type="checkbox"&gt;</code>.</p>
