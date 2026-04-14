@@ -1,0 +1,47 @@
+// Dopamine Fluid — Collapse Component
+// Structure only — style with Dopamine classes in HTML
+// Requires collapse.js for toggle behavior
+//
+//   @use 'dopamine-fluid/addons/components/collapse';
+
+// Default: inline, animates height via grid-template-rows.
+// Markup contract: a .collapse__content wrapper MUST be the direct child.
+// It has no padding of its own so the 0fr grid track can truly resolve to 0.
+// (Padding on the direct child forces the track's minimum size, leaving a
+// visible strip when closed — same reason accordion has .accordion__content.)
+.collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s ease;
+}
+
+.collapse__content {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.collapse--open {
+  grid-template-rows: 1fr;
+}
+
+// Absolute variant — floats over content, fades. Needs a positioned ancestor in markup.
+// Placed after .collapse rules so same-specificity overrides win.
+.collapse--absolute {
+  display: block;
+  grid-template-rows: none;
+  position: absolute;
+  z-index: 100;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.15s, opacity 0.15s ease;
+}
+
+.collapse--absolute .collapse__content {
+  overflow: visible;
+  min-height: auto;
+}
+
+.collapse--absolute.collapse--open {
+  visibility: visible;
+  opacity: 1;
+}

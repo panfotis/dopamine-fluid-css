@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dopamine Fluid — Forms</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components/menu.css">
+  <link rel="stylesheet" href="css/components/checkbox.css">
+  <link rel="stylesheet" href="css/components/radio.css">
+  <link rel="stylesheet" href="css/components/switch.css">
+  <script src="search.js" defer></script>
+  <script src="menu.js" defer></script>
+</head>
+<body>
+
+<nav class="docs-nav menu">
+  <a href="index.html" class="docs-nav__brand">Dopamine Fluid</a>
+  <button class="menu__toggle">&#9776;</button>
+  <div class="menu__overlay"></div>
+  <div class="menu__drawer">
+    <button class="menu__close p-8 fs-24">&times;</button>
+    <a href="typography.html">Typography</a>
+    <a href="spacing.html">Spacing</a>
+    <a href="sizing.html">Sizing</a>
+    <a href="grid.html">Grid</a>
+    <a href="flexbox.html">Flexbox</a>
+    <a href="utilities.html">Utilities</a>
+    <a href="sass.html">Sass</a>
+    <a href="components.html">Components</a>
+    <a href="forms.html" class="active">Forms</a>
+  </div>
+</nav>
+
+<div class="docs-search container-1200 px-16-48 py-16">
+  <input type="text" class="maxw-360 px-16 py-8 fs-14 fw-medium radius-100" placeholder="Search... (e.g. checkbox, radio, switch)">
+</div>
+
+<div class="docs-content container-860 px-16-48">
+
+  <h1 class="fs-32-72 fw-bold mt-40-80 mb-8-16">Forms</h1>
+  <p class="fs-16-24 lh-15 mb-40-80">Pure-CSS styled replacements for native form controls. Each keeps the real <code>&lt;input&gt;</code> in the DOM (accessible, form-submittable) and renders a styled sibling that reacts to <code>:checked</code>. No JavaScript.</p>
+
+  <section class="docs-section">
+    <h2 class="fs-24-48 mb-12-24">How Form Components Work</h2>
+    <p class="fs-14-18 mb-8-16">Every form component uses the same pattern: the native <code>&lt;input&gt;</code> is visually hidden (but stays in the DOM for keyboard + screen-reader support), and a styled sibling element is rendered next to it.</p>
+    <p class="fs-14-18 mb-8-16">The visual element reads its size and color from the wrapping <code>&lt;label&gt;</code> (<code>currentColor</code> + <code>em</code> units), so you scale the whole control by applying Dopamine classes to the label.</p>
+    <p class="fs-14-18"><strong>Markup contract:</strong> the <code>&lt;input&gt;</code> must come before the visual sibling in the DOM. The CSS uses <code>:checked ~ .foo__box</code> to flip the visual on state change.</p>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Checkbox</h2>
+    <p class="fs-14-18 mb-16-32">Styled checkbox using the visually-hidden-input + sibling-selector technique. Native <code>&lt;input&gt;</code> stays in the DOM for accessibility and form submission; a styled <code>.checkbox__box</code> sibling visualizes the state via <code>:checked ~ .checkbox__box</code>. Pure CSS — no JS.</p>
+
+    <h3 class="fs-18-24 mb-8-16">Demo</h3>
+    <div class="flex flex-col gap-8-16 mb-16-32">
+      <label class="checkbox fs-16-20">
+        <input type="checkbox" class="checkbox__input" checked>
+        <span class="checkbox__box"></span>
+        <span class="checkbox__label">Remember me</span>
+      </label>
+      <label class="checkbox fs-16-20">
+        <input type="checkbox" class="checkbox__input">
+        <span class="checkbox__box"></span>
+        <span class="checkbox__label">Send me occasional updates</span>
+      </label>
+    </div>
+
+    <h3 class="fs-18-24 mb-8-16 mt-24-40">Minimum HTML</h3>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;label class="checkbox"&gt;
+  &lt;input type="checkbox" class="checkbox__input"&gt;
+  &lt;span class="checkbox__box"&gt;&lt;/span&gt;
+  &lt;span class="checkbox__label"&gt;Label text&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+    <p class="fs-14-18 mb-16-32">The <code>&lt;input&gt;</code> must come before <code>.checkbox__box</code> in the DOM (the sibling selector depends on it). The box and label inherit <code>currentColor</code> and <code>font-size</code> — scale with Dopamine classes on <code>.checkbox</code>.</p>
+
+    <h3 class="fs-18-24 mb-8-16">Include</h3>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/checkbox.css"&gt;</code></pre>
+    <p class="fs-14-18 mb-8-16">Or via Sass:</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/checkbox';</code></pre>
+
+    <p class="fs-14-18 mb-4-8"><code>checkbox</code> — wrapping <code>&lt;label&gt;</code> (click anywhere inside it toggles the input).</p>
+    <p class="fs-14-18 mb-4-8"><code>checkbox__input</code> — the real <code>&lt;input type="checkbox"&gt;</code>, visually hidden but keyboard-focusable.</p>
+    <p class="fs-14-18 mb-4-8"><code>checkbox__box</code> — the styled square; inherits <code>currentColor</code> for border + fill.</p>
+    <p class="fs-14-18"><code>checkbox__label</code> — the text (optional; omit for a box-only checkbox).</p>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Radio</h2>
+    <p class="fs-14-18 mb-16-32">Same technique as checkbox but circular. Radios with the same <code>name=""</code> attribute belong to one exclusive group. Pure CSS.</p>
+
+    <h3 class="fs-18-24 mb-8-16">Demo</h3>
+    <div class="flex flex-col gap-8-16 mb-16-32">
+      <label class="radio fs-16-20">
+        <input type="radio" name="demo-plan" class="radio__input" checked>
+        <span class="radio__box"></span>
+        <span class="radio__label">Free — 0 €/month</span>
+      </label>
+      <label class="radio fs-16-20">
+        <input type="radio" name="demo-plan" class="radio__input">
+        <span class="radio__box"></span>
+        <span class="radio__label">Pro — 9 €/month</span>
+      </label>
+      <label class="radio fs-16-20">
+        <input type="radio" name="demo-plan" class="radio__input">
+        <span class="radio__box"></span>
+        <span class="radio__label">Team — 29 €/month</span>
+      </label>
+    </div>
+
+    <h3 class="fs-18-24 mb-8-16 mt-24-40">Minimum HTML</h3>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;label class="radio"&gt;
+  &lt;input type="radio" name="plan" class="radio__input"&gt;
+  &lt;span class="radio__box"&gt;&lt;/span&gt;
+  &lt;span class="radio__label"&gt;Option A&lt;/span&gt;
+&lt;/label&gt;
+&lt;label class="radio"&gt;
+  &lt;input type="radio" name="plan" class="radio__input"&gt;
+  &lt;span class="radio__box"&gt;&lt;/span&gt;
+  &lt;span class="radio__label"&gt;Option B&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+
+    <h3 class="fs-18-24 mb-8-16">Include</h3>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/radio.css"&gt;</code></pre>
+    <p class="fs-14-18 mb-8-16">Or via Sass:</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/radio';</code></pre>
+
+    <p class="fs-14-18 mb-4-8"><code>radio</code> — wrapping <code>&lt;label&gt;</code>.</p>
+    <p class="fs-14-18 mb-4-8"><code>radio__input</code> — the real <code>&lt;input type="radio"&gt;</code>.</p>
+    <p class="fs-14-18 mb-4-8"><code>radio__box</code> — the styled circle.</p>
+    <p class="fs-14-18"><code>radio__label</code> — the text.</p>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Switch</h2>
+    <p class="fs-14-18 mb-16-32">Styled toggle switch (pill track + sliding thumb). Uses <code>&lt;input type="checkbox"&gt;</code> underneath — same form semantics as a checkbox, different visual. Pure CSS.</p>
+
+    <h3 class="fs-18-24 mb-8-16">Demo</h3>
+    <div class="flex flex-col gap-8-16 mb-16-32">
+      <label class="switch fs-16-20">
+        <input type="checkbox" class="switch__input" checked>
+        <span class="switch__track"></span>
+        <span class="switch__label">Email notifications</span>
+      </label>
+      <label class="switch fs-16-20">
+        <input type="checkbox" class="switch__input">
+        <span class="switch__track"></span>
+        <span class="switch__label">Push notifications</span>
+      </label>
+    </div>
+
+    <h3 class="fs-18-24 mb-8-16 mt-24-40">Minimum HTML</h3>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;label class="switch"&gt;
+  &lt;input type="checkbox" class="switch__input"&gt;
+  &lt;span class="switch__track"&gt;&lt;/span&gt;
+  &lt;span class="switch__label"&gt;Label text&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+
+    <h3 class="fs-18-24 mb-8-16">Include</h3>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/switch.css"&gt;</code></pre>
+    <p class="fs-14-18 mb-8-16">Or via Sass:</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/switch';</code></pre>
+
+    <p class="fs-14-18 mb-4-8"><code>switch</code> — wrapping <code>&lt;label&gt;</code>.</p>
+    <p class="fs-14-18 mb-4-8"><code>switch__input</code> — the real <code>&lt;input type="checkbox"&gt;</code>.</p>
+    <p class="fs-14-18 mb-4-8"><code>switch__track</code> — the pill-shaped track; thumb is a <code>::after</code> inside it.</p>
+    <p class="fs-14-18"><code>switch__label</code> — the text.</p>
+  </section>
+
+</div>
+
+<footer class="container-1200 px-16-48 pt-24-48 mb-24-48 text-right">
+  <p class="fs-12-16">&copy; 2026 Dopamine Fluid</p>
+</footer>
+
+<a href="https://github.com/panfotis/dopamine-fluid-css" target="_blank" class="github-btn inline-flex align-center gap-8 px-16 py-8 fs-14 fw-bold radius-100"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a>
+</body>
+</html>

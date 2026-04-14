@@ -1127,6 +1127,20 @@ a {
   display: none;
 }
 
+.docs-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.docs-table th {
+  text-align: left;
+}
+.docs-table th, .docs-table td {
+  border-bottom: 1px solid #e0e0e0;
+}
+.docs-table tr:last-child td {
+  border-bottom: none;
+}
+
 .docs-hero {
   color: #0f0f0f;
   border-bottom: 3px solid #0f0f0f;
@@ -1278,6 +1292,14 @@ a {
 
 .docs-cards a:nth-child(7) {
   background: #bef264;
+}
+
+.docs-cards a:nth-child(8) {
+  background: #c4b5fd;
+}
+
+.docs-cards a:nth-child(9) {
+  background: #7dd3fc;
 }
 
 .github-btn {

@@ -20,23 +20,3 @@
   visibility: visible;
   opacity: 1;
 }
-
-// Inline variant — flows in document, animates height via grid-template-rows
-// (same technique as accordion.scss — requires a single child inside .dropdown__menu)
-.dropdown--inline .dropdown__menu {
-  position: static;
-  visibility: visible;
-  opacity: 1;
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.25s ease;
-
-  > * {
-    overflow: hidden;
-    min-height: 0;
-  }
-}
-
-.dropdown--inline.dropdown--open .dropdown__menu {
-  grid-template-rows: 1fr;
-}

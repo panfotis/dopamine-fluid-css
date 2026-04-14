@@ -511,6 +511,10 @@ Pre-built structural CSS for common UI patterns. No colors, no sizing — just b
 @use 'dopamine-fluid/addons/components/menu';
 @use 'dopamine-fluid/addons/components/tabs';
 @use 'dopamine-fluid/addons/components/dropdown';
+@use 'dopamine-fluid/addons/components/collapse';
+@use 'dopamine-fluid/addons/components/checkbox';
+@use 'dopamine-fluid/addons/components/radio';
+@use 'dopamine-fluid/addons/components/switch';
 ```
 
 ```html
@@ -540,7 +544,19 @@ The menu switches from drawer to inline at 768px by default. Override via Sass:
 @use 'dopamine-fluid/addons/components/menu' with ($menu-bp: 992px);
 ```
 
-Available components: `accordion`, `modal`, `menu`, `tabs`, `dropdown`.
+Available components: `accordion`, `modal`, `menu`, `tabs`, `dropdown`, `collapse`, `checkbox`, `radio`, `switch`.
+
+**Form components** (`checkbox`, `radio`, `switch`) are pure-CSS styled replacements for native `<input>` checkboxes and radios. They keep the real `<input>` in the DOM (accessible + form-submittable), visually hide it, and render a styled sibling that reacts to `:checked`. No JS, no a11y tradeoffs. Markup contract:
+
+```html
+<label class="checkbox">
+  <input type="checkbox" class="checkbox__input">
+  <span class="checkbox__box"></span>
+  <span class="checkbox__label">Remember me</span>
+</label>
+```
+
+Box/track sizes scale with the `<label>`'s `font-size`; borders and fill use `currentColor`, so you can size and colour the whole thing via Dopamine classes on the label.
 
 #### JavaScript API & events
 
@@ -564,8 +580,9 @@ document.addEventListener('dp:tabs:change', e => console.log('panel', e.detail.p
 | menu | `dp:menu:open`, `dp:menu:close` | `open(el)`, `close(el)`, `toggle(el)` |
 | tabs | `dp:tabs:change` (detail: `{ panel, trigger }`) | `activate(panelIdOrEl)` |
 | dropdown | `dp:dropdown:open`, `dp:dropdown:close` | `open(el)`, `close(el)`, `toggle(el)`, `closeAll()` |
+| collapse | `dp:collapse:open`, `dp:collapse:close` | `open(idOrEl)`, `close(idOrEl)`, `toggle(idOrEl)` |
 
-Dropdown ships a second variant — add `dropdown--inline` to the root to make the menu flow inline in the document and animate its height open/closed (useful inside a mobile menu drawer, or any "drill-down" list). Markup is identical to the default: `.dropdown__menu` is a wrapper with a single child holding the items.
+Collapse is a generic show/hide primitive with a `data-collapse-target="#id"` trigger. The target's direct child must be `<div class="collapse__content">` (padding-free — your padded/styled content goes inside it, matching the `accordion__content` pattern). Default mode is in-flow with a height animation; add `collapse--absolute` for a floating fade (requires a positioned ancestor in the markup).
 
 **Event timing.** Events fire *immediately after the class is flipped* — so `:open` fires when the opening transition is just starting, and `:close` fires when the hiding transition is just starting. That's the right moment for most work (updating state, logging, focusing an input).
 

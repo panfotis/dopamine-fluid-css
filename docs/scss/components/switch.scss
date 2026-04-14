@@ -1,0 +1,7 @@
+// Docs switch — imports structure from addons
+@use '../../../addons/components/switch';
+
+.switch {
+  color: #0f0f0f;
+  user-select: none;
+}

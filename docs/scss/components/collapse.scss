@@ -1,0 +1,14 @@
+// Docs collapse — imports structure from addons, adds docs-specific colors
+@use '../../../addons/components/collapse';
+
+.collapse {
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  color: #333;
+}
+
+.collapse--absolute {
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  min-width: 240px;
+}

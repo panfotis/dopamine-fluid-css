@@ -144,6 +144,15 @@ a {
 
 .docs-section[hidden] { display: none; }
 
+// Events & API reference table in components.html
+.docs-table {
+  width: 100%;
+  border-collapse: collapse;
+  th { text-align: left; }
+  th, td { border-bottom: 1px solid #e0e0e0; }
+  tr:last-child td { border-bottom: none; }
+}
+
 // Hero — cycling background colors
 .docs-hero {
   color: $dark;
@@ -221,6 +230,8 @@ a {
 .docs-cards a:nth-child(5) { background: $yellow; }
 .docs-cards a:nth-child(6) { background: $pink; }
 .docs-cards a:nth-child(7) { background: $lime; }
+.docs-cards a:nth-child(8) { background: $lavender; }
+.docs-cards a:nth-child(9) { background: $sky; }
 
 // GitHub button — fixed bottom left
 .github-btn {

@@ -1,0 +1,61 @@
+// Dopamine Fluid — Checkbox Component
+// Structure only — style with Dopamine classes in HTML
+// No JS needed — pure CSS via :checked sibling selector
+//
+//   @use 'dopamine-fluid/addons/components/checkbox';
+//
+// Markup:
+//   <label class="checkbox">
+//     <input type="checkbox" class="checkbox__input">
+//     <span class="checkbox__box"></span>
+//     <span class="checkbox__label">Label text</span>
+//   </label>
+//
+// IMPORTANT: the <input> must precede the .checkbox__box in the DOM
+// (the sibling selector .checkbox__input:checked ~ .checkbox__box depends on it).
+
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  cursor: pointer;
+}
+
+// Visually hide the native input but keep it accessible/focusable
+.checkbox__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+// Visual box — inherits text color via currentColor
+.checkbox__box {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  border: 1px solid currentColor;
+  position: relative;
+}
+
+// Inner fill (hidden by default, scales in when checked)
+.checkbox__box::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  background: currentColor;
+  transform: scale(0);
+  transition: transform 0.15s ease;
+}
+
+.checkbox__input:checked ~ .checkbox__box::after {
+  transform: scale(1);
+}
+
+// Keyboard focus indicator (native focus is invisible on the hidden input)
+.checkbox__input:focus-visible ~ .checkbox__box {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}

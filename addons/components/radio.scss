@@ -1,0 +1,59 @@
+// Dopamine Fluid — Radio Component
+// Structure only — style with Dopamine classes in HTML
+// No JS needed — pure CSS via :checked sibling selector
+//
+//   @use 'dopamine-fluid/addons/components/radio';
+//
+// Markup:
+//   <label class="radio">
+//     <input type="radio" name="group" class="radio__input">
+//     <span class="radio__box"></span>
+//     <span class="radio__label">Option label</span>
+//   </label>
+//
+// Radios with the same name="" attribute belong to the same group.
+// IMPORTANT: the <input> must precede the .radio__box in the DOM.
+
+.radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  cursor: pointer;
+}
+
+.radio__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+.radio__box {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  position: relative;
+}
+
+.radio__box::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  background: currentColor;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.15s ease;
+}
+
+.radio__input:checked ~ .radio__box::after {
+  transform: scale(1);
+}
+
+.radio__input:focus-visible ~ .radio__box {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}

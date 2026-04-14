@@ -10,12 +10,14 @@
   <link rel="stylesheet" href="css/components/menu.css">
   <link rel="stylesheet" href="css/components/tabs.css">
   <link rel="stylesheet" href="css/components/dropdown.css">
+  <link rel="stylesheet" href="css/components/collapse.css">
   <script src="search.js" defer></script>
   <script src="accordion.js" defer></script>
   <script src="modal.js" defer></script>
   <script src="menu.js" defer></script>
   <script src="tabs.js" defer></script>
   <script src="dropdown.js" defer></script>
+  <script src="collapse.js" defer></script>
 </head>
 <body>
 
@@ -33,6 +35,7 @@
     <a href="utilities.html">Utilities</a>
     <a href="sass.html">Sass</a>
     <a href="components.html" class="active">Components</a>
+    <a href="forms.html">Forms</a>
   </div>
 </nav>
 
@@ -49,7 +52,7 @@
     <h2 class="fs-24-48 mb-12-24">How Components Work</h2>
     <p class="fs-14-18 mb-8-16">Components provide <strong>structure only</strong> — display, transitions, open/close behavior.</p>
     <p class="fs-14-18 mb-8-16">All sizing and colors come from Dopamine classes in your HTML.</p>
-    <p class="fs-14-18">Available components: <code>accordion</code>, <code>modal</code>, <code>menu</code>, <code>tabs</code>, <code>dropdown</code>.</p>
+    <p class="fs-14-18">Available components: <code>accordion</code>, <code>modal</code>, <code>menu</code>, <code>tabs</code>, <code>dropdown</code>, <code>collapse</code>. Form controls (<code>checkbox</code>, <code>radio</code>, <code>switch</code>) live on the <a href="forms.html">Forms</a> page.</p>
   </section>
 
   <section class="docs-section mt-40-80">
@@ -249,50 +252,22 @@
     <h2 class="fs-24-48 mb-12-24">Dropdown</h2>
     <p class="fs-14-18 mb-16-32">Click the toggle to open a menu. Click outside (anywhere not inside a dropdown menu) or press ESC to close all open dropdowns. Multiple dropdowns can be open at the same time. Requires a tiny JS file (~15 lines).</p>
 
-    <h3 class="fs-18-24 mb-8-16">Demo — default (absolute, floats over content)</h3>
+    <h3 class="fs-18-24 mb-8-16">Demo</h3>
     <div class="dropdown mb-16-32">
       <button data-dropdown-toggle class="dropdown__toggle p-12-24 fs-14-18 fw-bold radius-8">Menu</button>
-      <div class="dropdown__menu radius-8 mt-4">
-        <ul>
-          <li><a href="#" class="p-12-24 fs-14-18">Profile</a></li>
-          <li><a href="#" class="p-12-24 fs-14-18">Settings</a></li>
-          <li><a href="#" class="p-12-24 fs-14-18">Sign out</a></li>
-        </ul>
-      </div>
+      <ul class="dropdown__menu radius-8 mt-4">
+        <li><a href="#" class="p-12-24 fs-14-18">Profile</a></li>
+        <li><a href="#" class="p-12-24 fs-14-18">Settings</a></li>
+        <li><a href="#" class="p-12-24 fs-14-18">Sign out</a></li>
+      </ul>
     </div>
-
-    <h3 class="fs-18-24 mb-8-16 mt-24-40">Demo — inline (flows in document, animates height)</h3>
-    <p class="fs-14-18 mb-8-16">Add <code>dropdown--inline</code>. The menu flows below the trigger, pushing siblings down; height animates open/closed.</p>
-    <div class="dropdown dropdown--inline mb-16-32">
-      <button data-dropdown-toggle class="dropdown__toggle p-12-24 fs-14-18 fw-bold radius-8">Menu (inline)</button>
-      <div class="dropdown__menu radius-8 mt-4">
-        <ul>
-          <li><a href="#" class="p-12-24 fs-14-18">Profile</a></li>
-          <li><a href="#" class="p-12-24 fs-14-18">Settings</a></li>
-          <li><a href="#" class="p-12-24 fs-14-18">Sign out</a></li>
-        </ul>
-      </div>
-    </div>
-    <p class="fs-14-18 mb-16-32">Next line stays in place — watch it get pushed down when the inline dropdown opens above.</p>
 
     <h3 class="fs-18-24 mb-8-16 mt-24-40">Minimum HTML</h3>
     <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;div class="dropdown"&gt;
   &lt;button data-dropdown-toggle&gt;Menu&lt;/button&gt;
-  &lt;div class="dropdown__menu"&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href="#"&gt;Item&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;!-- Inline variant — add the modifier class; markup is identical --&gt;
-&lt;div class="dropdown dropdown--inline"&gt;
-  &lt;button data-dropdown-toggle&gt;Menu&lt;/button&gt;
-  &lt;div class="dropdown__menu"&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href="#"&gt;Item&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/div&gt;
+  &lt;ul class="dropdown__menu"&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Item&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
 &lt;/div&gt;</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Include</h3>
@@ -303,10 +278,71 @@
     <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/dropdown';</code></pre>
 
     <p class="fs-14-18 mb-4-8"><code>dropdown</code> — wrapper, sets <code>position: relative</code></p>
-    <p class="fs-14-18 mb-4-8"><code>dropdown__menu</code> — panel wrapper (absolute by default; floats over content). Put a single child inside holding the items.</p>
+    <p class="fs-14-18 mb-4-8"><code>dropdown__menu</code> — absolutely positioned panel, hidden by default</p>
     <p class="fs-14-18 mb-4-8"><code>data-dropdown-toggle</code> — attribute on the trigger button</p>
-    <p class="fs-14-18 mb-4-8"><code>dropdown--open</code> — added/removed by JS to toggle the menu</p>
-    <p class="fs-14-18"><code>dropdown--inline</code> — variant: menu flows in the document and animates height open/closed (no absolute positioning, no opacity fade)</p>
+    <p class="fs-14-18"><code>dropdown--open</code> — added/removed by JS to toggle the menu</p>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Collapse</h2>
+    <p class="fs-14-18 mb-16-32">A generic show/hide primitive. A <code>[data-collapse-target="#id"]</code> button toggles any target element by ID. Ships two modes: default (inline, pushes siblings, animates height) and <code>collapse--absolute</code> (floats over content, fades). Requires a tiny JS file (~25 lines).</p>
+
+    <h3 class="fs-18-24 mb-8-16">Demo — default (inline, animates height)</h3>
+    <button data-collapse-target="#collapse-inline" class="p-12-24 fs-14-18 fw-bold radius-8 mb-16-32">Toggle panel</button>
+    <div id="collapse-inline" class="collapse radius-8 mb-16-32">
+      <div class="collapse__content">
+        <div class="p-16-32 fs-14-18 lh-15">This panel expands and contracts in-flow, smoothly animating its height. Siblings below it get pushed down when it opens.</div>
+      </div>
+    </div>
+    <p class="fs-14-18 mb-16-32">Next line — watch it slide down when the collapse above opens.</p>
+
+    <h3 class="fs-18-24 mb-8-16 mt-24-40">Demo — absolute (floats over content)</h3>
+    <p class="fs-14-18 mb-8-16">Wrap the trigger and target in a positioned ancestor so the absolute child anchors correctly.</p>
+    <div class="relative inline-block mb-16-32">
+      <button data-collapse-target="#collapse-abs" class="p-12-24 fs-14-18 fw-bold radius-8">Toggle popover</button>
+      <div id="collapse-abs" class="collapse collapse--absolute radius-8 mt-4">
+        <div class="collapse__content">
+          <div class="p-16-32 fs-14-18 lh-15">I float over content. Siblings below me don't move.</div>
+        </div>
+      </div>
+    </div>
+    <p class="fs-14-18 mb-16-32">Next line stays in place regardless of the popover state.</p>
+
+    <h3 class="fs-18-24 mb-8-16 mt-24-40">Minimum HTML</h3>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;!-- Inline mode (default) --&gt;
+&lt;button data-collapse-target="#panel"&gt;Toggle&lt;/button&gt;
+&lt;div id="panel" class="collapse"&gt;
+  &lt;div class="collapse__content"&gt;
+    &lt;!-- padded / styled content goes INSIDE collapse__content --&gt;
+    &lt;div class="p-16-32"&gt;Any content here&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Absolute mode — requires a positioned ancestor --&gt;
+&lt;div class="relative inline-block"&gt;
+  &lt;button data-collapse-target="#pop"&gt;Toggle&lt;/button&gt;
+  &lt;div id="pop" class="collapse collapse--absolute"&gt;
+    &lt;div class="collapse__content"&gt;
+      &lt;div class="p-16-32"&gt;Floating content&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Start open: add collapse--open --&gt;
+&lt;div id="panel" class="collapse collapse--open"&gt;…&lt;/div&gt;</code></pre>
+
+    <h3 class="fs-18-24 mb-8-16">Include</h3>
+    <p class="fs-14-18 mb-8-16">CSS file + JS file:</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/collapse.css"&gt;
+&lt;script src="addons/components/collapse.js" defer&gt;&lt;/script&gt;</code></pre>
+    <p class="fs-14-18 mb-8-16">Or via Sass:</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/collapse';</code></pre>
+
+    <p class="fs-14-18 mb-4-8"><code>collapse</code> — target element / grid container.</p>
+    <p class="fs-14-18 mb-4-8"><code>collapse__content</code> — required direct child. <strong>Must not have padding of its own</strong> — padding on the grid item prevents the closed state from truly collapsing to 0. Put your padded / styled content inside it.</p>
+    <p class="fs-14-18 mb-4-8"><code>collapse--open</code> — added/removed by JS; also usable as a default-open hint.</p>
+    <p class="fs-14-18 mb-4-8"><code>collapse--absolute</code> — variant: floats over content with an opacity fade. Needs a positioned ancestor in the markup to anchor against.</p>
+    <p class="fs-14-18"><code>data-collapse-target="#id"</code> — attribute on the trigger button; points at the target by ID.</p>
   </section>
 
   <section class="docs-section mt-40-80">
@@ -340,39 +376,44 @@ document.querySelector('#my-dropdown')
   .addEventListener('dp:dropdown:close', () =&gt; {/* ... */});</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Reference</h3>
-    <table class="docs-table mb-16-32" style="width:100%; border-collapse:collapse;">
+    <table class="docs-table mb-16-32">
       <thead>
         <tr>
-          <th class="fs-14-18 fw-bold p-8-16" style="text-align:left; border-bottom:1px solid #e0e0e0;">Component</th>
-          <th class="fs-14-18 fw-bold p-8-16" style="text-align:left; border-bottom:1px solid #e0e0e0;">Events</th>
-          <th class="fs-14-18 fw-bold p-8-16" style="text-align:left; border-bottom:1px solid #e0e0e0;">API</th>
+          <th class="fs-14-18 fw-bold p-8-16">Component</th>
+          <th class="fs-14-18 fw-bold p-8-16">Events</th>
+          <th class="fs-14-18 fw-bold p-8-16">API</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td class="fs-14-18 p-8-16" style="border-bottom:1px solid #e0e0e0;"><code>accordion</code></td>
-          <td class="fs-14-18 p-8-16" style="border-bottom:1px solid #e0e0e0;"><code>dp:accordion:open</code><br><code>dp:accordion:close</code></td>
-          <td class="fs-14-18 p-8-16" style="border-bottom:1px solid #e0e0e0;"><code>open(el)</code>, <code>close(el)</code>, <code>toggle(el)</code></td>
+          <td class="fs-14-18 p-8-16"><code>accordion</code></td>
+          <td class="fs-14-18 p-8-16"><code>dp:accordion:open</code><br><code>dp:accordion:close</code></td>
+          <td class="fs-14-18 p-8-16"><code>open(el)</code>, <code>close(el)</code>, <code>toggle(el)</code></td>
         </tr>
         <tr>
-          <td class="fs-14-18 p-8-16" style="border-bottom:1px solid #e0e0e0;"><code>modal</code></td>
-          <td class="fs-14-18 p-8-16" style="border-bottom:1px solid #e0e0e0;"><code>dp:modal:open</code><br><code>dp:modal:close</code></td>
-          <td class="fs-14-18 p-8-16" style="border-bottom:1px solid #e0e0e0;"><code>open(idOrEl)</code>, <code>close(idOrEl)</code>, <code>toggle(idOrEl)</code></td>
+          <td class="fs-14-18 p-8-16"><code>modal</code></td>
+          <td class="fs-14-18 p-8-16"><code>dp:modal:open</code><br><code>dp:modal:close</code></td>
+          <td class="fs-14-18 p-8-16"><code>open(idOrEl)</code>, <code>close(idOrEl)</code>, <code>toggle(idOrEl)</code></td>
         </tr>
         <tr>
-          <td class="fs-14-18 p-8-16" style="border-bottom:1px solid #e0e0e0;"><code>menu</code></td>
-          <td class="fs-14-18 p-8-16" style="border-bottom:1px solid #e0e0e0;"><code>dp:menu:open</code><br><code>dp:menu:close</code></td>
-          <td class="fs-14-18 p-8-16" style="border-bottom:1px solid #e0e0e0;"><code>open(el)</code>, <code>close(el)</code>, <code>toggle(el)</code></td>
+          <td class="fs-14-18 p-8-16"><code>menu</code></td>
+          <td class="fs-14-18 p-8-16"><code>dp:menu:open</code><br><code>dp:menu:close</code></td>
+          <td class="fs-14-18 p-8-16"><code>open(el)</code>, <code>close(el)</code>, <code>toggle(el)</code></td>
         </tr>
         <tr>
-          <td class="fs-14-18 p-8-16" style="border-bottom:1px solid #e0e0e0;"><code>tabs</code></td>
-          <td class="fs-14-18 p-8-16" style="border-bottom:1px solid #e0e0e0;"><code>dp:tabs:change</code><br>detail: <code>{ panel, trigger }</code></td>
-          <td class="fs-14-18 p-8-16" style="border-bottom:1px solid #e0e0e0;"><code>activate(panelIdOrEl)</code></td>
+          <td class="fs-14-18 p-8-16"><code>tabs</code></td>
+          <td class="fs-14-18 p-8-16"><code>dp:tabs:change</code><br>detail: <code>{ panel, trigger }</code></td>
+          <td class="fs-14-18 p-8-16"><code>activate(panelIdOrEl)</code></td>
         </tr>
         <tr>
           <td class="fs-14-18 p-8-16"><code>dropdown</code></td>
           <td class="fs-14-18 p-8-16"><code>dp:dropdown:open</code><br><code>dp:dropdown:close</code></td>
           <td class="fs-14-18 p-8-16"><code>open(el)</code>, <code>close(el)</code>, <code>toggle(el)</code>, <code>closeAll()</code></td>
+        </tr>
+        <tr>
+          <td class="fs-14-18 p-8-16"><code>collapse</code></td>
+          <td class="fs-14-18 p-8-16"><code>dp:collapse:open</code><br><code>dp:collapse:close</code></td>
+          <td class="fs-14-18 p-8-16"><code>open(idOrEl)</code>, <code>close(idOrEl)</code>, <code>toggle(idOrEl)</code></td>
         </tr>
       </tbody>
     </table>
