@@ -1,0 +1,12 @@
+// Docs input — imports structure from addons
+@use '../../../addons/components/input';
+
+.input {
+  color: #0f0f0f;
+  background: #fff;
+  border-color: #ccc;
+
+  &::placeholder {
+    color: #999;
+  }
+}

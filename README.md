@@ -515,6 +515,7 @@ Pre-built structural CSS for common UI patterns. No colors, no sizing — just b
 @use 'dopamine-fluid/addons/components/checkbox';
 @use 'dopamine-fluid/addons/components/radio';
 @use 'dopamine-fluid/addons/components/switch';
+@use 'dopamine-fluid/addons/components/input';
 ```
 
 ```html
@@ -544,7 +545,7 @@ The menu switches from drawer to inline at 768px by default. Override via Sass:
 @use 'dopamine-fluid/addons/components/menu' with ($menu-bp: 992px);
 ```
 
-Available components: `accordion`, `modal`, `menu`, `tabs`, `dropdown`, `collapse`, `checkbox`, `radio`, `switch`.
+Available components: `accordion`, `modal`, `menu`, `tabs`, `dropdown`, `collapse`, `checkbox`, `radio`, `switch`, `input`.
 
 **Form components** (`checkbox`, `radio`, `switch`) are pure-CSS styled replacements for native `<input>` checkboxes and radios. They keep the real `<input>` in the DOM (accessible + form-submittable), visually hide it, and render a styled sibling that reacts to `:checked`. No JS, no a11y tradeoffs. Markup contract:
 
@@ -557,6 +558,8 @@ Available components: `accordion`, `modal`, `menu`, `tabs`, `dropdown`, `collaps
 ```
 
 Box/track sizes scale with the `<label>`'s `font-size`; borders and fill use `currentColor`, so you can size and colour the whole thing via Dopamine classes on the label.
+
+For text entry, the `input` component provides a minimal `.input` class that applies to any text-like `<input>` (text, email, password, search, tel, url, number, date, time) and to `<textarea>`. It resets browser defaults and keeps everything at `currentColor` / `inherit`; apply `p-*`, `radius-*`, `fs-*` utilities on the same element to compose the look.
 
 #### JavaScript API & events
 

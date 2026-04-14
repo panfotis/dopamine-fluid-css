@@ -1,0 +1,29 @@
+.input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: 1px solid currentColor;
+  padding: 0.375em 0.625em;
+}
+
+.input:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 1px;
+}
+
+textarea.input {
+  resize: vertical;
+  min-height: 4em;
+}
+
+.input {
+  color: #0f0f0f;
+  background: #fff;
+  border-color: #ccc;
+}
+.input::placeholder {
+  color: #999;
+}

@@ -1,0 +1,31 @@
+// Dopamine Fluid — Input Component
+// Minimal base for text-like <input>s and <textarea>.
+// Resets browser defaults, keeps font / color inherited — style with Dopamine
+// classes in HTML (padding, radius, font-size, colors…).
+//
+//   @use 'dopamine-fluid/addons/components/input';
+//
+// Applies to: <input type="text|email|password|search|tel|url|number|date|time">
+// and <textarea>.
+
+.input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: 1px solid currentColor;
+  padding: 0.375em 0.625em;
+}
+
+.input:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 1px;
+}
+
+// Textareas: sensible defaults — allow vertical resize only, minimum height
+textarea.input {
+  resize: vertical;
+  min-height: 4em;
+}
