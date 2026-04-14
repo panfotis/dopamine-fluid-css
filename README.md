@@ -588,12 +588,11 @@ dopamine ./src --ext twig --out ./scss/_dopamine.scss
 
 ```
 1. Inline override      →  fs-16-48--480-1920
-2. Breakpoint range     →  sm (576px) → md (768px)
-3. Per-prefix config    →  prefixes.fs.vpMin / vpMax
-4. Global default       →  viewport.min / max
+2. Per-prefix config    →  prefixes.fs.vpMin / vpMax
+3. Global default       →  viewport.min / max
 ```
 
-For the largest breakpoint, Dopamine uses the next breakpoint when available; otherwise it falls back to `viewport.max`, or extrapolates one final range if your last breakpoint is already above `viewport.max`.
+Breakpoint-prefixed classes (`fs-md-24-48`, `p-lg-16-32`, …) use the same clamp math as their base counterpart. The breakpoint only controls the `@media (min-width: …)` wrapper — it doesn't change the viewport range the clamp is computed over.
 
 ### Custom breakpoints
 
