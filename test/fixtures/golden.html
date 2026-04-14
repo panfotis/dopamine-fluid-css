@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head><title>Dopamine Golden Fixture</title></head>
+<body>
+
+<!-- Fluid typography + spacing (base) -->
+<h1 class="fs-16-48 mb-16-32">fluid fs + fluid mb</h1>
+<p class="fs-14-18 p-12-32 gap-16-32">fluid fs + fluid p + fluid gap</p>
+<div class="px-16-32 py-12-24 mx-8-16 my-8-16">axis-aware fluid spacing</div>
+<div class="radius-4-16 gapx-8-16 gapy-8-16">fluid radius + axis gaps</div>
+
+<!-- Fluid with inline viewport override -->
+<div class="fs-16-48--480-1920">inline viewport override</div>
+
+<!-- Fluid with breakpoint -->
+<h2 class="fs-md-24-48 mb-md-24-48">fluid at md breakpoint</h2>
+<h3 class="px-lg-16-32">fluid axis at lg</h3>
+
+<!-- Fixed (single value, px -> rem) -->
+<p class="fs-18 mb-24 p-16 radius-8">fixed values</p>
+<div class="mt-8 mb-40 ml-16 mr-16 pt-12 pb-12">fixed margins/padding</div>
+<div class="w-200 maxw-800 minw-320 h-120 maxh-400 minh-200">fixed sizing</div>
+
+<!-- Fixed at breakpoint -->
+<div class="fs-sm-18 fs-md-24 fs-lg-32 fs-xl-40">fixed fs at breakpoints</div>
+<div class="p-md-24 mt-lg-32 maxw-md-800">mixed fixed at breakpoints</div>
+
+<!-- Unitless + divisor (lh, fw) -->
+<p class="fw-400 fw-bold">font weights</p>
+<p class="lh-15 lh-md-12 lh-2">line heights (divisor + whole)</p>
+<p class="fw-md-700">fw at breakpoint</p>
+
+<!-- Unit suffixes — every supported unit -->
+<div class="w-50% w-100%">percent width</div>
+<div class="maxw-80% minw-50%">percent min/max width</div>
+<div class="h-100% maxh-50% minh-50%">percent heights</div>
+<div class="h-100dvh minh-80svh maxh-90lvh">dynamic viewport heights</div>
+<div class="w-100vw w-50vmin h-50vmax">viewport units on width/height</div>
+<div class="w-50dvw h-50svh w-50lvw">more viewport units</div>
+<div class="w-50vh h-50vw">cross-axis viewport units</div>
+
+<!-- Unit suffix at breakpoint -->
+<section class="w-lg-50% minh-md-100dvh maxh-xl-80svh">unit at breakpoint</section>
+
+<!-- Auto -->
+<div class="m-auto mx-auto my-auto mt-auto mb-auto ml-auto mr-auto">margin auto (all variants)</div>
+<div class="w-auto h-auto">sizing auto</div>
+<div class="w-md-auto h-lg-auto mx-md-auto">auto at breakpoint</div>
+
+<!-- Grid: cols (equal + ratio) -->
+<div class="cols-3 cols-md-2 cols-lg-4">equal columns at breakpoints</div>
+<div class="cols-1.3 cols-md-1.2.1 cols-lg-1.3">ratio columns</div>
+
+<!-- Fluid gap at breakpoint (on grid) -->
+<div class="grid cols-3 gap-md-16-32 gapx-lg-8-16 gapy-sm-8-16">grid with fluid gap at breakpoint</div>
+
+<!-- Container -->
+<div class="container-1200">container</div>
+<div class="container-800">smaller container</div>
+
+<!-- Keywords — display -->
+<div class="block inline inline-block flex inline-flex grid inline-grid hidden">display keywords</div>
+
+<!-- Keywords — flex direction, wrap -->
+<div class="flex flex-row flex-row-reverse flex-col flex-col-reverse flex-wrap flex-nowrap">flex keywords</div>
+
+<!-- Keywords — justify / align / self / place -->
+<div class="justify-start justify-center justify-end justify-between justify-around justify-evenly">justify keywords</div>
+<div class="align-start align-center align-end align-stretch align-baseline">align keywords</div>
+<div class="self-start self-center self-end self-stretch self-auto">self keywords</div>
+<div class="place-center">place keywords</div>
+
+<!-- Keywords — text / font-weight / position / overflow / z-index -->
+<div class="text-left text-center text-right">text alignment</div>
+<div class="fw-light fw-normal fw-medium fw-bold">named font weights</div>
+<div class="relative absolute fixed sticky">position keywords</div>
+<div class="overflow-hidden overflow-auto overflow-visible overflow-scroll">overflow keywords</div>
+<div class="z-0 z-1 z-2 z-3 z-4 z-5 z-10 z-50 z-100">z-index</div>
+
+<!-- Keyword at breakpoint -->
+<div class="flex-md hidden-lg justify-center-md align-center-lg">keyword breakpoint variants</div>
+
+<!-- Extra demo class added via refresh flow -->
+<div class="fs-20-40 p-20-40">new fixture class</div>
+
+</body>
+</html>

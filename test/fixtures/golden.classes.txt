@@ -1,0 +1,17 @@
+# Valid classes not present in the HTML — exercises classes-file merging
+maxw-lg-800
+radius-lg-8-16
+gap-xl-16-32
+
+# Intentional mistakes — exercise every path in diagnoseClass
+w-300px
+maxw-600px
+fs-50dvh
+p-50%
+h-100xx
+w-50em
+fs-xxxl-16
+h-60-120
+minh-100-300
+fs-48-16
+zzz-16

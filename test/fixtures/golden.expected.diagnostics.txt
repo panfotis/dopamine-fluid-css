@@ -1,0 +1,12 @@
+⚠  Skipped 11 unrecognized classes:
+      w-300px — 'px' suffix isn't needed — bare numbers are already pixels (write 'w-300')
+      maxw-600px — 'px' suffix isn't needed — bare numbers are already pixels (write 'maxw-600')
+      fs-50dvh — unit suffix 'dvh' is only supported on sizing prefixes (w, h, maxw, minw, maxh, minh)
+      p-50% — unit suffix '%' is only supported on sizing prefixes (w, h, maxw, minw, maxh, minh)
+      h-100xx — unknown unit 'xx' — supported units: %, vw, vh, vmin, vmax, svw, svh, lvw, lvh, dvw, dvh
+      w-50em — unknown unit 'em' — supported units: %, vw, vh, vmin, vmax, svw, svh, lvw, lvh, dvw, dvh
+      fs-xxxl-16 — breakpoint 'xxxl' not found in config.breakpoints (available: sm, md, lg, xl, xxl)
+      h-60-120 — 'h' doesn't support fluid ranges — fluid clamp scales by viewport width, which misbehaves on portrait viewports. Use a viewport unit like 'h-100dvh' or a fixed value.
+      minh-100-300 — 'minh' doesn't support fluid ranges — fluid clamp scales by viewport width, which misbehaves on portrait viewports. Use a viewport unit like 'minh-100dvh' or a fixed value.
+      fs-48-16 — fluid range inverted — '48' must be less than '16'
+      zzz-16 — unknown prefix 'zzz'

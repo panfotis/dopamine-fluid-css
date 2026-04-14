@@ -695,6 +695,20 @@ Classes from the file are merged with any template-scanned classes. Unrecognized
 
 ---
 
+## Development: refreshing the golden snapshot
+
+The test suite includes a **golden-file integration test** that compiles a comprehensive fixture and compares the generated SCSS, Sass functions file, and diagnostic output byte-for-byte against committed expected files. It catches any unintended change to compiled output across the full pipeline.
+
+When you intentionally change the fixture or production code that affects output, refresh the expected files:
+
+```bash
+UPDATE_GOLDEN=1 npm test
+```
+
+Commit the code change and the refreshed fixtures (`test/fixtures/golden.expected.*`) together — reviewers can then see exactly what user-visible output changed. When adding a new prefix, unit, or syntax, add a representative class to `test/fixtures/golden.html` (or `golden.classes.txt` for diagnostics) so the new feature is under the safety net too.
+
+---
+
 ## Manifest
 
 Emit a JSON list of every class Dopamine compiled. Useful for tooling that needs to know "what classes exist" without re-scanning templates — e.g. autocomplete in a CMS admin UI.
