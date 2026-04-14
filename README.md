@@ -160,6 +160,7 @@ dopamine [input] [options]
 | `--no-header` | Omit the generated header comment | — |
 | `--no-reset` | Omit the CSS reset | — |
 | `--classes <file>` | Path to a file with class names to compile (one per line) | — |
+| `--manifest <file>` | Emit list of compiled class names as JSON to `<file>` | — |
 | `--dry-run` | Print to stdout, don't write | — |
 
 When `--out` ends in `.scss`, Dopamine also generates `_dopamine-functions.scss` alongside it.
@@ -684,6 +685,34 @@ Or set it in `dopamine.config.json`:
 ```
 
 Classes from the file are merged with any template-scanned classes. Unrecognized class names will trigger a warning so you can spot typos early. In watch mode, the classes file is also watched for changes.
+
+---
+
+## Manifest
+
+Emit a JSON list of every class Dopamine compiled. Useful for tooling that needs to know "what classes exist" without re-scanning templates — e.g. autocomplete in a CMS admin UI.
+
+```bash
+npx dopamine --manifest ./dopamine.manifest.json
+```
+
+Or via `dopamine.config.json`:
+
+```json
+{ "manifest": "./dopamine.manifest.json" }
+```
+
+Output:
+
+```json
+{
+  "version": 1,
+  "generated": "2026-04-13T12:00:00.000Z",
+  "classes": ["cols-md-1.3", "flex", "fs-16-48", "p-md-16-32"]
+}
+```
+
+The `classes` array is sorted alphabetically for deterministic diffs. The schema is additive-only across minor changes — the `version` field bumps if the shape ever changes in a breaking way.
 
 ---
 

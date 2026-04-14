@@ -31,6 +31,7 @@ function runBuild() {
     .option('--no-header', 'Omit the generated-by comment header')
     .option('--no-reset', 'Omit the CSS reset')
     .option('--classes <file>', 'Path to a file with class names to compile (one per line)')
+    .option('--manifest <file>', 'Emit list of compiled class names as JSON to <file>')
     .option('--dry-run', 'Print CSS to stdout without writing file')
     .showHelpAfterError()
     .addHelpText('after', '\nCommands:\n  init [target]        Copy Dopamine starter files into a project\n')
