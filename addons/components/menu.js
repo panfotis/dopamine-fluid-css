@@ -1,23 +1,42 @@
 // Dopamine Fluid — Menu Component
-// Tiny script for open/close. Supports ESC key and click-outside.
+// Open/close with ESC key and click-outside support.
+// API: dopamine.menu.open(el), .close(el), .toggle(el)
+// Events: dp:menu:open, dp:menu:close (bubble from .menu)
 
-document.addEventListener('click', e => {
-  // Toggle
-  if (e.target.closest('.menu__toggle')) {
-    const menu = e.target.closest('.menu');
-    if (menu) menu.classList.toggle('menu--open');
+(function () {
+  function open(menu) {
+    if (!menu || menu.classList.contains('menu--open')) return;
+    menu.classList.add('menu--open');
+    menu.dispatchEvent(new CustomEvent('dp:menu:open', { bubbles: true }));
   }
 
-  // Close via overlay or close button
-  if (e.target.classList.contains('menu__overlay') || e.target.closest('.menu__close')) {
-    const menu = e.target.closest('.menu');
-    if (menu) menu.classList.remove('menu--open');
+  function close(menu) {
+    if (!menu || !menu.classList.contains('menu--open')) return;
+    menu.classList.remove('menu--open');
+    menu.dispatchEvent(new CustomEvent('dp:menu:close', { bubbles: true }));
   }
-});
 
-// ESC key closes the open menu
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    document.querySelector('.menu--open')?.classList.remove('menu--open');
+  function toggle(menu) {
+    if (!menu) return;
+    menu.classList.contains('menu--open') ? close(menu) : open(menu);
   }
-});
+
+  document.addEventListener('click', e => {
+    if (e.target.closest('.menu__toggle')) {
+      toggle(e.target.closest('.menu'));
+      return;
+    }
+    if (e.target.classList.contains('menu__overlay') || e.target.closest('.menu__close')) {
+      close(e.target.closest('.menu'));
+    }
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.menu--open').forEach(close);
+    }
+  });
+
+  window.dopamine = window.dopamine || {};
+  window.dopamine.menu = { open, close, toggle };
+})();

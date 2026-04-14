@@ -1,0 +1,21 @@
+// Docs tabs — imports structure from addons, adds docs-specific colors
+@use '../../../addons/components/tabs';
+
+.tab__btn {
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-bottom: none;
+  cursor: pointer;
+  &:hover { background: #f0f0f0; }
+}
+
+.tab__btn--active {
+  background: #0f0f0f;
+  color: #fff;
+}
+
+.tab__panel--active {
+  border: 1px solid #e0e0e0;
+  background: #fafafa;
+  color: #333;
+}

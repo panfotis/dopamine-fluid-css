@@ -1,0 +1,13 @@
+// Dopamine Fluid — Tabs Component
+// Structure only — style with Dopamine classes in HTML
+// Requires tabs.js for switching panels
+//
+//   @use 'dopamine-fluid/addons/components/tabs';
+
+.tab__panel {
+  display: none;
+}
+
+.tab__panel--active {
+  display: block;
+}

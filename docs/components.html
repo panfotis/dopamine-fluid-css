@@ -8,10 +8,14 @@
   <link rel="stylesheet" href="css/components/accordion.css">
   <link rel="stylesheet" href="css/components/modal.css">
   <link rel="stylesheet" href="css/components/menu.css">
+  <link rel="stylesheet" href="css/components/tabs.css">
+  <link rel="stylesheet" href="css/components/dropdown.css">
   <script src="search.js" defer></script>
   <script src="accordion.js" defer></script>
   <script src="modal.js" defer></script>
   <script src="menu.js" defer></script>
+  <script src="tabs.js" defer></script>
+  <script src="dropdown.js" defer></script>
 </head>
 <body>
 
@@ -45,7 +49,7 @@
     <h2 class="fs-24-48 mb-12-24">How Components Work</h2>
     <p class="fs-14-18 mb-8-16">Components provide <strong>structure only</strong> — display, transitions, open/close behavior.</p>
     <p class="fs-14-18 mb-8-16">All sizing and colors come from Dopamine classes in your HTML.</p>
-    <p class="fs-14-18">Available components: <code>accordion</code>, <code>modal</code>, <code>menu</code>.</p>
+    <p class="fs-14-18">Available components: <code>accordion</code>, <code>modal</code>, <code>menu</code>, <code>tabs</code>, <code>dropdown</code>.</p>
   </section>
 
   <section class="docs-section mt-40-80">
@@ -194,6 +198,199 @@
     <p class="fs-14-18 mb-4-8"><code>menu__overlay</code> — backdrop, click to close</p>
     <p class="fs-14-18 mb-4-8"><code>menu__drawer</code> — side drawer, full width/height, slides from left</p>
     <p class="fs-14-18"><code>menu--open</code> — added/removed by JS to toggle the drawer</p>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Tabs</h2>
+    <p class="fs-14-18 mb-16-32">Click a button to switch panels. Triggers use <code>data-tab-target="#id"</code> to point at a panel inside the same <code>.tabs</code> group. Requires a tiny JS file (~10 lines).</p>
+
+    <h3 class="fs-18-24 mb-8-16">Demo</h3>
+    <div class="tabs mb-16-32">
+      <div class="tab__buttons flex">
+        <button data-tab-target="#tab-1" class="tab__btn tab__btn--active p-12-24 fs-14-18 fw-bold">One</button>
+        <button data-tab-target="#tab-2" class="tab__btn p-12-24 fs-14-18 fw-bold">Two</button>
+        <button data-tab-target="#tab-3" class="tab__btn p-12-24 fs-14-18 fw-bold">Three</button>
+      </div>
+      <div class="tab__panels">
+        <div id="tab-1" class="tab__panel tab__panel--active p-16-32 fs-14-18 lh-15">First panel content.</div>
+        <div id="tab-2" class="tab__panel p-16-32 fs-14-18 lh-15">Second panel content.</div>
+        <div id="tab-3" class="tab__panel p-16-32 fs-14-18 lh-15">Third panel content.</div>
+      </div>
+    </div>
+
+    <h3 class="fs-18-24 mb-8-16 mt-24-40">Minimum HTML</h3>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;div class="tabs"&gt;
+  &lt;div class="tab__buttons"&gt;
+    &lt;button data-tab-target="#p1" class="tab__btn tab__btn--active"&gt;One&lt;/button&gt;
+    &lt;button data-tab-target="#p2" class="tab__btn"&gt;Two&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="tab__panels"&gt;
+    &lt;div id="p1" class="tab__panel tab__panel--active"&gt;Panel one&lt;/div&gt;
+    &lt;div id="p2" class="tab__panel"&gt;Panel two&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <h3 class="fs-18-24 mb-8-16">Include</h3>
+    <p class="fs-14-18 mb-8-16">CSS file + JS file:</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/tabs.css"&gt;
+&lt;script src="addons/components/tabs.js" defer&gt;&lt;/script&gt;</code></pre>
+    <p class="fs-14-18 mb-8-16">Or via Sass:</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/tabs';</code></pre>
+
+    <p class="fs-14-18 mb-4-8"><code>tabs</code> — outer wrapper</p>
+    <p class="fs-14-18 mb-4-8"><code>tab__buttons</code> — row that holds the triggers (style with your own utility classes, e.g. <code>flex</code>)</p>
+    <p class="fs-14-18 mb-4-8"><code>tab__panels</code> — region that holds the panels</p>
+    <p class="fs-14-18 mb-4-8"><code>tab__btn</code> — trigger button (give one <code>tab__btn--active</code> for the default)</p>
+    <p class="fs-14-18 mb-4-8"><code>tab__panel</code> — content panel (give one <code>tab__panel--active</code> for the default)</p>
+    <p class="fs-14-18"><code>data-tab-target="#id"</code> — points the trigger at a panel ID inside the same <code>.tabs</code></p>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Dropdown</h2>
+    <p class="fs-14-18 mb-16-32">Click the toggle to open a menu. Click outside (anywhere not inside a dropdown menu) or press ESC to close all open dropdowns. Multiple dropdowns can be open at the same time. Requires a tiny JS file (~15 lines).</p>
+
+    <h3 class="fs-18-24 mb-8-16">Demo — default (absolute, floats over content)</h3>
+    <div class="dropdown mb-16-32">
+      <button data-dropdown-toggle class="dropdown__toggle p-12-24 fs-14-18 fw-bold radius-8">Menu</button>
+      <div class="dropdown__menu radius-8 mt-4">
+        <ul>
+          <li><a href="#" class="p-12-24 fs-14-18">Profile</a></li>
+          <li><a href="#" class="p-12-24 fs-14-18">Settings</a></li>
+          <li><a href="#" class="p-12-24 fs-14-18">Sign out</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="fs-18-24 mb-8-16 mt-24-40">Demo — inline (flows in document, animates height)</h3>
+    <p class="fs-14-18 mb-8-16">Add <code>dropdown--inline</code>. The menu flows below the trigger, pushing siblings down; height animates open/closed.</p>
+    <div class="dropdown dropdown--inline mb-16-32">
+      <button data-dropdown-toggle class="dropdown__toggle p-12-24 fs-14-18 fw-bold radius-8">Menu (inline)</button>
+      <div class="dropdown__menu radius-8 mt-4">
+        <ul>
+          <li><a href="#" class="p-12-24 fs-14-18">Profile</a></li>
+          <li><a href="#" class="p-12-24 fs-14-18">Settings</a></li>
+          <li><a href="#" class="p-12-24 fs-14-18">Sign out</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="fs-14-18 mb-16-32">Next line stays in place — watch it get pushed down when the inline dropdown opens above.</p>
+
+    <h3 class="fs-18-24 mb-8-16 mt-24-40">Minimum HTML</h3>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;div class="dropdown"&gt;
+  &lt;button data-dropdown-toggle&gt;Menu&lt;/button&gt;
+  &lt;div class="dropdown__menu"&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="#"&gt;Item&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Inline variant — add the modifier class; markup is identical --&gt;
+&lt;div class="dropdown dropdown--inline"&gt;
+  &lt;button data-dropdown-toggle&gt;Menu&lt;/button&gt;
+  &lt;div class="dropdown__menu"&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="#"&gt;Item&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <h3 class="fs-18-24 mb-8-16">Include</h3>
+    <p class="fs-14-18 mb-8-16">CSS file + JS file:</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/dropdown.css"&gt;
+&lt;script src="addons/components/dropdown.js" defer&gt;&lt;/script&gt;</code></pre>
+    <p class="fs-14-18 mb-8-16">Or via Sass:</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/dropdown';</code></pre>
+
+    <p class="fs-14-18 mb-4-8"><code>dropdown</code> — wrapper, sets <code>position: relative</code></p>
+    <p class="fs-14-18 mb-4-8"><code>dropdown__menu</code> — panel wrapper (absolute by default; floats over content). Put a single child inside holding the items.</p>
+    <p class="fs-14-18 mb-4-8"><code>data-dropdown-toggle</code> — attribute on the trigger button</p>
+    <p class="fs-14-18 mb-4-8"><code>dropdown--open</code> — added/removed by JS to toggle the menu</p>
+    <p class="fs-14-18"><code>dropdown--inline</code> — variant: menu flows in the document and animates height open/closed (no absolute positioning, no opacity fade)</p>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Events &amp; JavaScript API</h2>
+    <p class="fs-14-18 mb-16-32">Every component registers methods on <code>window.dopamine</code> and emits bubbling <code>CustomEvent</code>s on its root element. Use the API to drive components from your code, and listen for events to react to state changes.</p>
+
+    <h3 class="fs-18-24 mb-8-16">Driving components programmatically</h3>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">dopamine.modal.open('my-modal');
+dopamine.modal.close('my-modal');
+
+dopamine.tabs.activate('#panel-2');
+
+dopamine.dropdown.closeAll();
+dopamine.dropdown.toggle(document.querySelector('.dropdown'));
+
+dopamine.menu.toggle(document.querySelector('.menu'));
+dopamine.accordion.open(document.querySelector('.accordion__item'));</code></pre>
+
+    <h3 class="fs-18-24 mb-8-16">Listening for events</h3>
+    <p class="fs-14-18 mb-8-16">Events bubble, so you can delegate from <code>document</code> or scope listeners to a specific element.</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">document.addEventListener('dp:modal:open', e =&gt; {
+  console.log('modal opened', e.target.id);
+});
+
+document.addEventListener('dp:tabs:change', e =&gt; {
+  console.log('new panel', e.detail.panel.id);
+  console.log('trigger', e.detail.trigger);
+});
+
+document.querySelector('#my-dropdown')
+  .addEventListener('dp:dropdown:close', () =&gt; {/* ... */});</code></pre>
+
+    <h3 class="fs-18-24 mb-8-16">Reference</h3>
+    <table class="docs-table mb-16-32" style="width:100%; border-collapse:collapse;">
+      <thead>
+        <tr>
+          <th class="fs-14-18 fw-bold p-8-16" style="text-align:left; border-bottom:1px solid #e0e0e0;">Component</th>
+          <th class="fs-14-18 fw-bold p-8-16" style="text-align:left; border-bottom:1px solid #e0e0e0;">Events</th>
+          <th class="fs-14-18 fw-bold p-8-16" style="text-align:left; border-bottom:1px solid #e0e0e0;">API</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fs-14-18 p-8-16" style="border-bottom:1px solid #e0e0e0;"><code>accordion</code></td>
+          <td class="fs-14-18 p-8-16" style="border-bottom:1px solid #e0e0e0;"><code>dp:accordion:open</code><br><code>dp:accordion:close</code></td>
+          <td class="fs-14-18 p-8-16" style="border-bottom:1px solid #e0e0e0;"><code>open(el)</code>, <code>close(el)</code>, <code>toggle(el)</code></td>
+        </tr>
+        <tr>
+          <td class="fs-14-18 p-8-16" style="border-bottom:1px solid #e0e0e0;"><code>modal</code></td>
+          <td class="fs-14-18 p-8-16" style="border-bottom:1px solid #e0e0e0;"><code>dp:modal:open</code><br><code>dp:modal:close</code></td>
+          <td class="fs-14-18 p-8-16" style="border-bottom:1px solid #e0e0e0;"><code>open(idOrEl)</code>, <code>close(idOrEl)</code>, <code>toggle(idOrEl)</code></td>
+        </tr>
+        <tr>
+          <td class="fs-14-18 p-8-16" style="border-bottom:1px solid #e0e0e0;"><code>menu</code></td>
+          <td class="fs-14-18 p-8-16" style="border-bottom:1px solid #e0e0e0;"><code>dp:menu:open</code><br><code>dp:menu:close</code></td>
+          <td class="fs-14-18 p-8-16" style="border-bottom:1px solid #e0e0e0;"><code>open(el)</code>, <code>close(el)</code>, <code>toggle(el)</code></td>
+        </tr>
+        <tr>
+          <td class="fs-14-18 p-8-16" style="border-bottom:1px solid #e0e0e0;"><code>tabs</code></td>
+          <td class="fs-14-18 p-8-16" style="border-bottom:1px solid #e0e0e0;"><code>dp:tabs:change</code><br>detail: <code>{ panel, trigger }</code></td>
+          <td class="fs-14-18 p-8-16" style="border-bottom:1px solid #e0e0e0;"><code>activate(panelIdOrEl)</code></td>
+        </tr>
+        <tr>
+          <td class="fs-14-18 p-8-16"><code>dropdown</code></td>
+          <td class="fs-14-18 p-8-16"><code>dp:dropdown:open</code><br><code>dp:dropdown:close</code></td>
+          <td class="fs-14-18 p-8-16"><code>open(el)</code>, <code>close(el)</code>, <code>toggle(el)</code>, <code>closeAll()</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="fs-18-24 mb-8-16 mt-24-40">Event timing &amp; transitions</h3>
+    <p class="fs-14-18 mb-8-16">Events fire <strong>immediately after the class is flipped</strong> — so <code>:open</code> fires as the opening transition is starting, and <code>:close</code> fires as the hiding transition is starting. That's the right moment for most work: updating state, logging, focusing an input, loading data.</p>
+    <p class="fs-14-18 mb-8-16">If you need to wait for the animation to <em>finish</em> — for example, to unmount content only once a modal has fully faded out — listen for <code>transitionend</code> on the element that actually animates:</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">document.addEventListener('dp:modal:close', e =&gt; {
+  // e.target is the .modal (the open class has already been removed).
+  // The .modal__dialog is what animates — wait for it to finish:
+  const dialog = e.target.querySelector('.modal__dialog');
+  dialog.addEventListener('transitionend', () =&gt; {
+    // fade-out done — safe to unmount content or free resources
+  }, { once: true });
+});</code></pre>
+    <p class="fs-14-18 mb-4-8">Pick whichever element has the transition in its CSS:</p>
+    <p class="fs-14-18 mb-4-8"><code>.modal__dialog</code> for modal — <code>.menu__drawer</code> for menu — <code>.dropdown__menu</code> for dropdown — <code>.accordion__body</code> for accordion.</p>
+    <p class="fs-14-18">Tabs has no transition by default, so <code>dp:tabs:change</code> already fires at the final state.</p>
   </section>
 
 </div>

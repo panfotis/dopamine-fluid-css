@@ -509,6 +509,8 @@ Pre-built structural CSS for common UI patterns. No colors, no sizing — just b
 ```scss
 @use 'dopamine-fluid/addons/components/accordion';
 @use 'dopamine-fluid/addons/components/menu';
+@use 'dopamine-fluid/addons/components/tabs';
+@use 'dopamine-fluid/addons/components/dropdown';
 ```
 
 ```html
@@ -538,7 +540,49 @@ The menu switches from drawer to inline at 768px by default. Override via Sass:
 @use 'dopamine-fluid/addons/components/menu' with ($menu-bp: 992px);
 ```
 
-Available components: `accordion`, `modal`, `menu`.
+Available components: `accordion`, `modal`, `menu`, `tabs`, `dropdown`.
+
+#### JavaScript API & events
+
+Each component registers methods under `window.dopamine` and emits bubbling `CustomEvent`s on its root element, so you can drive components programmatically and react to state changes.
+
+```js
+// Drive components from your code
+dopamine.modal.open('my-modal');
+dopamine.tabs.activate('#panel-2');
+dopamine.dropdown.closeAll();
+
+// React to state changes (events bubble — delegate from document if you like)
+document.addEventListener('dp:modal:open', e => console.log('opened', e.target.id));
+document.addEventListener('dp:tabs:change', e => console.log('panel', e.detail.panel.id));
+```
+
+| Component | Events | API |
+|---|---|---|
+| accordion | `dp:accordion:open`, `dp:accordion:close` | `open(el)`, `close(el)`, `toggle(el)` |
+| modal | `dp:modal:open`, `dp:modal:close` | `open(idOrEl)`, `close(idOrEl)`, `toggle(idOrEl)` |
+| menu | `dp:menu:open`, `dp:menu:close` | `open(el)`, `close(el)`, `toggle(el)` |
+| tabs | `dp:tabs:change` (detail: `{ panel, trigger }`) | `activate(panelIdOrEl)` |
+| dropdown | `dp:dropdown:open`, `dp:dropdown:close` | `open(el)`, `close(el)`, `toggle(el)`, `closeAll()` |
+
+Dropdown ships a second variant — add `dropdown--inline` to the root to make the menu flow inline in the document and animate its height open/closed (useful inside a mobile menu drawer, or any "drill-down" list). Markup is identical to the default: `.dropdown__menu` is a wrapper with a single child holding the items.
+
+**Event timing.** Events fire *immediately after the class is flipped* — so `:open` fires when the opening transition is just starting, and `:close` fires when the hiding transition is just starting. That's the right moment for most work (updating state, logging, focusing an input).
+
+If you need to wait for the transition to finish — e.g. to unmount content only once a modal has fully faded out — listen for `transitionend` on the element that actually animates:
+
+```js
+document.addEventListener('dp:modal:close', e => {
+  // e.target is the .modal (class already removed).
+  // The .modal__dialog is what animates — wait for it:
+  const dialog = e.target.querySelector('.modal__dialog');
+  dialog.addEventListener('transitionend', () => {
+    // fade-out finished — safe to unmount / free resources
+  }, { once: true });
+});
+```
+
+Pick whichever element has the transition in its CSS: `.modal__dialog` for modals, `.menu__drawer` for menu, `.dropdown__menu` for dropdown, `.accordion__body` for accordion. Tabs has no transition by default, so `dp:tabs:change` already fires at the final state.
 
 ---
 

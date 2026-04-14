@@ -1,21 +1,57 @@
 // Dopamine Fluid — Accordion Component
-// Handles close animation for <details> elements.
-// Without this, closing snaps instantly (browser removes [open] immediately).
+// Handles close animation for <details> elements (browser otherwise snaps instantly).
+// API: dopamine.accordion.open(detailsEl), .close(detailsEl), .toggle(detailsEl)
+// Events: dp:accordion:open, dp:accordion:close (bubble from the <details> item)
 
-document.querySelectorAll('.accordion__item').forEach(item => {
-  const summary = item.querySelector('.accordion__title');
-  const body = item.querySelector('.accordion__body');
-  if (!summary || !body) return;
+(function () {
+  function open(item) {
+    if (!item || item.open) return;
+    item.open = true;
+    item.dispatchEvent(new CustomEvent('dp:accordion:open', { bubbles: true }));
+  }
 
-  summary.addEventListener('click', e => {
-    if (!item.open) return; // opening — let the browser handle it
-
-    e.preventDefault();
+  function close(item) {
+    if (!item || !item.open) return;
+    const body = item.querySelector('.accordion__body');
+    const finalize = () => {
+      item.open = false;
+      item.dispatchEvent(new CustomEvent('dp:accordion:close', { bubbles: true }));
+    };
+    if (!body) {
+      finalize();
+      return;
+    }
     body.style.gridTemplateRows = '0fr';
-
     body.addEventListener('transitionend', () => {
       body.style.gridTemplateRows = '';
-      item.open = false;
+      finalize();
     }, { once: true });
+  }
+
+  function toggle(item) {
+    if (!item) return;
+    item.open ? close(item) : open(item);
+  }
+
+  document.addEventListener('click', e => {
+    const summary = e.target.closest('.accordion__title');
+    if (!summary) return;
+    const item = summary.closest('.accordion__item');
+    if (!item) return;
+
+    if (item.open) {
+      e.preventDefault();
+      close(item);
+    } else {
+      // Let the browser open natively; fire our event after the open attr flips.
+      requestAnimationFrame(() => {
+        if (item.open) {
+          item.dispatchEvent(new CustomEvent('dp:accordion:open', { bubbles: true }));
+        }
+      });
+    }
   });
-});
+
+  window.dopamine = window.dopamine || {};
+  window.dopamine.accordion = { open, close, toggle };
+})();
