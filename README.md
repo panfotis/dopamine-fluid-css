@@ -212,11 +212,14 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 | `mb-auto` | `margin-bottom: auto` | — | — | `mb-md-auto` |
 | **Sizing** | | | | |
 | `w` | `width` | `w-200` | `w-200-600` | `w-md-200` / `w-md-200-600` |
-| `h` | `height` | `h-100` | `h-100-300` | `h-md-100` |
+| `h` | `height` | `h-100` | — | `h-md-100` |
 | `maxw` | `max-width` | `maxw-800` | `maxw-400-800` | `maxw-md-800` |
 | `minw` | `min-width` | `minw-320` | `minw-200-400` | `minw-md-320` |
-| `maxh` | `max-height` | `maxh-400` | `maxh-200-400` | `maxh-md-400` |
-| `minh` | `min-height` | `minh-200` | `minh-100-300` | `minh-md-200` |
+| `maxh` | `max-height` | `maxh-400` | — | `maxh-md-400` |
+| `minh` | `min-height` | `minh-200` | — | `minh-md-200` |
+| **Sizing Auto** | | | | |
+| `w-auto` | `width: auto` | — | — | `w-md-auto` |
+| `h-auto` | `height: auto` | — | — | `h-md-auto` |
 | **Gap** | | | | |
 | `gap` | `gap` | `gap-16` | `gap-16-32` | `gap-md-16` / `gap-md-16-32` |
 | `gapx` | `column-gap` | `gapx-16` | `gapx-16-32` | `gapx-md-16` |
@@ -229,6 +232,7 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 > **Notes:**
 > - `fw` is unitless — `fw-700` outputs `font-weight: 700`, not rem. No fluid range.
 > - `lh` is unitless, fixed only (no fluid range). Values ≥ 10 are divided by 10: `lh-15` → `1.5`, `lh-12` → `1.2`. Values < 10 are whole numbers: `lh-2` → `2`. Supports breakpoints: `lh-md-15`
+> - `h`, `maxh`, `minh` are **fixed-only** (no fluid ranges). Fluid clamp scales by viewport width, which produces wrong results on portrait/narrow viewports. Use viewport units for responsive heights: `h-100dvh`, `minh-80svh`, `maxh-50vh`
 > - `cols` supports dot notation for ratios: `cols-1.3` = `1fr 3fr`, `cols-1.2.1` = `1fr 2fr 1fr`
 > - `container` is standalone — any number works, containers can be nested
 > - All pixel values are converted to `rem` (divided by 16) in the output
@@ -687,7 +691,7 @@ Or set it in `dopamine.config.json`:
 }
 ```
 
-Classes from the file are merged with any template-scanned classes. Unrecognized class names will trigger a warning so you can spot typos early. In watch mode, the classes file is also watched for changes.
+Classes from the file are merged with any template-scanned classes. Unrecognized class names trigger a per-class diagnostic so you can spot typos or wrong syntax early — e.g. `'px' suffix isn't needed`, `unit suffix 'dvh' is only supported on sizing prefixes`, `breakpoint 'xxl' not found in config.breakpoints`, `'h' doesn't support fluid ranges`. In watch mode, the classes file is also watched for changes.
 
 ---
 

@@ -3,8 +3,8 @@
  *
  * Default viewport : 320px – 1440px
  * Breakpoints      : sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px, xxxl: 1600px, xxxxl: 1920px
- * Generated        : 4/14/2026, 10:59:20 AM
- * Rules            : 232
+ * Generated        : 4/14/2026, 11:30:13 AM
+ * Rules            : 224
  * ============================================== */
 
 /* Reset */
@@ -579,11 +579,6 @@ p, h1, h2, h3, h4, h5, h6 {
   line-height: 2;
 }
 
-.fs-16-48 {
-  /* viewport: 375px–1440px [prefix-config] */
-  font-size: clamp(1rem, calc(3.0047vw + 0.2958rem), 3rem);
-}
-
 .gap-8-16 {
   gap: clamp(0.5rem, calc(0.7143vw + 0.3571rem), 1rem);
 }
@@ -687,22 +682,6 @@ p, h1, h2, h3, h4, h5, h6 {
   margin-left: auto;
 }
 
-.pt-16-48 {
-  padding-top: clamp(1rem, calc(2.8571vw + 0.4286rem), 3rem);
-}
-
-.pb-8-24 {
-  padding-bottom: clamp(0.5rem, calc(1.4286vw + 0.2143rem), 1.5rem);
-}
-
-.pl-12-32 {
-  padding-left: clamp(0.75rem, calc(1.7857vw + 0.3929rem), 2rem);
-}
-
-.pr-12-32 {
-  padding-right: clamp(0.75rem, calc(1.7857vw + 0.3929rem), 2rem);
-}
-
 .w-200 {
   /* fixed at 200px */
   width: 12.5rem;
@@ -717,8 +696,13 @@ p, h1, h2, h3, h4, h5, h6 {
   width: clamp(6.25rem, calc(26.7857vw + 0.8929rem), 25rem);
 }
 
-.h-60-120 {
-  height: clamp(3.75rem, calc(5.3571vw + 2.6786rem), 7.5rem);
+.h-120 {
+  /* fixed at 120px */
+  height: 7.5rem;
+}
+
+.mt-8-16 {
+  margin-top: clamp(0.5rem, calc(0.7143vw + 0.3571rem), 1rem);
 }
 
 .maxw-600 {
@@ -757,10 +741,6 @@ p, h1, h2, h3, h4, h5, h6 {
   min-height: 50%;
 }
 
-.mt-8-16 {
-  margin-top: clamp(0.5rem, calc(0.7143vw + 0.3571rem), 1rem);
-}
-
 .gap-16 {
   /* fixed at 16px */
   gap: 1rem;
@@ -793,10 +773,6 @@ p, h1, h2, h3, h4, h5, h6 {
 .radius-40 {
   /* fixed at 40px */
   border-radius: 2.5rem;
-}
-
-.maxw-400-800 {
-  max-width: clamp(25rem, calc(35.7143vw + 17.8571rem), 50rem);
 }
 
 .radius-8-16 {
@@ -981,10 +957,6 @@ p, h1, h2, h3, h4, h5, h6 {
     font-size: clamp(1.125rem, calc(1.3146vw + 0.8169rem), 2rem);
   }
 
-  .lh-md-15 {
-    line-height: 1.5;
-  }
-
   .p-md-16-48 {
     padding: clamp(1rem, calc(2.8571vw + 0.4286rem), 3rem);
   }
@@ -1013,10 +985,6 @@ p, h1, h2, h3, h4, h5, h6 {
 
   .cols-md-1\.1\.1 {
     grid-template-columns: 1fr 1fr 1fr;
-  }
-
-  .cols-md-1 {
-    grid-template-columns: repeat(1, 1fr);
   }
 
   .cols-md-2\.1 {

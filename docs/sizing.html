@@ -41,9 +41,10 @@
     <h2 class="fs-24-48 mb-12-24">Width & Height <code>w-{value}</code> / <code>h-{value}</code></h2>
     <div class="grid cols-1 cols-md-2 gap-8-16">
       <div class="w-200 h-80 radius-4-8 demo-box--orange p-8 flex align-center justify-center"><p class="fs-14-18">w-200 h-80 (fixed)</p></div>
-      <div class="w-100-400 h-60-120 radius-4-8 demo-box--orange p-8 flex align-center justify-center"><p class="fs-14-18">w-100-400 h-60-120 (fluid)</p></div>
+      <div class="w-100-400 h-120 radius-4-8 demo-box--orange p-8 flex align-center justify-center"><p class="fs-14-18">w-100-400 (fluid width) h-120 (fixed height)</p></div>
     </div>
-    <p class="fs-14-18 mt-16-32">Fixed: single pixel value → rem. Fluid: scales between min and max.</p>
+    <p class="fs-14-18 mt-16-32">Widths support fluid ranges (<code>w-100-400</code>). Heights are fixed-only — fluid clamp scales by viewport width, which misbehaves on portrait orientations. Use a viewport unit like <code>h-100dvh</code> or <code>minh-80svh</code> for responsive heights.</p>
+    <p class="fs-14-18 mt-8-16"><code>w-auto</code> and <code>h-auto</code> are also available (including breakpoint variants like <code>w-md-auto</code>) for content-driven sizing.</p>
   </section>
 
   <section class="docs-section mt-40-80">
