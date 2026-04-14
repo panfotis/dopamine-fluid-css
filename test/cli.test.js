@@ -212,6 +212,29 @@ test('extractClasses only reads `class="..."` attributes — bare tokens are no 
   assert.equal(classes.has('mb-24'),    false);
 });
 
+test('extractClasses does not pick up keyword/grid tokens from bare prose or comments', () => {
+  // Regression: GRID_TOKEN_RE used to scan the full file text for keywords
+  // like `flex`, `justify-center`, `hidden-md`, and grid tokens like
+  // `container-1200`, `cols-3`. Those phantom captures are gone — strict
+  // attribute-only scanning.
+  const html = `
+    <p>Use <code>flex</code> and <code>justify-center</code> for layout.</p>
+    <!-- hidden-md container-1200 cols-3 fw-bold -->
+    <div class="flex justify-center">applied classes</div>
+  `;
+  const classes = extractClasses(html);
+
+  // Applied via class="..." → captured
+  assert.ok(classes.has('flex'));
+  assert.ok(classes.has('justify-center'));
+
+  // Bare prose / comments → NOT captured
+  assert.equal(classes.has('hidden-md'),     false);
+  assert.equal(classes.has('container-1200'), false);
+  assert.equal(classes.has('cols-3'),        false);
+  assert.equal(classes.has('fw-bold'),       false);
+});
+
 test('auto keyword works for width and height (fix #4)', () => {
   const config = { viewport: { min: 320, max: 1440 }, breakpoints: { md: 768 }, prefixes: {} };
 

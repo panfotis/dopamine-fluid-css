@@ -693,6 +693,8 @@ Or set it in `dopamine.config.json`:
 
 Classes from the file are merged with any template-scanned classes. Unrecognized class names trigger a per-class diagnostic so you can spot typos or wrong syntax early — e.g. `'px' suffix isn't needed`, `unit suffix 'dvh' is only supported on sizing prefixes`, `breakpoint 'xxl' not found in config.breakpoints`, `'h' doesn't support fluid ranges`. In watch mode, the classes file is also watched for changes.
 
+> **Scanning is strictly attribute-only.** Classes are picked up only from `class="..."` and `className={...}` attributes in your templates — not from `<code>` tags, comments, or JS expressions. If you need a class compiled without having it applied as an HTML attribute (e.g. referenced dynamically from JS, or only used by a Vue/Alpine `:class="..."` expression), add it to the classes file above.
+
 ---
 
 ## Development: refreshing the golden snapshot
