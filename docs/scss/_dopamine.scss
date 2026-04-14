@@ -3,8 +3,8 @@
  *
  * Default viewport : 320px – 1440px
  * Breakpoints      : sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px, xxxl: 1600px, xxxxl: 1920px
- * Generated        : 4/1/2026, 9:39:08 PM
- * Rules            : 228
+ * Generated        : 4/14/2026, 10:59:20 AM
+ * Rules            : 232
  * ============================================== */
 
 /* Reset */
@@ -741,6 +741,26 @@ p, h1, h2, h3, h4, h5, h6 {
   min-height: 9.375rem;
 }
 
+.w-50\% {
+  width: 50%;
+}
+
+.w-100\% {
+  width: 100%;
+}
+
+.maxw-80\% {
+  max-width: 80%;
+}
+
+.minh-50\% {
+  min-height: 50%;
+}
+
+.mt-8-16 {
+  margin-top: clamp(0.5rem, calc(0.7143vw + 0.3571rem), 1rem);
+}
+
 .gap-16 {
   /* fixed at 16px */
   gap: 1rem;
@@ -867,10 +887,6 @@ p, h1, h2, h3, h4, h5, h6 {
   padding: 1rem;
 }
 
-.mt-8-16 {
-  margin-top: clamp(0.5rem, calc(0.7143vw + 0.3571rem), 1rem);
-}
-
 .mt-24-48 {
   margin-top: clamp(1.5rem, calc(2.1429vw + 1.0714rem), 3rem);
 }
@@ -920,8 +936,8 @@ p, h1, h2, h3, h4, h5, h6 {
 
 @media (min-width: 576px) {
   .fs-sm-16-24 {
-    /* viewport: 576px–768px [breakpoint] */
-    font-size: clamp(1rem, calc(4.1667vw - 0.5rem), 1.5rem);
+    /* viewport: 375px–1440px [prefix-config] */
+    font-size: clamp(1rem, calc(0.7512vw + 0.8239rem), 1.5rem);
   }
 
   .cols-sm-2 {
@@ -961,8 +977,8 @@ p, h1, h2, h3, h4, h5, h6 {
   }
 
   .fs-md-18-32 {
-    /* viewport: 768px–992px [breakpoint] */
-    font-size: clamp(1.125rem, calc(6.25vw - 1.875rem), 2rem);
+    /* viewport: 375px–1440px [prefix-config] */
+    font-size: clamp(1.125rem, calc(1.3146vw + 0.8169rem), 2rem);
   }
 
   .lh-md-15 {
@@ -970,13 +986,11 @@ p, h1, h2, h3, h4, h5, h6 {
   }
 
   .p-md-16-48 {
-    /* viewport: 768px–992px [breakpoint] */
-    padding: clamp(1rem, calc(14.2857vw - 5.8571rem), 3rem);
+    padding: clamp(1rem, calc(2.8571vw + 0.4286rem), 3rem);
   }
 
   .mb-md-16-32 {
-    /* viewport: 768px–992px [breakpoint] */
-    margin-bottom: clamp(1rem, calc(7.1429vw - 2.4286rem), 2rem);
+    margin-bottom: clamp(1rem, calc(1.4286vw + 0.7143rem), 2rem);
   }
 
   .w-md-300 {
@@ -1026,8 +1040,8 @@ p, h1, h2, h3, h4, h5, h6 {
   }
 
   .fs-lg-24-48 {
-    /* viewport: 992px–1200px [breakpoint] */
-    font-size: clamp(1.5rem, calc(11.5385vw - 5.6538rem), 3rem);
+    /* viewport: 375px–1440px [prefix-config] */
+    font-size: clamp(1.5rem, calc(2.2535vw + 0.9718rem), 3rem);
   }
 
   .cols-lg-4 {
@@ -1035,13 +1049,11 @@ p, h1, h2, h3, h4, h5, h6 {
   }
 
   .p-lg-24-64 {
-    /* viewport: 992px–1200px [breakpoint] */
-    padding: clamp(1.5rem, calc(19.2308vw - 10.4231rem), 4rem);
+    padding: clamp(1.5rem, calc(3.5714vw + 0.7857rem), 4rem);
   }
 
   .mt-lg-24-48 {
-    /* viewport: 992px–1200px [breakpoint] */
-    margin-top: clamp(1.5rem, calc(11.5385vw - 5.6538rem), 3rem);
+    margin-top: clamp(1.5rem, calc(2.1429vw + 1.0714rem), 3rem);
   }
 
   .maxw-lg-600 {

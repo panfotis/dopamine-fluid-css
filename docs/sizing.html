@@ -29,13 +29,13 @@
 </nav>
 
 <div class="docs-search container-1200 px-16-48 py-16">
-  <input type="text" class="maxw-360 px-16 py-8 fs-14 fw-medium radius-100" placeholder="Search classes... (e.g. w-200, maxw, minh, radius)">
+  <input type="text" class="maxw-360 px-16 py-8 fs-14 fw-medium radius-100" placeholder="Search classes... (e.g. w-200, maxw, minh, 100dvh, 50%, radius)">
 </div>
 
 <div class="docs-content container-1100 px-16-48">
 
   <h1 class="fs-32-72 fw-bold mt-40-80 mb-8-16">Sizing</h1>
-  <p class="fs-16-24 lh-15 mb-40-80">Width, height, min/max constraints, and border radius. Fixed values and fluid ranges.</p>
+  <p class="fs-16-24 lh-15 mb-40-80">Width, height, min/max constraints, and border radius. Fixed pixel values, fluid ranges, and explicit unit suffixes for percent and viewport units.</p>
 
   <section class="docs-section">
     <h2 class="fs-24-48 mb-12-24">Width & Height <code>w-{value}</code> / <code>h-{value}</code></h2>
@@ -64,6 +64,19 @@
         <p class="fs-14-18">minh-150 (centered with flex)</p>
       </div>
     </div>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Percent &amp; Viewport Units</h2>
+    <p class="fs-14-18 mb-16-32">Sizing prefixes (<code>w</code>, <code>h</code>, <code>maxw</code>, <code>minw</code>, <code>maxh</code>, <code>minh</code>) accept explicit unit suffixes. The unit is emitted verbatim — no rem conversion, no fluid interpolation.</p>
+    <div class="grid cols-1 cols-md-2 gap-8-16">
+      <div class="w-50% p-12-24 radius-4-8 demo-box--orange"><p class="fs-14-18">w-50% — half width of parent</p></div>
+      <div class="w-100% p-12-24 radius-4-8 demo-box--orange"><p class="fs-14-18">w-100% — full width of parent</p></div>
+      <div class="maxw-80% p-12-24 radius-4-8 demo-box--orange"><p class="fs-14-18">maxw-80% — capped at 80% of parent</p></div>
+      <div class="minh-50% p-12-24 radius-4-8 demo-box--orange flex align-center justify-center"><p class="fs-14-18">minh-50% — at least half of parent height</p></div>
+    </div>
+    <p class="fs-14-18 mt-16-32"><strong>Supported units:</strong> <code>%</code>, <code>vw</code>, <code>vh</code>, <code>vmin</code>, <code>vmax</code>, <code>svw</code>, <code>svh</code>, <code>lvw</code>, <code>lvh</code>, <code>dvw</code>, <code>dvh</code>.</p>
+    <p class="fs-14-18 mt-8-16">Common patterns: <code>minh-100dvh</code> for full-height heroes that respect the mobile address bar, <code>maxh-80svh</code> to pin against the small viewport, <code>w-100vw</code> for full-viewport overlays. Breakpoint variants work the same way — <code>minh-md-100dvh</code>, <code>w-lg-50%</code>.</p>
   </section>
 
   <section class="docs-section mt-40-80">

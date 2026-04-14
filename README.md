@@ -233,6 +233,10 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 > - `container` is standalone — any number works, containers can be nested
 > - All pixel values are converted to `rem` (divided by 16) in the output
 > - Viewport override syntax: `fs-16-48--480-1920` uses 480px–1920px instead of config default
+> - **Unit suffixes** (sizing prefixes only — `w`, `h`, `maxw`, `minw`, `maxh`, `minh`):
+>   append `%`, `vw`, `vh`, `vmin`, `vmax`, `svw`, `svh`, `lvw`, `lvh`, `dvw`, or `dvh` to emit that unit verbatim — no rem conversion.
+>   Examples: `w-50%` → `width: 50%`, `h-100dvh` → `height: 100dvh`, `minh-md-100svh` → `@media(md+) { min-height: 100svh }`.
+>   Fixed-only (no fluid ranges of units).
 
 ### Keyword Classes
 
