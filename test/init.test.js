@@ -60,19 +60,38 @@ test('scaffoldProject reports conflicting starter files unless force is used', (
   const projectDir = makeTempDir();
 
   try {
-    fs.mkdirSync(path.join(projectDir, 'templates'), { recursive: true });
-    fs.writeFileSync(path.join(projectDir, 'templates', 'index.html'), '<p>custom</p>\n');
+    fs.writeFileSync(path.join(projectDir, 'dopamine.config.json'), '{ "input": "./src" }\n');
 
     assert.throws(
       () => scaffoldProject('.', { cwd: projectDir }),
-      err => err && err.code === 'INIT_CONFLICT' && err.conflicts.includes('templates/index.html')
+      err => err && err.code === 'INIT_CONFLICT' && err.conflicts.includes('dopamine.config.json')
     );
 
     const result = scaffoldProject('.', { cwd: projectDir, force: true });
-    const overwritten = fs.readFileSync(path.join(projectDir, 'templates', 'index.html'), 'utf8');
+    const overwritten = fs.readFileSync(path.join(projectDir, 'dopamine.config.json'), 'utf8');
 
-    assert.equal(result.files.overwritten.includes('templates/index.html'), true);
-    assert.match(overwritten, /Hello, Dopamine/);
+    assert.equal(result.files.overwritten.includes('dopamine.config.json'), true);
+    assert.match(overwritten, /viewport/);
+  } finally {
+    fs.rmSync(projectDir, { recursive: true, force: true });
+  }
+});
+
+test('scaffoldProject keeps existing templates/index.html and still writes the rest', () => {
+  const projectDir = makeTempDir();
+
+  try {
+    fs.mkdirSync(path.join(projectDir, 'templates'), { recursive: true });
+    fs.writeFileSync(path.join(projectDir, 'templates', 'index.html'), '<p>my own page</p>\n');
+
+    const result = scaffoldProject('.', { cwd: projectDir });
+
+    assert.deepEqual(result.files.keptExisting, ['templates/index.html']);
+    assert.equal(result.files.written.includes('dopamine.config.json'), true);
+    assert.equal(result.files.written.includes('scss/main.scss'), true);
+
+    const templateOnDisk = fs.readFileSync(path.join(projectDir, 'templates', 'index.html'), 'utf8');
+    assert.equal(templateOnDisk, '<p>my own page</p>\n');
   } finally {
     fs.rmSync(projectDir, { recursive: true, force: true });
   }
