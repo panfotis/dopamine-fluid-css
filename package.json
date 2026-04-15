@@ -12,10 +12,10 @@
     "README.md"
   ],
   "bin": {
-    "dopamine": "./bin/dopamine.js",
-    "dopamine-fluid": "./bin/dopamine.js",
-    "dopamine-audit": "./bin/dopamine-audit.js",
-    "dopamine-update": "./bin/dopamine-update.js"
+    "dopamine": "bin/dopamine.js",
+    "dopamine-fluid": "bin/dopamine.js",
+    "dopamine-audit": "bin/dopamine-audit.js",
+    "dopamine-update": "bin/dopamine-update.js"
   },
   "scripts": {
     "build": "npm run dopamine && npm run sass",
