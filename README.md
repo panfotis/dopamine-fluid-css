@@ -469,7 +469,7 @@ Dopamine has two optional addons. Both are independent — use either, both, or 
 For elements you can't add classes to (e.g. Drupal-rendered content). Import the function from `addons/sass/`:
 
 ```scss
-@use 'dopamine-fluid/addons/sass/functions' as dp;
+@use 'dopamine-fluid/addons/sass/dopamine-functions' as dp;
 
 .node--article .field--body p {
   font-size: dp.fluid(16, 48);
