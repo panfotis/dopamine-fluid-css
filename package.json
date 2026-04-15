@@ -25,6 +25,7 @@
     "dev:ddev": "concurrently \"npm run dopamine -- --watch\" \"npm run sass -- --watch\" \"browser-sync start --proxy $DDEV_URL --port $BS_PORT --files 'css/**/*.css' --no-notify\"",
     "dry": "node bin/dopamine.js --dry-run",
     "audit:classes": "node bin/dopamine-audit.js",
+    "bench": "node scripts/bench.js",
     "test": "node --test",
     "build:dist": "node scripts/build-dist.js",
     "version": "node scripts/sync-docs-version.js && git add docs/index.html",

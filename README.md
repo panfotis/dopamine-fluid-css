@@ -807,7 +807,19 @@ Or set it in `dopamine.config.json`:
 
 Classes from the file are merged with any template-scanned classes. Unrecognized class names trigger a per-class diagnostic so you can spot typos or wrong syntax early — e.g. `'px' suffix isn't needed`, `unit suffix 'dvh' is only supported on sizing prefixes`, `breakpoint 'xxl' not found in config.breakpoints`, `'h' doesn't support fluid ranges`. In watch mode, the classes file is also watched for changes.
 
-> **Scanning is strictly attribute-only.** Classes are picked up only from `class="..."` and `className={...}` attributes in your templates — not from `<code>` tags, comments, or JS expressions. If you need a class compiled without having it applied as an HTML attribute (e.g. referenced dynamically from JS, or only used by a Vue/Alpine `:class="..."` expression), add it to the classes file above.
+> **What the scanner picks up.** Classes are extracted from three places in your templates:
+>
+> 1. Literal `class="..."` / `className="..."` attributes, **including ternary branches**. `class="{{ c ? 'fs-16' : 'fs-20' }}"` captures both `fs-16` and `fs-20`. Twig's one-sided shorthand works too: `class="item {{ active ? 'is-active' }}"`.
+> 2. Twig `{% set <var> = ... %}` assignments — the RHS is scanned for string literals. Arrays, ternaries, or bare strings all work.
+> 3. `addClass(...)` calls — every string literal in the argument list is extracted. Covers `addClass('foo bar')`, `addClass(['foo', 'bar'])`, and multi-arg forms like `addClass(classes, '', cond ? 'foo')`.
+>
+> Dynamic pieces that can't be known at build time still need the safelist:
+>
+> - **Concatenation** like `'block-' ~ slug` — the literal `'block-'` is seen but rejected as incomplete; the composed final names (`block-foo`, `block-bar`) go in the classes file.
+> - **Variable-only references** like `link(title, url, {'class': link_classes})` or `removeClass(style_settings.width)` — no literal to extract.
+> - **JS template literals** like `` className={`foo-${x}`} `` — use the safelist.
+>
+> Bare tokens in `<code>` blocks, comments, and prose are still ignored — only the three sources above feed the compiler.
 
 ---
 
@@ -843,13 +855,45 @@ Output:
 
 ```json
 {
-  "version": 1,
-  "generated": "2026-04-13T12:00:00.000Z",
-  "classes": ["cols-md-1.3", "flex", "fs-16-48", "p-md-16-32"]
+  "version": 2,
+  "generated": "2026-04-15T09:40:18.818Z",
+  "classes": [
+    { "name": "cols-md-1.3", "count": 1 },
+    { "name": "flex",        "count": 4 },
+    { "name": "fs-16-48",    "count": 2 },
+    { "name": "p-md-16-32",  "count": 1 }
+  ]
 }
 ```
 
-The `classes` array is sorted alphabetically for deterministic diffs. The schema is additive-only across minor changes — the `version` field bumps if the shape ever changes in a breaking way.
+The `classes` array is sorted alphabetically by `name` for deterministic diffs. Each entry includes `count` — the number of times the class was referenced across scanned templates (safelist-only classes get `count: 0`). The `version` field bumps when the shape changes in a breaking way.
+
+`writeManifest` compares the new output against the existing file and skips the write when nothing changed — avoids touching the file's mtime and prevents downstream file watchers (e.g. a VS Code extension reading the manifest) from firing on no-op rebuilds.
+
+---
+
+## Benchmarking
+
+Measure how long a build takes at realistic project scale:
+
+```bash
+npm run bench -- --files 200 --classes-per-file 100
+# or directly:
+node scripts/bench.js --files 500 --classes-per-file 200 --runs 5
+node scripts/bench.js --help
+```
+
+The script generates a synthetic project in a tmp directory, runs the CLI with `DOPAMINE_TIMING=1`, and reports per-phase medians (scan / parse / generate / manifest) over multiple runs — twice per invocation, once with `--manifest` and once without, so you can see the manifest phase's contribution directly.
+
+Phase timings are also available on any normal build:
+
+```bash
+DOPAMINE_TIMING=1 npx dopamine --manifest ./dopamine.manifest.json
+```
+
+Prints a `Timing (ms)` block after the usual build summary. Zero cost when the env var is unset.
+
+Reference measurement (200 files × 100 classes, WSL2): full build ~20 ms, manifest write ~7 ms, scan ~11 ms. Watch-mode rebuilds at this scale are perceptually instant.
 
 ---
 

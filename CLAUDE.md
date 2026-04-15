@@ -21,7 +21,7 @@ This file is for **library maintainers** (human or AI) making changes. User-faci
 | `lib/grid-generator.js` | Keyword / container / cols rule emission |
 | `lib/sass-generator.js` | Auto-generates `_dopamine-functions.scss` alongside `.scss` output, parameterized by the user's config |
 | `lib/cli-options.js` | Merges config-file hints with CLI args (`applyConfigHints`) — single spot to edit when adding a flag with a config alias |
-| `lib/manifest.js` | Optional `--manifest <path>` JSON output of compiled class list |
+| `lib/manifest.js` | Optional `--manifest <path>` JSON output — v2 schema: `{ version: 2, generated, classes: [{ name, count }] }` where `count` is occurrences across scanned templates (safelist-only classes get `count: 0`) |
 | `lib/init.js` | `scaffoldProject` for `dopamine init` (copies `starter/`) |
 | `lib/update-message.js` | Builds the message for `dopamine-update` |
 
@@ -50,7 +50,12 @@ Load-bearing rules. Do not break without a strong reason.
 - **Breakpoint prefix `-sm-/-md-/-lg-/-xl-/-xxl-`** goes right after the prefix: `fs-md-24-48`. Wraps the rule in `@media (min-width: …)`. Breakpoint-prefixed fluid classes use the **global viewport** for clamp math (they are NOT re-scoped to the breakpoint's own range — deliberate decision; see `resolveViewport` in `lib/parser.js`).
 - **Auto keyword** for margin (`m-auto`, `mx-auto`, etc.) and sizing (`w-auto`, `h-auto`), with breakpoint variants (`w-md-auto`). Extended via `AUTO_PATTERN` in `lib/parser.js`.
 - **Heights are `fixedOnly`** — `h`, `maxh`, `minh` reject fluid ranges. Reason: fluid clamp scales by viewport *width*, which misbehaves on portrait viewports. Use viewport units instead (`h-100dvh`, `minh-80svh`).
-- **Scanning is strictly attribute-only** — `extractClasses` reads only from `class="..."` and `className={...}`. Bare text (prose, `<code>` tags, comments, JS expressions) is ignored. Classes that can't live in an attribute go in `dopamine-safelist.txt`.
+- **Scanning sources** — `extractClasses` reads from three places, in this order:
+  1. Literal `class="..."` / `className="..."` attribute values (including ternaries like `class="{{ c ? 'fs-16' : 'fs-20' }}"` — both branches captured).
+  2. Twig `{% set <var> = ... %}` RHS (array, ternary, or bare string). Gated by a cheap `content.includes('{%')` so HTML-only projects pay nothing.
+  3. `addClass(...)` call arguments (any shape — `['a', 'b']`, `'a b'`, or multi-arg with ternaries). Gated by `content.includes('addClass(')`.
+
+  All three pipe through `parseClass`, so tokens that aren't class-shaped (`{{`, `?`, translation strings, identifier references) are silently dropped before reaching CSS or manifest. Bare prose, `<code>` tags, comments, and JS expressions remain ignored. Dynamic concatenation like `'block-' ~ slug` extracts only the literal prefix (dropped by `parseClass`) — runtime-computed final names still go in `dopamine-safelist.txt`.
 - **`cols-N` dot notation is a ratio list**: `cols-1.3` → `1fr 3fr`, `cols-1.2.1` → `1fr 2fr 1fr`. Dots ≠ decimals here.
 
 ## Adding features — quick checklists
@@ -90,9 +95,30 @@ Any change that alters emitted CSS (rounding, escaping, rule formatting, breakpo
 
 ## Testing workflow
 
-- **`npm test`** — runs 31 tests (unit + integration + golden).
+- **`npm test`** — runs 33 tests (unit + integration + golden + manifest v2).
 - **`UPDATE_GOLDEN=1 npm test`** — regenerates the three `test/fixtures/golden.expected.*` files when output intentionally changes.
 - **`prepublishOnly` hook** — `npm test` runs before `npm publish`. Can't ship a broken build.
+
+## Performance
+
+Opt-in phase timings:
+```
+DOPAMINE_TIMING=1 node bin/dopamine.js <input> --manifest out.json
+```
+Prints a `scan / parse / generate / manifest` breakdown after the build summary.
+
+Reproducible benchmark:
+```
+node scripts/bench.js --files 200 --classes-per-file 100
+```
+
+Measured at 200 files × 100 classes (2026-04-15, WSL2):
+- **Full build: ~20 ms median.**
+- Manifest write: ~7 ms (object serialize + writeFile).
+- Scan phase: ~11 ms (Map-based counting, same regex as before).
+- Watch mode reruns the same pipeline on every save — perceptually instant at this scale.
+
+`writeManifest` also skips the write when the new manifest is identical to the existing file (content-compared). This prevents the extension's `FileSystemWatcher` from firing on no-op rebuilds. Logged as `Manifest unchanged → skipped write` only when `DOPAMINE_TIMING=1`.
 
 Test file layout:
 - `test/cli.test.js` — parser, generator, extractor, diagnostic + CLI integration

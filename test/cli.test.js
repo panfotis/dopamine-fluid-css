@@ -235,6 +235,94 @@ test('extractClasses does not pick up keyword/grid tokens from bare prose or com
   assert.equal(classes.has('fw-bold'),       false);
 });
 
+test('extractClasses captures both branches of a ternary inside class="..."', () => {
+  const html = `<div class="{{ xxx ? 'fs-12-32' : 'fs-12-62' }}"></div>`;
+  const classes = extractClasses(html);
+  assert.ok(classes.has('fs-12-32'));
+  assert.ok(classes.has('fs-12-62'));
+});
+
+test('extractClasses handles flipped ternary quotes inside class="..."', () => {
+  const html = `<div class='{{ a ? "fs-16" : "fs-20" }}'></div>`;
+  const classes = extractClasses(html);
+  assert.ok(classes.has('fs-16'));
+  assert.ok(classes.has('fs-20'));
+});
+
+test('extractClasses handles one-sided ternary (Twig shorthand)', () => {
+  const html = `<li class="menu-tabs__item {{ active ? 'is-active' }}"></li>`;
+  const classes = extractClasses(html);
+  assert.ok(classes.has('menu-tabs__item'));
+  assert.ok(classes.has('is-active'));
+});
+
+test('extractClasses captures valid classes across || visual separators', () => {
+  const html = `<div class="video-wrapper || position-relative d-block || border-0"></div>`;
+  const classes = extractClasses(html);
+  assert.ok(classes.has('video-wrapper'));
+  assert.ok(classes.has('position-relative'));
+  assert.ok(classes.has('d-block'));
+  assert.ok(classes.has('border-0'));
+});
+
+test('extractClasses handles empty class attribute without crashing', () => {
+  const html = `<div class=""></div>`;
+  const classes = extractClasses(html);
+  assert.equal(classes.size, 0);
+});
+
+test('extractClasses reads literals from Twig {% set <var> = [...] %}', () => {
+  const twig = `{% set classes = ['block', 'fs-32-42', 'px-32-42 py-40-65'] %}<div></div>`;
+  const classes = extractClasses(twig);
+  assert.ok(classes.has('fs-32-42'));
+  assert.ok(classes.has('px-32-42'));
+  assert.ok(classes.has('py-40-65'));
+  assert.ok(classes.has('block'));
+});
+
+test('extractClasses reads the literal prefix from dynamic concatenation in set', () => {
+  const twig = `{% set classes = ['block-' ~ slug, 'flex'] %}`;
+  const classes = extractClasses(twig);
+  assert.ok(classes.has('block-'));  // the literal piece before `~`
+  assert.ok(classes.has('flex'));
+});
+
+test('extractClasses reads literals from a non-array set RHS ternary', () => {
+  const twig = `{% set weight = cond ? 'fw-light' : 'fw-bold' %}`;
+  const classes = extractClasses(twig);
+  assert.ok(classes.has('fw-light'));
+  assert.ok(classes.has('fw-bold'));
+});
+
+test('extractClasses reads inline array inside addClass(...)', () => {
+  const twig = `{{ attributes.addClass(['fs-16', 'p-8 m-16']) }}`;
+  const classes = extractClasses(twig);
+  assert.ok(classes.has('fs-16'));
+  assert.ok(classes.has('p-8'));
+  assert.ok(classes.has('m-16'));
+});
+
+test('extractClasses reads single-string addClass argument', () => {
+  const twig = `{{ attributes.addClass('fs-18 mb-24') }}`;
+  const classes = extractClasses(twig);
+  assert.ok(classes.has('fs-18'));
+  assert.ok(classes.has('mb-24'));
+});
+
+test('extractClasses reads literals across multi-arg addClass with inline ternary', () => {
+  // Real-world: form-element.html.twig
+  const twig = `{{ attributes.addClass(classes, '', float_label ? 'form-floating') }}`;
+  const classes = extractClasses(twig);
+  assert.ok(classes.has('form-floating'));
+});
+
+test('extractClasses emits nothing for a variable-only addClass call', () => {
+  const twig = `{{ attributes.addClass(classes) }}`;
+  const classes = extractClasses(twig);
+  // Only `classes` as an identifier — no literal string args, nothing to emit.
+  assert.equal(classes.has('classes'), false);
+});
+
 test('auto keyword works for width and height (fix #4)', () => {
   const config = { viewport: { min: 320, max: 1440 }, breakpoints: { md: 768 }, prefixes: {} };
 
