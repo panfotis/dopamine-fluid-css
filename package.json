@@ -7,6 +7,7 @@
     "bin",
     "lib",
     "addons",
+    "dist",
     "starter",
     "README.md"
   ],
@@ -25,7 +26,8 @@
     "dry": "node bin/dopamine.js --dry-run",
     "audit:classes": "node bin/dopamine-audit.js",
     "test": "node --test",
-    "prepublishOnly": "npm test",
+    "build:dist": "node bin/build-dist.js",
+    "prepublishOnly": "npm test && npm run build:dist",
     "docs:build": "npm run docs:dopamine && npm run docs:sass && npm run docs:copy-js",
     "docs:dopamine": "node bin/dopamine.js ./docs --ext html --out ./docs/scss/_dopamine.scss --config ./docs/dopamine.config.json",
     "docs:sass": "sass docs/scss/main.scss:docs/css/main.css docs/scss/components:docs/css/components --no-source-map",

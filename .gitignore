@@ -10,6 +10,7 @@ pnpm-debug.log*
 
 # Build output (generated from Sass / Dopamine build scripts)
 /css/
+/dist/
 /scss/_dopamine.scss
 /scss/_dopamine-functions.scss
 /audit

@@ -569,6 +569,48 @@ Box/track sizes scale with the `<label>`'s `font-size`; borders and fill use `cu
 
 For text entry, the `input` component provides a minimal `.input` class that applies to any text-like `<input>` (text, email, password, search, tel, url, number, date, time) and to `<textarea>`. It resets browser defaults and keeps everything at `currentColor` / `inherit`; apply `p-*`, `radius-*`, `fs-*` utilities on the same element to compose the look.
 
+#### Using a component in your project
+
+Three working paths, depending on your project's setup. All use `accordion` as the example — swap the component name (`modal`, `menu`, `tabs`, `dropdown`, `collapse`, `forms/checkbox`, etc.) as needed.
+
+**1. CDN (jsDelivr / unpkg)** — zero install, one tag per file:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/accordion/accordion.css">
+<script src="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/accordion/accordion.js" defer></script>
+```
+
+For form controls, use the bundle (`dist/components/forms/forms.css`) for all four at once, or pin a single file (`dist/components/forms/checkbox.css`).
+
+**2. Copy from `node_modules`** — for self-hosted setups (Drupal themes, static sites, anything that doesn't bundle JS). Add a one-liner to your project's `package.json`:
+
+```json
+"scripts": {
+  "vendor:dopamine": "mkdir -p public/vendor/dopamine && cp -R node_modules/dopamine-fluid/dist/components/* public/vendor/dopamine/"
+}
+```
+
+Run it once on `npm install` (or wire it as a `postinstall` hook), then reference the local copies:
+
+```html
+<link rel="stylesheet" href="/vendor/dopamine/accordion/accordion.css">
+<script src="/vendor/dopamine/accordion/accordion.js" defer></script>
+```
+
+**3. Sass + bundler** — for projects with a build pipeline (webpack, vite, esbuild, parcel). Imports the source directly; your bundler/Sass compiles it into your own output:
+
+```scss
+// Your own SCSS file — compiled into your project's CSS bundle
+@use 'dopamine-fluid/addons/components/accordion/accordion';
+```
+
+```js
+// Your JS entry — bundler resolves and includes the script
+import 'dopamine-fluid/addons/components/accordion/accordion';
+```
+
+This path uses the `addons/` source tree (not `dist/`), so changes to the source pull through your build automatically.
+
 #### JavaScript API & events
 
 Each component registers methods under `window.dopamine` and emits bubbling `CustomEvent`s on its root element, so you can drive components programmatically and react to state changes.
