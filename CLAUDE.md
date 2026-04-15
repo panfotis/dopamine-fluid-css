@@ -13,7 +13,8 @@ This file is for **library maintainers** (human or AI) making changes. User-faci
 | `bin/dopamine-update.js` | Prints update-check message |
 | `lib/runner.js` | Orchestrator: scan → extract → parse → generate → write (+ optional manifest + Sass functions file) |
 | `lib/scanner.js` | `resolveFiles` (file / dir / glob) + `readFile` — uses the `glob` dep |
-| `lib/parser.js` | `extractClasses` (attribute-only regex), `parseClass` → descriptor, `diagnoseClass` (explain-why-it-failed), `resolveViewport` (fluid clamp range) |
+| `lib/parser.js` | `extractClasses` (attribute-only regex, returns Set), `extractClassCounts` (same regex, returns Map<name, count>), `parseClass` → descriptor, `diagnoseClass` (explain-why-it-failed), `resolveViewport` (fluid clamp range) |
+| `lib/counter.js` | `collectClassCounts(filePaths)` — loops files, sums `extractClassCounts` into one Map. Used by `bin/dopamine-audit.js`. |
 | `lib/config.js` | `loadConfig` (with defaults merge) + `PREFIX_MAP` — the canonical prefix→CSS table (load-bearing) |
 | `lib/generator.js` | Descriptor → CSS rule string: `buildClamp`, `generateRule`, selector escaping |
 | `lib/grid-parser.js` | `parseGridClass` for keyword / container / cols classes + `KEYWORD_MAP` |

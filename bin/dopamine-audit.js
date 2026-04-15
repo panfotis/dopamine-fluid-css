@@ -7,10 +7,9 @@ const path = require('path');
 const { program } = require('commander');
 const { version } = require('../package.json');
 const { loadConfig } = require('../lib/config');
-const { resolveFiles, readFile } = require('../lib/scanner');
-const { extractClasses, parseClass } = require('../lib/parser');
-
-const CLASS_ATTR_RE = /(?:class|className)=["']([^"']+)["']|class=\{["']([^"']+)["']\}/g;
+const { resolveFiles } = require('../lib/scanner');
+const { parseClass } = require('../lib/parser');
+const { collectClassCounts } = require('../lib/counter');
 
 program
   .name('dopamine-audit')
@@ -70,6 +69,7 @@ function log(line = '') {
 const counts = collectClassCounts(files);
 const parsed = [];
 
+
 for (const [cls, uses] of counts.entries()) {
   const descriptor = parseClass(cls, config);
   if (!descriptor) continue;
@@ -108,32 +108,6 @@ const candidates = fluid.filter(item => {
 
 const mergeGroups = buildMergeSuggestions(candidates, closeMin, closeMax);
 printMergeSuggestions(mergeGroups, closeMin, closeMax);
-
-function collectClassCounts(filePaths) {
-  const map = new Map();
-
-  for (const filePath of filePaths) {
-    const content = readFile(filePath);
-    if (!content) continue;
-
-    CLASS_ATTR_RE.lastIndex = 0;
-    let m;
-    while ((m = CLASS_ATTR_RE.exec(content)) !== null) {
-      const classString = m[1] || m[2] || '';
-      for (const token of classString.split(/\s+/)) {
-        if (!token) continue;
-        map.set(token, (map.get(token) || 0) + 1);
-      }
-    }
-
-    // Include template bare tokens that may not sit inside class="..."
-    for (const token of extractClasses(content)) {
-      if (!map.has(token)) map.set(token, 1);
-    }
-  }
-
-  return map;
-}
 
 function inventoryKey(descriptor) {
   const bp = descriptor.breakpoint ? `@${descriptor.breakpoint}` : '@base';
