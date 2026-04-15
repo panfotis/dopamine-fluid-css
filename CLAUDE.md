@@ -49,7 +49,7 @@ Load-bearing rules. Do not break without a strong reason.
 - **Breakpoint prefix `-sm-/-md-/-lg-/-xl-/-xxl-`** goes right after the prefix: `fs-md-24-48`. Wraps the rule in `@media (min-width: …)`. Breakpoint-prefixed fluid classes use the **global viewport** for clamp math (they are NOT re-scoped to the breakpoint's own range — deliberate decision; see `resolveViewport` in `lib/parser.js`).
 - **Auto keyword** for margin (`m-auto`, `mx-auto`, etc.) and sizing (`w-auto`, `h-auto`), with breakpoint variants (`w-md-auto`). Extended via `AUTO_PATTERN` in `lib/parser.js`.
 - **Heights are `fixedOnly`** — `h`, `maxh`, `minh` reject fluid ranges. Reason: fluid clamp scales by viewport *width*, which misbehaves on portrait viewports. Use viewport units instead (`h-100dvh`, `minh-80svh`).
-- **Scanning is strictly attribute-only** — `extractClasses` reads only from `class="..."` and `className={...}`. Bare text (prose, `<code>` tags, comments, JS expressions) is ignored. Classes that can't live in an attribute go in `extra.classes.to.compile`.
+- **Scanning is strictly attribute-only** — `extractClasses` reads only from `class="..."` and `className={...}`. Bare text (prose, `<code>` tags, comments, JS expressions) is ignored. Classes that can't live in an attribute go in `safelist.txt`.
 - **`cols-N` dot notation is a ratio list**: `cols-1.3` → `1fr 3fr`, `cols-1.2.1` → `1fr 2fr 1fr`. Dots ≠ decimals here.
 
 ## Adding features — quick checklists
