@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="css/components/forms/radio.css">
   <link rel="stylesheet" href="css/components/forms/switch.css">
   <link rel="stylesheet" href="css/components/forms/input.css">
+  <link rel="stylesheet" href="css/components/forms/select.css">
   <script src="search.js" defer></script>
   <script src="components/menu.js" defer></script>
 </head>
@@ -64,74 +65,74 @@
     <div class="mb-16-32 maxw-500">
       <div class="flex flex-col gap-4 mb-12-24">
         <label for="demo-name" class="fs-14-18">Name</label>
-        <input type="text" id="demo-name" class="input radius-8 p-12-16 fs-14-18" placeholder="Jane Doe">
+        <input type="text" id="demo-name" class="df-input radius-8 p-12-16 fs-14-18" placeholder="Jane Doe">
       </div>
       <div class="flex flex-col gap-4 mb-12-24">
         <label for="demo-email" class="fs-14-18">Email</label>
-        <input type="email" id="demo-email" class="input radius-8 p-12-16 fs-14-18" placeholder="jane@example.com">
+        <input type="email" id="demo-email" class="df-input radius-8 p-12-16 fs-14-18" placeholder="jane@example.com">
       </div>
       <div class="flex flex-col gap-4">
         <label for="demo-message" class="fs-14-18">Message</label>
-        <textarea id="demo-message" class="input radius-8 p-12-16 fs-14-18" rows="4" placeholder="Tell us what you think..."></textarea>
+        <textarea id="demo-message" class="df-input radius-8 p-12-16 fs-14-18" rows="4" placeholder="Tell us what you think..."></textarea>
       </div>
     </div>
 
     <h3 class="fs-18-24 mb-8-16 mt-24-40">Minimum HTML</h3>
     <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;div&gt;
   &lt;label for="email"&gt;Email&lt;/label&gt;
-  &lt;input type="email" id="email" class="input" placeholder="jane@example.com"&gt;
+  &lt;input type="email" id="email" class="df-input" placeholder="jane@example.com"&gt;
 &lt;/div&gt;
 
 &lt;div&gt;
   &lt;label for="message"&gt;Message&lt;/label&gt;
-  &lt;textarea id="message" class="input" rows="4"&gt;&lt;/textarea&gt;
+  &lt;textarea id="message" class="df-input" rows="4"&gt;&lt;/textarea&gt;
 &lt;/div&gt;</code></pre>
-    <p class="fs-14-18 mb-16-32">Pair the <code>&lt;label for&gt;</code> with the input's <code>id</code> so clicking the label text focuses the input. Apply Dopamine classes directly on the <code>.input</code> for padding, radius, and font-size.</p>
+    <p class="fs-14-18 mb-16-32">Pair the <code>&lt;label for&gt;</code> with the input's <code>id</code> so clicking the label text focuses the input. Apply Dopamine classes directly on the <code>.df-input</code> for padding, radius, and font-size.</p>
 
     <h3 class="fs-18-24 mb-8-16">Include</h3>
     <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/forms/input.css"&gt;</code></pre>
     <p class="fs-14-18 mb-8-16">Or via Sass:</p>
     <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/forms/input';</code></pre>
 
-    <p class="fs-14-18 mb-4-8"><code>input</code> — applies to any text-like <code>&lt;input&gt;</code> or <code>&lt;textarea&gt;</code>. Border uses <code>currentColor</code>; font + color are inherited.</p>
-    <p class="fs-14-18"><code>textarea.input</code> — automatically gets <code>resize: vertical</code> and a sensible minimum height.</p>
+    <p class="fs-14-18 mb-4-8"><code>df-input</code> — applies to any text-like <code>&lt;input&gt;</code> or <code>&lt;textarea&gt;</code>. Border uses <code>currentColor</code>; font + color are inherited.</p>
+    <p class="fs-14-18"><code>textarea.df-input</code> — automatically gets <code>resize: vertical</code> and a sensible minimum height.</p>
   </section>
 
   <section class="docs-section mt-40-80">
     <h2 class="fs-24-48 mb-12-24">Checkbox</h2>
-    <p class="fs-14-18 mb-16-32">Styled checkbox using the visually-hidden-input + sibling-selector technique. Native <code>&lt;input&gt;</code> stays in the DOM for accessibility and form submission; a styled <code>.checkbox__box</code> sibling visualizes the state via <code>:checked ~ .checkbox__box</code>. Pure CSS — no JS.</p>
+    <p class="fs-14-18 mb-16-32">Styled checkbox using the visually-hidden-input + sibling-selector technique. Native <code>&lt;input&gt;</code> stays in the DOM for accessibility and form submission; a styled <code>.df-checkbox__box</code> sibling visualizes the state via <code>:checked ~ .checkbox__box</code>. Pure CSS — no JS.</p>
 
     <h3 class="fs-18-24 mb-8-16">Demo</h3>
     <div class="flex flex-col gap-8-16 mb-16-32">
-      <label class="checkbox fs-16-20">
-        <input type="checkbox" class="checkbox__input" checked>
-        <span class="checkbox__box"></span>
-        <span class="checkbox__label">Remember me</span>
+      <label class="df-checkbox fs-16-20">
+        <input type="checkbox" class="df-checkbox__input" checked>
+        <span class="df-checkbox__box"></span>
+        <span class="df-checkbox__label">Remember me</span>
       </label>
-      <label class="checkbox fs-16-20">
-        <input type="checkbox" class="checkbox__input">
-        <span class="checkbox__box"></span>
-        <span class="checkbox__label">Send me occasional updates</span>
+      <label class="df-checkbox fs-16-20">
+        <input type="checkbox" class="df-checkbox__input">
+        <span class="df-checkbox__box"></span>
+        <span class="df-checkbox__label">Send me occasional updates</span>
       </label>
     </div>
 
     <h3 class="fs-18-24 mb-8-16 mt-24-40">Minimum HTML</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;label class="checkbox"&gt;
-  &lt;input type="checkbox" class="checkbox__input"&gt;
-  &lt;span class="checkbox__box"&gt;&lt;/span&gt;
-  &lt;span class="checkbox__label"&gt;Label text&lt;/span&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;label class="df-checkbox"&gt;
+  &lt;input type="checkbox" class="df-checkbox__input"&gt;
+  &lt;span class="df-checkbox__box"&gt;&lt;/span&gt;
+  &lt;span class="df-checkbox__label"&gt;Label text&lt;/span&gt;
 &lt;/label&gt;</code></pre>
-    <p class="fs-14-18 mb-16-32">The <code>&lt;input&gt;</code> must come before <code>.checkbox__box</code> in the DOM (the sibling selector depends on it). The box and label inherit <code>currentColor</code> and <code>font-size</code> — scale with Dopamine classes on <code>.checkbox</code>.</p>
+    <p class="fs-14-18 mb-16-32">The <code>&lt;input&gt;</code> must come before <code>.df-checkbox__box</code> in the DOM (the sibling selector depends on it). The box and label inherit <code>currentColor</code> and <code>font-size</code> — scale with Dopamine classes on <code>.df-checkbox</code>.</p>
 
     <h3 class="fs-18-24 mb-8-16">Include</h3>
     <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/forms/checkbox.css"&gt;</code></pre>
     <p class="fs-14-18 mb-8-16">Or via Sass:</p>
     <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/forms/checkbox';</code></pre>
 
-    <p class="fs-14-18 mb-4-8"><code>checkbox</code> — wrapping <code>&lt;label&gt;</code> (click anywhere inside it toggles the input).</p>
-    <p class="fs-14-18 mb-4-8"><code>checkbox__input</code> — the real <code>&lt;input type="checkbox"&gt;</code>, visually hidden but keyboard-focusable.</p>
-    <p class="fs-14-18 mb-4-8"><code>checkbox__box</code> — the styled square; inherits <code>currentColor</code> for border + fill.</p>
-    <p class="fs-14-18"><code>checkbox__label</code> — the text (optional; omit for a box-only checkbox).</p>
+    <p class="fs-14-18 mb-4-8"><code>df-checkbox</code> — wrapping <code>&lt;label&gt;</code> (click anywhere inside it toggles the input).</p>
+    <p class="fs-14-18 mb-4-8"><code>df-checkbox__input</code> — the real <code>&lt;input type="checkbox"&gt;</code>, visually hidden but keyboard-focusable.</p>
+    <p class="fs-14-18 mb-4-8"><code>df-checkbox__box</code> — the styled square; inherits <code>currentColor</code> for border + fill.</p>
+    <p class="fs-14-18"><code>df-checkbox__label</code> — the text (optional; omit for a box-only checkbox).</p>
   </section>
 
   <section class="docs-section mt-40-80">
@@ -140,33 +141,33 @@
 
     <h3 class="fs-18-24 mb-8-16">Demo</h3>
     <div class="flex flex-col gap-8-16 mb-16-32">
-      <label class="radio fs-16-20">
-        <input type="radio" name="demo-plan" class="radio__input" checked>
-        <span class="radio__box"></span>
-        <span class="radio__label">Free — 0 €/month</span>
+      <label class="df-radio fs-16-20">
+        <input type="radio" name="demo-plan" class="df-radio__input" checked>
+        <span class="df-radio__box"></span>
+        <span class="df-radio__label">Free — 0 €/month</span>
       </label>
-      <label class="radio fs-16-20">
-        <input type="radio" name="demo-plan" class="radio__input">
-        <span class="radio__box"></span>
-        <span class="radio__label">Pro — 9 €/month</span>
+      <label class="df-radio fs-16-20">
+        <input type="radio" name="demo-plan" class="df-radio__input">
+        <span class="df-radio__box"></span>
+        <span class="df-radio__label">Pro — 9 €/month</span>
       </label>
-      <label class="radio fs-16-20">
-        <input type="radio" name="demo-plan" class="radio__input">
-        <span class="radio__box"></span>
-        <span class="radio__label">Team — 29 €/month</span>
+      <label class="df-radio fs-16-20">
+        <input type="radio" name="demo-plan" class="df-radio__input">
+        <span class="df-radio__box"></span>
+        <span class="df-radio__label">Team — 29 €/month</span>
       </label>
     </div>
 
     <h3 class="fs-18-24 mb-8-16 mt-24-40">Minimum HTML</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;label class="radio"&gt;
-  &lt;input type="radio" name="plan" class="radio__input"&gt;
-  &lt;span class="radio__box"&gt;&lt;/span&gt;
-  &lt;span class="radio__label"&gt;Option A&lt;/span&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;label class="df-radio"&gt;
+  &lt;input type="radio" name="plan" class="df-radio__input"&gt;
+  &lt;span class="df-radio__box"&gt;&lt;/span&gt;
+  &lt;span class="df-radio__label"&gt;Option A&lt;/span&gt;
 &lt;/label&gt;
-&lt;label class="radio"&gt;
-  &lt;input type="radio" name="plan" class="radio__input"&gt;
-  &lt;span class="radio__box"&gt;&lt;/span&gt;
-  &lt;span class="radio__label"&gt;Option B&lt;/span&gt;
+&lt;label class="df-radio"&gt;
+  &lt;input type="radio" name="plan" class="df-radio__input"&gt;
+  &lt;span class="df-radio__box"&gt;&lt;/span&gt;
+  &lt;span class="df-radio__label"&gt;Option B&lt;/span&gt;
 &lt;/label&gt;</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Include</h3>
@@ -174,10 +175,10 @@
     <p class="fs-14-18 mb-8-16">Or via Sass:</p>
     <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/forms/radio';</code></pre>
 
-    <p class="fs-14-18 mb-4-8"><code>radio</code> — wrapping <code>&lt;label&gt;</code>.</p>
-    <p class="fs-14-18 mb-4-8"><code>radio__input</code> — the real <code>&lt;input type="radio"&gt;</code>.</p>
-    <p class="fs-14-18 mb-4-8"><code>radio__box</code> — the styled circle.</p>
-    <p class="fs-14-18"><code>radio__label</code> — the text.</p>
+    <p class="fs-14-18 mb-4-8"><code>df-radio</code> — wrapping <code>&lt;label&gt;</code>.</p>
+    <p class="fs-14-18 mb-4-8"><code>df-radio__input</code> — the real <code>&lt;input type="radio"&gt;</code>.</p>
+    <p class="fs-14-18 mb-4-8"><code>df-radio__box</code> — the styled circle.</p>
+    <p class="fs-14-18"><code>df-radio__label</code> — the text.</p>
   </section>
 
   <section class="docs-section mt-40-80">
@@ -186,23 +187,23 @@
 
     <h3 class="fs-18-24 mb-8-16">Demo</h3>
     <div class="flex flex-col gap-8-16 mb-16-32">
-      <label class="switch fs-16-20">
-        <input type="checkbox" class="switch__input" checked>
-        <span class="switch__track"></span>
-        <span class="switch__label">Email notifications</span>
+      <label class="df-switch fs-16-20">
+        <input type="checkbox" class="df-switch__input" checked>
+        <span class="df-switch__track"></span>
+        <span class="df-switch__label">Email notifications</span>
       </label>
-      <label class="switch fs-16-20">
-        <input type="checkbox" class="switch__input">
-        <span class="switch__track"></span>
-        <span class="switch__label">Push notifications</span>
+      <label class="df-switch fs-16-20">
+        <input type="checkbox" class="df-switch__input">
+        <span class="df-switch__track"></span>
+        <span class="df-switch__label">Push notifications</span>
       </label>
     </div>
 
     <h3 class="fs-18-24 mb-8-16 mt-24-40">Minimum HTML</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;label class="switch"&gt;
-  &lt;input type="checkbox" class="switch__input"&gt;
-  &lt;span class="switch__track"&gt;&lt;/span&gt;
-  &lt;span class="switch__label"&gt;Label text&lt;/span&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;label class="df-switch"&gt;
+  &lt;input type="checkbox" class="df-switch__input"&gt;
+  &lt;span class="df-switch__track"&gt;&lt;/span&gt;
+  &lt;span class="df-switch__label"&gt;Label text&lt;/span&gt;
 &lt;/label&gt;</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Include</h3>
@@ -210,10 +211,52 @@
     <p class="fs-14-18 mb-8-16">Or via Sass:</p>
     <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/forms/switch';</code></pre>
 
-    <p class="fs-14-18 mb-4-8"><code>switch</code> — wrapping <code>&lt;label&gt;</code>.</p>
-    <p class="fs-14-18 mb-4-8"><code>switch__input</code> — the real <code>&lt;input type="checkbox"&gt;</code>.</p>
-    <p class="fs-14-18 mb-4-8"><code>switch__track</code> — the pill-shaped track; thumb is a <code>::after</code> inside it.</p>
-    <p class="fs-14-18"><code>switch__label</code> — the text.</p>
+    <p class="fs-14-18 mb-4-8"><code>df-switch</code> — wrapping <code>&lt;label&gt;</code>.</p>
+    <p class="fs-14-18 mb-4-8"><code>df-switch__input</code> — the real <code>&lt;input type="checkbox"&gt;</code>.</p>
+    <p class="fs-14-18 mb-4-8"><code>df-switch__track</code> — the pill-shaped track; thumb is a <code>::after</code> inside it.</p>
+    <p class="fs-14-18"><code>df-switch__label</code> — the text.</p>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Select</h2>
+    <p class="fs-14-18 mb-16-32">Native <code>&lt;select&gt;</code> with a styled rounded chevron. The dropdown option list stays native — the browser/OS handles it, which keeps accessibility, keyboard navigation, and mobile pickers intact. Only the closed control (border, padding, arrow) is styled.</p>
+
+    <h3 class="fs-18-24 mb-8-16">Demo</h3>
+    <div class="mb-16-32 maxw-500">
+      <div class="flex flex-col gap-4 mb-12-24">
+        <label for="demo-country" class="fs-14-18">Country</label>
+        <select id="demo-country" class="df-select radius-8 p-12-16 fs-14-18">
+          <option>United States</option>
+          <option>United Kingdom</option>
+          <option>Greece</option>
+          <option>Japan</option>
+        </select>
+      </div>
+      <div class="flex flex-col gap-4">
+        <label for="demo-plan-size" class="fs-14-18">Plan</label>
+        <select id="demo-plan-size" class="df-select radius-8 p-12-16 fs-14-18">
+          <option>Free</option>
+          <option>Pro</option>
+          <option>Enterprise</option>
+        </select>
+      </div>
+    </div>
+
+    <h3 class="fs-18-24 mb-8-16 mt-24-40">Minimum HTML</h3>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;label for="plan"&gt;Plan&lt;/label&gt;
+&lt;select id="plan" class="df-select"&gt;
+  &lt;option&gt;Free&lt;/option&gt;
+  &lt;option&gt;Pro&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+    <p class="fs-14-18 mb-16-32">Apply Dopamine classes directly on the <code>.df-select</code> for padding, radius, and font-size — same pattern as <code>.df-input</code>.</p>
+
+    <h3 class="fs-18-24 mb-8-16">Include</h3>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="css/components/forms/select.css"&gt;</code></pre>
+    <p class="fs-14-18 mb-8-16">Or via Sass:</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/forms/select';</code></pre>
+
+    <p class="fs-14-18 mb-4-8"><code>df-select</code> — applies to a native <code>&lt;select&gt;</code>. Border uses <code>currentColor</code>; font + color are inherited.</p>
+    <p class="fs-14-18">The chevron stroke is a fixed neutral — override <code>background-image</code> on <code>.df-select</code> to retheme.</p>
   </section>
 
 </div>

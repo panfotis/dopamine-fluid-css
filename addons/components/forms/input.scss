@@ -8,7 +8,7 @@
 // Applies to: <input type="text|email|password|search|tel|url|number|date|time">
 // and <textarea>.
 
-.input {
+.df-input {
   display: block;
   width: 100%;
   box-sizing: border-box;
@@ -19,13 +19,13 @@
   padding: 0.375em 0.625em;
 }
 
-.input:focus-visible {
+.df-input:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 1px;
 }
 
 // Textareas: sensible defaults — allow vertical resize only, minimum height
-textarea.input {
+textarea.df-input {
   resize: vertical;
   min-height: 4em;
 }

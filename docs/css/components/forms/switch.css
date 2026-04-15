@@ -1,11 +1,11 @@
-.switch {
+.df-switch {
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
   cursor: pointer;
 }
 
-.switch__input {
+.df-switch__input {
   position: absolute;
   opacity: 0;
   width: 0;
@@ -13,7 +13,7 @@
   margin: 0;
 }
 
-.switch__track {
+.df-switch__track {
   display: inline-block;
   flex-shrink: 0;
   width: 2em;
@@ -24,7 +24,7 @@
   transition: background 0.15s ease;
 }
 
-.switch__track::after {
+.df-switch__track::after {
   content: "";
   position: absolute;
   top: 1px;
@@ -36,16 +36,16 @@
   transition: transform 0.15s ease;
 }
 
-.switch__input:checked ~ .switch__track::after {
+.df-switch__input:checked ~ .df-switch__track::after {
   transform: translateX(1em);
 }
 
-.switch__input:focus-visible ~ .switch__track {
+.df-switch__input:focus-visible ~ .df-switch__track {
   outline: 2px solid currentColor;
   outline-offset: 2px;
 }
 
-.switch {
+.df-switch {
   color: #0f0f0f;
   user-select: none;
 }

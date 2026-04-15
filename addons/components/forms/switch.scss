@@ -5,22 +5,22 @@
 //   @use 'dopamine-fluid/addons/components/forms/switch';
 //
 // Markup:
-//   <label class="switch">
-//     <input type="checkbox" class="switch__input">
-//     <span class="switch__track"></span>
-//     <span class="switch__label">Label text</span>
+//   <label class="df-switch">
+//     <input type="checkbox" class="df-switch__input">
+//     <span class="df-switch__track"></span>
+//     <span class="df-switch__label">Label text</span>
 //   </label>
 //
-// IMPORTANT: the <input> must precede the .switch__track in the DOM.
+// IMPORTANT: the <input> must precede the .df-switch__track in the DOM.
 
-.switch {
+.df-switch {
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
   cursor: pointer;
 }
 
-.switch__input {
+.df-switch__input {
   position: absolute;
   opacity: 0;
   width: 0;
@@ -29,7 +29,7 @@
 }
 
 // Track — pill-shaped container for the thumb
-.switch__track {
+.df-switch__track {
   display: inline-block;
   flex-shrink: 0;
   width: 2em;
@@ -41,7 +41,7 @@
 }
 
 // Thumb — circle that slides left↔right
-.switch__track::after {
+.df-switch__track::after {
   content: '';
   position: absolute;
   top: 1px;
@@ -53,11 +53,11 @@
   transition: transform 0.15s ease;
 }
 
-.switch__input:checked ~ .switch__track::after {
+.df-switch__input:checked ~ .df-switch__track::after {
   transform: translateX(1em);
 }
 
-.switch__input:focus-visible ~ .switch__track {
+.df-switch__input:focus-visible ~ .df-switch__track {
   outline: 2px solid currentColor;
   outline-offset: 2px;
 }

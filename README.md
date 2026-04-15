@@ -558,16 +558,16 @@ Available components: `accordion`, `modal`, `menu`, `tabs`, `dropdown`, `collaps
 **Form components** (`checkbox`, `radio`, `switch`) are pure-CSS styled replacements for native `<input>` checkboxes and radios. They keep the real `<input>` in the DOM (accessible + form-submittable), visually hide it, and render a styled sibling that reacts to `:checked`. No JS, no a11y tradeoffs. Markup contract:
 
 ```html
-<label class="checkbox">
-  <input type="checkbox" class="checkbox__input">
-  <span class="checkbox__box"></span>
-  <span class="checkbox__label">Remember me</span>
+<label class="df-checkbox">
+  <input type="checkbox" class="df-checkbox__input">
+  <span class="df-checkbox__box"></span>
+  <span class="df-checkbox__label">Remember me</span>
 </label>
 ```
 
 Box/track sizes scale with the `<label>`'s `font-size`; borders and fill use `currentColor`, so you can size and colour the whole thing via Dopamine classes on the label.
 
-For text entry, the `input` component provides a minimal `.input` class that applies to any text-like `<input>` (text, email, password, search, tel, url, number, date, time) and to `<textarea>`. It resets browser defaults and keeps everything at `currentColor` / `inherit`; apply `p-*`, `radius-*`, `fs-*` utilities on the same element to compose the look.
+For text entry, the `input` component provides a minimal `.df-input` class that applies to any text-like `<input>` (text, email, password, search, tel, url, number, date, time) and to `<textarea>`. It resets browser defaults and keeps everything at `currentColor` / `inherit`; apply `p-*`, `radius-*`, `fs-*` utilities on the same element to compose the look.
 
 #### Using a component in your project
 

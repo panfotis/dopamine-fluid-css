@@ -1,11 +1,11 @@
-.radio {
+.df-radio {
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
   cursor: pointer;
 }
 
-.radio__input {
+.df-radio__input {
   position: absolute;
   opacity: 0;
   width: 0;
@@ -13,7 +13,7 @@
   margin: 0;
 }
 
-.radio__box {
+.df-radio__box {
   display: inline-block;
   flex-shrink: 0;
   width: 1em;
@@ -23,7 +23,7 @@
   position: relative;
 }
 
-.radio__box::after {
+.df-radio__box::after {
   content: "";
   position: absolute;
   inset: 2px;
@@ -33,16 +33,16 @@
   transition: transform 0.15s ease;
 }
 
-.radio__input:checked ~ .radio__box::after {
+.df-radio__input:checked ~ .df-radio__box::after {
   transform: scale(1);
 }
 
-.radio__input:focus-visible ~ .radio__box {
+.df-radio__input:focus-visible ~ .df-radio__box {
   outline: 2px solid currentColor;
   outline-offset: 2px;
 }
 
-.radio {
+.df-radio {
   color: #0f0f0f;
   user-select: none;
 }

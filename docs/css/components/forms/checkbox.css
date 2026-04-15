@@ -1,11 +1,11 @@
-.checkbox {
+.df-checkbox {
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
   cursor: pointer;
 }
 
-.checkbox__input {
+.df-checkbox__input {
   position: absolute;
   opacity: 0;
   width: 0;
@@ -13,7 +13,7 @@
   margin: 0;
 }
 
-.checkbox__box {
+.df-checkbox__box {
   display: inline-block;
   flex-shrink: 0;
   width: 1em;
@@ -22,7 +22,7 @@
   position: relative;
 }
 
-.checkbox__box::after {
+.df-checkbox__box::after {
   content: "";
   position: absolute;
   inset: 2px;
@@ -31,16 +31,16 @@
   transition: transform 0.15s ease;
 }
 
-.checkbox__input:checked ~ .checkbox__box::after {
+.df-checkbox__input:checked ~ .df-checkbox__box::after {
   transform: scale(1);
 }
 
-.checkbox__input:focus-visible ~ .checkbox__box {
+.df-checkbox__input:focus-visible ~ .df-checkbox__box {
   outline: 2px solid currentColor;
   outline-offset: 2px;
 }
 
-.checkbox {
+.df-checkbox {
   color: #0f0f0f;
   user-select: none;
 }

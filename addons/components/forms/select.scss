@@ -1,0 +1,38 @@
+// Dopamine Fluid — Select Component
+// Native <select> with a styled rounded chevron. The option list itself
+// stays native (browser/OS handles it — accessible, keyboard-friendly).
+//
+//   @use 'dopamine-fluid/addons/components/forms/select';
+//
+// Markup:
+//   <select class="df-select"> ... </select>
+//
+// Note: SVG backgrounds can't read `currentColor` from the host, so the arrow
+// stroke is a fixed neutral. Override `background-image` on `.df-select` to
+// retheme.
+
+.df-select {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  border: 1px solid currentColor;
+  padding: 0.375em 1.875em 0.375em 0.625em;
+  appearance: none;
+
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.625em center;
+  background-size: 1em 0.75em;
+}
+
+.df-select::-ms-expand {
+  display: none;
+}
+
+.df-select:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 1px;
+}

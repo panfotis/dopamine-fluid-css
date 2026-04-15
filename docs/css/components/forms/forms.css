@@ -1,11 +1,11 @@
-.checkbox {
+.df-checkbox {
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
   cursor: pointer;
 }
 
-.checkbox__input {
+.df-checkbox__input {
   position: absolute;
   opacity: 0;
   width: 0;
@@ -13,7 +13,7 @@
   margin: 0;
 }
 
-.checkbox__box {
+.df-checkbox__box {
   display: inline-block;
   flex-shrink: 0;
   width: 1em;
@@ -22,7 +22,7 @@
   position: relative;
 }
 
-.checkbox__box::after {
+.df-checkbox__box::after {
   content: "";
   position: absolute;
   inset: 2px;
@@ -31,23 +31,23 @@
   transition: transform 0.15s ease;
 }
 
-.checkbox__input:checked ~ .checkbox__box::after {
+.df-checkbox__input:checked ~ .df-checkbox__box::after {
   transform: scale(1);
 }
 
-.checkbox__input:focus-visible ~ .checkbox__box {
+.df-checkbox__input:focus-visible ~ .df-checkbox__box {
   outline: 2px solid currentColor;
   outline-offset: 2px;
 }
 
-.radio {
+.df-radio {
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
   cursor: pointer;
 }
 
-.radio__input {
+.df-radio__input {
   position: absolute;
   opacity: 0;
   width: 0;
@@ -55,7 +55,7 @@
   margin: 0;
 }
 
-.radio__box {
+.df-radio__box {
   display: inline-block;
   flex-shrink: 0;
   width: 1em;
@@ -65,7 +65,7 @@
   position: relative;
 }
 
-.radio__box::after {
+.df-radio__box::after {
   content: "";
   position: absolute;
   inset: 2px;
@@ -75,23 +75,23 @@
   transition: transform 0.15s ease;
 }
 
-.radio__input:checked ~ .radio__box::after {
+.df-radio__input:checked ~ .df-radio__box::after {
   transform: scale(1);
 }
 
-.radio__input:focus-visible ~ .radio__box {
+.df-radio__input:focus-visible ~ .df-radio__box {
   outline: 2px solid currentColor;
   outline-offset: 2px;
 }
 
-.switch {
+.df-switch {
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
   cursor: pointer;
 }
 
-.switch__input {
+.df-switch__input {
   position: absolute;
   opacity: 0;
   width: 0;
@@ -99,7 +99,7 @@
   margin: 0;
 }
 
-.switch__track {
+.df-switch__track {
   display: inline-block;
   flex-shrink: 0;
   width: 2em;
@@ -110,7 +110,7 @@
   transition: background 0.15s ease;
 }
 
-.switch__track::after {
+.df-switch__track::after {
   content: "";
   position: absolute;
   top: 1px;
@@ -122,16 +122,16 @@
   transition: transform 0.15s ease;
 }
 
-.switch__input:checked ~ .switch__track::after {
+.df-switch__input:checked ~ .df-switch__track::after {
   transform: translateX(1em);
 }
 
-.switch__input:focus-visible ~ .switch__track {
+.df-switch__input:focus-visible ~ .df-switch__track {
   outline: 2px solid currentColor;
   outline-offset: 2px;
 }
 
-.input {
+.df-input {
   display: block;
   width: 100%;
   box-sizing: border-box;
@@ -142,12 +142,37 @@
   padding: 0.375em 0.625em;
 }
 
-.input:focus-visible {
+.df-input:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 1px;
 }
 
-textarea.input {
+textarea.df-input {
   resize: vertical;
   min-height: 4em;
+}
+
+.df-select {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  border: 1px solid currentColor;
+  padding: 0.375em 1.875em 0.375em 0.625em;
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.625em center;
+  background-size: 1em 0.75em;
+}
+
+.df-select::-ms-expand {
+  display: none;
+}
+
+.df-select:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 1px;
 }

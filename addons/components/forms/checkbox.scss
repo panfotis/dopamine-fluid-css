@@ -5,16 +5,16 @@
 //   @use 'dopamine-fluid/addons/components/forms/checkbox';
 //
 // Markup:
-//   <label class="checkbox">
-//     <input type="checkbox" class="checkbox__input">
-//     <span class="checkbox__box"></span>
-//     <span class="checkbox__label">Label text</span>
+//   <label class="df-checkbox">
+//     <input type="checkbox" class="df-checkbox__input">
+//     <span class="df-checkbox__box"></span>
+//     <span class="df-checkbox__label">Label text</span>
 //   </label>
 //
-// IMPORTANT: the <input> must precede the .checkbox__box in the DOM
-// (the sibling selector .checkbox__input:checked ~ .checkbox__box depends on it).
+// IMPORTANT: the <input> must precede the .df-checkbox__box in the DOM
+// (the sibling selector .df-checkbox__input:checked ~ .df-checkbox__box depends on it).
 
-.checkbox {
+.df-checkbox {
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
@@ -22,7 +22,7 @@
 }
 
 // Visually hide the native input but keep it accessible/focusable
-.checkbox__input {
+.df-checkbox__input {
   position: absolute;
   opacity: 0;
   width: 0;
@@ -31,7 +31,7 @@
 }
 
 // Visual box — inherits text color via currentColor
-.checkbox__box {
+.df-checkbox__box {
   display: inline-block;
   flex-shrink: 0;
   width: 1em;
@@ -41,7 +41,7 @@
 }
 
 // Inner fill (hidden by default, scales in when checked)
-.checkbox__box::after {
+.df-checkbox__box::after {
   content: '';
   position: absolute;
   inset: 2px;
@@ -50,12 +50,12 @@
   transition: transform 0.15s ease;
 }
 
-.checkbox__input:checked ~ .checkbox__box::after {
+.df-checkbox__input:checked ~ .df-checkbox__box::after {
   transform: scale(1);
 }
 
 // Keyboard focus indicator (native focus is invisible on the hidden input)
-.checkbox__input:focus-visible ~ .checkbox__box {
+.df-checkbox__input:focus-visible ~ .df-checkbox__box {
   outline: 2px solid currentColor;
   outline-offset: 2px;
 }
