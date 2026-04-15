@@ -2,7 +2,7 @@
   "input": "./templates",
   "ext": "html",
   "out": "./scss/_dopamine.scss",
-  "classes": "./safelist.txt",
+  "classes": "./dopamine-safelist.txt",
 
   "viewport": {
     "min": 320,

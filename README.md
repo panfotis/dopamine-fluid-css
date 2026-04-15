@@ -53,7 +53,7 @@ npm install --save-dev dopamine-fluid sass concurrently browser-sync
 npx dopamine-fluid init
 ```
 
-`dopamine init` copies a starter `templates/` folder, `scss/` entrypoint, `dopamine.config.json`, and `safelist.txt` into your project. If a `package.json` already exists, it also adds missing `dopamine`, `sass`, `build`, and `dev` scripts without overwriting your existing scripts.
+`dopamine init` copies a starter `templates/` folder, `scss/` entrypoint, `dopamine.config.json`, and `dopamine-safelist.txt` into your project. If a `package.json` already exists, it also adds missing `dopamine`, `sass`, `build`, and `dev` scripts without overwriting your existing scripts.
 
 Build the starter project:
 
@@ -76,7 +76,7 @@ The scaffolded project uses this structure. Files marked as generated appear aft
 your-project/
 ├── package.json                   # optional — if present, init adds missing scripts
 ├── dopamine.config.json           # scan/output configuration
-├── safelist.txt                   # optional extra classes to compile
+├── dopamine-safelist.txt                   # optional extra classes to compile
 ├── templates/
 │   └── index.html                 # starter markup
 ├── scss/
@@ -665,7 +665,7 @@ Create a `dopamine.config.json` in your project root:
   "input": "./templates",
   "ext": "html",
   "out": "./scss/_dopamine.scss",
-  "classes": "./safelist.txt",
+  "classes": "./dopamine-safelist.txt",
 
   "viewport": {
     "min": 320,
@@ -781,7 +781,7 @@ Threshold: Δmin <= 2px and Δmax <= 4px
 
 You can provide classes directly in a plain text file — one class per line. Useful for prototyping, generating a utility stylesheet from a curated list, or integrating with tools that output class lists.
 
-Create a file (e.g. `safelist.txt`):
+Create a file (e.g. `dopamine-safelist.txt`):
 
 ```
 # One class per line
@@ -794,14 +794,14 @@ Empty lines and lines starting with `#` are ignored.
 Run via CLI:
 
 ```bash
-npx dopamine --classes safelist.txt
+npx dopamine --classes dopamine-safelist.txt
 ```
 
 Or set it in `dopamine.config.json`:
 
 ```json
 {
-  "classes": "./safelist.txt"
+  "classes": "./dopamine-safelist.txt"
 }
 ```
 
