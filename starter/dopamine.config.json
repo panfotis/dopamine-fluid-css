@@ -19,8 +19,8 @@
   },
   "prefixes": {
     "fs": {
-      "vpMin": 375,
-      "vpMax": 1440
+      "vpMin": 360,
+      "vpMax": 1920
     }
   }
 }
