@@ -191,23 +191,23 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 | `p` | `padding` | `p-16` | `p-16-48` | `p-md-16` / `p-md-16-48` |
 | `pt` | `padding-top` | `pt-16` | `pt-16-48` | `pt-md-16` / `pt-md-16-48` |
 | `pb` | `padding-bottom` | `pb-16` | `pb-16-48` | `pb-md-16` |
-| `pl` | `padding-left` | `pl-16` | `pl-16-48` | `pl-md-16` |
-| `pr` | `padding-right` | `pr-16` | `pr-16-48` | `pr-md-16` |
+| `ps` | `padding-inline-start` | `ps-16` | `ps-16-48` | `ps-md-16` |
+| `pe` | `padding-inline-end` | `pe-16` | `pe-16-48` | `pe-md-16` |
 | `px` | `padding-left` + `right` | `px-16` | `px-16-48` | `px-md-16` / `px-md-16-48` |
 | `py` | `padding-top` + `bottom` | `py-16` | `py-16-48` | `py-md-16` / `py-md-16-48` |
 | **Margin** | | | | |
 | `m` | `margin` | `m-16` | `m-16-48` | `m-md-16` / `m-md-16-48` |
 | `mt` | `margin-top` | `mt-16` | `mt-16-48` | `mt-md-16` / `mt-md-16-48` |
 | `mb` | `margin-bottom` | `mb-16` | `mb-16-48` | `mb-md-16` / `mb-md-16-48` |
-| `ml` | `margin-left` | `ml-16` | `ml-16-48` | `ml-md-16` |
-| `mr` | `margin-right` | `mr-16` | `mr-16-48` | `mr-md-16` |
+| `ms` | `margin-inline-start` | `ms-16` | `ms-16-48` | `ms-md-16` |
+| `me` | `margin-inline-end` | `me-16` | `me-16-48` | `me-md-16` |
 | `mx` | `margin-left` + `right` | `mx-16` | `mx-16-48` | `mx-md-16` / `mx-md-16-48` |
 | `my` | `margin-top` + `bottom` | `my-16` | `my-16-48` | `my-md-16` / `my-md-16-48` |
 | **Margin Auto** | | | | |
 | `mx-auto` | `margin-left: auto` + `right: auto` | — | — | `mx-md-auto` |
 | `my-auto` | `margin-top: auto` + `bottom: auto` | — | — | `my-md-auto` |
-| `ml-auto` | `margin-left: auto` | — | — | `ml-md-auto` |
-| `mr-auto` | `margin-right: auto` | — | — | `mr-md-auto` |
+| `ms-auto` | `margin-inline-start: auto` | — | — | `ms-md-auto` |
+| `me-auto` | `margin-inline-end: auto` | — | — | `me-md-auto` |
 | `mt-auto` | `margin-top: auto` | — | — | `mt-md-auto` |
 | `mb-auto` | `margin-bottom: auto` | — | — | `mb-md-auto` |
 | **Sizing** | | | | |
@@ -231,6 +231,7 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 | `container` | `max-width` + centered | `container-1200` | — | — |
 
 > **Notes:**
+> - `ps` / `pe` / `ms` / `me` emit **logical properties** (`padding-inline-start`, `padding-inline-end`, `margin-inline-start`, `margin-inline-end`). In LTR these behave identically to left/right; in RTL they automatically flip to the start/end of the reading direction.
 > - `fw` is unitless — `fw-700` outputs `font-weight: 700`, not rem. No fluid range.
 > - `order` is unitless, fixed-only (no fluid range). Applies to flex **and** grid items. Positive integers only. Supports breakpoints: `order-1`, `order-md-2`, `order-lg-4`.
 > - `lh` is unitless, fixed only (no fluid range). Values ≥ 10 are divided by 10: `lh-15` → `1.5`, `lh-12` → `1.2`. Values < 10 are whole numbers: `lh-2` → `2`. Supports breakpoints: `lh-md-15`

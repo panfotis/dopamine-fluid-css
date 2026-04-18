@@ -312,12 +312,12 @@
   margin-bottom: 2.5rem;
 }
 
-.ml-16 {
-  margin-left: 1rem;
+.ms-16 {
+  margin-inline-start: 1rem;
 }
 
-.mr-16 {
-  margin-right: 1rem;
+.me-16 {
+  margin-inline-end: 1rem;
 }
 
 .pt-12 {
@@ -466,12 +466,12 @@
   margin-bottom: auto;
 }
 
-.ml-auto {
-  margin-left: auto;
+.ms-auto {
+  margin-inline-start: auto;
 }
 
-.mr-auto {
-  margin-right: auto;
+.me-auto {
+  margin-inline-end: auto;
 }
 
 .w-auto {
