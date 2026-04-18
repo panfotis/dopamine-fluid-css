@@ -187,6 +187,7 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 | `fs` | `font-size` | `fs-16` | `fs-16-48` | `fs-md-16` / `fs-md-16-48` |
 | `fw` | `font-weight` | `fw-700` | — | — |
 | `lh` | `line-height` | `lh-15` → 1.5 | — | `lh-md-15` |
+| `ls` | `letter-spacing` | `ls-5` → 0.05em | — | `ls-md-10` |
 | **Padding** | | | | |
 | `p` | `padding` | `p-16` | `p-16-48` | `p-md-16` / `p-md-16-48` |
 | `pt` | `padding-top` | `pt-16` | `pt-16-48` | `pt-md-16` / `pt-md-16-48` |
@@ -232,9 +233,11 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 
 > **Notes:**
 > - `ps` / `pe` / `ms` / `me` emit **logical properties** (`padding-inline-start`, `padding-inline-end`, `margin-inline-start`, `margin-inline-end`). In LTR these behave identically to left/right; in RTL they automatically flip to the start/end of the reading direction.
+> - **Negative values via `n` prefix**: `mt-n10` → `margin-top: -0.625rem`, `ls-n5` → `letter-spacing: -0.05em`, `order-n1` → `order: -1`. Works with breakpoints (`mt-md-n10`) and fluid ranges where applicable (`mt-n10-n5`). Opt-in per prefix — only margins (`m` / `mt` / `mb` / `ms` / `me` / `mx` / `my`), `ls`, and `order` accept negatives. Others (`fs`, `p*`, `w`, `h`, `lh`, etc.) reject them with a clear warning.
 > - `fw` is unitless — `fw-700` outputs `font-weight: 700`, not rem. No fluid range.
 > - `order` is unitless, fixed-only (no fluid range). Applies to flex **and** grid items. Positive integers only. Supports breakpoints: `order-1`, `order-md-2`, `order-lg-4`.
 > - `lh` is unitless, fixed only (no fluid range). Values ≥ 10 are divided by 10: `lh-15` → `1.5`, `lh-12` → `1.2`. Values < 10 are whole numbers: `lh-2` → `2`. Supports breakpoints: `lh-md-15`
+> - `ls` uses divisor 100 and emits `em` — `ls-5` → `letter-spacing: 0.05em` (≈ Tailwind `tracking-wider`), `ls-10` → `0.1em` (≈ `tracking-widest`), `ls-25` → `0.25em`. Fixed-only; letter-spacing is idiomatically a per-breakpoint token, not a per-viewport one. Supports breakpoints: `ls-md-8`.
 > - `h`, `maxh`, `minh` are **fixed-only** (no fluid ranges). Fluid clamp scales by viewport width, which produces wrong results on portrait/narrow viewports. Use viewport units for responsive heights: `h-100dvh`, `minh-80svh`, `maxh-50vh`
 > - `cols` supports dot notation for ratios: `cols-1.3` = `1fr 3fr`, `cols-1.2.1` = `1fr 2fr 1fr`
 > - `container` is standalone — any number works, containers can be nested

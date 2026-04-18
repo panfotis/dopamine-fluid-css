@@ -364,6 +364,39 @@
   line-height: 2;
 }
 
+.ls-5 {
+  letter-spacing: 0.05em;
+}
+
+.ls-10 {
+  letter-spacing: 0.1em;
+}
+
+.mt-n10 {
+  margin-top: -0.625rem;
+}
+
+.ms-n8 {
+  margin-inline-start: -0.5rem;
+}
+
+.mx-n16 {
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+
+.order-n1 {
+  order: -1;
+}
+
+.ls-n2 {
+  letter-spacing: -0.02em;
+}
+
+.mb-n10-n5 {
+  margin-bottom: clamp(-0.625rem, calc(0.4464vw - 0.7143rem), -0.3125rem);
+}
+
 .order-0 {
   order: 0;
 }
@@ -543,6 +576,14 @@
 
   .fw-md-700 {
     font-weight: 700;
+  }
+
+  .ls-md-8 {
+    letter-spacing: 0.08em;
+  }
+
+  .mt-md-n10 {
+    margin-top: -0.625rem;
   }
 
   .order-md-2 {

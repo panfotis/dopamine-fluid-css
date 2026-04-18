@@ -104,7 +104,7 @@
     <p class="fs-14-18 mt-16-32">Unitless — <code>fw-700</code> outputs <code>font-weight: 700</code>. No fluid range.</p>
   </section>
 
-  <section class="docs-section mt-40-80 mb-40-80">
+  <section class="docs-section mt-40-80">
     <h2 class="fs-24-48 mb-12-24">Line Height <code>lh-{value}</code></h2>
     <p class="fs-14-18 mb-16-32">Unitless, fixed only. Values &ge; 10 are divided by 10: <code>lh-15</code> &rarr; <code>1.5</code>. Values &lt; 10 are whole numbers: <code>lh-2</code> &rarr; <code>2</code>. Supports breakpoints: <code>lh-md-15</code>.</p>
     <div class="grid cols-1 cols-md-3 gap-16-32">
@@ -119,6 +119,40 @@
       <div class="p-12-24 radius-4-8 demo-box">
         <h3 class="fs-18-24 mb-8-16">Loose <code>lh-2</code></h3>
         <p class="fs-16-20 lh-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="docs-section mt-40-80 mb-40-80">
+    <h2 class="fs-24-48 mb-12-24">Letter Spacing <code>ls-{value}</code></h2>
+    <p class="fs-14-18 mb-16-32">Em-based, divisor 100, fixed only. <code>ls-5</code> &rarr; <code>0.05em</code>, <code>ls-10</code> &rarr; <code>0.1em</code>. Matches the common design-system scale (Tailwind <code>tracking-*</code>). Supports breakpoints: <code>ls-md-8</code>.</p>
+    <div class="grid cols-1 cols-md-3 gap-16-32">
+      <div class="p-12-24 radius-4-8 demo-box">
+        <h3 class="fs-18-24 mb-8-16">Subtle <code>ls-2</code></h3>
+        <p class="fs-16-20 ls-2">The quick brown fox jumps over the lazy dog. Sphinx of black quartz, judge my vow.</p>
+      </div>
+      <div class="p-12-24 radius-4-8 demo-box">
+        <h3 class="fs-18-24 mb-8-16">Wider <code>ls-5</code></h3>
+        <p class="fs-16-20 ls-5">The quick brown fox jumps over the lazy dog. Sphinx of black quartz, judge my vow.</p>
+      </div>
+      <div class="p-12-24 radius-4-8 demo-box">
+        <h3 class="fs-18-24 mb-8-16">Widest <code>ls-10</code></h3>
+        <p class="fs-16-20 ls-10">The quick brown fox jumps over the lazy dog. Sphinx of black quartz, judge my vow.</p>
+      </div>
+    </div>
+    <p class="fs-14-18 mt-16-32">Common use: uppercase / small-caps labels, display headings. Pairs naturally with <code>fw-bold</code> + <code>fs-*</code>.</p>
+    <div class="grid cols-1 cols-md-2 gap-16-32 mt-16-32">
+      <div class="p-12-24 radius-4-8 demo-box">
+        <p class="fs-12-14 ls-10 fw-bold text-center">FEATURED · LS-10 UPPERCASE</p>
+      </div>
+      <div class="p-12-24 radius-4-8 demo-box">
+        <h3 class="fs-24-48 ls-md-2 fw-bold">Display heading, ls-md-2</h3>
+      </div>
+    </div>
+    <p class="fs-14-18 mt-16-32"><strong>Negatives via <code>n</code> prefix</strong>: tighten display type with <code>ls-n2</code> &rarr; <code>-0.02em</code>. Useful for large headings where default tracking feels too loose.</p>
+    <div class="grid cols-1 gap-16-32 mt-8-16">
+      <div class="p-12-24 radius-4-8 demo-box">
+        <h3 class="fs-32-64 ls-n2 fw-bold">Tight display heading, ls-n2</h3>
       </div>
     </div>
   </section>

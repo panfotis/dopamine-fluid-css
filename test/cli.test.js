@@ -401,3 +401,219 @@ test('diagnoseClass explains common mistakes (fix #1)', () => {
   // Genuine valid class gets no diagnosis (parseClass handles it)
   assert.equal(diagnoseClass('fs-16', config), null);
 });
+
+// ---------------------------------------------------------------------------
+// Negative value support via `n` prefix (e.g. mt-n10 → margin-top: -0.625rem)
+// ---------------------------------------------------------------------------
+
+const NEG_CONFIG = {
+  viewport: { min: 320, max: 1440 },
+  breakpoints: { sm: 576, md: 768, lg: 992, xl: 1200, xxl: 1400 },
+  prefixes: {},
+};
+
+test('n-prefix: negatives parse correctly on allowed prefixes (fixed)', () => {
+  assert.equal(parseClass('mt-n10', NEG_CONFIG)?.minPx, -10);
+  assert.equal(parseClass('mb-n5',  NEG_CONFIG)?.minPx, -5);
+  assert.equal(parseClass('ms-n8',  NEG_CONFIG)?.minPx, -8);
+  assert.equal(parseClass('me-n8',  NEG_CONFIG)?.minPx, -8);
+  assert.equal(parseClass('mx-n16', NEG_CONFIG)?.minPx, -16);
+  assert.equal(parseClass('my-n16', NEG_CONFIG)?.minPx, -16);
+  assert.equal(parseClass('m-n4',   NEG_CONFIG)?.minPx, -4);
+  assert.equal(parseClass('ls-n5',  NEG_CONFIG)?.minPx, -5);
+  assert.equal(parseClass('order-n1', NEG_CONFIG)?.minPx, -1);
+});
+
+test('n-prefix: negatives rejected on disallowed prefixes', () => {
+  // Nonsensical negatives — must return null
+  assert.equal(parseClass('fs-n16',    NEG_CONFIG), null);
+  assert.equal(parseClass('p-n10',     NEG_CONFIG), null);
+  assert.equal(parseClass('pt-n8',     NEG_CONFIG), null);
+  assert.equal(parseClass('ps-n8',     NEG_CONFIG), null);
+  assert.equal(parseClass('w-n50',     NEG_CONFIG), null);
+  assert.equal(parseClass('h-n100',    NEG_CONFIG), null);
+  assert.equal(parseClass('maxw-n400', NEG_CONFIG), null);
+  assert.equal(parseClass('minw-n200', NEG_CONFIG), null);
+  assert.equal(parseClass('lh-n15',    NEG_CONFIG), null);
+  assert.equal(parseClass('fw-n400',   NEG_CONFIG), null);
+  assert.equal(parseClass('radius-n8', NEG_CONFIG), null);
+  assert.equal(parseClass('gap-n16',   NEG_CONFIG), null);
+  assert.equal(parseClass('cols-n3',   NEG_CONFIG), null);
+});
+
+test('n-prefix: negative with breakpoint variant', () => {
+  const d = parseClass('mt-md-n10', NEG_CONFIG);
+  assert.equal(d?.breakpoint, 'md');
+  assert.equal(d?.minPx, -10);
+  assert.equal(d?.mode, 'fixed');
+
+  const d2 = parseClass('ls-lg-n2', NEG_CONFIG);
+  assert.equal(d2?.breakpoint, 'lg');
+  assert.equal(d2?.minPx, -2);
+
+  // Disallowed: still rejected with breakpoint
+  assert.equal(parseClass('fs-md-n16', NEG_CONFIG), null);
+});
+
+test('n-prefix: fluid ranges with negatives (allowed prefix, not fixedOnly)', () => {
+  // Negative-to-negative (ordered)
+  let d = parseClass('mt-n10-n5', NEG_CONFIG);
+  assert.ok(d, 'mt-n10-n5 should parse');
+  assert.equal(d.minPx, -10);
+  assert.equal(d.maxPx, -5);
+  assert.equal(d.mode, 'fluid');
+
+  // Negative-to-positive
+  d = parseClass('mt-n5-10', NEG_CONFIG);
+  assert.ok(d);
+  assert.equal(d.minPx, -5);
+  assert.equal(d.maxPx, 10);
+
+  // With breakpoint
+  d = parseClass('mt-md-n10-n5', NEG_CONFIG);
+  assert.ok(d);
+  assert.equal(d.breakpoint, 'md');
+  assert.equal(d.minPx, -10);
+  assert.equal(d.maxPx, -5);
+  assert.equal(d.mode, 'fluid');
+});
+
+test('n-prefix: inverted fluid ranges rejected', () => {
+  // Negative-to-negative but inverted (-5 > -10)
+  assert.equal(parseClass('mt-n5-n10', NEG_CONFIG), null);
+  // Positive-to-negative (always inverted)
+  assert.equal(parseClass('mt-10-n5', NEG_CONFIG), null);
+  // Same value
+  assert.equal(parseClass('mt-n5-n5', NEG_CONFIG), null);
+});
+
+test('n-prefix: fluid rejected on fixedOnly prefixes even when negatives allowed', () => {
+  // ls allows negatives but is fixedOnly — fluid must still be rejected
+  assert.equal(parseClass('ls-n10-n5', NEG_CONFIG), null);
+  assert.equal(parseClass('ls-n10-5',  NEG_CONFIG), null);
+  // order same
+  assert.equal(parseClass('order-n1-n5', NEG_CONFIG), null);
+});
+
+test('n-prefix: malformed negative values rejected', () => {
+  // Bare "n" with no digit
+  assert.equal(parseClass('mt-n',    NEG_CONFIG), null);
+  // Double-n
+  assert.equal(parseClass('mt-nn10', NEG_CONFIG), null);
+  // Separator-then-negative (unclear syntax)
+  assert.equal(parseClass('mt-n-10', NEG_CONFIG), null);
+  // Old double-hyphen must NOT work
+  assert.equal(parseClass('mt--5',   NEG_CONFIG), null);
+  // Negative with letter suffix (not a unit)
+  assert.equal(parseClass('mt-n10x', NEG_CONFIG), null);
+});
+
+test('n-prefix: zero with n-prefix (mt-n0) parses but equals 0', () => {
+  // Edge case — harmless but worth locking in the behavior
+  const d = parseClass('mt-n0', NEG_CONFIG);
+  assert.equal(d?.minPx, 0);
+});
+
+test('n-prefix: no interference with existing positive value parsing', () => {
+  // All of these existed before the n-prefix change — must still work identically
+  assert.equal(parseClass('mt-10',      NEG_CONFIG)?.minPx, 10);
+  assert.equal(parseClass('mt-md-10',   NEG_CONFIG)?.breakpoint, 'md');
+  assert.equal(parseClass('fs-16-48',   NEG_CONFIG)?.mode, 'fluid');
+  assert.equal(parseClass('fs-md-16-48', NEG_CONFIG)?.mode, 'fluid');
+  assert.equal(parseClass('fs-16-48--320-1440', NEG_CONFIG)?.inlineVpMin, 320);
+  assert.equal(parseClass('lh-15',      NEG_CONFIG)?.minPx, 15);
+  assert.equal(parseClass('ls-5',       NEG_CONFIG)?.minPx, 5);
+  assert.equal(parseClass('fw-400',     NEG_CONFIG)?.minPx, 400);
+  assert.equal(parseClass('order-1',    NEG_CONFIG)?.minPx, 1);
+  // Auto keyword still works for margin prefixes
+  assert.ok(parseClass('mt-auto',      NEG_CONFIG));
+  assert.ok(parseClass('ms-md-auto',   NEG_CONFIG));
+  assert.ok(parseClass('mx-auto',      NEG_CONFIG));
+  // Unit-suffix sizing still works
+  assert.ok(parseClass('w-50%',        NEG_CONFIG));
+  assert.ok(parseClass('h-100dvh',     NEG_CONFIG));
+});
+
+test('n-prefix: cols ratio notation unaffected', () => {
+  // cols has its own parser — must not be touched by the n-prefix change
+  assert.ok(parseClass('cols-3',      NEG_CONFIG));
+  assert.ok(parseClass('cols-1.3',    NEG_CONFIG));
+  assert.ok(parseClass('cols-1.2.1',  NEG_CONFIG));
+  assert.ok(parseClass('cols-md-2',   NEG_CONFIG));
+});
+
+test('n-prefix: generator emits correct CSS for negatives', () => {
+  // Margin: -10px → -0.625rem
+  let rule = generateRule(parseClass('mt-n10', NEG_CONFIG), null, NEG_CONFIG, false);
+  assert.match(rule, /margin-top:\s*-0\.625rem/);
+
+  // Letter-spacing: -5/100 = -0.05em
+  rule = generateRule(parseClass('ls-n5', NEG_CONFIG), null, NEG_CONFIG, false);
+  assert.match(rule, /letter-spacing:\s*-0\.05em/);
+
+  // Order: unitless, emits raw
+  rule = generateRule(parseClass('order-n1', NEG_CONFIG), null, NEG_CONFIG, false);
+  assert.match(rule, /order:\s*-1/);
+
+  // Mx (two props) both get the same negative value
+  rule = generateRule(parseClass('mx-n16', NEG_CONFIG), null, NEG_CONFIG, false);
+  assert.match(rule, /margin-left:\s*-1rem/);
+  assert.match(rule, /margin-right:\s*-1rem/);
+});
+
+test('n-prefix: fluid clamp with negative values emits correct CSS', () => {
+  const d = parseClass('mt-n10-n5', NEG_CONFIG);
+  const viewport = resolveViewport(d, NEG_CONFIG);
+  const rule = generateRule(d, viewport, NEG_CONFIG, false);
+  // min = -10px = -0.625rem, max = -5px = -0.3125rem
+  assert.match(rule, /clamp\(-0\.625rem,/);
+  assert.match(rule, /-0\.3125rem\)/);
+});
+
+test('n-prefix: diagnoseClass explains negative-on-disallowed', () => {
+  assert.match(diagnoseClass('fs-n16', NEG_CONFIG), /doesn't support negative/i);
+  assert.match(diagnoseClass('p-n10',  NEG_CONFIG), /doesn't support negative/i);
+  assert.match(diagnoseClass('w-n50',  NEG_CONFIG), /doesn't support negative/i);
+  // And it doesn't fire on allowed prefixes
+  assert.equal(diagnoseClass('mt-n10', NEG_CONFIG), null);
+  assert.equal(diagnoseClass('ls-n5',  NEG_CONFIG), null);
+});
+
+test('n-prefix: diagnoseClass explains inverted negative ranges', () => {
+  // Both-negative inverted
+  assert.match(diagnoseClass('mt-n5-n10', NEG_CONFIG), /inverted/i);
+  // Same-value negatives (min >= max)
+  assert.match(diagnoseClass('mt-n5-n5',  NEG_CONFIG), /inverted/i);
+  // Positive-to-negative (always inverted)
+  assert.match(diagnoseClass('mt-5-n10',  NEG_CONFIG), /inverted/i);
+});
+
+test('n-prefix: diagnoseClass explains fluid-on-fixedOnly with negatives', () => {
+  // ls is fixedOnly + allowsNegative — fluid forms must give the fixed-only diagnostic
+  assert.match(diagnoseClass('ls-n10-n5', NEG_CONFIG), /fixed-only/i);
+  assert.match(diagnoseClass('ls-n10-5',  NEG_CONFIG), /fixed-only/i);
+  // order same
+  assert.match(diagnoseClass('order-n1-n5', NEG_CONFIG), /fixed-only/i);
+});
+
+test('fw rejects fluid ranges (fixedOnly) — prevents invalid font-weight clamp output', () => {
+  // Regression guard: fw with fluid would emit `font-weight: clamp(25rem, ...)` which is
+  // invalid CSS (font-weight takes number, not length). fixedOnly blocks it at parse time.
+  assert.equal(parseClass('fw-400-700',    NEG_CONFIG), null);
+  assert.equal(parseClass('fw-md-400-700', NEG_CONFIG), null);
+  assert.match(diagnoseClass('fw-400-700', NEG_CONFIG), /fixed-only/i);
+  // Fixed fw still works
+  assert.ok(parseClass('fw-400', NEG_CONFIG));
+  assert.ok(parseClass('fw-md-700', NEG_CONFIG));
+});
+
+test('n-prefix: keywords starting with n-related substrings unaffected', () => {
+  // fw-normal, flex-nowrap, hidden — none should collide with n-prefix parsing
+  const { parseGridClass } = require('../lib/grid-parser');
+  assert.ok(parseGridClass('fw-normal',   NEG_CONFIG));
+  assert.ok(parseGridClass('flex-nowrap', NEG_CONFIG));
+  assert.ok(parseGridClass('hidden',      NEG_CONFIG));
+  // And parseClass doesn't accidentally steal them
+  assert.equal(parseClass('fw-normal',   NEG_CONFIG), null);
+  assert.equal(parseClass('flex-nowrap', NEG_CONFIG), null);
+});

@@ -126,13 +126,27 @@
     </div>
   </section>
 
-  <section class="docs-section mt-40-80 mb-40-80">
+  <section class="docs-section mt-40-80">
     <h2 class="fs-24-48 mb-12-24">Margin — Breakpoint <code>mb-{bp}-{min}-{max}</code></h2>
     <div class="radius-4-8 demo-box--dashed p-8 mb-8-16">
       <div class="mb-md-16-32 radius-4-8 demo-box--blue p-8"><p class="fs-14-18">mb-md-16-32 — fluid margin-bottom from md up</p></div>
     </div>
     <div class="radius-4-8 demo-box--dashed p-8">
       <div class="mt-lg-24-48 radius-4-8 demo-box--blue p-8"><p class="fs-14-18">mt-lg-24-48 — fluid margin-top from lg up</p></div>
+    </div>
+  </section>
+
+  <section class="docs-section mt-40-80 mb-40-80">
+    <h2 class="fs-24-48 mb-12-24">Margin — Negatives <code>n</code> prefix</h2>
+    <p class="fs-14-18 mb-16-32"><code>mt-n10</code> &rarr; <code>margin-top: -0.625rem</code>. Useful for pull-ups, overlapping cards, bleeding full-width sections out of a padded parent. All margin prefixes (<code>m mt mb ms me mx my</code>) opt in. Fluid ranges too: <code>mt-n10-n5</code>.</p>
+    <div class="grid cols-1 cols-md-2 gap-16-32">
+      <div class="radius-4-8 demo-box--dashed p-24">
+        <div class="p-16 radius-4-8 demo-box--blue"><p class="fs-14-18">parent, padding-24</p></div>
+        <div class="mt-n10 p-16 radius-4-8 demo-box--orange"><p class="fs-14-18">mt-n10 — pulls up into the one above</p></div>
+      </div>
+      <div class="radius-4-8 demo-box--dashed p-24">
+        <div class="ms-n16 me-n16 p-16 radius-4-8 demo-box--orange"><p class="fs-14-18">ms-n16 me-n16 — bleeds left and right past the parent's padding</p></div>
+      </div>
     </div>
   </section>
 
