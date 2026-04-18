@@ -523,6 +523,18 @@
   grid-template-columns: 1fr 3fr;
 }
 
+.gap-16 {
+  gap: 1rem;
+}
+
+.span-2 {
+  grid-column: span 2;
+}
+
+.rowspan-2 {
+  grid-row: span 2;
+}
+
 .fs-20-40 {
   font-size: clamp(1.25rem, calc(1.8779vw + 0.8099rem), 2.5rem);
 }
@@ -609,6 +621,10 @@
 
   .cols-md-1\.2\.1 {
     grid-template-columns: 1fr 2fr 1fr;
+  }
+
+  .span-md-3 {
+    grid-column: span 3;
   }
 
   .gap-md-16-32 {

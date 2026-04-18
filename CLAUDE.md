@@ -54,6 +54,7 @@ Load-bearing rules. Do not break without a strong reason.
 - **Heights are `fixedOnly`** — `h`, `maxh`, `minh` reject fluid ranges. Reason: fluid clamp scales by viewport *width*, which misbehaves on portrait viewports. Use viewport units instead (`h-100dvh`, `minh-80svh`).
 - **`ls` letter-spacing uses divisor 100 + unit='em'** — `ls-5` → `letter-spacing: 0.05em` (matches Tailwind tracking scale). `fixedOnly` by design — fluid letter-spacing mixes `em` and `vw` awkwardly.
 - **`order` is unitless + `fixedOnly`** — `order-1` → `order: 1`. Supports negatives via `allowsNegative`.
+- **`span` / `rowspan` (grid-child placement)** use `valuePrefix: 'span '` in `PREFIX_MAP` — generator prepends the keyword to the numeric output: `span-3` → `grid-column: span 3`. Any future prefix whose output needs a keyword+number shape can opt in the same way.
 - **Scanning sources** — `extractClasses` reads from three places, in this order:
   1. Literal `class="..."` / `className="..."` attribute values (including ternaries like `class="{{ c ? 'fs-16' : 'fs-20' }}"` — both branches captured).
   2. Twig `{% set <var> = ... %}` RHS (array, ternary, or bare string). Gated by a cheap `content.includes('{%')` so HTML-only projects pay nothing.
@@ -65,7 +66,7 @@ Load-bearing rules. Do not break without a strong reason.
 ## Adding features — quick checklists
 
 **Add a new prefix:**
-1. `lib/config.js` — add entry to `PREFIX_MAP`. Decide: `props`, `unitless`, `divisor`, `unit`, `fixedOnly`, `allowsUnits`, `allowsNegative`.
+1. `lib/config.js` — add entry to `PREFIX_MAP`. Decide: `props`, `unitless`, `divisor`, `unit`, `valuePrefix`, `fixedOnly`, `allowsUnits`, `allowsNegative`.
 2. Add a representative class to `test/fixtures/golden.html` (cover fixed + fluid + breakpoint + negative if applicable).
 3. `UPDATE_GOLDEN=1 npm test`.
 4. Update the Value Prefixes table in `README.md`.
@@ -105,7 +106,7 @@ Any change that alters emitted CSS (rounding, escaping, rule formatting, breakpo
 
 ## Testing workflow
 
-- **`npm test`** — runs 60 tests (unit + integration + golden + manifest v2 + negative-value gating).
+- **`npm test`** — runs 69 tests (unit + integration + golden + manifest v2 + negative-value gating + grid item span).
 - **`UPDATE_GOLDEN=1 npm test`** — regenerates the three `test/fixtures/golden.expected.*` files when output intentionally changes.
 - **`prepublishOnly` hook** — `npm test` runs before `npm publish`. Can't ship a broken build.
 

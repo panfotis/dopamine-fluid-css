@@ -617,3 +617,48 @@ test('n-prefix: keywords starting with n-related substrings unaffected', () => {
   assert.equal(parseClass('fw-normal',   NEG_CONFIG), null);
   assert.equal(parseClass('flex-nowrap', NEG_CONFIG), null);
 });
+
+// ---------------------------------------------------------------------------
+// span / rowspan — grid item placement (uses valuePrefix mechanism)
+// ---------------------------------------------------------------------------
+
+test('span: parses and emits grid-column: span N', () => {
+  const d = parseClass('span-5', NEG_CONFIG);
+  assert.equal(d?.prefix, 'span');
+  assert.equal(d?.minPx, 5);
+  assert.equal(d?.mode, 'fixed');
+  const rule = generateRule(d, null, NEG_CONFIG, false);
+  assert.match(rule, /grid-column:\s*span 5/);
+});
+
+test('rowspan: parses and emits grid-row: span N via shared valuePrefix mechanism', () => {
+  const d = parseClass('rowspan-3', NEG_CONFIG);
+  assert.equal(d?.prefix, 'rowspan');
+  assert.equal(d?.minPx, 3);
+  const rule = generateRule(d, null, NEG_CONFIG, false);
+  assert.match(rule, /grid-row:\s*span 3/);
+});
+
+test('span: breakpoint variant works', () => {
+  const d = parseClass('span-md-4', NEG_CONFIG);
+  assert.equal(d?.breakpoint, 'md');
+  assert.equal(d?.minPx, 4);
+});
+
+test('span / rowspan: fluid ranges rejected (fixedOnly)', () => {
+  assert.equal(parseClass('span-3-5',    NEG_CONFIG), null);
+  assert.equal(parseClass('rowspan-2-4', NEG_CONFIG), null);
+  assert.match(diagnoseClass('span-3-5', NEG_CONFIG), /fixed-only/i);
+});
+
+test('span / rowspan: negatives rejected (no allowsNegative)', () => {
+  assert.equal(parseClass('span-n2',    NEG_CONFIG), null);
+  assert.equal(parseClass('rowspan-n1', NEG_CONFIG), null);
+});
+
+test('span valuePrefix does not leak into other unitless prefixes (order regression)', () => {
+  // order is also unitless+fixedOnly but has no valuePrefix — must still emit plain integer
+  const rule = generateRule(parseClass('order-5', NEG_CONFIG), null, NEG_CONFIG, false);
+  assert.match(rule, /order:\s*5;/);
+  assert.doesNotMatch(rule, /span/);
+});

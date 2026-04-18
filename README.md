@@ -228,6 +228,8 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 | **Other** | | | | |
 | `radius` | `border-radius` | `radius-8` | `radius-4-16` | `radius-md-8` / `radius-md-4-16` |
 | `cols` | `grid-template-columns` | `cols-3` / `cols-1.3` | — | `cols-md-3` / `cols-md-1.3` |
+| `span` | `grid-column` | `span-3` → `span 3` | — | `span-md-4` |
+| `rowspan` | `grid-row` | `rowspan-2` → `span 2` | — | `rowspan-md-3` |
 | `order` | `order` | `order-1` | — | `order-md-2` / `order-lg-4` |
 | `container` | `max-width` + centered | `container-1200` | — | — |
 
@@ -236,6 +238,7 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 > - **Negative values via `n` prefix**: `mt-n10` → `margin-top: -0.625rem`, `ls-n5` → `letter-spacing: -0.05em`, `order-n1` → `order: -1`. Works with breakpoints (`mt-md-n10`) and fluid ranges where applicable (`mt-n10-n5`). Opt-in per prefix — only margins (`m` / `mt` / `mb` / `ms` / `me` / `mx` / `my`), `ls`, and `order` accept negatives. Others (`fs`, `p*`, `w`, `h`, `lh`, etc.) reject them with a clear warning.
 > - `fw` is unitless — `fw-700` outputs `font-weight: 700`, not rem. No fluid range.
 > - `order` is unitless, fixed-only (no fluid range). Applies to flex **and** grid items. Positive integers only. Supports breakpoints: `order-1`, `order-md-2`, `order-lg-4`.
+> - `span` / `rowspan` apply to **grid children** — use alongside `cols-N` on the parent. `span-3` makes the item occupy 3 column tracks; `rowspan-2` makes it span 2 rows. Supports breakpoints: `span-md-4`, `rowspan-lg-3`. Positive integers only (discrete grid lines); fluid ranges and negatives aren't meaningful here.
 > - `lh` is unitless, fixed only (no fluid range). Values ≥ 10 are divided by 10: `lh-15` → `1.5`, `lh-12` → `1.2`. Values < 10 are whole numbers: `lh-2` → `2`. Supports breakpoints: `lh-md-15`
 > - `ls` uses divisor 100 and emits `em` — `ls-5` → `letter-spacing: 0.05em` (≈ Tailwind `tracking-wider`), `ls-10` → `0.1em` (≈ `tracking-widest`), `ls-25` → `0.25em`. Fixed-only; letter-spacing is idiomatically a per-breakpoint token, not a per-viewport one. Supports breakpoints: `ls-md-8`.
 > - `h`, `maxh`, `minh` are **fixed-only** (no fluid ranges). Fluid clamp scales by viewport width, which produces wrong results on portrait/narrow viewports. Use viewport units for responsive heights: `h-100dvh`, `minh-80svh`, `maxh-50vh`
