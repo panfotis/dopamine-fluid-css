@@ -196,6 +196,30 @@
     </div>
   </section>
 
+  <section class="docs-section mt-40-80 mb-40-80">
+    <h2 class="fs-24-48 mb-12-24">Order</h2>
+    <p class="fs-14-18 mb-16-32">Unitless integer → <code>order: N</code>. Works on flex <em>and</em> grid items. Fixed-only, positive integers, supports breakpoints.</p>
+    <div class="grid cols-1 cols-md-2 gap-16-32">
+      <div class="p-12-24 radius-4-8 demo-box">
+        <p class="fs-14-18 mb-8-16"><code>order-1</code> on the first item pushes it to the end</p>
+        <div class="flex gap-8 p-8 radius-4-8 demo-box--dashed">
+          <div class="p-12-24 radius-4-8 order-1"><p class="fs-14-18">A (order-1)</p></div>
+          <div class="p-12-24 radius-4-8"><p class="fs-14-18">B</p></div>
+          <div class="p-12-24 radius-4-8"><p class="fs-14-18">C</p></div>
+        </div>
+      </div>
+      <div class="p-12-24 radius-4-8 demo-box">
+        <p class="fs-14-18 mb-8-16"><code>order-md-2</code> / <code>order-lg-4</code> — reorders only at breakpoints (resize to see)</p>
+        <div class="flex gap-8 p-8 radius-4-8 demo-box--dashed">
+          <div class="p-12-24 radius-4-8 order-md-2"><p class="fs-14-18">A (md:2)</p></div>
+          <div class="p-12-24 radius-4-8"><p class="fs-14-18">B</p></div>
+          <div class="p-12-24 radius-4-8 order-lg-4"><p class="fs-14-18">C (lg:4)</p></div>
+          <div class="p-12-24 radius-4-8"><p class="fs-14-18">D</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </div>
 
 <footer class="container-1200 px-16-48 pt-24-48 mb-24-48 text-right">

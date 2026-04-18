@@ -227,10 +227,12 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 | **Other** | | | | |
 | `radius` | `border-radius` | `radius-8` | `radius-4-16` | `radius-md-8` / `radius-md-4-16` |
 | `cols` | `grid-template-columns` | `cols-3` / `cols-1.3` | — | `cols-md-3` / `cols-md-1.3` |
+| `order` | `order` | `order-1` | — | `order-md-2` / `order-lg-4` |
 | `container` | `max-width` + centered | `container-1200` | — | — |
 
 > **Notes:**
 > - `fw` is unitless — `fw-700` outputs `font-weight: 700`, not rem. No fluid range.
+> - `order` is unitless, fixed-only (no fluid range). Applies to flex **and** grid items. Positive integers only. Supports breakpoints: `order-1`, `order-md-2`, `order-lg-4`.
 > - `lh` is unitless, fixed only (no fluid range). Values ≥ 10 are divided by 10: `lh-15` → `1.5`, `lh-12` → `1.2`. Values < 10 are whole numbers: `lh-2` → `2`. Supports breakpoints: `lh-md-15`
 > - `h`, `maxh`, `minh` are **fixed-only** (no fluid ranges). Fluid clamp scales by viewport width, which produces wrong results on portrait/narrow viewports. Use viewport units for responsive heights: `h-100dvh`, `minh-80svh`, `maxh-50vh`
 > - `cols` supports dot notation for ratios: `cols-1.3` = `1fr 3fr`, `cols-1.2.1` = `1fr 2fr 1fr`

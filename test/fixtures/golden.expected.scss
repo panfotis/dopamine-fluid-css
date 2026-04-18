@@ -364,6 +364,14 @@
   line-height: 2;
 }
 
+.order-0 {
+  order: 0;
+}
+
+.order-1 {
+  order: 1;
+}
+
 .w-50\% {
   width: 50%;
 }
@@ -537,6 +545,10 @@
     font-weight: 700;
   }
 
+  .order-md-2 {
+    order: 2;
+  }
+
   .minh-md-100dvh {
     min-height: 100dvh;
   }
@@ -583,6 +595,10 @@
 
   .mt-lg-32 {
     margin-top: 2rem;
+  }
+
+  .order-lg-4 {
+    order: 4;
   }
 
   .w-lg-50\% {
