@@ -106,7 +106,7 @@ Any change that alters emitted CSS (rounding, escaping, rule formatting, breakpo
 
 ## Testing workflow
 
-- **`npm test`** — runs 69 tests (unit + integration + golden + manifest v2 + negative-value gating + grid item span).
+- **`npm test`** — runs 72 tests (unit + integration + golden + manifest v2 + negative-value gating + grid item span + flex children grow/shrink).
 - **`UPDATE_GOLDEN=1 npm test`** — regenerates the three `test/fixtures/golden.expected.*` files when output intentionally changes.
 - **`prepublishOnly` hook** — `npm test` runs before `npm publish`. Can't ship a broken build.
 

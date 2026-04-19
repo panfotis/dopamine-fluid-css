@@ -190,6 +190,7 @@ a {
 .docs-content .grid > div,
 .docs-content .grid > aside,
 .docs-content .grid > main {
+  background: $mint;
   border: 2px solid $dark;
   transition: box-shadow 0.15s, transform 0.15s;
   &:hover { box-shadow: 3px 3px 0 $dark; transform: translate(-1px, -1px); }

@@ -4,8 +4,8 @@
  *
  * Default viewport : 320px – 1440px
  * Breakpoints      : sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px, xxxl: 1600px, xxxxl: 1920px
- * Generated        : 4/18/2026, 3:24:19 PM
- * Rules            : 236
+ * Generated        : 4/19/2026, 8:42:03 PM
+ * Rules            : 247
  * ============================================== */
 /* Reset */
 *, *::before, *::after {
@@ -937,6 +937,38 @@ p, h1, h2, h3, h4, h5, h6 {
   grid-row: span 2;
 }
 
+.cols-12 {
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.span-10 {
+  grid-column: span 10;
+}
+
+.span-4 {
+  grid-column: span 4;
+}
+
+.span-6 {
+  grid-column: span 6;
+}
+
+.span-3 {
+  grid-column: span 3;
+}
+
+.cols-7 {
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.span-5 {
+  grid-column: span 5;
+}
+
+.p-16-24 {
+  padding: clamp(1rem, 0.7143vw + 0.8571rem, 1.5rem);
+}
+
 .mt-24-40 {
   margin-top: clamp(1.5rem, 1.4286vw + 1.2143rem, 2.5rem);
 }
@@ -1017,6 +1049,15 @@ p, h1, h2, h3, h4, h5, h6 {
   }
   .span-md-2 {
     grid-column: span 2;
+  }
+  .cols-md-12 {
+    grid-template-columns: repeat(12, 1fr);
+  }
+  .span-md-3 {
+    grid-column: span 3;
+  }
+  .span-md-9 {
+    grid-column: span 9;
   }
   .order-md-2 {
     order: 2;
@@ -1277,6 +1318,7 @@ a {
 .docs-content .grid > div,
 .docs-content .grid > aside,
 .docs-content .grid > main {
+  background: #6ee7b7;
   border: 2px solid #0f0f0f;
   transition: box-shadow 0.15s, transform 0.15s;
 }

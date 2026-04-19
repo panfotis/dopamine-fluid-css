@@ -662,3 +662,30 @@ test('span valuePrefix does not leak into other unitless prefixes (order regress
   assert.match(rule, /order:\s*5;/);
   assert.doesNotMatch(rule, /span/);
 });
+
+// ---------------------------------------------------------------------------
+// grow / shrink — flex children (unitless, fixedOnly, no negatives, no valuePrefix)
+// ---------------------------------------------------------------------------
+
+test('grow / shrink: parse and emit plain integers on flex-grow / flex-shrink', () => {
+  const g = parseClass('grow-1', NEG_CONFIG);
+  assert.equal(g?.minPx, 1);
+  assert.match(generateRule(g, null, NEG_CONFIG, false), /flex-grow:\s*1;/);
+
+  const s = parseClass('shrink-0', NEG_CONFIG);
+  assert.equal(s?.minPx, 0);
+  assert.match(generateRule(s, null, NEG_CONFIG, false), /flex-shrink:\s*0;/);
+});
+
+test('grow / shrink: breakpoint variants work', () => {
+  const d = parseClass('grow-md-2', NEG_CONFIG);
+  assert.equal(d?.breakpoint, 'md');
+  assert.equal(d?.minPx, 2);
+});
+
+test('grow / shrink: fluid and negatives rejected', () => {
+  assert.equal(parseClass('grow-1-3',  NEG_CONFIG), null); // fixedOnly
+  assert.equal(parseClass('shrink-0-1', NEG_CONFIG), null); // fixedOnly
+  assert.equal(parseClass('grow-n1',   NEG_CONFIG), null); // no allowsNegative
+  assert.equal(parseClass('shrink-n1', NEG_CONFIG), null); // no allowsNegative
+});
