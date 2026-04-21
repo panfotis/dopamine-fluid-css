@@ -5,15 +5,23 @@
 // Events: dp:dropdown:open, dp:dropdown:close (bubble from .dropdown)
 
 (function () {
+  function triggerOf(dropdown) {
+    return dropdown.querySelector('[data-dropdown-toggle]');
+  }
+
   function open(dropdown) {
     if (!dropdown || dropdown.classList.contains('dropdown--open')) return;
     dropdown.classList.add('dropdown--open');
+    const trigger = triggerOf(dropdown);
+    if (trigger) trigger.setAttribute('aria-expanded', 'true');
     dropdown.dispatchEvent(new CustomEvent('dp:dropdown:open', { bubbles: true }));
   }
 
   function close(dropdown) {
     if (!dropdown || !dropdown.classList.contains('dropdown--open')) return;
     dropdown.classList.remove('dropdown--open');
+    const trigger = triggerOf(dropdown);
+    if (trigger) trigger.setAttribute('aria-expanded', 'false');
     dropdown.dispatchEvent(new CustomEvent('dp:dropdown:close', { bubbles: true }));
   }
 
@@ -38,6 +46,20 @@
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeAll();
   });
+
+  function seedAria() {
+    document.querySelectorAll('[data-dropdown-toggle]').forEach(btn => {
+      if (!btn.hasAttribute('aria-expanded')) {
+        const dd = btn.closest('.dropdown');
+        btn.setAttribute('aria-expanded', dd && dd.classList.contains('dropdown--open') ? 'true' : 'false');
+      }
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', seedAria);
+  } else {
+    seedAria();
+  }
 
   window.dopamine = window.dopamine || {};
   window.dopamine.dropdown = { open, close, toggle, closeAll };
