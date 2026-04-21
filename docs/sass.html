@@ -30,7 +30,7 @@
 </nav>
 
 <div class="docs-search container-1200 px-16-48 py-16">
-  <input type="text" class="maxw-360 px-16 py-8 fs-14 fw-medium radius-100" placeholder="Search... (e.g. dp.fluid, breakpoint-up, sass)">
+  <input type="text" class="maxw-360 px-16 py-8 fs-14 fw-medium radius-100" placeholder="Search... (e.g. df.fluid, breakpoint-up, sass)">
 </div>
 
 <div class="docs-content container-860 px-16-48">
@@ -43,18 +43,18 @@
     <h2 class="fs-24-48 mb-12-24">Setup</h2>
 
     <h3 class="fs-18-24 mb-8-16">Option 1: Import the addon directly</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/sass/dopamine-functions' as dp;</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/sass/dopamine-functions' as df;</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Option 2: Use the auto-generated file</h3>
     <p class="fs-14-18 mb-8-16">When you output to <code>.scss</code>, Dopamine generates <code>_dopamine-functions.scss</code> alongside the utility classes with your config's viewport defaults and breakpoints:</p>
     <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">dopamine ./templates --ext twig --out ./scss/_dopamine.scss
 # Creates: _dopamine.scss + _dopamine-functions.scss</code></pre>
-    <pre class="p-16-32 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-functions' as dp;</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-functions' as df;</code></pre>
   </section>
 
-  <!-- dp.fluid() -->
+  <!-- df.fluid() -->
   <section class="docs-section mt-40-80">
-    <h2 class="fs-24-48 mb-12-24"><code>dp.fluid()</code></h2>
+    <h2 class="fs-24-48 mb-12-24"><code>df.fluid()</code></h2>
     <p class="fs-14-18 mb-16-32">The same fluid <code>clamp()</code> math as Dopamine's utility classes — for use in custom SCSS where you can't add classes to the HTML (e.g. Drupal-rendered content).</p>
 
     <h3 class="fs-18-24 mb-8-16">Signature</h3>
@@ -67,27 +67,27 @@
 // Returns — clamp(minRem, calc(Xvw + Yrem), maxRem)</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Basic usage</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-functions' as dp;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-functions' as df;
 
-h1 { font-size: dp.fluid(32, 72); }
-p  { font-size: dp.fluid(16, 20); }
-.hero { padding: dp.fluid(24, 80); }</code></pre>
+h1 { font-size: df.fluid(32, 72); }
+p  { font-size: df.fluid(16, 20); }
+.hero { padding: df.fluid(24, 80); }</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Custom viewport override</h3>
     <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">// Scale between 480px and 1920px instead of default
 .hero-title {
-  font-size: dp.fluid(32, 96, 480, 1920);
+  font-size: df.fluid(32, 96, 480, 1920);
 }</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Drupal theme example</h3>
-    <pre class="p-16-32 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-functions' as dp;
+    <pre class="p-16-32 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-functions' as df;
 
 // CKEditor content — can't add classes
 .text-formatted {
-  h2 { font-size: dp.fluid(24, 48); margin-bottom: dp.fluid(16, 32); }
-  h3 { font-size: dp.fluid(20, 32); margin-bottom: dp.fluid(12, 24); }
-  p  { font-size: dp.fluid(16, 20); margin-bottom: dp.fluid(8, 16); }
-  ul, ol { padding-left: dp.fluid(16, 32); }
+  h2 { font-size: df.fluid(24, 48); margin-bottom: df.fluid(16, 32); }
+  h3 { font-size: df.fluid(20, 32); margin-bottom: df.fluid(12, 24); }
+  p  { font-size: df.fluid(16, 20); margin-bottom: df.fluid(8, 16); }
+  ul, ol { padding-left: df.fluid(16, 32); }
 }</code></pre>
   </section>
 
@@ -101,22 +101,22 @@ p  { font-size: dp.fluid(16, 20); }
 
     <h3 class="fs-18-24 mb-8-16"><code>breakpoint-up($name)</code></h3>
     <p class="fs-14-18 mb-8-16">Applies styles at a minimum viewport width (mobile-first):</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-functions' as dp;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-functions' as df;
 
 .sidebar {
   display: none;
 
-  @include dp.breakpoint-up(lg) {
+  @include df.breakpoint-up(lg) {
     display: block;    // visible at 992px+
   }
 }</code></pre>
 
     <h3 class="fs-18-24 mb-8-16"><code>breakpoint-down($name)</code></h3>
     <p class="fs-14-18 mb-8-16">Applies styles below a viewport width (desktop-first):</p>
-    <pre class="p-16-32 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-functions' as dp;
+    <pre class="p-16-32 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-functions' as df;
 
 .mobile-banner {
-  @include dp.breakpoint-down(md) {
+  @include df.breakpoint-down(md) {
     display: block;    // visible below 768px
   }
 }</code></pre>
@@ -131,8 +131,8 @@ p  { font-size: dp.fluid(16, 20); }
         <p class="fs-14-18">You control the HTML. Scan templates, generate CSS. No Sass needed.</p>
       </div>
       <div class="p-12-24 radius-8-16">
-        <h3 class="fs-18-24 mb-8-16 fw-bold">Classes + dp.fluid()</h3>
-        <p class="fs-14-18">Classes in HTML for most things. dp.fluid() for elements you can't add classes to.</p>
+        <h3 class="fs-18-24 mb-8-16 fw-bold">Classes + df.fluid()</h3>
+        <p class="fs-14-18">Classes in HTML for most things. df.fluid() for elements you can't add classes to.</p>
       </div>
       <div class="p-12-24 radius-8-16">
         <h3 class="fs-18-24 mb-8-16 fw-bold">Classes + Mixins</h3>

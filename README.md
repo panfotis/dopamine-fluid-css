@@ -38,7 +38,7 @@ dopamine ./templates --ext twig --out ./scss/_dopamine.scss
 - **CSS Grid** — `grid cols-1 cols-md-1.3 cols-lg-4` with custom ratios via dot notation
 - **Keyword utilities** — display, flexbox, alignment, position, overflow, z-index
 - **Breakpoint variants** — any class + `-md`, `-lg`, `-xl` etc. for responsive behavior
-- **Sass addon** — `dp.fluid()` function for custom styles (optional, independent)
+- **Sass addon** — `df.fluid()` function for custom styles (optional, independent)
 - **Components addon** — pre-built structural CSS for accordion, modal, etc. (optional, independent)
 - **Modern CSS reset** — included automatically in every build
 - **Only what you use** — scans your files, generates only the classes found
@@ -476,20 +476,20 @@ All keywords support breakpoint variants: append `-sm`, `-md`, `-lg`, `-xl`, `-x
 
 Dopamine has two optional addons. Both are independent — use either, both, or neither.
 
-### Sass Addon — `dp.fluid()`
+### Sass Addon — `df.fluid()`
 
 For elements you can't add classes to (e.g. Drupal-rendered content). Import the function from `addons/sass/`:
 
 ```scss
-@use 'dopamine-fluid/addons/sass/dopamine-functions' as dp;
+@use 'dopamine-fluid/addons/sass/dopamine-functions' as df;
 
 .node--article .field--body p {
-  font-size: dp.fluid(16, 48);
-  margin-bottom: dp.fluid(8, 24);
+  font-size: df.fluid(16, 48);
+  margin-bottom: df.fluid(8, 24);
 }
 
 .hero-banner h1 {
-  font-size: dp.fluid(32, 96, 480, 1920);  // custom viewport
+  font-size: df.fluid(32, 96, 480, 1920);  // custom viewport
 }
 ```
 
@@ -500,15 +500,15 @@ When you output to `.scss`, Dopamine also auto-generates a `_dopamine-functions.
 Both the standalone addon and the auto-generated functions file include breakpoint mixins that match your config:
 
 ```scss
-@use 'dopamine-functions' as dp;
+@use 'dopamine-functions' as df;
 
 .sidebar {
   display: none;
-  @include dp.breakpoint-up(lg) { display: block; }
+  @include df.breakpoint-up(lg) { display: block; }
 }
 
 .mobile-only {
-  @include dp.breakpoint-down(md) { display: block; }
+  @include df.breakpoint-down(md) { display: block; }
 }
 ```
 
