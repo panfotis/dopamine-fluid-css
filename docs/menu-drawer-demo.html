@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Drawer Demo</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components/menu/menu.css">
+  <link rel="stylesheet" href="css/components/menu-drawer/menu-drawer.css">
+  <link rel="stylesheet" href="css/components/forms/input.css">
+  <script src="components/scroll-lock.js" defer></script>
+  <script src="components/menu.js" defer></script>
+  <script src="components/menu-drawer.js" defer></script>
+  <style>
+    /* Minimal demo styling — colors, borders, list reset. All sizing / layout uses Dopamine classes. */
+    body { margin: 0; font-family: system-ui, sans-serif; background: #fafafa; color: #111; min-height: 300vh; --menu-mega-top: 49px; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* Outer .menu acts as a real navbar — sticky, flex row, light background. */
+    nav.menu { background: #fff; border-bottom: 1px solid #e5e5e5; position: sticky; top: 0; z-index: 100; }
+
+    /* Mobile burger drawer visuals. */
+    .menu__overlay { background: rgba(0, 0, 0, 0.4); }
+    .menu__drawer { background: #fff; }
+
+    /* overflow-x: hidden is ONLY needed while the burger drawer is open on mobile —
+       the drawer's `transform` makes it the containing block for .menu-dropdown-0
+       which sits off-screen at translateX(100%). Omitting this causes a horizontal
+       scrollbar inside the drawer. */
+    @media (max-width: 767px) {
+      .menu__drawer { overflow-x: hidden; }
+    }
+
+    /* Desktop — drawer becomes inline so the ul flows next to the brand in the nav row.
+       Do NOT set overflow-x here — absolute-positioned dropdowns must extend beyond
+       their parent <li> on hover. */
+    @media (min-width: 768px) {
+      .menu__drawer { display: flex; align-items: center; }
+      .menu.menu-level-0 > li.menu-item { border-bottom: none; }
+    }
+
+    /* Top-level item borders on mobile only. */
+    .menu.menu-level-0 > li.menu-item { border-bottom: 1px solid #f0f0f0; }
+
+    /* Dropdown panel visuals (applied in both drawer and dropdown modes). */
+    .menu-dropdown-0 { background: #fff; min-width: 200px; }
+    .menu-dropdown-0 ul li a { border-bottom: 1px solid #f0f0f0; }
+    @media (min-width: 992px) {
+      .menu-dropdown-0 { border: 1px solid #e5e5e5; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
+    }
+
+    /* Injected drawer header. */
+    .menu-drawer-header { background: #f7f7f7; border-bottom: 1px solid #e5e5e5; }
+
+    .demo-hint { color: #666; }
+  </style>
+</head>
+<body>
+
+<nav class="menu flex align-center gap-12 px-16 py-12">
+  <strong class="fs-16 fw-medium me-auto">Demo site</strong>
+  <button class="menu__toggle fs-24 p-4" aria-label="Open menu">&#9776;</button>
+  <div class="menu__overlay"></div>
+  <div class="menu__drawer">
+    <button class="menu__close fs-24 p-12-16" aria-label="Close menu">&times;</button>
+
+    <ul class="menu menu-level-0 flex flex-col flex-row-md p-0 m-0 mt-48 mt-md-0">
+      <li class="menu-item menu-item--expanded">
+        <a href="#" class="flex justify-between align-center py-16 px-16 fw-bold">
+          <span>Products</span>
+          <span class="fs-20 hidden-md" aria-hidden="true">›</span>
+        </a>
+        <div class="menu-dropdown-0 menu-dropdown-mega">
+          <div class="grid cols-1 cols-md-4 gap-16-32 p-16-32">
+            <div>
+              <p class="fs-12 fw-bold mb-8" style="text-transform:uppercase;color:#888;">Footwear</p>
+              <ul class="p-0 m-0">
+                <li><a href="#" class="block py-8 fs-14">Sneakers</a></li>
+                <li><a href="#" class="block py-8 fs-14">Boots</a></li>
+                <li><a href="#" class="block py-8 fs-14">Sandals</a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="fs-12 fw-bold mb-8" style="text-transform:uppercase;color:#888;">Apparel</p>
+              <ul class="p-0 m-0">
+                <li><a href="#" class="block py-8 fs-14">Shirts</a></li>
+                <li><a href="#" class="block py-8 fs-14">Jackets</a></li>
+                <li><a href="#" class="block py-8 fs-14">Pants</a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="fs-12 fw-bold mb-8" style="text-transform:uppercase;color:#888;">Accessories</p>
+              <ul class="p-0 m-0">
+                <li><a href="#" class="block py-8 fs-14">Hats</a></li>
+                <li><a href="#" class="block py-8 fs-14">Bags</a></li>
+                <li><a href="#" class="block py-8 fs-14">Belts</a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="fs-12 fw-bold mb-8" style="text-transform:uppercase;color:#888;">Featured</p>
+              <ul class="p-0 m-0">
+                <li><a href="#" class="block py-8 fs-14">New Arrivals</a></li>
+                <li><a href="#" class="block py-8 fs-14">Sale</a></li>
+                <li><a href="#" class="block py-8 fs-14">Gift Cards</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="menu-item menu-item--expanded">
+        <span class="flex justify-between align-center py-16 px-16 fw-bold">
+          <span>About</span>
+          <span class="fs-20 hidden-md" aria-hidden="true">›</span>
+        </span>
+        <div class="menu-dropdown-0">
+          <ul class="p-0 m-0">
+            <li><a href="#" class="block py-14 px-16 fs-14">Team</a></li>
+            <li><a href="#" class="block py-14 px-16 fs-14">Careers</a></li>
+            <li><a href="#" class="block py-14 px-16 fs-14">Press</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="menu-item menu-item--expanded">
+        <a href="#" class="flex justify-between align-center py-16 px-16 fw-bold">
+          <span>Support</span>
+          <span class="fs-20 hidden-md" aria-hidden="true">›</span>
+        </a>
+        <div class="menu-dropdown-0">
+          <ul class="p-0 m-0">
+            <li><a href="#" class="block py-14 px-16 fs-14">Help Center</a></li>
+            <li><a href="#" class="block py-14 px-16 fs-14">Contact</a></li>
+            <li><a href="#" class="block py-14 px-16 fs-14">Returns</a></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+
+    <!-- Extra content after the nav: search stays at the bottom on mobile, flows inline on desktop. -->
+    <div class="drawer-extra p-16 p-md-0">
+      <input type="search" class="df-input radius-8 px-12 py-8 fs-14 w-100 w-md-auto" placeholder="Search…">
+    </div>
+  </div>
+</nav>
+
+<p class="demo-hint px-16 py-24 fs-14">Tap the ☰ burger to open the menu, then tap any item to slide its drawer in. Resize ≥768px to see the desktop inline layout. Scroll the page, open a drawer, confirm the body doesn't scroll underneath; close it, scroll position is restored.</p>
+
+<div style="padding: 32px 16px; color: #888; font-size: 14px;">
+  <p>↓ Scroll test filler ↓</p>
+  <p style="margin-top: 80vh;">Middle of page</p>
+  <p style="margin-top: 80vh;">Near the bottom</p>
+  <p style="margin-top: 80vh;">Bottom</p>
+</div>
+
+</body>
+</html>

@@ -10,6 +10,7 @@
     const modal = resolve(target);
     if (!modal || modal.classList.contains('modal--open')) return;
     modal.classList.add('modal--open');
+    if (window.dopamine && window.dopamine.scrollLock) window.dopamine.scrollLock.lock();
     modal.dispatchEvent(new CustomEvent('dp:modal:open', { bubbles: true }));
   }
 
@@ -17,6 +18,7 @@
     const modal = resolve(target);
     if (!modal || !modal.classList.contains('modal--open')) return;
     modal.classList.remove('modal--open');
+    if (window.dopamine && window.dopamine.scrollLock) window.dopamine.scrollLock.unlock();
     modal.dispatchEvent(new CustomEvent('dp:modal:close', { bubbles: true }));
   }
 

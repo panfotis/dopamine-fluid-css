@@ -6,7 +6,10 @@
   border: 1px solid #e0e0e0;
   border-bottom: none;
   cursor: pointer;
-  &:hover { background: #f0f0f0; }
+  // Pointer devices only — avoids sticky :hover overriding .tab__btn--active on tap (iOS/Android).
+  @media (hover: hover) {
+    &:hover { background: #f0f0f0; }
+  }
 }
 
 .tab__btn--active {

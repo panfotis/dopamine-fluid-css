@@ -12,8 +12,10 @@
   border-bottom: none;
   cursor: pointer;
 }
-.tab__btn:hover {
-  background: #f0f0f0;
+@media (hover: hover) {
+  .tab__btn:hover {
+    background: #f0f0f0;
+  }
 }
 
 .tab__btn--active {

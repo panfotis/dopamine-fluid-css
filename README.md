@@ -521,6 +521,7 @@ Pre-built structural CSS for common UI patterns. No colors, no sizing — just b
 ```scss
 @use 'dopamine-fluid/addons/components/accordion/accordion';
 @use 'dopamine-fluid/addons/components/menu/menu';
+@use 'dopamine-fluid/addons/components/menu-drawer/menu-drawer';
 @use 'dopamine-fluid/addons/components/tabs/tabs';
 @use 'dopamine-fluid/addons/components/dropdown/dropdown';
 @use 'dopamine-fluid/addons/components/collapse/collapse';
@@ -565,7 +566,39 @@ The menu switches from drawer to inline at 768px by default. Override via Sass:
 @use 'dopamine-fluid/addons/components/menu/menu' with ($menu-bp: 992px);
 ```
 
-Available components: `accordion`, `modal`, `menu`, `tabs`, `dropdown`, `collapse`, `checkbox`, `radio`, `switch`, `input`.
+**Menu Drawer** (depends on `menu` — load `menu.js` on the same page) turns a multi-level nav's top-level dropdowns into right-sliding drawers on tablet/mobile (≤991px) and classic dropdowns on desktop. Triggers are detected by class structure — any `ul.menu.menu-level-0 > li` whose direct child is `.menu-dropdown-0` becomes a drawer. One drawer open at a time; auto-injects a back button + title with full ARIA and focus management on mobile; desktop is click-to-toggle by default, click-outside closes. Add `menu-drawer-hover` to the root `<ul>` to also reveal on hover / keyboard focus.
+
+```html
+<ul class="menu menu-level-0">
+  <li class="menu-item menu-item--expanded">
+    <a href="#">Products</a>
+    <div class="menu-dropdown-0">
+      <!-- any markup: columns, image cards, sub-lists, etc. -->
+      <ul><li><a href="/a">Item A</a></li></ul>
+    </div>
+  </li>
+</ul>
+```
+
+Override the breakpoint (default 992px, component active below it):
+
+```scss
+@use 'dopamine-fluid/addons/components/menu-drawer/menu-drawer' with ($menu-drawer-bp: 768px);
+```
+
+Keep the JS in sync with the SCSS breakpoint by setting `window.DOPE_MENU_DRAWER_BP = <bp - 1>` before the script loads. For a sticky header, set `--menu-drawer-top: 64px` on `:root` and the drawer sizes itself to the remaining viewport (uses `visualViewport.height` to handle iOS URL-bar changes).
+
+**Mega dropdown (100vw on desktop)** — add `menu-dropdown-mega` to any `.menu-dropdown-0` and on desktop it becomes `position: fixed` spanning the full viewport width. Mobile is unchanged (still a right-slide drawer). Set `--menu-mega-top` on `:root` to your sticky nav's height so the dropdown sits flush below. Lay out the inside with dopamine grid/flex utilities — e.g. `<div class="grid cols-1 cols-md-4 gap-16-32 p-16-32">`.
+
+Available components: `accordion`, `modal`, `menu`, `menu-drawer`, `tabs`, `dropdown`, `collapse`, `checkbox`, `radio`, `switch`, `input`.
+
+**Scroll Lock** is a tiny shared helper (~30 lines, no CSS) that locks body scroll for `modal` and `menu`. Include it once and both components use it automatically. `menu` only locks while the drawer is actually in drawer mode (mobile) — desktop inline nav never triggers a lock. `menu-drawer` inherits the lock from its outer `menu` (the burger holds it for the whole session). Handles the iOS Safari `overflow: hidden` gap via `position: fixed` + scroll-position restore, and compensates for the desktop scrollbar so the page doesn't shift when it disappears. Ref-counted so nested dialogs don't unlock each other.
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/scroll-lock/scroll-lock.js" defer></script>
+```
+
+Drive it manually if you have your own dialog: `dopamine.scrollLock.lock()` / `.unlock()` / `.isLocked()`. Without this file loaded, modal and menu-drawer still work — they just don't lock body scroll.
 
 **Form components** (`checkbox`, `radio`, `switch`) are pure-CSS styled replacements for native `<input>` checkboxes and radios. They keep the real `<input>` in the DOM (accessible + form-submittable), visually hide it, and render a styled sibling that reacts to `:checked`. No JS, no a11y tradeoffs. Markup contract:
 
@@ -583,7 +616,7 @@ For text entry, the `input` component provides a minimal `.df-input` class that 
 
 #### Using a component in your project
 
-Three working paths, depending on your project's setup. All use `accordion` as the example — swap the component name (`modal`, `menu`, `tabs`, `dropdown`, `collapse`, `forms/checkbox`, etc.) as needed.
+Three working paths, depending on your project's setup. All use `accordion` as the example — swap the component name (`modal`, `menu`, `menu-drawer`, `tabs`, `dropdown`, `collapse`, `forms/checkbox`, etc.) as needed.
 
 **1. CDN (jsDelivr / unpkg)** — zero install, one tag per file:
 

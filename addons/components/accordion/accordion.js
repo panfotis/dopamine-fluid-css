@@ -1,12 +1,28 @@
 // Dopamine Fluid — Accordion Component
-// Handles close animation for <details> elements (browser otherwise snaps instantly).
+// Smooth open/close animation for <details> elements (browser otherwise snaps instantly).
 // API: dopamine.accordion.open(detailsEl), .close(detailsEl), .toggle(detailsEl)
 // Events: dp:accordion:open, dp:accordion:close (bubble from the <details> item)
 
 (function () {
+  const prefersReducedMotion = () =>
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   function open(item) {
     if (!item || item.open) return;
+    const body = item.querySelector('.accordion__body');
+    if (!body || prefersReducedMotion()) {
+      item.open = true;
+      item.dispatchEvent(new CustomEvent('dp:accordion:open', { bubbles: true }));
+      return;
+    }
+    // Commit the 0fr state BEFORE the [open] flip so iOS Safari has a transition start frame.
+    body.style.gridTemplateRows = '0fr';
     item.open = true;
+    void body.offsetHeight;                          // force reflow
+    body.style.gridTemplateRows = '1fr';
+    body.addEventListener('transitionend', () => {
+      body.style.gridTemplateRows = '';              // hand back to CSS
+    }, { once: true });
     item.dispatchEvent(new CustomEvent('dp:accordion:open', { bubbles: true }));
   }
 
@@ -17,7 +33,7 @@
       item.open = false;
       item.dispatchEvent(new CustomEvent('dp:accordion:close', { bubbles: true }));
     };
-    if (!body) {
+    if (!body || prefersReducedMotion()) {
       finalize();
       return;
     }
@@ -38,18 +54,8 @@
     if (!summary) return;
     const item = summary.closest('.accordion__item');
     if (!item) return;
-
-    if (item.open) {
-      e.preventDefault();
-      close(item);
-    } else {
-      // Let the browser open natively; fire our event after the open attr flips.
-      requestAnimationFrame(() => {
-        if (item.open) {
-          item.dispatchEvent(new CustomEvent('dp:accordion:open', { bubbles: true }));
-        }
-      });
-    }
+    e.preventDefault();
+    item.open ? close(item) : open(item);
   });
 
   window.dopamine = window.dopamine || {};

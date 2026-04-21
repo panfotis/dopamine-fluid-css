@@ -8,13 +8,16 @@
   <link rel="stylesheet" href="css/components/accordion/accordion.css">
   <link rel="stylesheet" href="css/components/modal/modal.css">
   <link rel="stylesheet" href="css/components/menu/menu.css">
+  <link rel="stylesheet" href="css/components/menu-drawer/menu-drawer.css">
   <link rel="stylesheet" href="css/components/tabs/tabs.css">
   <link rel="stylesheet" href="css/components/dropdown/dropdown.css">
   <link rel="stylesheet" href="css/components/collapse/collapse.css">
   <script src="search.js" defer></script>
+  <script src="components/scroll-lock.js" defer></script>
   <script src="components/accordion.js" defer></script>
   <script src="components/modal.js" defer></script>
   <script src="components/menu.js" defer></script>
+  <script src="components/menu-drawer.js" defer></script>
   <script src="components/tabs.js" defer></script>
   <script src="components/dropdown.js" defer></script>
   <script src="components/collapse.js" defer></script>
@@ -52,7 +55,7 @@
     <h2 class="fs-24-48 mb-12-24">How Components Work</h2>
     <p class="fs-14-18 mb-8-16">Components provide <strong>structure only</strong> — display, transitions, open/close behavior.</p>
     <p class="fs-14-18 mb-8-16">All sizing and colors come from Dopamine classes in your HTML.</p>
-    <p class="fs-14-18">Available components: <code>accordion</code>, <code>modal</code>, <code>menu</code>, <code>tabs</code>, <code>dropdown</code>, <code>collapse</code>. Form controls (<code>input</code>, <code>checkbox</code>, <code>radio</code>, <code>switch</code>) live on the <a href="forms.html">Forms</a> page.</p>
+    <p class="fs-14-18">Available components: <code>accordion</code>, <code>modal</code>, <code>menu</code>, <code>menu-drawer</code>, <code>tabs</code>, <code>dropdown</code>, <code>collapse</code>. Shared helper: <code>scroll-lock</code> (opt-in body scroll lock for modal + menu-drawer). Form controls (<code>input</code>, <code>checkbox</code>, <code>radio</code>, <code>switch</code>) live on the <a href="forms.html">Forms</a> page.</p>
   </section>
 
   <section class="docs-section mt-40-80">
@@ -204,6 +207,106 @@
   </section>
 
   <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Menu Drawer <span class="fs-12-14 fw-bold px-8 py-4 radius-4" style="background:#fff3cd;color:#856404;vertical-align:middle;">Beta</span></h2>
+    <p class="fs-12-14 mb-12-24" style="color:#856404;">⚠ Still in beta — API and class names may change before the stable release.</p>
+    <p class="fs-12-14 mb-12-24" style="color:#856404;">ℹ Depends on the <code>menu</code> component — load <code>menu.js</code> (and optionally <code>scroll-lock.js</code>) on the same page. <code>menu-drawer</code> uses <code>dp:menu:close</code> to cascade-close open drawers, and the outer burger owns the body scroll lock while mobile nav is in drawer mode.</p>
+    <p class="fs-14-18 mb-16-32">Turns a multi-level nav's top-level dropdowns into right-sliding drawers on tablet/mobile (≤991px). Built for Drupal-rendered mega-menus where markup cannot be changed — detects triggers purely by class structure (<code>ul.menu.menu-level-0 &gt; li</code> with a direct-child <code>.menu-dropdown-0</code>). One drawer open at a time. Auto-injects a back button + title, wires full ARIA (<code>role="dialog"</code>, <code>aria-modal</code>, <code>aria-expanded</code>, <code>aria-controls</code>), manages focus, and sizes the drawer to the viewport (with optional sticky-header offset). On desktop (≥992px) the same panels render as classic dropdowns — absolute-positioned under their parent. <strong>Click-to-toggle by default</strong> (clicking the trigger opens, clicking outside closes); add <code>menu-drawer-hover</code> to the root <code>&lt;ul&gt;</code> to also reveal on hover or keyboard focus.</p>
+
+    <h3 class="fs-18-24 mb-8-16">Demo</h3>
+    <p class="fs-14-18 mb-8-16">Tap an item to open its drawer — back button, title, and ESC key all close it. The demo is rendered at mobile width inside an iframe, so the drawer stays inside the frame.</p>
+    <iframe src="menu-drawer-demo.html" title="Menu Drawer demo" class="mb-16-32 radius-8" style="width: 100%; max-width: 400px; height: 480px; border: 1px solid #ddd;"></iframe>
+
+    <h3 class="fs-18-24 mb-8-16">Minimum HTML</h3>
+    <p class="fs-14-18 mb-8-16">The top-level header can be an <code>&lt;a&gt;</code> or a <code>&lt;span&gt;</code> — both work. Anything can live inside <code>.menu-dropdown-0</code>; the component doesn't care about the inner structure.</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;ul class="menu menu-level-0"&gt;
+  &lt;li class="menu-item menu-item--expanded"&gt;
+    &lt;a href="#"&gt;Products&lt;/a&gt;
+    &lt;div class="menu-dropdown-0"&gt;
+      &lt;!-- any markup: columns, image cards, sub-lists, etc. --&gt;
+      &lt;ul class="menu menu-level-1"&gt;
+        &lt;li&gt;&lt;a href="/a"&gt;Item A&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/b"&gt;Item B&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li class="menu-item menu-item--expanded"&gt;
+    &lt;span&gt;About&lt;/span&gt;
+    &lt;div class="menu-dropdown-0"&gt;
+      &lt;ul class="menu menu-level-1"&gt;
+        &lt;li&gt;&lt;a href="/team"&gt;Team&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/careers"&gt;Careers&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+    <h3 class="fs-18-24 mb-8-16">Include</h3>
+    <p class="fs-14-18 mb-8-16">CSS file + JS file:</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/menu-drawer/menu-drawer.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/menu-drawer/menu-drawer.js" defer&gt;&lt;/script&gt;</code></pre>
+    <p class="fs-14-18 mb-8-16">Or via Sass:</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/menu-drawer/menu-drawer';</code></pre>
+
+    <h3 class="fs-18-24 mb-8-16">Custom breakpoint</h3>
+    <p class="fs-14-18 mb-8-16">The drawer activates below 992px by default. Override both the SCSS variable and the matching JS global:</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/menu-drawer/menu-drawer' with ($menu-drawer-bp: 768px);</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;script&gt;window.DOPE_MENU_DRAWER_BP = 767;&lt;/script&gt;
+&lt;script src="…/menu-drawer.js" defer&gt;&lt;/script&gt;</code></pre>
+
+    <h3 class="fs-18-24 mb-8-16">Sticky-header offset</h3>
+    <p class="fs-14-18 mb-8-16">If your page has a fixed/sticky header, set <code>--menu-drawer-top</code> so the drawer starts below it. The component reads this on open and sizes the drawer to fit the remaining viewport:</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">:root { --menu-drawer-top: 64px; }</code></pre>
+    <p class="fs-14-18 mb-16-32">Uses <code>visualViewport.height</code> under the hood so iOS URL-bar changes don't cut content off. The Drupal admin toolbar's <code>--drupal-displace-offset-top</code> is also respected automatically.</p>
+
+    <h3 class="fs-18-24 mb-8-16">Mega dropdown (100vw on desktop)</h3>
+    <p class="fs-14-18 mb-8-16">Add <code>menu-dropdown-mega</code> to any <code>.menu-dropdown-0</code> and on desktop it switches to <code>position: fixed</code> spanning the full viewport width. Mobile drawer behavior is unchanged (still a right-slide drawer). Lay out the inside with dopamine grid / flex utilities — the component only sets the container.</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;li class="menu-item menu-item--expanded"&gt;
+  &lt;a href="#"&gt;Products&lt;/a&gt;
+  &lt;div class="menu-dropdown-0 menu-dropdown-mega"&gt;
+    &lt;div class="grid cols-1 cols-md-4 gap-16-32 p-16-32"&gt;
+      &lt;div&gt;…column 1…&lt;/div&gt;
+      &lt;div&gt;…column 2…&lt;/div&gt;
+      …
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/li&gt;</code></pre>
+    <p class="fs-14-18 mb-8-16">Tell the component where your nav ends via <code>--menu-mega-top</code> so the dropdown sits flush below it (otherwise it defaults to the top of the viewport):</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">:root { --menu-mega-top: 64px; }   /* height of your sticky nav */</code></pre>
+
+    <h3 class="fs-18-24 mb-8-16">Custom back-button markup</h3>
+    <p class="fs-14-18 mb-16-32">If you'd rather ship your own back row (localized text, icon font, etc.), server-render a <code>.menu-drawer-header</code> as the first child of <code>.menu-dropdown-0</code>. The component skips injection when one already exists, and wires the first <code>.menu-drawer-back-btn</code> click to close.</p>
+
+    <h3 class="fs-18-24 mb-8-16">Extra content inside the burger drawer</h3>
+    <p class="fs-14-18 mb-8-16">The <code>menu</code> component ignores anything that isn't one of its own <code>__</code> elements, so you can drop extra siblings (search box, language switcher, CTA, social icons) directly inside <code>.menu__drawer</code> alongside <code>ul.menu.menu-level-0</code>:</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;div class="menu__drawer"&gt;
+  &lt;button class="menu__close"&gt;&amp;times;&lt;/button&gt;
+
+  &lt;div class="p-16 hidden-md"&gt;
+    &lt;input type="search" class="df-input w-100" placeholder="Search…"&gt;
+  &lt;/div&gt;
+
+  &lt;ul class="menu menu-level-0"&gt;…&lt;/ul&gt;
+
+  &lt;a href="/login" class="block p-16 hidden-md"&gt;Log in&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+    <p class="fs-14-18 mb-4-8">Three things to know:</p>
+    <p class="fs-14-18 mb-4-8">• A sub-drawer (<code>.menu-dropdown-0</code> opening on mobile) is <code>position: fixed</code> at <code>z-index: 1001</code> and covers the whole viewport — extra siblings are hidden while the user is drilled into a level-1 panel. Intentional, not a bug.</p>
+    <p class="fs-14-18 mb-4-8">• Above <code>$menu-bp</code> the drawer becomes <code>position: static</code> and siblings render inline next to the nav. Use <code>hidden-md</code> (or whichever breakpoint) on items that shouldn't appear in the desktop navbar.</p>
+    <p class="fs-14-18 mb-16-32">• Body scroll lock is held by the outer burger. Extras scroll inside the drawer via <code>overflow-y: auto</code> on <code>.menu__drawer</code>. Nothing else to wire.</p>
+
+    <p class="fs-14-18 mb-4-8"><code>menu menu-level-0</code> — root <code>&lt;ul&gt;</code>, the component scans for this selector</p>
+    <p class="fs-14-18 mb-4-8"><code>menu-item menu-item--expanded</code> — top-level <code>&lt;li&gt;</code> (only those with a direct-child <code>.menu-dropdown-0</code> become drawers)</p>
+    <p class="fs-14-18 mb-4-8"><code>menu-dropdown-0</code> — the panel that becomes the drawer on mobile</p>
+    <p class="fs-14-18 mb-4-8"><code>menu-drawer--open</code> — added/removed by JS on the <code>&lt;li&gt;</code> to toggle the drawer (BEM-aligned with other component modifiers)</p>
+    <p class="fs-14-18 mb-4-8"><code>menu-drawer-header</code> / <code>menu-drawer-back-btn</code> / <code>menu-drawer-title</code> — injected markup (or ship your own). Hidden on desktop.</p>
+    <p class="fs-14-18 mb-4-8"><code>menu-drawer-hover</code> — add to the root <code>&lt;ul.menu.menu-level-0&gt;</code> to enable hover/focus reveal on desktop (click still works too)</p>
+    <p class="fs-14-18 mb-4-8"><code>menu-dropdown-mega</code> — add to a <code>.menu-dropdown-0</code> to make that specific dropdown span 100vw on desktop (no change on mobile)</p>
+    <p class="fs-14-18 mb-4-8"><code>data-menu-drawer-title="…"</code> — on a trigger, overrides the auto-derived drawer title</p>
+    <p class="fs-14-18 mb-4-8"><code>--menu-drawer-top</code> / <code>--menu-drawer-height</code> — CSS vars for sticky-header offset (mobile drawer) and JS-computed height</p>
+    <p class="fs-14-18"><code>--menu-mega-top</code> — CSS var for the top offset of mega dropdowns on desktop (typically your sticky nav's height)</p>
+  </section>
+
+  <section class="docs-section mt-40-80">
     <h2 class="fs-24-48 mb-12-24">Tabs</h2>
     <p class="fs-14-18 mb-16-32">Click a button to switch panels. Triggers use <code>data-tab-target="#id"</code> to point at a panel inside the same <code>.tabs</code> group. Requires a tiny JS file (~10 lines).</p>
 
@@ -346,6 +449,24 @@
   </section>
 
   <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Scroll Lock</h2>
+    <p class="fs-14-18 mb-16-32">A tiny, cross-browser body scroll lock shared by <code>modal</code> and <code>menu</code>. Include this one file and those components will freeze the page behind them while open — on iOS Safari (where <code>overflow: hidden</code> alone doesn't work), on desktop Windows / Firefox (compensates for the scrollbar so the page doesn't jump), and everywhere else. Ref-counted, so multiple dialogs can lock independently without stomping each other. No CSS, no markup — pure JS helper.</p>
+    <p class="fs-14-18 mb-16-32"><code>menu</code> locks only in drawer mode (it checks that <code>.menu__drawer</code> is <code>position: fixed</code>, so desktop inline nav never locks). <code>menu-drawer</code> does not lock on its own — the outer burger already holds the lock for the entire session, and the drawer opens on top of that.</p>
+
+    <h3 class="fs-18-24 mb-8-16">Include</h3>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;script src="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/scroll-lock/scroll-lock.js" defer&gt;&lt;/script&gt;</code></pre>
+    <p class="fs-14-18 mb-16-32">Once loaded, <code>modal</code> and <code>menu</code> detect it automatically via <code>window.dopamine.scrollLock</code> and use it on open/close. If you don't include it, those components still work — just without the scroll lock.</p>
+
+    <h3 class="fs-18-24 mb-8-16">Using it yourself</h3>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">dopamine.scrollLock.lock();     // freeze body scroll
+dopamine.scrollLock.unlock();   // release (only unfreezes when the ref-count hits 0)
+dopamine.scrollLock.isLocked(); // boolean</code></pre>
+
+    <p class="fs-14-18 mb-4-8"><code>lock()</code> / <code>unlock()</code> — ref-counted. Call <code>unlock()</code> once per <code>lock()</code>; the body is only released when the count returns to zero.</p>
+    <p class="fs-14-18"><code>isLocked()</code> — reports current state (count &gt; 0).</p>
+  </section>
+
+  <section class="docs-section mt-40-80">
     <h2 class="fs-24-48 mb-12-24">Events &amp; JavaScript API</h2>
     <p class="fs-14-18 mb-16-32">Every component registers methods on <code>window.dopamine</code> and emits bubbling <code>CustomEvent</code>s on its root element. Use the API to drive components from your code, and listen for events to react to state changes.</p>
 
@@ -401,6 +522,11 @@ document.querySelector('#my-dropdown')
           <td class="fs-14-18 p-8-16"><code>open(el)</code>, <code>close(el)</code>, <code>toggle(el)</code></td>
         </tr>
         <tr>
+          <td class="fs-14-18 p-8-16"><code>menu-drawer</code></td>
+          <td class="fs-14-18 p-8-16"><code>dp:menu-drawer:open</code><br><code>dp:menu-drawer:close</code></td>
+          <td class="fs-14-18 p-8-16"><code>open(li)</code>, <code>close(li)</code>, <code>toggle(li)</code>, <code>isOpen(li)</code>, <code>closeAll()</code>, <code>refresh()</code></td>
+        </tr>
+        <tr>
           <td class="fs-14-18 p-8-16"><code>tabs</code></td>
           <td class="fs-14-18 p-8-16"><code>dp:tabs:change</code><br>detail: <code>{ panel, trigger }</code></td>
           <td class="fs-14-18 p-8-16"><code>activate(panelIdOrEl)</code></td>
@@ -430,7 +556,7 @@ document.querySelector('#my-dropdown')
   }, { once: true });
 });</code></pre>
     <p class="fs-14-18 mb-4-8">Pick whichever element has the transition in its CSS:</p>
-    <p class="fs-14-18 mb-4-8"><code>.modal__dialog</code> for modal — <code>.menu__drawer</code> for menu — <code>.dropdown__menu</code> for dropdown — <code>.accordion__body</code> for accordion.</p>
+    <p class="fs-14-18 mb-4-8"><code>.modal__dialog</code> for modal — <code>.menu__drawer</code> for menu — <code>.menu-dropdown-0</code> for menu-drawer — <code>.dropdown__menu</code> for dropdown — <code>.accordion__body</code> for accordion.</p>
     <p class="fs-14-18">Tabs has no transition by default, so <code>dp:tabs:change</code> already fires at the final state.</p>
   </section>
 
