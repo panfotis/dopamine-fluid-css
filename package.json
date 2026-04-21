@@ -1,6 +1,6 @@
 {
   "name": "dopamine-fluid",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Dopamine Fluid — generate fluid CSS and grid layouts from class names",
   "main": "lib/runner.js",
   "files": [
