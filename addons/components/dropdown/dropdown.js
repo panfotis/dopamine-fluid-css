@@ -2,7 +2,7 @@
 // Click [data-dropdown-toggle] inside .dropdown to open. Click-outside or ESC closes all.
 // Multiple dropdowns can be open at once.
 // API: dopamine.dropdown.open(el), .close(el), .toggle(el), .closeAll()
-// Events: dp:dropdown:open, dp:dropdown:close (bubble from .dropdown)
+// Events: df:dropdown:open, df:dropdown:close (bubble from .dropdown)
 
 (function () {
   function triggerOf(dropdown) {
@@ -14,7 +14,7 @@
     dropdown.classList.add('dropdown--open');
     const trigger = triggerOf(dropdown);
     if (trigger) trigger.setAttribute('aria-expanded', 'true');
-    dropdown.dispatchEvent(new CustomEvent('dp:dropdown:open', { bubbles: true }));
+    dropdown.dispatchEvent(new CustomEvent('df:dropdown:open', { bubbles: true }));
   }
 
   function close(dropdown) {
@@ -22,7 +22,7 @@
     dropdown.classList.remove('dropdown--open');
     const trigger = triggerOf(dropdown);
     if (trigger) trigger.setAttribute('aria-expanded', 'false');
-    dropdown.dispatchEvent(new CustomEvent('dp:dropdown:close', { bubbles: true }));
+    dropdown.dispatchEvent(new CustomEvent('df:dropdown:close', { bubbles: true }));
   }
 
   function toggle(dropdown) {

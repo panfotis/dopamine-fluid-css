@@ -1,7 +1,7 @@
 // Dopamine Fluid — Modal Component
 // Open/close with ESC and click-outside support. Traps focus and restores to the trigger on close.
 // API: dopamine.modal.open(id|el), .close(id|el), .toggle(id|el)
-// Events: dp:modal:open, dp:modal:close (bubble from .modal)
+// Events: df:modal:open, df:modal:close (bubble from .modal)
 
 (function () {
   const resolve = m => typeof m === 'string' ? document.getElementById(m) : m;
@@ -44,7 +44,7 @@
     const focusable = focusableWithin(modal);
     (focusable[0] || modal).focus({ preventScroll: true });
 
-    modal.dispatchEvent(new CustomEvent('dp:modal:open', { bubbles: true }));
+    modal.dispatchEvent(new CustomEvent('df:modal:open', { bubbles: true }));
   }
 
   function close(target) {
@@ -63,7 +63,7 @@
       trigger.focus({ preventScroll: true });
     }
 
-    modal.dispatchEvent(new CustomEvent('dp:modal:close', { bubbles: true }));
+    modal.dispatchEvent(new CustomEvent('df:modal:close', { bubbles: true }));
   }
 
   function toggle(target) {

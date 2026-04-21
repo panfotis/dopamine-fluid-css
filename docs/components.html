@@ -209,7 +209,7 @@
   <section class="docs-section mt-40-80">
     <h2 class="fs-24-48 mb-12-24">Menu Drawer <span class="fs-12-14 fw-bold px-8 py-4 radius-4" style="background:#fff3cd;color:#856404;vertical-align:middle;">Beta</span></h2>
     <p class="fs-12-14 mb-12-24" style="color:#856404;">⚠ Still in beta — API and class names may change before the stable release.</p>
-    <p class="fs-12-14 mb-12-24" style="color:#856404;">ℹ Depends on the <code>menu</code> component — load <code>menu.js</code> (and optionally <code>scroll-lock.js</code>) on the same page. <code>menu-drawer</code> uses <code>dp:menu:close</code> to cascade-close open drawers, and the outer burger owns the body scroll lock while mobile nav is in drawer mode.</p>
+    <p class="fs-12-14 mb-12-24" style="color:#856404;">ℹ Depends on the <code>menu</code> component — load <code>menu.js</code> (and optionally <code>scroll-lock.js</code>) on the same page. <code>menu-drawer</code> uses <code>df:menu:close</code> to cascade-close open drawers, and the outer burger owns the body scroll lock while mobile nav is in drawer mode.</p>
     <p class="fs-14-18 mb-16-32">Turns a multi-level nav's top-level dropdowns into right-sliding drawers on tablet/mobile (≤991px). Built for Drupal-rendered mega-menus where markup cannot be changed — detects triggers purely by class structure (<code>ul.menu.menu-level-0 &gt; li</code> with a direct-child <code>.menu-dropdown-0</code>). One drawer open at a time. Auto-injects a back button + title, wires full ARIA (<code>role="dialog"</code>, <code>aria-modal</code>, <code>aria-expanded</code>, <code>aria-controls</code>), manages focus, and sizes the drawer to the viewport (with optional sticky-header offset). On desktop (≥992px) the same panels render as classic dropdowns — absolute-positioned under their parent. <strong>Click-to-toggle by default</strong> (clicking the trigger opens, clicking outside closes); add <code>menu-drawer-hover</code> to the root <code>&lt;ul&gt;</code> to also reveal on hover or keyboard focus.</p>
 
     <h3 class="fs-18-24 mb-8-16">Demo</h3>
@@ -484,17 +484,17 @@ dopamine.accordion.open(document.querySelector('.accordion__item'));</code></pre
 
     <h3 class="fs-18-24 mb-8-16">Listening for events</h3>
     <p class="fs-14-18 mb-8-16">Events bubble, so you can delegate from <code>document</code> or scope listeners to a specific element.</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">document.addEventListener('dp:modal:open', e =&gt; {
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">document.addEventListener('df:modal:open', e =&gt; {
   console.log('modal opened', e.target.id);
 });
 
-document.addEventListener('dp:tabs:change', e =&gt; {
+document.addEventListener('df:tabs:change', e =&gt; {
   console.log('new panel', e.detail.panel.id);
   console.log('trigger', e.detail.trigger);
 });
 
 document.querySelector('#my-dropdown')
-  .addEventListener('dp:dropdown:close', () =&gt; {/* ... */});</code></pre>
+  .addEventListener('df:dropdown:close', () =&gt; {/* ... */});</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Reference</h3>
     <table class="docs-table mb-16-32">
@@ -508,37 +508,37 @@ document.querySelector('#my-dropdown')
       <tbody>
         <tr>
           <td class="fs-14-18 p-8-16"><code>accordion</code></td>
-          <td class="fs-14-18 p-8-16"><code>dp:accordion:open</code><br><code>dp:accordion:close</code></td>
+          <td class="fs-14-18 p-8-16"><code>df:accordion:open</code><br><code>df:accordion:close</code></td>
           <td class="fs-14-18 p-8-16"><code>open(el)</code>, <code>close(el)</code>, <code>toggle(el)</code></td>
         </tr>
         <tr>
           <td class="fs-14-18 p-8-16"><code>modal</code></td>
-          <td class="fs-14-18 p-8-16"><code>dp:modal:open</code><br><code>dp:modal:close</code></td>
+          <td class="fs-14-18 p-8-16"><code>df:modal:open</code><br><code>df:modal:close</code></td>
           <td class="fs-14-18 p-8-16"><code>open(idOrEl)</code>, <code>close(idOrEl)</code>, <code>toggle(idOrEl)</code></td>
         </tr>
         <tr>
           <td class="fs-14-18 p-8-16"><code>menu</code></td>
-          <td class="fs-14-18 p-8-16"><code>dp:menu:open</code><br><code>dp:menu:close</code></td>
+          <td class="fs-14-18 p-8-16"><code>df:menu:open</code><br><code>df:menu:close</code></td>
           <td class="fs-14-18 p-8-16"><code>open(el)</code>, <code>close(el)</code>, <code>toggle(el)</code></td>
         </tr>
         <tr>
           <td class="fs-14-18 p-8-16"><code>menu-drawer</code></td>
-          <td class="fs-14-18 p-8-16"><code>dp:menu-drawer:open</code><br><code>dp:menu-drawer:close</code></td>
+          <td class="fs-14-18 p-8-16"><code>df:menu-drawer:open</code><br><code>df:menu-drawer:close</code></td>
           <td class="fs-14-18 p-8-16"><code>open(li)</code>, <code>close(li)</code>, <code>toggle(li)</code>, <code>isOpen(li)</code>, <code>closeAll()</code>, <code>refresh()</code></td>
         </tr>
         <tr>
           <td class="fs-14-18 p-8-16"><code>tabs</code></td>
-          <td class="fs-14-18 p-8-16"><code>dp:tabs:change</code><br>detail: <code>{ panel, trigger }</code></td>
+          <td class="fs-14-18 p-8-16"><code>df:tabs:change</code><br>detail: <code>{ panel, trigger }</code></td>
           <td class="fs-14-18 p-8-16"><code>activate(panelIdOrEl)</code></td>
         </tr>
         <tr>
           <td class="fs-14-18 p-8-16"><code>dropdown</code></td>
-          <td class="fs-14-18 p-8-16"><code>dp:dropdown:open</code><br><code>dp:dropdown:close</code></td>
+          <td class="fs-14-18 p-8-16"><code>df:dropdown:open</code><br><code>df:dropdown:close</code></td>
           <td class="fs-14-18 p-8-16"><code>open(el)</code>, <code>close(el)</code>, <code>toggle(el)</code>, <code>closeAll()</code></td>
         </tr>
         <tr>
           <td class="fs-14-18 p-8-16"><code>collapse</code></td>
-          <td class="fs-14-18 p-8-16"><code>dp:collapse:open</code><br><code>dp:collapse:close</code></td>
+          <td class="fs-14-18 p-8-16"><code>df:collapse:open</code><br><code>df:collapse:close</code></td>
           <td class="fs-14-18 p-8-16"><code>open(idOrEl)</code>, <code>close(idOrEl)</code>, <code>toggle(idOrEl)</code></td>
         </tr>
       </tbody>
@@ -547,7 +547,7 @@ document.querySelector('#my-dropdown')
     <h3 class="fs-18-24 mb-8-16 mt-24-40">Event timing &amp; transitions</h3>
     <p class="fs-14-18 mb-8-16">Events fire <strong>immediately after the class is flipped</strong> — so <code>:open</code> fires as the opening transition is starting, and <code>:close</code> fires as the hiding transition is starting. That's the right moment for most work: updating state, logging, focusing an input, loading data.</p>
     <p class="fs-14-18 mb-8-16">If you need to wait for the animation to <em>finish</em> — for example, to unmount content only once a modal has fully faded out — listen for <code>transitionend</code> on the element that actually animates:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">document.addEventListener('dp:modal:close', e =&gt; {
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">document.addEventListener('df:modal:close', e =&gt; {
   // e.target is the .modal (the open class has already been removed).
   // The .modal__dialog is what animates — wait for it to finish:
   const dialog = e.target.querySelector('.modal__dialog');
@@ -557,7 +557,7 @@ document.querySelector('#my-dropdown')
 });</code></pre>
     <p class="fs-14-18 mb-4-8">Pick whichever element has the transition in its CSS:</p>
     <p class="fs-14-18 mb-4-8"><code>.modal__dialog</code> for modal — <code>.menu__drawer</code> for menu — <code>.menu-dropdown-0</code> for menu-drawer — <code>.dropdown__menu</code> for dropdown — <code>.accordion__body</code> for accordion.</p>
-    <p class="fs-14-18">Tabs has no transition by default, so <code>dp:tabs:change</code> already fires at the final state.</p>
+    <p class="fs-14-18">Tabs has no transition by default, so <code>df:tabs:change</code> already fires at the final state.</p>
   </section>
 
 </div>

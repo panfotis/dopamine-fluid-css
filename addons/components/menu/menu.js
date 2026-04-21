@@ -1,7 +1,7 @@
 // Dopamine Fluid — Menu Component
 // Open/close with ESC key and click-outside support.
 // API: dopamine.menu.open(el), .close(el), .toggle(el)
-// Events: dp:menu:open, dp:menu:close (bubble from .menu)
+// Events: df:menu:open, df:menu:close (bubble from .menu)
 
 (function () {
   // Lock body scroll only when the drawer is actually in drawer mode (position: fixed) —
@@ -30,14 +30,14 @@
     if (!menu || menu.classList.contains('menu--open')) return;
     menu.classList.add('menu--open');
     lockScroll(menu);
-    menu.dispatchEvent(new CustomEvent('dp:menu:open', { bubbles: true }));
+    menu.dispatchEvent(new CustomEvent('df:menu:open', { bubbles: true }));
   }
 
   function close(menu) {
     if (!menu || !menu.classList.contains('menu--open')) return;
     menu.classList.remove('menu--open');
     unlockScroll(menu);
-    menu.dispatchEvent(new CustomEvent('dp:menu:close', { bubbles: true }));
+    menu.dispatchEvent(new CustomEvent('df:menu:close', { bubbles: true }));
   }
 
   function toggle(menu) {

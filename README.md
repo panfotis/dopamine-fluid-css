@@ -667,18 +667,18 @@ dopamine.tabs.activate('#panel-2');
 dopamine.dropdown.closeAll();
 
 // React to state changes (events bubble — delegate from document if you like)
-document.addEventListener('dp:modal:open', e => console.log('opened', e.target.id));
-document.addEventListener('dp:tabs:change', e => console.log('panel', e.detail.panel.id));
+document.addEventListener('df:modal:open', e => console.log('opened', e.target.id));
+document.addEventListener('df:tabs:change', e => console.log('panel', e.detail.panel.id));
 ```
 
 | Component | Events | API |
 |---|---|---|
-| accordion | `dp:accordion:open`, `dp:accordion:close` | `open(el)`, `close(el)`, `toggle(el)` |
-| modal | `dp:modal:open`, `dp:modal:close` | `open(idOrEl)`, `close(idOrEl)`, `toggle(idOrEl)` |
-| menu | `dp:menu:open`, `dp:menu:close` | `open(el)`, `close(el)`, `toggle(el)` |
-| tabs | `dp:tabs:change` (detail: `{ panel, trigger }`) | `activate(panelIdOrEl)` |
-| dropdown | `dp:dropdown:open`, `dp:dropdown:close` | `open(el)`, `close(el)`, `toggle(el)`, `closeAll()` |
-| collapse | `dp:collapse:open`, `dp:collapse:close` | `open(idOrEl)`, `close(idOrEl)`, `toggle(idOrEl)` |
+| accordion | `df:accordion:open`, `df:accordion:close` | `open(el)`, `close(el)`, `toggle(el)` |
+| modal | `df:modal:open`, `df:modal:close` | `open(idOrEl)`, `close(idOrEl)`, `toggle(idOrEl)` |
+| menu | `df:menu:open`, `df:menu:close` | `open(el)`, `close(el)`, `toggle(el)` |
+| tabs | `df:tabs:change` (detail: `{ panel, trigger }`) | `activate(panelIdOrEl)` |
+| dropdown | `df:dropdown:open`, `df:dropdown:close` | `open(el)`, `close(el)`, `toggle(el)`, `closeAll()` |
+| collapse | `df:collapse:open`, `df:collapse:close` | `open(idOrEl)`, `close(idOrEl)`, `toggle(idOrEl)` |
 
 Collapse is a generic show/hide primitive with a `data-collapse-target="#id"` trigger. The target's direct child must be `<div class="collapse__content">` (padding-free — your padded/styled content goes inside it, matching the `accordion__content` pattern). Default mode is in-flow with a height animation; add `collapse--absolute` for a floating fade (requires a positioned ancestor in the markup).
 
@@ -687,7 +687,7 @@ Collapse is a generic show/hide primitive with a `data-collapse-target="#id"` tr
 If you need to wait for the transition to finish — e.g. to unmount content only once a modal has fully faded out — listen for `transitionend` on the element that actually animates:
 
 ```js
-document.addEventListener('dp:modal:close', e => {
+document.addEventListener('df:modal:close', e => {
   // e.target is the .modal (class already removed).
   // The .modal__dialog is what animates — wait for it:
   const dialog = e.target.querySelector('.modal__dialog');
@@ -697,7 +697,7 @@ document.addEventListener('dp:modal:close', e => {
 });
 ```
 
-Pick whichever element has the transition in its CSS: `.modal__dialog` for modals, `.menu__drawer` for menu, `.dropdown__menu` for dropdown, `.accordion__body` for accordion. Tabs has no transition by default, so `dp:tabs:change` already fires at the final state.
+Pick whichever element has the transition in its CSS: `.modal__dialog` for modals, `.menu__drawer` for menu, `.dropdown__menu` for dropdown, `.accordion__body` for accordion. Tabs has no transition by default, so `df:tabs:change` already fires at the final state.
 
 ---
 

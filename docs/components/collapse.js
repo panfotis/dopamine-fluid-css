@@ -2,7 +2,7 @@
 // Click [data-collapse-target="#id"] to toggle the target element open/closed.
 // Works in both default (inline, height animation) and .collapse--absolute modes.
 // API: dopamine.collapse.open(idOrEl), .close(idOrEl), .toggle(idOrEl)
-// Events: dp:collapse:open, dp:collapse:close (bubble from the target element)
+// Events: df:collapse:open, df:collapse:close (bubble from the target element)
 
 (function () {
   const resolve = t => {
@@ -15,14 +15,14 @@
     const el = resolve(target);
     if (!el || el.classList.contains('collapse--open')) return;
     el.classList.add('collapse--open');
-    el.dispatchEvent(new CustomEvent('dp:collapse:open', { bubbles: true }));
+    el.dispatchEvent(new CustomEvent('df:collapse:open', { bubbles: true }));
   }
 
   function close(target) {
     const el = resolve(target);
     if (!el || !el.classList.contains('collapse--open')) return;
     el.classList.remove('collapse--open');
-    el.dispatchEvent(new CustomEvent('dp:collapse:close', { bubbles: true }));
+    el.dispatchEvent(new CustomEvent('df:collapse:close', { bubbles: true }));
   }
 
   function toggle(target) {

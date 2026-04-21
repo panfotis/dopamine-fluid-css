@@ -1,7 +1,7 @@
 // Dopamine Fluid — Accordion Component
 // Smooth open/close animation for <details> elements (browser otherwise snaps instantly).
 // API: dopamine.accordion.open(detailsEl), .close(detailsEl), .toggle(detailsEl)
-// Events: dp:accordion:open, dp:accordion:close (bubble from the <details> item)
+// Events: df:accordion:open, df:accordion:close (bubble from the <details> item)
 
 (function () {
   const prefersReducedMotion = () =>
@@ -12,7 +12,7 @@
     const body = item.querySelector('.accordion__body');
     if (!body || prefersReducedMotion()) {
       item.open = true;
-      item.dispatchEvent(new CustomEvent('dp:accordion:open', { bubbles: true }));
+      item.dispatchEvent(new CustomEvent('df:accordion:open', { bubbles: true }));
       return;
     }
     // Commit the 0fr state BEFORE the [open] flip so iOS Safari has a transition start frame.
@@ -23,7 +23,7 @@
     body.addEventListener('transitionend', () => {
       body.style.gridTemplateRows = '';              // hand back to CSS
     }, { once: true });
-    item.dispatchEvent(new CustomEvent('dp:accordion:open', { bubbles: true }));
+    item.dispatchEvent(new CustomEvent('df:accordion:open', { bubbles: true }));
   }
 
   function close(item) {
@@ -31,7 +31,7 @@
     const body = item.querySelector('.accordion__body');
     const finalize = () => {
       item.open = false;
-      item.dispatchEvent(new CustomEvent('dp:accordion:close', { bubbles: true }));
+      item.dispatchEvent(new CustomEvent('df:accordion:close', { bubbles: true }));
     };
     if (!body || prefersReducedMotion()) {
       finalize();

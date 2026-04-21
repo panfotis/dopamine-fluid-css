@@ -2,10 +2,10 @@
 // Turns every <li> inside `ul.menu.menu-level-0` whose direct child is `.menu-dropdown-0`
 // into a right-sliding drawer on mobile/tablet (<= $menu-drawer-bp, default 991).
 // API: dopamine.menuDrawer.open(li), .close(li), .closeAll(), .toggle(li), .isOpen(li), .refresh()
-// Events: dp:menu-drawer:open, dp:menu-drawer:close (bubble from .menu-dropdown-0)
+// Events: df:menu-drawer:open, df:menu-drawer:close (bubble from .menu-dropdown-0)
 //
 // Requires menu.js (the outer burger) to be loaded on the page. It's the integration
-// point for `dp:menu:close` (cascade-close on burger close) and owns the body scroll
+// point for `df:menu:close` (cascade-close on burger close) and owns the body scroll
 // lock while the burger is open on mobile.
 
 (function () {
@@ -43,7 +43,7 @@
     drawer.removeAttribute('role');
     drawer.removeAttribute('aria-modal');
     drawer.removeAttribute('aria-hidden');
-    drawer.dispatchEvent(new CustomEvent('dp:menu-drawer:close', { bubbles: true }));
+    drawer.dispatchEvent(new CustomEvent('df:menu-drawer:close', { bubbles: true }));
   }
 
   function closeAll(rootUl) {
@@ -170,7 +170,7 @@
       (focusable || drawer).focus({ preventScroll: true });
     }
 
-    drawer.dispatchEvent(new CustomEvent('dp:menu-drawer:open', { bubbles: true }));
+    drawer.dispatchEvent(new CustomEvent('df:menu-drawer:open', { bubbles: true }));
   }
 
   function attach(root) {
@@ -209,7 +209,7 @@
     window.visualViewport.addEventListener('resize', debounce(resizeOpenDrawers, 100));
   }
 
-  document.addEventListener('dp:menu:close', () => closeAll());
+  document.addEventListener('df:menu:close', () => closeAll());
 
   // Click outside any .menu-level-0 closes open desktop dropdowns.
   // On mobile the drawer covers the viewport so this is effectively a no-op.

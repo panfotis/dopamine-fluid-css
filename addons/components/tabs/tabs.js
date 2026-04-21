@@ -2,7 +2,7 @@
 // Click a [data-tab-target="#id"] button inside .tabs to show that panel; siblings hide.
 // Arrow-key navigation (Left/Right/Home/End) + full WAI-ARIA tablist wiring.
 // API: dopamine.tabs.activate(panelIdOrEl)   // "p1", "#p1", or the panel element
-// Events: dp:tabs:change on .tabs, detail: { panel, trigger }
+// Events: df:tabs:change on .tabs, detail: { panel, trigger }
 
 (function () {
   function resolvePanel(target) {
@@ -59,7 +59,7 @@
     panel.classList.add('tab__panel--active');
     syncAria(tabs);
 
-    tabs.dispatchEvent(new CustomEvent('dp:tabs:change', {
+    tabs.dispatchEvent(new CustomEvent('df:tabs:change', {
       bubbles: true,
       detail: { panel, trigger }
     }));

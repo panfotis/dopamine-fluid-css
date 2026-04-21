@@ -160,7 +160,7 @@ Components are hand-authored (`addons/components/<name>/<name>.{scss,js}`), outs
 - **Two breakpoint knobs must stay in sync.** SCSS `$menu-drawer-bp` and JS `window.DOPE_MENU_DRAWER_BP` are independent; if you change one, document the other. A single source of truth would need new infrastructure we don't have.
 - **Title extraction skips `aria-hidden` children** via `titleFor(trigger)`. Don't revert to `trigger.textContent` — visible chevrons / decorative icons leak in. Authors can override with `data-menu-drawer-title="…"`.
 - **Header injection is idempotent and skip-if-present.** If the server-rendered markup already ships a `.menu-drawer-header`, the component leaves it alone — important for localized / icon-font back buttons (HelleniQ's `back-top-main-menu` row).
-- **`dp:menu:close` is the integration point** with the outer burger `.menu` component. Don't replace it with a Bootstrap-specific hook (`hide.bs.collapse`) — the dopamine port deliberately dropped that.
+- **`df:menu:close` is the integration point** with the outer burger `.menu` component. Don't replace it with a Bootstrap-specific hook (`hide.bs.collapse`) — the dopamine port deliberately dropped that.
 - **`refresh()` on the public API** re-scans for roots; for SPAs that inject nav markup after load. `attach(root)` is idempotent via `data-drawer-attached`, so re-calling `refresh` is safe.
 
 ## Where NOT to edit
