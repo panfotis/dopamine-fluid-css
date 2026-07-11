@@ -9,6 +9,7 @@
   position: fixed;
   inset: 0;
   z-index: 999;
+  background: var(--menu-backdrop, rgba(0, 0, 0, 0.5));
   visibility: hidden;
   opacity: 0;
   transition: visibility 0.3s, opacity 0.3s ease;

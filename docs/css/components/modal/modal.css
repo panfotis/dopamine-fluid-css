@@ -18,6 +18,7 @@
 .modal__overlay {
   position: absolute;
   inset: 0;
+  background: var(--modal-backdrop, rgba(0, 0, 0, 0.5));
 }
 
 .modal__dialog {
@@ -55,10 +56,6 @@
   background: none;
   border: none;
   line-height: 1;
-}
-
-.modal__overlay {
-  background: rgba(0, 0, 0, 0.5);
 }
 
 .modal__dialog {

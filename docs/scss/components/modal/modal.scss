@@ -2,10 +2,7 @@
 @use '../../../../addons/components/modal/modal';
 
 // Docs styling for the modal demo
-.modal__overlay {
-  background: rgba(0, 0, 0, 0.5);
-}
-
+// (backdrop dim now ships in the addon — override via --modal-backdrop if needed)
 .modal__dialog {
   background: #fff;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);

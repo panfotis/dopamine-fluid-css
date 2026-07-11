@@ -592,6 +592,15 @@ Keep the JS in sync with the SCSS breakpoint by setting `window.DOPE_MENU_DRAWER
 
 Available components: `accordion`, `modal`, `menu`, `menu-drawer`, `tabs`, `dropdown`, `collapse`, `checkbox`, `radio`, `switch`, `input`.
 
+**Backdrops** — `modal` and `menu` ship a dimmed backdrop out of the box (50% black). Override the dim with a custom property, no need to edit the component CSS:
+
+```css
+:root {
+  --modal-backdrop: rgb(0 0 0 / 0.8);   /* .modal__overlay */
+  --menu-backdrop:  rgb(0 0 0 / 0.3);   /* .menu__overlay */
+}
+```
+
 **Scroll Lock** is a tiny shared helper (~30 lines, no CSS) that locks body scroll for `modal` and `menu`. Include it once and both components use it automatically. `menu` only locks while the drawer is actually in drawer mode (mobile) — desktop inline nav never triggers a lock. `menu-drawer` inherits the lock from its outer `menu` (the burger holds it for the whole session). Handles the iOS Safari `overflow: hidden` gap via `position: fixed` + scroll-position restore, and compensates for the desktop scrollbar so the page doesn't shift when it disappears. Ref-counted so nested dialogs don't unlock each other.
 
 ```html
