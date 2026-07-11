@@ -234,15 +234,17 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 | `span` | `grid-column` | `span-3` → `span 3` | — | `span-md-4` |
 | `rowspan` | `grid-row` | `rowspan-2` → `span 2` | — | `rowspan-md-3` |
 | `order` | `order` | `order-1` | — | `order-md-2` / `order-lg-4` |
+| `z` | `z-index` | `z-10` / `z-999` / `z-n1` | — | `z-md-10` |
 | `grow` | `flex-grow` | `grow-0` / `grow-1` | — | `grow-md-2` |
 | `shrink` | `flex-shrink` | `shrink-0` / `shrink-1` | — | `shrink-md-0` |
 | `container` | `max-width` + centered | `container-1200` | — | — |
 
 > **Notes:**
 > - `ps` / `pe` / `ms` / `me` emit **logical properties** (`padding-inline-start`, `padding-inline-end`, `margin-inline-start`, `margin-inline-end`). In LTR these behave identically to left/right; in RTL they automatically flip to the start/end of the reading direction.
-> - **Negative values via `n` prefix**: `mt-n10` → `margin-top: -0.625rem`, `ls-n5` → `letter-spacing: -0.05em`, `order-n1` → `order: -1`. Works with breakpoints (`mt-md-n10`) and fluid ranges where applicable (`mt-n10-n5`). Opt-in per prefix — only margins (`m` / `mt` / `mb` / `ms` / `me` / `mx` / `my`), `ls`, and `order` accept negatives. Others (`fs`, `p*`, `w`, `h`, `lh`, etc.) reject them with a clear warning.
+> - **Negative values via `n` prefix**: `mt-n10` → `margin-top: -0.625rem`, `ls-n5` → `letter-spacing: -0.05em`, `order-n1` → `order: -1`. Works with breakpoints (`mt-md-n10`) and fluid ranges where applicable (`mt-n10-n5`). Opt-in per prefix — only margins (`m` / `mt` / `mb` / `ms` / `me` / `mx` / `my`), `ls`, `order`, and `z` accept negatives. Others (`fs`, `p*`, `w`, `h`, `lh`, etc.) reject them with a clear warning.
 > - `fw` is unitless — `fw-700` outputs `font-weight: 700`, not rem. No fluid range.
 > - `order` is unitless, fixed-only (no fluid range). Applies to flex **and** grid items. Positive integers only. Supports breakpoints: `order-1`, `order-md-2`, `order-lg-4`.
+> - `z` is unitless, fixed-only — any integer works (`z-999`), negatives via `n` (`z-n1` → `z-index: -1`). **0.9.0 breaking change**: z was previously a fixed set of keywords (`z-0`–`z-100`) with the breakpoint at the end — `z-10-md` must become `z-md-10`.
 > - `span` / `rowspan` apply to **grid children** — use alongside `cols-N` on the parent. `span-3` makes the item occupy 3 column tracks; `rowspan-2` makes it span 2 rows. Supports breakpoints: `span-md-4`, `rowspan-lg-3`. Positive integers only (discrete grid lines); fluid ranges and negatives aren't meaningful here.
 > - `grow` / `shrink` apply to **flex children** — `grow-1` makes an item fill available space, `shrink-0` keeps an item from shrinking (useful for fixed sidebars). Unitless integers, fixed-only. Supports breakpoints: `grow-md-2`, `shrink-md-0`.
 > - `lh` is unitless, fixed only (no fluid range), and takes the **literal** value — decimals included: `lh-1.5` → `1.5`, `lh-0.8` → `0.8`, `lh-2` → `2`. The class name is the CSS value; nothing is divided. Unitless is deliberate — a unitless line-height inherits as a multiplier of each element's *own* font-size, so it pairs correctly with fluid `fs-*`. Supports breakpoints: `lh-md-1.2`
@@ -332,16 +334,6 @@ No value needed — each keyword maps to a single CSS declaration. **All support
 | `overflow-auto` | `overflow: auto` | `overflow-auto-md` |
 | `overflow-visible` | `overflow: visible` | `overflow-visible-md` |
 | `overflow-scroll` | `overflow: scroll` | `overflow-scroll-md` |
-| **Z-Index** | | |
-| `z-0` | `z-index: 0` | `z-0-md` |
-| `z-1` | `z-index: 1` | `z-1-md` |
-| `z-2` | `z-index: 2` | `z-2-md` |
-| `z-3` | `z-index: 3` | `z-3-md` |
-| `z-4` | `z-index: 4` | `z-4-md` |
-| `z-5` | `z-index: 5` | `z-5-md` |
-| `z-10` | `z-index: 10` | `z-10-md` |
-| `z-50` | `z-index: 50` | `z-50-md` |
-| `z-100` | `z-index: 100` | `z-100-md` |
 
 ---
 

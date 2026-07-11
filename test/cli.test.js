@@ -434,6 +434,10 @@ test('diagnoseClass explains common mistakes (fix #1)', () => {
   // Unknown breakpoint
   assert.match(diagnoseClass('fs-xxl-16', config), /breakpoint.*xxl/i);
 
+  // Breakpoint at the end of a numeric class (incl. keyword-era z-10-md)
+  assert.match(diagnoseClass('z-10-md', config), /write 'z-md-10'/i);
+  assert.match(diagnoseClass('fs-24-md', config), /write 'fs-md-24'/i);
+
   // Fluid on fixedOnly height
   assert.match(diagnoseClass('h-60-120', config),    /doesn't support fluid/i);
   assert.match(diagnoseClass('minh-100-300', config), /doesn't support fluid/i);
@@ -735,6 +739,22 @@ test('n-prefix: keywords starting with n-related substrings unaffected', () => {
   // And parseClass doesn't accidentally steal them
   assert.equal(parseClass('fw-normal',   NEG_CONFIG), null);
   assert.equal(parseClass('flex-nowrap', NEG_CONFIG), null);
+});
+
+// ---------------------------------------------------------------------------
+// z — unitless z-index prefix (replaced the 9 hardcoded z-* keywords in 0.9.0)
+// ---------------------------------------------------------------------------
+
+test('z: parses any integer, negatives, and breakpoints; rejects fluid', () => {
+  const { parseGridClass } = require('../lib/grid-parser');
+  assert.equal(parseClass('z-10',    NEG_CONFIG)?.minPx, 10);
+  assert.equal(parseClass('z-999',   NEG_CONFIG)?.minPx, 999);   // not possible as keyword
+  assert.equal(parseClass('z-n1',    NEG_CONFIG)?.minPx, -1);
+  assert.equal(parseClass('z-md-10', NEG_CONFIG)?.breakpoint, 'md');
+  assert.equal(parseClass('z-1-10',  NEG_CONFIG), null);          // fixedOnly
+  // 0.9.0 breaking change: the old keyword-era end position no longer parses
+  assert.equal(parseClass('z-10-md',     NEG_CONFIG), null);
+  assert.equal(parseGridClass('z-10-md', NEG_CONFIG), null);
 });
 
 // ---------------------------------------------------------------------------
