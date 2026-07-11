@@ -49,7 +49,7 @@
 <div class="docs-content container-860 px-16-48">
 
   <h1 class="fs-32-72 fw-bold mt-40-80 mb-8-16">Components</h1>
-  <p class="fs-16-24 lh-15 mb-40-80">Pre-built structural CSS for common UI patterns. No colors, no sizing — just behavior. Style with Dopamine classes.</p>
+  <p class="fs-16-24 lh-1.5 mb-40-80">Pre-built structural CSS for common UI patterns. No colors, no sizing — just behavior. Style with Dopamine classes.</p>
 
   <section class="docs-section">
     <h2 class="fs-24-48 mb-12-24">How Components Work</h2>
@@ -64,24 +64,24 @@
     <div class="accordion">
       <details class="accordion__item" open>
         <summary class="accordion__title accordion__title--dark p-12-24 fs-16-20 fw-bold">What is Dopamine Fluid?</summary>
-        <div class="accordion__body"><div class="accordion__content"><div class="p-12-24 fs-14-18 lh-15">A CSS utility generator that creates fluid clamp() values and grid layouts from class names in your HTML. No runtime, no JavaScript — just scan your templates and generate pure CSS.</div></div></div>
+        <div class="accordion__body"><div class="accordion__content"><div class="p-12-24 fs-14-18 lh-1.5">A CSS utility generator that creates fluid clamp() values and grid layouts from class names in your HTML. No runtime, no JavaScript — just scan your templates and generate pure CSS.</div></div></div>
       </details>
       <details class="accordion__item">
         <summary class="accordion__title accordion__title--dark p-12-24 fs-16-20 fw-bold">How does the Sass function work?</summary>
-        <div class="accordion__body"><div class="accordion__content"><div class="p-12-24 fs-14-18 lh-15">Import the Sass addon and use df.fluid(16, 48) anywhere in your Sass. Same clamp() math as the utility classes, for elements where you can't add class names.</div></div></div>
+        <div class="accordion__body"><div class="accordion__content"><div class="p-12-24 fs-14-18 lh-1.5">Import the Sass addon and use df.fluid(16, 48) anywhere in your Sass. Same clamp() math as the utility classes, for elements where you can't add class names.</div></div></div>
       </details>
       <details class="accordion__item">
         <summary class="accordion__title accordion__title--dark p-12-24 fs-16-20 fw-bold">Can I use it with Drupal?</summary>
-        <div class="accordion__body"><div class="accordion__content"><div class="p-12-24 fs-14-18 lh-15">Yes — scan your Twig templates, generate SCSS, and compile alongside your theme's existing Sass pipeline. Each component gets its own CSS file for Drupal's library system.</div></div></div>
+        <div class="accordion__body"><div class="accordion__content"><div class="p-12-24 fs-14-18 lh-1.5">Yes — scan your Twig templates, generate SCSS, and compile alongside your theme's existing Sass pipeline. Each component gets its own CSS file for Drupal's library system.</div></div></div>
       </details>
       <details class="accordion__item">
         <summary class="accordion__title accordion__title--dark p-12-24 fs-16-20 fw-bold">What browsers are supported?</summary>
-        <div class="accordion__body"><div class="accordion__content"><div class="p-12-24 fs-14-18 lh-15">All modern browsers. This accordion uses native &lt;details&gt;/&lt;summary&gt; elements — works in Chrome, Firefox, Safari, and Edge.</div></div></div>
+        <div class="accordion__body"><div class="accordion__content"><div class="p-12-24 fs-14-18 lh-1.5">All modern browsers. This accordion uses native &lt;details&gt;/&lt;summary&gt; elements — works in Chrome, Firefox, Safari, and Edge.</div></div></div>
       </details>
     </div>
 
     <h3 class="fs-18-24 mb-8-16 mt-24-40">Minimum HTML</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;div class="accordion"&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">&lt;div class="accordion"&gt;
   &lt;details class="accordion__item"&gt;
     &lt;summary class="accordion__title"&gt;Question&lt;/summary&gt;
     &lt;div class="accordion__body"&gt;
@@ -94,20 +94,20 @@
 
     <h3 class="fs-18-24 mb-8-16">Include</h3>
     <p class="fs-14-18 mb-8-16">CSS + optional JS for smooth close animation:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/accordion/accordion.css"&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/accordion/accordion.css"&gt;
 &lt;script src="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/accordion/accordion.js" defer&gt;&lt;/script&gt;</code></pre>
     <p class="fs-14-18 mb-8-16">Or via Sass:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/accordion/accordion';</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">@use 'dopamine-fluid/addons/components/accordion/accordion';</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Add styling with Dopamine classes</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;div class="accordion"&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">&lt;div class="accordion"&gt;
   &lt;details class="accordion__item"&gt;
     &lt;summary class="accordion__title p-12-24 fs-16-20 fw-bold"&gt;
       Question
     &lt;/summary&gt;
     &lt;div class="accordion__body"&gt;
       &lt;div class="accordion__content"&gt;
-        &lt;div class="p-12-24 fs-14-18 lh-15"&gt;Answer&lt;/div&gt;
+        &lt;div class="p-12-24 fs-14-18 lh-1.5"&gt;Answer&lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/details&gt;
@@ -125,7 +125,7 @@
     <button data-modal-open="demo-slide" class="p-12-24 fs-14-18 fw-bold radius-8 mb-16-32">Open Slide Modal</button>
 
     <h3 class="fs-18-24 mb-8-16 mt-24-40">Minimum HTML</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;button data-modal-open="my-modal"&gt;Open&lt;/button&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">&lt;button data-modal-open="my-modal"&gt;Open&lt;/button&gt;
 
 &lt;div id="my-modal" class="modal"&gt;
   &lt;div class="modal__overlay"&gt;&lt;/div&gt;
@@ -137,13 +137,13 @@
 
     <h3 class="fs-18-24 mb-8-16">Include</h3>
     <p class="fs-14-18 mb-8-16">CSS file + JS file:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/modal/modal.css"&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/modal/modal.css"&gt;
 &lt;script src="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/modal/modal.js" defer&gt;&lt;/script&gt;</code></pre>
     <p class="fs-14-18 mb-8-16">Or via Sass:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/modal/modal';</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">@use 'dopamine-fluid/addons/components/modal/modal';</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Styled with Dopamine classes</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;button data-modal-open="my-modal" class="p-12-24 fs-14-18 fw-bold radius-8"&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">&lt;button data-modal-open="my-modal" class="p-12-24 fs-14-18 fw-bold radius-8"&gt;
   Open Modal
 &lt;/button&gt;
 
@@ -166,7 +166,7 @@
     <p class="fs-14-18 mb-16-32">A side-drawer menu for mobile navigation. Full width, full height, slides from the left with <code>overflow-y: auto</code> for scrollable content. On desktop (≥768px) the drawer is disabled and the nav displays inline. Requires a tiny JS file (~10 lines).</p>
 
     <h3 class="fs-18-24 mb-8-16">Minimum HTML</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;nav class="menu"&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">&lt;nav class="menu"&gt;
   &lt;button class="menu__toggle"&gt;☰&lt;/button&gt;
   &lt;div class="menu__overlay"&gt;&lt;/div&gt;
   &lt;div class="menu__drawer"&gt;
@@ -178,17 +178,17 @@
 
     <h3 class="fs-18-24 mb-8-16">Include</h3>
     <p class="fs-14-18 mb-8-16">CSS file + JS file:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/menu/menu.css"&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/menu/menu.css"&gt;
 &lt;script src="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/menu/menu.js" defer&gt;&lt;/script&gt;</code></pre>
     <p class="fs-14-18 mb-8-16">Or via Sass:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/menu/menu';</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">@use 'dopamine-fluid/addons/components/menu/menu';</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Custom breakpoint</h3>
     <p class="fs-14-18 mb-8-16">The drawer switches to inline nav at 768px by default. Override via Sass:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/menu/menu' with ($menu-bp: 992px);</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">@use 'dopamine-fluid/addons/components/menu/menu' with ($menu-bp: 992px);</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Styled with Dopamine classes</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;nav class="menu"&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">&lt;nav class="menu"&gt;
   &lt;button class="menu__toggle p-8 fs-24"&gt;☰&lt;/button&gt;
   &lt;div class="menu__overlay"&gt;&lt;/div&gt;
   &lt;div class="menu__drawer p-24-48"&gt;
@@ -218,7 +218,7 @@
 
     <h3 class="fs-18-24 mb-8-16">Minimum HTML</h3>
     <p class="fs-14-18 mb-8-16">The top-level header can be an <code>&lt;a&gt;</code> or a <code>&lt;span&gt;</code> — both work. Anything can live inside <code>.menu-dropdown-0</code>; the component doesn't care about the inner structure.</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;ul class="menu menu-level-0"&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">&lt;ul class="menu menu-level-0"&gt;
   &lt;li class="menu-item menu-item--expanded"&gt;
     &lt;a href="#"&gt;Products&lt;/a&gt;
     &lt;div class="menu-dropdown-0"&gt;
@@ -242,25 +242,25 @@
 
     <h3 class="fs-18-24 mb-8-16">Include</h3>
     <p class="fs-14-18 mb-8-16">CSS file + JS file:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/menu-drawer/menu-drawer.css"&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/menu-drawer/menu-drawer.css"&gt;
 &lt;script src="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/menu-drawer/menu-drawer.js" defer&gt;&lt;/script&gt;</code></pre>
     <p class="fs-14-18 mb-8-16">Or via Sass:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/menu-drawer/menu-drawer';</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">@use 'dopamine-fluid/addons/components/menu-drawer/menu-drawer';</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Custom breakpoint</h3>
     <p class="fs-14-18 mb-8-16">The drawer activates below 992px by default. Override both the SCSS variable and the matching JS global:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/menu-drawer/menu-drawer' with ($menu-drawer-bp: 768px);</code></pre>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;script&gt;window.DOPE_MENU_DRAWER_BP = 767;&lt;/script&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">@use 'dopamine-fluid/addons/components/menu-drawer/menu-drawer' with ($menu-drawer-bp: 768px);</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">&lt;script&gt;window.DOPE_MENU_DRAWER_BP = 767;&lt;/script&gt;
 &lt;script src="…/menu-drawer.js" defer&gt;&lt;/script&gt;</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Sticky-header offset</h3>
     <p class="fs-14-18 mb-8-16">If your page has a fixed/sticky header, set <code>--menu-drawer-top</code> so the drawer starts below it. The component reads this on open and sizes the drawer to fit the remaining viewport:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">:root { --menu-drawer-top: 64px; }</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">:root { --menu-drawer-top: 64px; }</code></pre>
     <p class="fs-14-18 mb-16-32">Uses <code>visualViewport.height</code> under the hood so iOS URL-bar changes don't cut content off. The Drupal admin toolbar's <code>--drupal-displace-offset-top</code> is also respected automatically.</p>
 
     <h3 class="fs-18-24 mb-8-16">Mega dropdown (100vw on desktop)</h3>
     <p class="fs-14-18 mb-8-16">Add <code>menu-dropdown-mega</code> to any <code>.menu-dropdown-0</code> and on desktop it switches to <code>position: fixed</code> spanning the full viewport width. Mobile drawer behavior is unchanged (still a right-slide drawer). Lay out the inside with dopamine grid / flex utilities — the component only sets the container.</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;li class="menu-item menu-item--expanded"&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">&lt;li class="menu-item menu-item--expanded"&gt;
   &lt;a href="#"&gt;Products&lt;/a&gt;
   &lt;div class="menu-dropdown-0 menu-dropdown-mega"&gt;
     &lt;div class="grid cols-1 cols-md-4 gap-16-32 p-16-32"&gt;
@@ -271,14 +271,14 @@
   &lt;/div&gt;
 &lt;/li&gt;</code></pre>
     <p class="fs-14-18 mb-8-16">Tell the component where your nav ends via <code>--menu-mega-top</code> so the dropdown sits flush below it (otherwise it defaults to the top of the viewport):</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">:root { --menu-mega-top: 64px; }   /* height of your sticky nav */</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">:root { --menu-mega-top: 64px; }   /* height of your sticky nav */</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Custom back-button markup</h3>
     <p class="fs-14-18 mb-16-32">If you'd rather ship your own back row (localized text, icon font, etc.), server-render a <code>.menu-drawer-header</code> as the first child of <code>.menu-dropdown-0</code>. The component skips injection when one already exists, and wires the first <code>.menu-drawer-back-btn</code> click to close.</p>
 
     <h3 class="fs-18-24 mb-8-16">Extra content inside the burger drawer</h3>
     <p class="fs-14-18 mb-8-16">The <code>menu</code> component ignores anything that isn't one of its own <code>__</code> elements, so you can drop extra siblings (search box, language switcher, CTA, social icons) directly inside <code>.menu__drawer</code> alongside <code>ul.menu.menu-level-0</code>:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;div class="menu__drawer"&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">&lt;div class="menu__drawer"&gt;
   &lt;button class="menu__close"&gt;&amp;times;&lt;/button&gt;
 
   &lt;div class="p-16 hidden-md"&gt;
@@ -318,14 +318,14 @@
         <button data-tab-target="#tab-3" class="tab__btn p-12-24 fs-14-18 fw-bold">Three</button>
       </div>
       <div class="tab__panels">
-        <div id="tab-1" class="tab__panel tab__panel--active p-16-32 fs-14-18 lh-15">First panel content.</div>
-        <div id="tab-2" class="tab__panel p-16-32 fs-14-18 lh-15">Second panel content.</div>
-        <div id="tab-3" class="tab__panel p-16-32 fs-14-18 lh-15">Third panel content.</div>
+        <div id="tab-1" class="tab__panel tab__panel--active p-16-32 fs-14-18 lh-1.5">First panel content.</div>
+        <div id="tab-2" class="tab__panel p-16-32 fs-14-18 lh-1.5">Second panel content.</div>
+        <div id="tab-3" class="tab__panel p-16-32 fs-14-18 lh-1.5">Third panel content.</div>
       </div>
     </div>
 
     <h3 class="fs-18-24 mb-8-16 mt-24-40">Minimum HTML</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;div class="tabs"&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">&lt;div class="tabs"&gt;
   &lt;div class="tab__buttons"&gt;
     &lt;button data-tab-target="#p1" class="tab__btn tab__btn--active"&gt;One&lt;/button&gt;
     &lt;button data-tab-target="#p2" class="tab__btn"&gt;Two&lt;/button&gt;
@@ -338,10 +338,10 @@
 
     <h3 class="fs-18-24 mb-8-16">Include</h3>
     <p class="fs-14-18 mb-8-16">CSS file + JS file:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/tabs/tabs.css"&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/tabs/tabs.css"&gt;
 &lt;script src="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/tabs/tabs.js" defer&gt;&lt;/script&gt;</code></pre>
     <p class="fs-14-18 mb-8-16">Or via Sass:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/tabs/tabs';</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">@use 'dopamine-fluid/addons/components/tabs/tabs';</code></pre>
 
     <p class="fs-14-18 mb-4-8"><code>tabs</code> — outer wrapper</p>
     <p class="fs-14-18 mb-4-8"><code>tab__buttons</code> — row that holds the triggers (style with your own utility classes, e.g. <code>flex</code>)</p>
@@ -366,7 +366,7 @@
     </div>
 
     <h3 class="fs-18-24 mb-8-16 mt-24-40">Minimum HTML</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;div class="dropdown"&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">&lt;div class="dropdown"&gt;
   &lt;button data-dropdown-toggle&gt;Menu&lt;/button&gt;
   &lt;ul class="dropdown__menu"&gt;
     &lt;li&gt;&lt;a href="#"&gt;Item&lt;/a&gt;&lt;/li&gt;
@@ -375,10 +375,10 @@
 
     <h3 class="fs-18-24 mb-8-16">Include</h3>
     <p class="fs-14-18 mb-8-16">CSS file + JS file:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/dropdown/dropdown.css"&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/dropdown/dropdown.css"&gt;
 &lt;script src="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/dropdown/dropdown.js" defer&gt;&lt;/script&gt;</code></pre>
     <p class="fs-14-18 mb-8-16">Or via Sass:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/dropdown/dropdown';</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">@use 'dopamine-fluid/addons/components/dropdown/dropdown';</code></pre>
 
     <p class="fs-14-18 mb-4-8"><code>dropdown</code> — wrapper, sets <code>position: relative</code></p>
     <p class="fs-14-18 mb-4-8"><code>dropdown__menu</code> — absolutely positioned panel, hidden by default</p>
@@ -394,7 +394,7 @@
     <button data-collapse-target="#collapse-inline" class="p-12-24 fs-14-18 fw-bold radius-8 mb-16-32">Toggle panel</button>
     <div id="collapse-inline" class="collapse radius-8 mb-16-32">
       <div class="collapse__content">
-        <div class="p-16-32 fs-14-18 lh-15">This panel expands and contracts in-flow, smoothly animating its height. Siblings below it get pushed down when it opens.</div>
+        <div class="p-16-32 fs-14-18 lh-1.5">This panel expands and contracts in-flow, smoothly animating its height. Siblings below it get pushed down when it opens.</div>
       </div>
     </div>
     <p class="fs-14-18 mb-16-32">Next line — watch it slide down when the collapse above opens.</p>
@@ -405,14 +405,14 @@
       <button data-collapse-target="#collapse-abs" class="p-12-24 fs-14-18 fw-bold radius-8">Toggle popover</button>
       <div id="collapse-abs" class="collapse collapse--absolute radius-8 mt-4">
         <div class="collapse__content">
-          <div class="p-16-32 fs-14-18 lh-15">I float over content. Siblings below me don't move.</div>
+          <div class="p-16-32 fs-14-18 lh-1.5">I float over content. Siblings below me don't move.</div>
         </div>
       </div>
     </div>
     <p class="fs-14-18 mb-16-32">Next line stays in place regardless of the popover state.</p>
 
     <h3 class="fs-18-24 mb-8-16 mt-24-40">Minimum HTML</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;!-- Inline mode (default) --&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">&lt;!-- Inline mode (default) --&gt;
 &lt;button data-collapse-target="#panel"&gt;Toggle&lt;/button&gt;
 &lt;div id="panel" class="collapse"&gt;
   &lt;div class="collapse__content"&gt;
@@ -436,10 +436,10 @@
 
     <h3 class="fs-18-24 mb-8-16">Include</h3>
     <p class="fs-14-18 mb-8-16">CSS file + JS file:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/collapse/collapse.css"&gt;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/collapse/collapse.css"&gt;
 &lt;script src="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/collapse/collapse.js" defer&gt;&lt;/script&gt;</code></pre>
     <p class="fs-14-18 mb-8-16">Or via Sass:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/components/collapse/collapse';</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">@use 'dopamine-fluid/addons/components/collapse/collapse';</code></pre>
 
     <p class="fs-14-18 mb-4-8"><code>collapse</code> — target element / grid container.</p>
     <p class="fs-14-18 mb-4-8"><code>collapse__content</code> — required direct child. <strong>Must not have padding of its own</strong> — padding on the grid item prevents the closed state from truly collapsing to 0. Put your padded / styled content inside it.</p>
@@ -454,11 +454,11 @@
     <p class="fs-14-18 mb-16-32"><code>menu</code> locks only in drawer mode (it checks that <code>.menu__drawer</code> is <code>position: fixed</code>, so desktop inline nav never locks). <code>menu-drawer</code> does not lock on its own — the outer burger already holds the lock for the entire session, and the drawer opens on top of that.</p>
 
     <h3 class="fs-18-24 mb-8-16">Include</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">&lt;script src="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/scroll-lock/scroll-lock.js" defer&gt;&lt;/script&gt;</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">&lt;script src="https://cdn.jsdelivr.net/npm/dopamine-fluid/dist/components/scroll-lock/scroll-lock.js" defer&gt;&lt;/script&gt;</code></pre>
     <p class="fs-14-18 mb-16-32">Once loaded, <code>modal</code> and <code>menu</code> detect it automatically via <code>window.dopamine.scrollLock</code> and use it on open/close. If you don't include it, those components still work — just without the scroll lock.</p>
 
     <h3 class="fs-18-24 mb-8-16">Using it yourself</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">dopamine.scrollLock.lock();     // freeze body scroll
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">dopamine.scrollLock.lock();     // freeze body scroll
 dopamine.scrollLock.unlock();   // release (only unfreezes when the ref-count hits 0)
 dopamine.scrollLock.isLocked(); // boolean</code></pre>
 
@@ -471,7 +471,7 @@ dopamine.scrollLock.isLocked(); // boolean</code></pre>
     <p class="fs-14-18 mb-16-32">Every component registers methods on <code>window.dopamine</code> and emits bubbling <code>CustomEvent</code>s on its root element. Use the API to drive components from your code, and listen for events to react to state changes.</p>
 
     <h3 class="fs-18-24 mb-8-16">Driving components programmatically</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">dopamine.modal.open('my-modal');
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">dopamine.modal.open('my-modal');
 dopamine.modal.close('my-modal');
 
 dopamine.tabs.activate('#panel-2');
@@ -484,7 +484,7 @@ dopamine.accordion.open(document.querySelector('.accordion__item'));</code></pre
 
     <h3 class="fs-18-24 mb-8-16">Listening for events</h3>
     <p class="fs-14-18 mb-8-16">Events bubble, so you can delegate from <code>document</code> or scope listeners to a specific element.</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">document.addEventListener('df:modal:open', e =&gt; {
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">document.addEventListener('df:modal:open', e =&gt; {
   console.log('modal opened', e.target.id);
 });
 
@@ -547,7 +547,7 @@ document.querySelector('#my-dropdown')
     <h3 class="fs-18-24 mb-8-16 mt-24-40">Event timing &amp; transitions</h3>
     <p class="fs-14-18 mb-8-16">Events fire <strong>immediately after the class is flipped</strong> — so <code>:open</code> fires as the opening transition is starting, and <code>:close</code> fires as the hiding transition is starting. That's the right moment for most work: updating state, logging, focusing an input, loading data.</p>
     <p class="fs-14-18 mb-8-16">If you need to wait for the animation to <em>finish</em> — for example, to unmount content only once a modal has fully faded out — listen for <code>transitionend</code> on the element that actually animates:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">document.addEventListener('df:modal:close', e =&gt; {
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">document.addEventListener('df:modal:close', e =&gt; {
   // e.target is the .modal (the open class has already been removed).
   // The .modal__dialog is what animates — wait for it to finish:
   const dialog = e.target.querySelector('.modal__dialog');

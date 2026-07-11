@@ -774,3 +774,59 @@ test('grow / shrink: fluid and negatives rejected', () => {
   assert.equal(parseClass('grow-n1',   NEG_CONFIG), null); // no allowsNegative
   assert.equal(parseClass('shrink-n1', NEG_CONFIG), null); // no allowsNegative
 });
+
+// ---------------------------------------------------------------------------
+// lh: literal values, decimals allowed (replaced the old ÷10 divisor)
+// ---------------------------------------------------------------------------
+
+test('lh: values are literal, decimals allowed', () => {
+  const rule = (cls) => {
+    const d = parseClass(cls, NEG_CONFIG);
+    return generateRule(d, null, NEG_CONFIG, false);
+  };
+
+  assert.match(rule('lh-1.5'), /line-height: 1\.5;/);
+  assert.match(rule('lh-0.8'), /line-height: 0\.8;/);
+  assert.match(rule('lh-2'),   /line-height: 2;/);
+  assert.match(rule('lh-1'),   /line-height: 1;/);
+
+  // Unitless — no rem/px ever appended
+  assert.doesNotMatch(rule('lh-1.5'), /rem|px/);
+
+  // Old ÷10 syntax now means what it says: lh-15 → 15 (visibly broken, by design)
+  assert.match(rule('lh-15'), /line-height: 15;/);
+
+  // Breakpoint variant carries the decimal through
+  const bp = parseClass('lh-md-1.2', NEG_CONFIG);
+  assert.equal(bp.breakpoint, 'md');
+  assert.equal(bp.minPx, 1.2);
+});
+
+test('lh: decimal selector is escaped', () => {
+  const d = parseClass('lh-1.5', NEG_CONFIG);
+  assert.match(generateRule(d, null, NEG_CONFIG, false), /^\.lh-1\\\.5 \{/);
+});
+
+test('decimals are gated to allowsDecimal prefixes', () => {
+  // Only lh opts in — every other prefix rejects a decimal value
+  assert.equal(parseClass('fs-16.5',    NEG_CONFIG), null);
+  assert.equal(parseClass('p-1.5',      NEG_CONFIG), null);
+  assert.equal(parseClass('mt-2.5',     NEG_CONFIG), null);
+  assert.equal(parseClass('order-1.5',  NEG_CONFIG), null);
+  assert.equal(parseClass('fs-md-16.5', NEG_CONFIG), null);
+
+  // lh has no allowsNegative — a negative decimal is still rejected
+  assert.equal(parseClass('lh-n1.5', NEG_CONFIG), null);
+
+  // Fluid ranges stay integer-only (no fluid prefix allows decimals)
+  assert.equal(parseClass('fs-16.5-48', NEG_CONFIG), null);
+  assert.equal(parseClass('fs-16-48.5', NEG_CONFIG), null);
+});
+
+test('lh decimals do not disturb cols dot-ratio notation', () => {
+  // cols dots are ratios, not decimals — matched before the numeric patterns
+  const d = parseClass('cols-1.3', NEG_CONFIG);
+  assert.equal(d.mode, 'grid');
+  assert.equal(d.gridValue, '1.3');
+  assert.match(generateRule(d, null, NEG_CONFIG, false), /minmax\(0, 1fr\) minmax\(0, 3fr\)/);
+});

@@ -4,7 +4,7 @@
  *
  * Default viewport : 320px – 1440px
  * Breakpoints      : sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px, xxxl: 1600px, xxxxl: 1920px
- * Generated        : 7/11/2026, 3:31:33 PM
+ * Generated        : 7/11/2026, 3:44:06 PM
  * Rules            : 264
  * ============================================== */
 /* Reset */
@@ -380,7 +380,7 @@ p, h1, h2, h3, h4, h5, h6 {
   font-size: clamp(1rem, 0.7512vw + 0.8239rem, 1.5rem);
 }
 
-.lh-15 {
+.lh-1\.5 {
   line-height: 1.5;
 }
 
@@ -556,7 +556,7 @@ p, h1, h2, h3, h4, h5, h6 {
   font-size: clamp(1rem, 0.3756vw + 0.912rem, 1.25rem);
 }
 
-.lh-12 {
+.lh-1\.2 {
   line-height: 1.2;
 }
 
@@ -833,7 +833,7 @@ p, h1, h2, h3, h4, h5, h6 {
   font-size: clamp(1.125rem, 0.939vw + 0.9049rem, 1.75rem);
 }
 
-.lh-16 {
+.lh-1\.6 {
   line-height: 1.6;
 }
 
@@ -903,7 +903,7 @@ p, h1, h2, h3, h4, h5, h6 {
   font-size: clamp(0.875rem, 0.1878vw + 0.831rem, 1rem);
 }
 
-.lh-13 {
+.lh-1\.3 {
   line-height: 1.3;
 }
 
@@ -969,7 +969,7 @@ p, h1, h2, h3, h4, h5, h6 {
   padding-bottom: 1.5rem;
 }
 
-.lh-10 {
+.lh-1 {
   line-height: 1;
 }
 

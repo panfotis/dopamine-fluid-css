@@ -36,20 +36,20 @@
 <div class="docs-content container-860 px-16-48">
 
   <h1 class="fs-32-72 fw-bold mt-40-80 mb-8-16">Sass Addon</h1>
-  <p class="fs-16-24 lh-15 mb-16-32">Optional Sass functions and mixins for when you need more than utility classes. Independent from the core — you don't need it to use Dopamine classes.</p>
+  <p class="fs-16-24 lh-1.5 mb-16-32">Optional Sass functions and mixins for when you need more than utility classes. Independent from the core — you don't need it to use Dopamine classes.</p>
 
   <!-- Setup -->
   <section class="docs-section">
     <h2 class="fs-24-48 mb-12-24">Setup</h2>
 
     <h3 class="fs-18-24 mb-8-16">Option 1: Import the addon directly</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-fluid/addons/sass/dopamine-functions' as df;</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">@use 'dopamine-fluid/addons/sass/dopamine-functions' as df;</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Option 2: Use the auto-generated file</h3>
     <p class="fs-14-18 mb-8-16">When you output to <code>.scss</code>, Dopamine generates <code>_dopamine-functions.scss</code> alongside the utility classes with your config's viewport defaults and breakpoints:</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">dopamine ./templates --ext twig --out ./scss/_dopamine.scss
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">dopamine ./templates --ext twig --out ./scss/_dopamine.scss
 # Creates: _dopamine.scss + _dopamine-functions.scss</code></pre>
-    <pre class="p-16-32 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-functions' as df;</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">@use 'dopamine-functions' as df;</code></pre>
   </section>
 
   <!-- df.fluid() -->
@@ -58,7 +58,7 @@
     <p class="fs-14-18 mb-16-32">The same fluid <code>clamp()</code> math as Dopamine's utility classes — for use in custom SCSS where you can't add classes to the HTML (e.g. Drupal-rendered content).</p>
 
     <h3 class="fs-18-24 mb-8-16">Signature</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@function fluid($min, $max, $vpMin: 320, $vpMax: 1440)
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">@function fluid($min, $max, $vpMin: 320, $vpMax: 1440)
 
 // $min    — minimum value in pixels
 // $max    — maximum value in pixels
@@ -67,20 +67,20 @@
 // Returns — clamp(minRem, calc(Xvw + Yrem), maxRem)</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Basic usage</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-functions' as df;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">@use 'dopamine-functions' as df;
 
 h1 { font-size: df.fluid(32, 72); }
 p  { font-size: df.fluid(16, 20); }
 .hero { padding: df.fluid(24, 80); }</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Custom viewport override</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">// Scale between 480px and 1920px instead of default
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">// Scale between 480px and 1920px instead of default
 .hero-title {
   font-size: df.fluid(32, 96, 480, 1920);
 }</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Drupal theme example</h3>
-    <pre class="p-16-32 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-functions' as df;
+    <pre class="p-16-32 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">@use 'dopamine-functions' as df;
 
 // CKEditor content — can't add classes
 .text-formatted {
@@ -97,11 +97,11 @@ p  { font-size: df.fluid(16, 20); }
     <p class="fs-14-18 mb-16-32">Mobile-first and desktop-first breakpoint mixins. Values are generated from your <code>dopamine.config.json</code> breakpoints so they always stay in sync.</p>
 
     <h3 class="fs-18-24 mb-8-16">Available breakpoints</h3>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px, ...</code></pre>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px, ...</code></pre>
 
     <h3 class="fs-18-24 mb-8-16"><code>breakpoint-up($name)</code></h3>
     <p class="fs-14-18 mb-8-16">Applies styles at a minimum viewport width (mobile-first):</p>
-    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-functions' as df;
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">@use 'dopamine-functions' as df;
 
 .sidebar {
   display: none;
@@ -113,7 +113,7 @@ p  { font-size: df.fluid(16, 20); }
 
     <h3 class="fs-18-24 mb-8-16"><code>breakpoint-down($name)</code></h3>
     <p class="fs-14-18 mb-8-16">Applies styles below a viewport width (desktop-first):</p>
-    <pre class="p-16-32 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18 lh-15">@use 'dopamine-functions' as df;
+    <pre class="p-16-32 radius-8-16 demo-box" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">@use 'dopamine-functions' as df;
 
 .mobile-banner {
   @include df.breakpoint-down(md) {
