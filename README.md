@@ -31,6 +31,8 @@ dopamine ./templates --ext twig --out ./scss/_dopamine.scss
 
 > [!IMPORTANT]
 > **Upgrading to 0.9.0?** Two breaking changes: `z-10-md` becomes `z-md-10` (z-index is a numeric prefix now — the build tells you exactly what to rewrite), and `container-N` emits rem instead of px (same computed size at the default root font-size). See the [Changelog](#changelog).
+>
+> **Coming from 0.7.0?** 0.8.0 was never published to npm, so you're crossing its breaking changes too — most importantly `lh` values became literal (`lh-15` meant 1.5, now write `lh-1.5`). Read both the 0.8.0 and 0.9.0 changelog entries.
 
 ---
 
