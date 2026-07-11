@@ -773,6 +773,30 @@ test('offsets: fixed, fluid, negative, breakpoint, and logical properties', () =
 });
 
 // ---------------------------------------------------------------------------
+// ratio — aspect-ratio via slash notation
+// ---------------------------------------------------------------------------
+
+test('ratio: slash notation parses, dots and junk rejected', () => {
+  assert.equal(parseClass('ratio-16/9', NEG_CONFIG)?.ratioValue, '16 / 9');
+  assert.equal(parseClass('ratio-1/1',  NEG_CONFIG)?.ratioValue, '1 / 1');
+  assert.equal(parseClass('ratio-md-4/3', NEG_CONFIG)?.breakpoint, 'md');
+  assert.match(generateRule(parseClass('ratio-16/9', NEG_CONFIG), null, NEG_CONFIG, false), /aspect-ratio: 16 \/ 9/);
+  // Rejected shapes
+  assert.equal(parseClass('ratio-16.9', NEG_CONFIG), null);   // dots are cols territory
+  assert.equal(parseClass('ratio-16',   NEG_CONFIG), null);   // no bare numbers
+  assert.equal(parseClass('ratio-0/9',  NEG_CONFIG), null);   // zero side
+  assert.match(diagnoseClass('ratio-16.9', NEG_CONFIG), /write 'ratio-16\/9'/);
+});
+
+test('special/grid prefixes never take the generic numeric paths', () => {
+  // Regression: cols-1-3 used to parse as a fluid range and emit
+  // grid-template-columns: clamp(...) — invalid CSS.
+  assert.equal(parseClass('cols-1-3',   NEG_CONFIG), null);
+  assert.equal(parseClass('cols-md-1-3', NEG_CONFIG), null);
+  assert.equal(parseClass('ratio-md-16', NEG_CONFIG), null);
+});
+
+// ---------------------------------------------------------------------------
 // Keyword breakpoints — middle (Bootstrap-style) and end positions both parse
 // ---------------------------------------------------------------------------
 

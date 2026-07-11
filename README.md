@@ -242,6 +242,7 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 | `inset` | `inset` | `inset-0` | `inset-8-24` | `inset-lg-0` |
 | `grow` | `flex-grow` | `grow-0` / `grow-1` | — | `grow-md-2` |
 | `shrink` | `flex-shrink` | `shrink-0` / `shrink-1` | — | `shrink-md-0` |
+| `ratio` | `aspect-ratio` | `ratio-16/9` / `ratio-1/1` | — | `ratio-md-4/3` |
 | `container` | `max-width` + centered | `container-1200` | — | — |
 
 > **Notes:**
@@ -252,6 +253,7 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 > - `z` is unitless, fixed-only — any integer works (`z-999`), negatives via `n` (`z-n1` → `z-index: -1`). **0.9.0 breaking change**: z was previously a fixed set of keywords (`z-0`–`z-100`) with the breakpoint at the end — `z-10-md` must become `z-md-10`.
 > - `span` / `rowspan` apply to **grid children** — use alongside `cols-N` on the parent. `span-3` makes the item occupy 3 column tracks; `rowspan-2` makes it span 2 rows. Supports breakpoints: `span-md-4`, `rowspan-lg-3`. Positive integers only (discrete grid lines); fluid ranges and negatives aren't meaningful here.
 > - `grow` / `shrink` apply to **flex children** — `grow-1` makes an item fill available space, `shrink-0` keeps an item from shrinking (useful for fixed sidebars). Unitless integers, fixed-only. Supports breakpoints: `grow-md-2`, `shrink-md-0`.
+> - `ratio` uses a **slash**, not dots — the class name is the literal CSS value: `ratio-16/9` → `aspect-ratio: 16 / 9`. (Dots stay reserved for `cols` ratios, where `cols-1.3` means `1fr 3fr`.)
 > - Position offsets pair with the `relative` / `absolute` / `fixed` / `sticky` keywords. `start` / `end` are **logical** (`inset-inline-start/end`), like `ps` / `pe` — they flip automatically in RTL. `absolute inset-0` is the full-overlay pattern.
 > - `lh` is unitless, fixed only (no fluid range), and takes the **literal** value — decimals included: `lh-1.5` → `1.5`, `lh-0.8` → `0.8`, `lh-2` → `2`. The class name is the CSS value; nothing is divided. Unitless is deliberate — a unitless line-height inherits as a multiplier of each element's *own* font-size, so it pairs correctly with fluid `fs-*`. Supports breakpoints: `lh-md-1.2`
 >   - ⚠️ **Changed in 0.8.0** — `lh` used to divide by 10 (`lh-15` meant 1.5). It no longer does: `lh-15` now means `line-height: 15`. Rewrite old classes as `lh-1.5`.
