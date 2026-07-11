@@ -361,12 +361,12 @@ No value needed — each keyword maps to a single CSS declaration. **All support
 ### Container
 
 ```html
-<div class="container-960">     <!-- max-width: 960px, centered -->
-<div class="container-1200">    <!-- max-width: 1200px, centered -->
-<div class="container-1920">    <!-- max-width: 1920px, centered -->
+<div class="container-960">     <!-- max-width: 60rem (960px), centered -->
+<div class="container-1200">    <!-- max-width: 75rem (1200px), centered -->
+<div class="container-1920">    <!-- max-width: 120rem (1920px), centered -->
 ```
 
-Any number works. Containers can be nested.
+Any number works. Containers can be nested. Like every other numeric class, the number is pixels converted to rem (**0.9.0** — previously emitted raw px).
 
 ### Columns — equal
 
@@ -1044,7 +1044,7 @@ p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
 
 .container-1200 {
   width: 100%;
-  max-width: 1200px;
+  max-width: 75rem;
   margin-left: auto;
   margin-right: auto;
 }
