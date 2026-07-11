@@ -830,3 +830,34 @@ test('lh decimals do not disturb cols dot-ratio notation', () => {
   assert.equal(d.gridValue, '1.3');
   assert.match(generateRule(d, null, NEG_CONFIG, false), /minmax\(0, 1fr\) minmax\(0, 3fr\)/);
 });
+
+// ---------------------------------------------------------------------------
+// Watch mode: input may be a file, a directory, or a glob. Only the directory
+// case can use chokidar's `cwd` + `**/*.ext` form — the others watched nothing.
+// ---------------------------------------------------------------------------
+
+const { watchTargets } = require('../lib/runner');
+
+test('watchTargets: directory input watches extension globs relative to it', () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'dopamine-watch-'));
+
+  const { paths, options } = watchTargets(dir, 'twig,html');
+  assert.deepEqual(paths, ['**/*.twig', '**/*.html']);
+  assert.equal(options.cwd, path.resolve(dir));
+});
+
+test('watchTargets: single-file input watches that file, with no cwd', () => {
+  const dir  = fs.mkdtempSync(path.join(os.tmpdir(), 'dopamine-watch-'));
+  const file = path.join(dir, 'page.html');
+  fs.writeFileSync(file, '<div class="fs-16"></div>', 'utf8');
+
+  const { paths, options } = watchTargets(file, 'twig,html');
+  assert.deepEqual(paths, [path.resolve(file)]);
+  assert.equal(options.cwd, undefined); // cwd pointed at a file → watched nothing
+});
+
+test('watchTargets: glob input is handed to chokidar as-is', () => {
+  const { paths, options } = watchTargets('src/**/*.twig', 'twig,html');
+  assert.equal(paths, 'src/**/*.twig');
+  assert.equal(options.cwd, undefined);
+});
