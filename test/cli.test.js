@@ -35,6 +35,40 @@ test('uses config.out when the CLI output flag is not provided', () => {
   assert.equal(resolved.opts.out, './build/custom.scss');
 });
 
+test('a positional input arg does not discard config ext/out', () => {
+  // `dopamine ./templates` with {out, ext} in config used to silently fall back
+  // to the built-in defaults — output location is independent of the input.
+  const resolved = applyConfigHints('./templates', {
+    config: 'dopamine.config.json',
+    ext: DEFAULT_EXTENSIONS,
+    out: DEFAULT_OUT,
+    reset: true,
+  }, {
+    input: './ignored',
+    ext: 'html',
+    out: './build/custom.scss',
+  });
+
+  assert.equal(resolved.input, './templates');   // positional wins for input
+  assert.equal(resolved.opts.ext, 'html');       // …but config ext still applies
+  assert.equal(resolved.opts.out, './build/custom.scss');
+});
+
+test('an explicit CLI flag still beats config even with a positional input', () => {
+  const resolved = applyConfigHints('./templates', {
+    config: 'dopamine.config.json',
+    ext: 'twig',
+    out: './explicit.css',
+    reset: true,
+  }, {
+    ext: 'html',
+    out: './build/custom.scss',
+  });
+
+  assert.equal(resolved.opts.ext, 'twig');
+  assert.equal(resolved.opts.out, './explicit.css');
+});
+
 test('keeps explicit CLI output over config output', () => {
   const resolved = applyConfigHints(undefined, {
     config: 'dopamine.config.json',
