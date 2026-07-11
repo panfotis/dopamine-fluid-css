@@ -2,9 +2,21 @@
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const fs   = require('fs');
+const os   = require('os');
+const path = require('path');
 const { applyConfigHints, DEFAULT_EXTENSIONS, DEFAULT_OUT } = require('../lib/cli-options');
 const { extractClasses, parseClass, resolveViewport, diagnoseClass } = require('../lib/parser');
 const { generateRule } = require('../lib/generator');
+const { loadConfig } = require('../lib/config');
+
+// Write a config file to a temp dir and load it. Returns the loaded config.
+function loadTempConfig(userConfig) {
+  const dir  = fs.mkdtempSync(path.join(os.tmpdir(), 'dopamine-config-'));
+  const file = path.join(dir, 'dopamine.config.json');
+  fs.writeFileSync(file, JSON.stringify(userConfig), 'utf8');
+  return loadConfig(file);
+}
 
 test('uses config.out when the CLI output flag is not provided', () => {
   const resolved = applyConfigHints(undefined, {
@@ -395,11 +407,84 @@ test('diagnoseClass explains common mistakes (fix #1)', () => {
   // Inverted fluid range
   assert.match(diagnoseClass('fs-48-16', config), /inverted/i);
 
+  // Inverted / zero-width inline viewport override
+  assert.match(diagnoseClass('fs-16-48--1440-320', config), /inline viewport inverted/i);
+  assert.match(diagnoseClass('fs-16-48--320-320',  config), /zero-width range/i);
+
   // Unknown prefix
   assert.match(diagnoseClass('zzz-16', config), /unknown prefix/i);
 
   // Genuine valid class gets no diagnosis (parseClass handles it)
   assert.equal(diagnoseClass('fs-16', config), null);
+  assert.equal(diagnoseClass('fs-16-48--320-1440', config), null);
+});
+
+// ---------------------------------------------------------------------------
+// Inline viewport override must be a valid range — an inverted one used to
+// parse fine and then throw inside buildClamp, aborting the entire build.
+// ---------------------------------------------------------------------------
+
+test('inverted inline viewport is rejected instead of crashing the build', () => {
+  const config = {
+    viewport: { min: 320, max: 1440 },
+    breakpoints: { sm: 576, md: 768, lg: 992 },
+    prefixes: {},
+  };
+
+  // Inverted and zero-width ranges are rejected, base and breakpoint forms alike
+  assert.equal(parseClass('fs-16-48--1440-320',    config), null);
+  assert.equal(parseClass('fs-16-48--320-320',     config), null);
+  assert.equal(parseClass('fs-md-16-48--1440-320', config), null);
+  assert.equal(parseClass('p-8-16--900-400',       config), null);
+
+  // A valid override still parses
+  const ok = parseClass('fs-16-48--480-1920', config);
+  assert.equal(ok.inlineVpMin, 480);
+  assert.equal(ok.inlineVpMax, 1920);
+});
+
+test('a class with an inverted inline viewport does not abort the build', () => {
+  const config = {
+    viewport: { min: 320, max: 1440 },
+    breakpoints: { sm: 576, md: 768, lg: 992 },
+    prefixes: {},
+  };
+
+  // The bad class is skipped; the good one still compiles.
+  assert.equal(parseClass('fs-16-48--1440-320', config), null);
+
+  const good = parseClass('fs-16-48', config);
+  const rule = generateRule(good, resolveViewport(good, config), config, false);
+  assert.match(rule, /font-size: clamp\(/);
+});
+
+test('config: an inverted per-prefix viewport is rejected at load time', () => {
+  // Fully specified, inverted
+  assert.throws(
+    () => loadTempConfig({ prefixes: { fs: { vpMin: 1440, vpMax: 320 } } }),
+    /viewport range for prefix "fs"/i
+  );
+
+  // Zero-width
+  assert.throws(
+    () => loadTempConfig({ prefixes: { fs: { vpMin: 800, vpMax: 800 } } }),
+    /viewport range for prefix "fs"/i
+  );
+
+  // Partial override inherits the missing bound from the global viewport — and
+  // is still invalid if that combination inverts (vpMin 1600 vs global max 1440)
+  assert.throws(
+    () => loadTempConfig({ viewport: { min: 320, max: 1440 }, prefixes: { fs: { vpMin: 1600 } } }),
+    /viewport range for prefix "fs"/i
+  );
+
+  // A valid per-prefix override loads fine
+  const config = loadTempConfig({ prefixes: { fs: { vpMin: 480, vpMax: 1920 } } });
+  assert.deepEqual(config.prefixes.fs, { vpMin: 480, vpMax: 1920 });
+
+  // Prefixes without a viewport override are untouched
+  const plain = loadTempConfig({ prefixes: {} });
+  assert.deepEqual(plain.prefixes, {});
 });
 
 // ---------------------------------------------------------------------------

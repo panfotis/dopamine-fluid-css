@@ -1,4 +1,4 @@
-⚠  Skipped 11 unrecognized classes:
+⚠  Skipped 13 unrecognized classes:
       w-300px — 'px' suffix isn't needed — bare numbers are already pixels (write 'w-300')
       maxw-600px — 'px' suffix isn't needed — bare numbers are already pixels (write 'maxw-600')
       fs-50dvh — unit suffix 'dvh' is only supported on sizing prefixes (w, h, maxw, minw, maxh, minh)
@@ -9,4 +9,6 @@
       h-60-120 — 'h' doesn't support fluid ranges — fluid clamp scales by viewport width, which misbehaves on portrait viewports. Use a viewport unit like 'h-100dvh' or a fixed value.
       minh-100-300 — 'minh' doesn't support fluid ranges — fluid clamp scales by viewport width, which misbehaves on portrait viewports. Use a viewport unit like 'minh-100dvh' or a fixed value.
       fs-48-16 — fluid range inverted — '48' must be less than '16'
+      fs-16-48--1440-320 — inline viewport inverted — '--1440-320' must have vpMin < vpMax (write '--320-1440')
+      fs-16-48--320-320 — inline viewport is a zero-width range — '--320-320' must have vpMin < vpMax
       zzz-16 — unknown prefix 'zzz'
