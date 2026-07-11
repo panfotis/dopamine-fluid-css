@@ -555,6 +555,30 @@
   z-index: -1;
 }
 
+.inset-0 {
+  inset: 0rem;
+}
+
+.top-0 {
+  top: 0rem;
+}
+
+.bottom-n10 {
+  bottom: -0.625rem;
+}
+
+.start-16 {
+  inset-inline-start: 1rem;
+}
+
+.end-8 {
+  inset-inline-end: 0.5rem;
+}
+
+.top-10-30 {
+  top: clamp(0.625rem, calc(1.7857vw + 0.2679rem), 1.875rem);
+}
+
 .fs-20-40 {
   font-size: clamp(1.25rem, calc(1.8779vw + 0.8099rem), 2.5rem);
 }
@@ -670,6 +694,10 @@
   .z-md-10 {
     z-index: 10;
   }
+
+  .start-md-24 {
+    inset-inline-start: 1.5rem;
+  }
 }
 
 @media (min-width: 992px) {
@@ -720,6 +748,10 @@
 
   .gapx-lg-8-16 {
     column-gap: clamp(0.5rem, calc(0.7143vw + 0.3571rem), 1rem);
+  }
+
+  .inset-lg-0 {
+    inset: 0rem;
   }
 
   .maxw-lg-800 {

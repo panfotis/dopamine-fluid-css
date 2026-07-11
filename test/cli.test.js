@@ -758,6 +758,21 @@ test('z: parses any integer, negatives, and breakpoints; rejects fluid', () => {
 });
 
 // ---------------------------------------------------------------------------
+// Position offsets — top/bottom/start/end/inset (fluid + negative capable)
+// ---------------------------------------------------------------------------
+
+test('offsets: fixed, fluid, negative, breakpoint, and logical properties', () => {
+  assert.equal(parseClass('top-0',      NEG_CONFIG)?.minPx, 0);
+  assert.equal(parseClass('inset-0',    NEG_CONFIG)?.minPx, 0);
+  assert.equal(parseClass('bottom-n10', NEG_CONFIG)?.minPx, -10);
+  assert.equal(parseClass('top-10-30',  NEG_CONFIG)?.mode, 'fluid');
+  assert.equal(parseClass('start-md-24', NEG_CONFIG)?.breakpoint, 'md');
+  // start/end are logical inset properties, matching ps/pe/ms/me
+  assert.match(generateRule(parseClass('start-16', NEG_CONFIG), null, NEG_CONFIG, false), /inset-inline-start: 1rem/);
+  assert.match(generateRule(parseClass('end-16',   NEG_CONFIG), null, NEG_CONFIG, false), /inset-inline-end: 1rem/);
+});
+
+// ---------------------------------------------------------------------------
 // Keyword breakpoints — middle (Bootstrap-style) and end positions both parse
 // ---------------------------------------------------------------------------
 
