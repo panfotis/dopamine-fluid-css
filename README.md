@@ -30,7 +30,7 @@ dopamine ./templates --ext twig --out ./scss/_dopamine.scss
 > Documentation: https://panfotis.github.io/dopamine-fluid-css/
 
 > [!IMPORTANT]
-> **Upgrading to 0.8.0?** Two breaking changes: `lh` values are now literal (`lh-15` meant 1.5, now means 15 — write `lh-1.5`), and `cols-*` emits `minmax(0, Nfr)` tracks so wide children can't break column ratios. See the [Changelog](#changelog).
+> **Upgrading to 0.9.0?** Two breaking changes: `z-10-md` becomes `z-md-10` (z-index is a numeric prefix now — the build tells you exactly what to rewrite), and `container-N` emits rem instead of px (same computed size at the default root font-size). See the [Changelog](#changelog).
 
 ---
 
@@ -1080,6 +1080,27 @@ p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
 ---
 
 ## Changelog
+
+### 0.9.0
+
+**Breaking**
+
+- **`z-*` breakpoint position moved.** z-index is now a numeric prefix like `order`, so any integer works (`z-999`) and negatives via `n` (`z-n1` → `z-index: -1`). The keyword-era breakpoint position no longer parses: rewrite `z-10-md` → `z-md-10`. Old forms aren't silently dropped — the build prints `breakpoint goes after the prefix — write 'z-md-10'`. Plain `z-0`…`z-100` compile unchanged.
+- **`container-N` emits rem instead of px.** `container-1200` → `max-width: 75rem`. Same computed size at the default root font-size; it now scales with the user's font preference like every other numeric class. Only matters if you diff generated CSS or changed the root font-size.
+
+**Added**
+
+- **Breakpoint position unified.** Keywords now also accept the breakpoint right after the first word — `text-md-center`, `flex-md-row-reverse` (Bootstrap's exact shape, same slot as numeric `fs-md-24`). The end position (`text-center-md`) keeps working.
+- **Position offsets**: `top` / `bottom` / `start` / `end` / `inset` — fluid ranges, negatives, and breakpoints (`top-10-30`, `bottom-n10`, `start-md-24`). `start`/`end` are logical (`inset-inline-start/end`), flipping automatically in RTL. `absolute inset-0` is the overlay pattern.
+- **`ratio-16/9`** → `aspect-ratio: 16 / 9`, with breakpoint variants (`ratio-md-4/3`). Slash notation — the class name is the literal CSS value.
+- **Keywords**: `text-start` / `text-end` (logical text-align — prefer these over `text-left`/`text-right`), `fw-semibold` (600), `object-cover` / `object-contain`, `truncate`, `sr-only`.
+- **`cols-1:3`** as an alias for `cols-1.3` — colons and dots both separate ratio parts.
+- **`colspan-3`** as an explicit alias for `span-3`.
+
+**Fixed**
+
+- `cols-1-3` parsed as a fluid range and emitted `grid-template-columns: clamp(...)` — invalid CSS. Grid/special prefixes no longer take the generic numeric paths.
+- Numeric classes with a trailing breakpoint (`fs-24-md`) now get a diagnostic naming the correct form instead of being silently skipped.
 
 ### 0.8.0
 
