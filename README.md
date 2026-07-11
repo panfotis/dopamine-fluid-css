@@ -230,8 +230,9 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 | `gapy` | `row-gap` | `gapy-16` | `gapy-16-32` | `gapy-md-16` |
 | **Other** | | | | |
 | `radius` | `border-radius` | `radius-8` | `radius-4-16` | `radius-md-8` / `radius-md-4-16` |
-| `cols` | `grid-template-columns` | `cols-3` / `cols-1.3` | — | `cols-md-3` / `cols-md-1.3` |
+| `cols` | `grid-template-columns` | `cols-3` / `cols-1.3` / `cols-1:3` | — | `cols-md-3` / `cols-md-1:3` |
 | `span` | `grid-column` | `span-3` → `span 3` | — | `span-md-4` |
+| `colspan` | `grid-column` | `colspan-3` → `span 3` (alias for `span`) | — | `colspan-md-4` |
 | `rowspan` | `grid-row` | `rowspan-2` → `span 2` | — | `rowspan-md-3` |
 | `order` | `order` | `order-1` | — | `order-md-2` / `order-lg-4` |
 | `z` | `z-index` | `z-10` / `z-999` / `z-n1` | — | `z-md-10` |
@@ -254,6 +255,7 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 > - `span` / `rowspan` apply to **grid children** — use alongside `cols-N` on the parent. `span-3` makes the item occupy 3 column tracks; `rowspan-2` makes it span 2 rows. Supports breakpoints: `span-md-4`, `rowspan-lg-3`. Positive integers only (discrete grid lines); fluid ranges and negatives aren't meaningful here.
 > - `grow` / `shrink` apply to **flex children** — `grow-1` makes an item fill available space, `shrink-0` keeps an item from shrinking (useful for fixed sidebars). Unitless integers, fixed-only. Supports breakpoints: `grow-md-2`, `shrink-md-0`.
 > - `ratio` uses a **slash**, not dots — the class name is the literal CSS value: `ratio-16/9` → `aspect-ratio: 16 / 9`. (Dots stay reserved for `cols` ratios, where `cols-1.3` means `1fr 3fr`.)
+> - `cols` ratio parts can be separated by dots **or colons** — `cols-1:3` ≡ `cols-1.3` → `1fr 3fr`, `cols-1:2:1` ≡ `cols-1.2.1`. The colon reads as ratio notation (1:3); pick one style per project.
 > - Position offsets pair with the `relative` / `absolute` / `fixed` / `sticky` keywords. `start` / `end` are **logical** (`inset-inline-start/end`), like `ps` / `pe` — they flip automatically in RTL. `absolute inset-0` is the full-overlay pattern.
 > - `lh` is unitless, fixed only (no fluid range), and takes the **literal** value — decimals included: `lh-1.5` → `1.5`, `lh-0.8` → `0.8`, `lh-2` → `2`. The class name is the CSS value; nothing is divided. Unitless is deliberate — a unitless line-height inherits as a multiplier of each element's *own* font-size, so it pairs correctly with fluid `fs-*`. Supports breakpoints: `lh-md-1.2`
 >   - ⚠️ **Changed in 0.8.0** — `lh` used to divide by 10 (`lh-15` meant 1.5). It no longer does: `lh-15` now means `line-height: 15`. Rewrite old classes as `lh-1.5`.

@@ -788,6 +788,17 @@ test('ratio: slash notation parses, dots and junk rejected', () => {
   assert.match(diagnoseClass('ratio-16.9', NEG_CONFIG), /write 'ratio-16\/9'/);
 });
 
+test('cols colon alias and colspan alias', () => {
+  // cols-1:3 ≡ cols-1.3 — identical grid value, different selector
+  assert.equal(parseClass('cols-1:3',    NEG_CONFIG)?.gridValue, '1.3');
+  assert.equal(parseClass('cols-1.3',    NEG_CONFIG)?.gridValue, '1.3');
+  assert.equal(parseClass('cols-md-1:2:1', NEG_CONFIG)?.gridValue, '1.2.1');
+  assert.equal(parseClass('cols-1:0',    NEG_CONFIG), null);  // parts must be >= 1
+  // colspan-3 ≡ span-3 — explicit alias
+  const colspan = parseClass('colspan-3', NEG_CONFIG);
+  assert.match(generateRule(colspan, null, NEG_CONFIG, false), /grid-column: span 3/);
+});
+
 test('special/grid prefixes never take the generic numeric paths', () => {
   // Regression: cols-1-3 used to parse as a fluid range and emit
   // grid-template-columns: clamp(...) — invalid CSS.
