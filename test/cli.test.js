@@ -738,6 +738,48 @@ test('n-prefix: keywords starting with n-related substrings unaffected', () => {
 });
 
 // ---------------------------------------------------------------------------
+// Keyword breakpoints — middle (Bootstrap-style) and end positions both parse
+// ---------------------------------------------------------------------------
+
+test('keyword breakpoints: middle and end positions resolve identically', () => {
+  const { parseGridClass } = require('../lib/grid-parser');
+  const pairs = [
+    ['text-md-center',       'text-center-md'],
+    ['flex-md-row-reverse',  'flex-row-reverse-md'],
+    ['justify-items-md-start', 'justify-items-start-md'],
+    ['align-lg-center',      'align-center-lg'],
+    ['inline-md-block',      'inline-block-md'],
+  ];
+  for (const [middle, end] of pairs) {
+    const a = parseGridClass(middle, NEG_CONFIG);
+    const b = parseGridClass(end,    NEG_CONFIG);
+    assert.ok(a, `${middle} should parse`);
+    assert.ok(b, `${end} should parse`);
+    // Same declarations + same media wrapper — only the selector (raw) differs
+    assert.equal(a.prop,       b.prop);
+    assert.equal(a.value,      b.value);
+    assert.equal(a.breakpoint, b.breakpoint);
+  }
+});
+
+test('keyword breakpoints: exact keywords win over breakpoint extraction', () => {
+  const { parseGridClass } = require('../lib/grid-parser');
+  // 'inline-block' must stay display:inline-block even under a pathological
+  // config where 'block' is a breakpoint name
+  const weird = { ...NEG_CONFIG, breakpoints: { ...NEG_CONFIG.breakpoints, block: 600 } };
+  const d = parseGridClass('inline-block', weird);
+  assert.equal(d.value, 'inline-block');
+  assert.equal(d.breakpoint, undefined);
+});
+
+test('keyword breakpoints: unknown shapes still rejected', () => {
+  const { parseGridClass } = require('../lib/grid-parser');
+  assert.equal(parseGridClass('flex-md-lg-row', NEG_CONFIG), null);  // two breakpoints
+  assert.equal(parseGridClass('md-flex',        NEG_CONFIG), null);  // bp can't lead
+  assert.equal(parseGridClass('text-xxxl-center', NEG_CONFIG), null); // unknown bp
+});
+
+// ---------------------------------------------------------------------------
 // span / rowspan — grid item placement (uses valuePrefix mechanism)
 // ---------------------------------------------------------------------------
 

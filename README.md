@@ -261,7 +261,7 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 
 ### Keyword Classes
 
-No value needed — each keyword maps to a single CSS declaration. **All support breakpoint variants** by appending `-{bp}`.
+No value needed — each keyword maps to a single CSS declaration. **All support breakpoint variants** — put the breakpoint segment anywhere after the first word: `text-md-center` (Bootstrap-style middle, same position as numeric classes like `fs-md-24`) or `text-center-md` (end) both work.
 
 | Class | CSS Output | With breakpoint |
 |-------|-----------|----------------|
@@ -388,7 +388,7 @@ Any number works. Containers can be nested.
 
 ## Keyword Classes
 
-All keywords support breakpoint variants: append `-sm`, `-md`, `-lg`, `-xl`, `-xxl`.
+All keywords support breakpoint variants (`sm`, `md`, `lg`, `xl`, `xxl`) — the breakpoint segment can go anywhere after the first word: `flex-md-row-reverse` (Bootstrap-style middle) or `flex-row-reverse-md` (end).
 
 ### Display
 

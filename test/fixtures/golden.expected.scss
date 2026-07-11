@@ -574,6 +574,18 @@
     justify-content: center;
   }
 
+  .text-md-center {
+    text-align: center;
+  }
+
+  .flex-md-row-reverse {
+    flex-direction: row-reverse;
+  }
+
+  .justify-items-md-start {
+    justify-items: start;
+  }
+
   .fs-md-24-48 {
     font-size: clamp(1.5rem, calc(2.2535vw + 0.9718rem), 3rem);
   }
@@ -655,6 +667,10 @@
 
   .align-center-lg {
     align-items: center;
+  }
+
+  .inline-lg-block {
+    display: inline-block;
   }
 
   .px-lg-16-32 {

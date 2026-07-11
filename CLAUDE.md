@@ -47,10 +47,11 @@ Load-bearing rules. Do not break without a strong reason.
 - **Fluid ranges with `-min-max`**. `fs-16-48` → `clamp()` across the viewport. Supported by `fs`, `p(xytbse)`, `m(xytbse)`, `gap(xy)`, `w`, `maxw`, `minw`, `radius`. *Not* height prefixes, `lh`, `ls`, or `order` (all `fixedOnly`).
 - **Inline viewport override with `--vpMin-vpMax`**. `fs-16-48--320-1440` overrides the default clamp range for that class. The `--` is literal.
 - **Unit suffix `-N<unit>`** for sizing prefixes only (`w`, `h`, `maxw`, `minw`, `maxh`, `minh` — gated by `allowsUnits: true` in `PREFIX_MAP`). Units: `%`, `vw`, `vh`, `vmin`, `vmax`, `svw`, `svh`, `lvw`, `lvh`, `dvw`, `dvh`. No fluid mode for units (`w-50%-80%` is rejected — semantically muddy).
-- **Breakpoint prefix `-sm-/-md-/-lg-/-xl-/-xxl-`** goes right after the prefix: `fs-md-24-48`. Wraps the rule in `@media (min-width: …)`. Breakpoint-prefixed fluid classes use the **global viewport** for clamp math (they are NOT re-scoped to the breakpoint's own range — deliberate decision; see `resolveViewport` in `lib/parser.js`).
+- **Breakpoint prefix `-sm-/-md-/-lg-/-xl-/-xxl-`** goes right after the prefix: `fs-md-24-48`. Wraps the rule in `@media (min-width: …)`. Keywords accept the breakpoint segment **anywhere after the first word** — `text-md-center` (middle, matches numeric position + Bootstrap) and `text-center-md` (end, legacy) both parse; `parseGridClass` strips the one segment that names a breakpoint and requires the remainder to be a known keyword, exact keyword match always winning first. Breakpoint-prefixed fluid classes use the **global viewport** for clamp math (they are NOT re-scoped to the breakpoint's own range — deliberate decision; see `resolveViewport` in `lib/parser.js`).
 - **Auto keyword** for margin (`m-auto`, `mx-auto`, `ms-auto`, etc.) and sizing (`w-auto`, `h-auto`), with breakpoint variants (`w-md-auto`). Matched by `AUTO_PATTERN` / `AUTO_BP_PATTERN` in `lib/parser.js` — the margin char class is `m[xytbse]?` (note: `s`/`e` for logical start/end, not the older `l`/`r`).
 - **Logical inline properties** — `ps`/`pe`/`ms`/`me` emit `padding-inline-start/end`, `margin-inline-start/end`. `px`/`py`/`mx`/`my` still emit the two physical properties (symmetric — functionally identical to the logical shorthand, left as-is for backwards-looking readability).
 - **Negative values via `n` prefix** (`mt-n10` → `-0.625rem`, `ls-n5` → `-0.05em`, `order-n1` → `-1`). Opt-in per prefix via `allowsNegative: true` in `PREFIX_MAP` — currently on all margin prefixes, `ls`, and `order`. Regex-level: value capture is `n?\d+`; parsed via `parseSignedInt` (normalizes `-0` → `0`). The `n` was chosen over `--` to avoid colliding with the `--vpMin-vpMax` inline viewport override.
+- **Decimal values via `allowsDecimal: true`** in `PREFIX_MAP` — currently `lh` only (`lh-1.5` → `line-height: 1.5`). Every other prefix takes integers; `fs-16.5` is rejected. Gated in `parseClass` (`lib/parser.js`) for both the fixed and fluid value paths. Note `cols-1.3` is a **ratio** (`1fr 3fr`), not a decimal — different code path (`lib/grid-parser.js`).
 - **Heights are `fixedOnly`** — `h`, `maxh`, `minh` reject fluid ranges. Reason: fluid clamp scales by viewport *width*, which misbehaves on portrait viewports. Use viewport units instead (`h-100dvh`, `minh-80svh`).
 - **`ls` letter-spacing uses divisor 100 + unit='em'** — `ls-5` → `letter-spacing: 0.05em` (matches Tailwind tracking scale). `fixedOnly` by design — fluid letter-spacing mixes `em` and `vw` awkwardly.
 - **`order` is unitless + `fixedOnly`** — `order-1` → `order: 1`. Supports negatives via `allowsNegative`.
@@ -66,7 +67,7 @@ Load-bearing rules. Do not break without a strong reason.
 ## Adding features — quick checklists
 
 **Add a new prefix:**
-1. `lib/config.js` — add entry to `PREFIX_MAP`. Decide: `props`, `unitless`, `divisor`, `unit`, `valuePrefix`, `fixedOnly`, `allowsUnits`, `allowsNegative`.
+1. `lib/config.js` — add entry to `PREFIX_MAP`. Decide: `props`, `unitless`, `divisor`, `unit`, `valuePrefix`, `fixedOnly`, `allowsUnits`, `allowsNegative`, `allowsDecimal`.
 2. Add a representative class to `test/fixtures/golden.html` (cover fixed + fluid + breakpoint + negative if applicable).
 3. `UPDATE_GOLDEN=1 npm test`.
 4. Update the Value Prefixes table in `README.md`.
