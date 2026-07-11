@@ -225,6 +225,7 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 | `w-auto` | `width: auto` | — | — | `w-md-auto` |
 | `h-auto` | `height: auto` | — | — | `h-md-auto` |
 | **Gap** | | | | |
+| `stack` | `margin-top` between children (owl selector) | `stack-24` | `stack-16-32` | `stack-md-16-32` |
 | `gap` | `gap` | `gap-16` | `gap-16-32` | `gap-md-16` / `gap-md-16-32` |
 | `gapx` | `column-gap` | `gapx-16` | `gapx-16-32` | `gapx-md-16` |
 | `gapy` | `row-gap` | `gapy-16` | `gapy-16-32` | `gapy-md-16` |
@@ -257,6 +258,7 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 > - `grow` / `shrink` apply to **flex children** — `grow-1` makes an item fill available space, `shrink-0` keeps an item from shrinking (useful for fixed sidebars). Unitless integers, fixed-only. Supports breakpoints: `grow-md-2`, `shrink-md-0`.
 > - `ratio` uses a **slash**, not dots — the class name is the literal CSS value: `ratio-16/9` → `aspect-ratio: 16 / 9`. (Dots stay reserved for `cols` ratios, where `cols-1.3` means `1fr 3fr`.)
 > - `cols` ratio parts can be separated by dots **or colons** — `cols-1:3` ≡ `cols-1.3` → `1fr 3fr`, `cols-1:2:1` ≡ `cols-1.2.1`. The colon reads as ratio notation (1:3); pick one style per project.
+> - `stack` puts fluid rhythm **between direct children** instead of styling the element itself: `stack-16-32` emits `:where(.stack-16-32) > * + * { margin-top: clamp(…) }`. No space above the first child or below the last. Made for markup you don't control — CMS body fields, Drupal form items, card innards. The `:where()` keeps specificity at zero, so any margin utility on a child overrides it: `mt-40-64` for extra space above one element, `mt-0` to glue two elements together. Use `gap` when the parent is already flex/grid; use `stack` in normal document flow.
 > - Position offsets pair with the `relative` / `absolute` / `fixed` / `sticky` keywords. `start` / `end` are **logical** (`inset-inline-start/end`), like `ps` / `pe` — they flip automatically in RTL. `absolute inset-0` is the full-overlay pattern.
 > - `lh` is unitless, fixed only (no fluid range), and takes the **literal** value — decimals included: `lh-1.5` → `1.5`, `lh-0.8` → `0.8`, `lh-2` → `2`. The class name is the CSS value; nothing is divided. Unitless is deliberate — a unitless line-height inherits as a multiplier of each element's *own* font-size, so it pairs correctly with fluid `fs-*`. Supports breakpoints: `lh-md-1.2`
 >   - ⚠️ **Changed in 0.8.0** — `lh` used to divide by 10 (`lh-15` meant 1.5). It no longer does: `lh-15` now means `line-height: 15`. Rewrite old classes as `lh-1.5`.
@@ -1106,6 +1108,7 @@ p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
 - **Position offsets**: `top` / `bottom` / `start` / `end` / `inset` — fluid ranges, negatives, and breakpoints (`top-10-30`, `bottom-n10`, `start-md-24`). `start`/`end` are logical (`inset-inline-start/end`), flipping automatically in RTL. `absolute inset-0` is the overlay pattern.
 - **`ratio-16/9`** → `aspect-ratio: 16 / 9`, with breakpoint variants (`ratio-md-4/3`). Slash notation — the class name is the literal CSS value.
 - **Keywords**: `text-start` / `text-end` (logical text-align — prefer these over `text-left`/`text-right`), `fw-semibold` (600), `object-cover` / `object-contain`, `truncate`, `sr-only`.
+- **`stack-16-32`** — fluid vertical rhythm between direct children via the owl selector (`:where(.stack-16-32) > * + * { margin-top: clamp(…) }`). One class on the parent spaces CMS body fields, form items, and card content without classing every child; zero specificity means any `mt-*` on a child overrides it.
 - **`cols-fit-250` / `cols-fill-250`** — auto-fit/auto-fill grids: as many ≥250px columns as fit, stretched to fill the row, with a `min(…, 100%)` overflow guard. One class instead of a breakpoint chain, and it responds to the container, not just the viewport.
 - **`cols-1:3`** as an alias for `cols-1.3` — colons and dots both separate ratio parts.
 - **`colspan-3`** as an explicit alias for `span-3`.

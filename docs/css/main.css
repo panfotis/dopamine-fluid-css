@@ -4,8 +4,8 @@
  *
  * Default viewport : 320px – 1440px
  * Breakpoints      : sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px, xxxl: 1600px, xxxxl: 1920px
- * Generated        : 7/11/2026, 5:55:43 PM
- * Rules            : 284
+ * Generated        : 7/11/2026, 6:05:59 PM
+ * Rules            : 288
  * ============================================== */
 /* Reset */
 *, *::before, *::after {
@@ -763,14 +763,31 @@ p, h1, h2, h3, h4, h5, h6 {
   margin-inline-start: auto;
 }
 
-.p-24 {
-  /* fixed at 24px */
-  padding: 1.5rem;
+:where(.stack-16-32) > * + * {
+  margin-top: clamp(1rem, 1.4286vw + 0.7143rem, 2rem);
 }
 
 .p-16 {
   /* fixed at 16px */
   padding: 1rem;
+}
+
+:where(.stack-8-16) > * + * {
+  margin-top: clamp(0.5rem, 0.7143vw + 0.3571rem, 1rem);
+}
+
+.mt-32-48 {
+  margin-top: clamp(2rem, 1.4286vw + 1.7143rem, 3rem);
+}
+
+.mt-0 {
+  /* fixed at 0px */
+  margin-top: 0rem;
+}
+
+.p-24 {
+  /* fixed at 24px */
+  padding: 1.5rem;
 }
 
 .mt-n10 {

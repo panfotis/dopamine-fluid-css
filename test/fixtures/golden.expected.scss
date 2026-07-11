@@ -282,6 +282,14 @@
   row-gap: clamp(0.5rem, calc(0.7143vw + 0.3571rem), 1rem);
 }
 
+:where(.stack-16-32) > * + * {
+  margin-top: clamp(1rem, calc(1.4286vw + 0.7143rem), 2rem);
+}
+
+:where(.stack-24) > * + * {
+  margin-top: 1.5rem;
+}
+
 .fs-16-48--480-1920 {
   font-size: clamp(1rem, calc(2.2222vw + 0.3333rem), 3rem);
 }
@@ -690,6 +698,10 @@
 
   .justify-items-md-start {
     justify-items: start;
+  }
+
+  :where(.stack-md-16-32) > * + * {
+    margin-top: clamp(1rem, calc(1.4286vw + 0.7143rem), 2rem);
   }
 
   .fs-md-24-48 {

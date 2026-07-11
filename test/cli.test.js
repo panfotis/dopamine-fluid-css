@@ -799,6 +799,18 @@ test('cols colon alias and colspan alias', () => {
   assert.match(generateRule(colspan, null, NEG_CONFIG, false), /grid-column: span 3/);
 });
 
+test('stack: owl-selector rhythm with zero-specificity wrapper', () => {
+  const fluid = generateRule(parseClass('stack-16-32', NEG_CONFIG),
+    { vpMin: 320, vpMax: 1440, source: 'default' }, NEG_CONFIG, false);
+  assert.match(fluid, /^:where\(\.stack-16-32\) > \* \+ \* \{/);
+  assert.match(fluid, /margin-top: clamp\(1rem,/);
+  const fixed = generateRule(parseClass('stack-24', NEG_CONFIG), null, NEG_CONFIG, false);
+  assert.match(fixed, /^:where\(\.stack-24\) > \* \+ \* \{/);
+  assert.match(fixed, /margin-top: 1\.5rem/);
+  assert.equal(parseClass('stack-md-16-32', NEG_CONFIG)?.breakpoint, 'md');
+  assert.equal(parseClass('stack-n10', NEG_CONFIG), null);  // no negatives
+});
+
 test('cols-fit / cols-fill: RAM pattern with px→rem minimum and overflow guard', () => {
   const fit = parseClass('cols-fit-250', NEG_CONFIG);
   assert.deepEqual(fit?.gridFit, { kind: 'fit', minPx: 250 });
