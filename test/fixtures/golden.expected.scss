@@ -152,6 +152,40 @@
   text-align: right;
 }
 
+.text-start {
+  text-align: start;
+}
+
+.text-end {
+  text-align: end;
+}
+
+.object-cover {
+  object-fit: cover;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fw-semibold {
+  font-weight: 600;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 .fw-light {
   font-weight: 300;
 }
@@ -606,6 +640,14 @@
 }
 
 @media (min-width: 768px) {
+  .text-md-start {
+    text-align: start;
+  }
+
+  .object-md-contain {
+    object-fit: contain;
+  }
+
   .flex-md {
     display: flex;
   }

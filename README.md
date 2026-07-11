@@ -324,14 +324,23 @@ No value needed — each keyword maps to a single CSS declaration. **All support
 | **Place** | | |
 | `place-center` | `place-items: center` | `place-center-md` |
 | **Text Alignment** | | |
-| `text-left` | `text-align: left` | `text-left-md` |
-| `text-center` | `text-align: center` | `text-center-md` |
-| `text-right` | `text-align: right` | `text-right-md` |
+| `text-start` | `text-align: start` (logical, flips in RTL) | `text-md-start` |
+| `text-end` | `text-align: end` (logical, flips in RTL) | `text-md-end` |
+| `text-left` | `text-align: left` | `text-md-left` |
+| `text-center` | `text-align: center` | `text-md-center` |
+| `text-right` | `text-align: right` | `text-md-right` |
 | **Font Weight** (named) | | |
-| `fw-light` | `font-weight: 300` | `fw-light-md` |
-| `fw-normal` | `font-weight: 400` | `fw-normal-md` |
-| `fw-medium` | `font-weight: 500` | `fw-medium-md` |
-| `fw-bold` | `font-weight: 700` | `fw-bold-md` |
+| `fw-light` | `font-weight: 300` | `fw-md-light` |
+| `fw-normal` | `font-weight: 400` | `fw-md-normal` |
+| `fw-medium` | `font-weight: 500` | `fw-md-medium` |
+| `fw-semibold` | `font-weight: 600` | `fw-md-semibold` |
+| `fw-bold` | `font-weight: 700` | `fw-md-bold` |
+| **Object Fit** | | |
+| `object-cover` | `object-fit: cover` | `object-md-cover` |
+| `object-contain` | `object-fit: contain` | `object-md-contain` |
+| **Utilities** (multi-declaration) | | |
+| `truncate` | `overflow: hidden` + `text-overflow: ellipsis` + `white-space: nowrap` | `truncate-md` |
+| `sr-only` | visually hidden, accessible to screen readers | `sr-only-md` |
 | **Position** | | |
 | `relative` | `position: relative` | `relative-md` |
 | `absolute` | `position: absolute` | `absolute-md` |
