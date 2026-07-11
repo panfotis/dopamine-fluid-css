@@ -245,7 +245,7 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 > - `lh` is unitless, fixed only (no fluid range). Values ≥ 10 are divided by 10: `lh-15` → `1.5`, `lh-12` → `1.2`. Values < 10 are whole numbers: `lh-2` → `2`. Supports breakpoints: `lh-md-15`
 > - `ls` uses divisor 100 and emits `em` — `ls-5` → `letter-spacing: 0.05em` (≈ Tailwind `tracking-wider`), `ls-10` → `0.1em` (≈ `tracking-widest`), `ls-25` → `0.25em`. Fixed-only; letter-spacing is idiomatically a per-breakpoint token, not a per-viewport one. Supports breakpoints: `ls-md-8`.
 > - `h`, `maxh`, `minh` are **fixed-only** (no fluid ranges). Fluid clamp scales by viewport width, which produces wrong results on portrait/narrow viewports. Use viewport units for responsive heights: `h-100dvh`, `minh-80svh`, `maxh-50vh`
-> - `cols` supports dot notation for ratios: `cols-1.3` = `1fr 3fr`, `cols-1.2.1` = `1fr 2fr 1fr`
+> - `cols` supports dot notation for ratios: `cols-1.3` = `minmax(0, 1fr) minmax(0, 3fr)`, `cols-1.2.1` = `minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr)`. Tracks use `minmax(0, Nfr)` rather than a bare `Nfr` so a wide child (long unbreakable word, large image) can't stretch its column and break the ratio
 > - `container` is standalone — any number works, containers can be nested
 > - All pixel values are converted to `rem` (divided by 16) in the output
 > - Viewport override syntax: `fs-16-48--480-1920` uses 480px–1920px instead of config default
@@ -1031,7 +1031,7 @@ p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
 /* Base */
 
 .cols-1 {
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
 .fs-16-48 {
@@ -1046,7 +1046,7 @@ p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
 
 @media (min-width: 768px) {
   .cols-md-1\.3 {
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
   }
 }
 ```
