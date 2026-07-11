@@ -8,7 +8,10 @@ const { program } = require('commander');
 const { version } = require('../package.json');
 const { loadConfig } = require('../lib/config');
 const { resolveFiles } = require('../lib/scanner');
-const { parseClass } = require('../lib/parser');
+const { parseClass, resolveViewport } = require('../lib/parser');
+const { parseGridClass } = require('../lib/grid-parser');
+const { generateRule } = require('../lib/generator');
+const { generateGridRule } = require('../lib/grid-generator');
 const { collectClassCounts } = require('../lib/counter');
 
 program
@@ -108,6 +111,75 @@ const candidates = fluid.filter(item => {
 
 const mergeGroups = buildMergeSuggestions(candidates, closeMin, closeMax);
 printMergeSuggestions(mergeGroups, closeMin, closeMax);
+
+printDuplicateSpellings(counts, config);
+
+/**
+ * Resolve any class (numeric or grid/keyword) to its generated declarations
+ * plus media scope, without the selector. Returns null for unknown classes.
+ * Alias spellings (cols-1.3 / cols-1:3, span/colspan, text-md-center /
+ * text-center-md) produce identical declarations — that's the group key.
+ */
+function declarationsFor(cls) {
+  const descriptor = parseClass(cls, config);
+  if (descriptor) {
+    const viewport = descriptor.mode === 'fluid' ? resolveViewport(descriptor, config) : null;
+    const rule = generateRule(descriptor, viewport, config, false);
+    return { bp: descriptor.breakpoint || 'base', decls: innerDeclarations(rule) };
+  }
+
+  const gridDesc = parseGridClass(cls, config);
+  if (gridDesc) {
+    const result = generateGridRule(gridDesc);
+    const bps = Object.keys(result.media);
+    const rule = result.base[0] ?? result.media[bps[0]]?.[0];
+    if (!rule) return null;
+    return { bp: bps[0] || 'base', decls: innerDeclarations(rule) };
+  }
+
+  return null;
+}
+
+function innerDeclarations(rule) {
+  return rule.slice(rule.indexOf('{') + 1, rule.lastIndexOf('}')).trim();
+}
+
+function printDuplicateSpellings(allCounts, _config) {
+  const groups = new Map();
+
+  for (const [cls, uses] of allCounts.entries()) {
+    const resolved = declarationsFor(cls);
+    if (!resolved) continue;
+    const key = `${resolved.bp}|${resolved.decls}`;
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push({ cls, uses });
+  }
+
+  const dupes = [...groups.entries()]
+    .filter(([, items]) => items.length >= 2)
+    .map(([key, items]) => ({
+      bp: key.slice(0, key.indexOf('|')),
+      items: items.slice().sort((a, b) => b.uses - a.uses),
+    }))
+    .sort((a, b) => b.items[0].uses - a.items[0].uses);
+
+  log('\x1b[1mDuplicate Spellings\x1b[0m');
+  log('Classes that generate identical CSS under different names — pick one per project.');
+
+  if (dupes.length === 0) {
+    log('- No duplicate spellings found.');
+    log('');
+    return;
+  }
+
+  for (const { bp, items } of dupes) {
+    const [keep, ...rest] = items;
+    const scope = bp === 'base' ? '' : ` @ ${bp}`;
+    const others = rest.map(item => `\`${item.cls}\` (${item.uses} uses)`).join(', ');
+    log(`- keep \`${keep.cls}\` (${keep.uses} uses)${scope} — same CSS: ${others}`);
+  }
+  log('');
+}
 
 function inventoryKey(descriptor) {
   const bp = descriptor.breakpoint ? `@${descriptor.breakpoint}` : '@base';

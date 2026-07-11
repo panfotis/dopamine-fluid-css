@@ -9,7 +9,7 @@ This file is for **library maintainers** (human or AI) making changes. User-faci
 | File | Responsibility |
 |---|---|
 | `bin/dopamine.js` | CLI entry, commander parsing, delegates to runner |
-| `bin/dopamine-audit.js` | Analyzer binary — suggests near-duplicate range merges (tunable via `--close-min`, `--close-max`) |
+| `bin/dopamine-audit.js` | Analyzer binary — near-duplicate range merges (tunable via `--close-min`, `--close-max`) + duplicate-spelling detection (groups ALL classes by generated declarations, catching `cols-1.3`/`cols-1:3`, `span`/`colspan`, both keyword bp positions, `fw-400`/`fw-normal`) |
 | `bin/dopamine-update.js` | Prints update-check message |
 | `lib/runner.js` | Orchestrator: scan → extract → parse → generate → write (+ optional manifest + Sass functions file) |
 | `lib/scanner.js` | `resolveFiles` (file / dir / glob) + `readFile` — uses the `glob` dep |
@@ -142,6 +142,7 @@ Test file layout:
 - `test/cli.test.js` — parser, generator, extractor, diagnostic + CLI integration
 - `test/golden.test.js` — full-pipeline snapshot
 - `test/manifest.test.js` — manifest + CLI spawn patterns (copy this shape when adding new CLI integration tests)
+- `test/audit.test.js` — dopamine-audit binary (duplicate-spelling detection)
 - `test/init.test.js` — `scaffoldProject`
 - `test/update.test.js` — update-message
 

@@ -858,7 +858,15 @@ Close-Range Merge Suggestions
 Threshold: Δmin <= 2px and Δmax <= 4px
 - fs @ base: keep `fs-16-20` (9 uses)
   replace `fs-18-24` (2 uses, Δmin 2px, Δmax 4px)
+
+Duplicate Spellings
+Classes that generate identical CSS under different names — pick one per project.
+- keep `text-md-center` (12 uses) @ md — same CSS: `text-center-md` (3 uses)
+- keep `cols-1.3` (5 uses) — same CSS: `cols-1:3` (1 uses)
+- keep `fw-400` (2 uses) — same CSS: `fw-normal` (1 uses)
 ```
+
+The **Duplicate Spellings** section covers *all* classes (not just numeric ranges) and catches the deliberate aliases — dot vs colon `cols` ratios, `span` vs `colspan`, both keyword breakpoint positions — plus cross-system pairs like `fw-400` / `fw-normal`. The most-used spelling is suggested as the keeper.
 
 ---
 
@@ -1113,6 +1121,7 @@ p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
 - **`ch` unit** on sizing prefixes — `maxw-65ch` for reading measure (~65 characters per line).
 - **`cols-1:3`** as an alias for `cols-1.3` — colons and dots both separate ratio parts.
 - **`colspan-3`** as an explicit alias for `span-3`.
+- **`dopamine-audit` detects duplicate spellings** — a new report section groups every class by its generated CSS and flags aliases used side by side (`cols-1.3` vs `cols-1:3`, both keyword breakpoint positions, `fw-400` vs `fw-normal`), suggesting the most-used spelling.
 
 **Fixed**
 
