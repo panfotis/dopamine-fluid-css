@@ -36,36 +36,37 @@
 <div class="docs-content container-960 px-16-48">
 
   <h1 class="fs-32-72 fw-bold mt-40-80 mb-8-16">Utilities</h1>
-  <p class="fs-16-24 lh-1.5 mb-40-80">Text alignment, position, overflow, and z-index. Keyword classes with breakpoint variants.</p>
+  <p class="fs-16-24 lh-1.5 mb-40-80">Text alignment, position &amp; offsets, aspect ratio, object fit, overflow, z-index, truncation, and screen-reader helpers. Keyword classes with breakpoint variants — the breakpoint segment goes anywhere after the first word: <code>text-md-center</code> or <code>text-center-md</code> both work.</p>
 
   <section class="docs-section">
     <h2 class="fs-24-48 mb-12-24">Text Alignment</h2>
     <div class="grid cols-1 cols-md-3 gap-16-32 mb-16-32">
-      <div class="p-12-32 radius-4-12 demo-box--green text-left">
-        <h3 class="fs-18-24 mb-8-16">text-left</h3>
-        <p class="fs-14-18">Left aligned text.</p>
+      <div class="p-12-32 radius-4-12 demo-box--green text-start">
+        <h3 class="fs-18-24 mb-8-16">text-start</h3>
+        <p class="fs-14-18">Start of the reading direction — flips automatically in RTL. Prefer over <code>text-left</code>.</p>
       </div>
       <div class="p-12-32 radius-4-12 demo-box--green text-center">
         <h3 class="fs-18-24 mb-8-16">text-center</h3>
         <p class="fs-14-18">Center aligned text.</p>
       </div>
-      <div class="p-12-32 radius-4-12 demo-box--green text-right">
-        <h3 class="fs-18-24 mb-8-16">text-right</h3>
-        <p class="fs-14-18">Right aligned text.</p>
+      <div class="p-12-32 radius-4-12 demo-box--green text-end">
+        <h3 class="fs-18-24 mb-8-16">text-end</h3>
+        <p class="fs-14-18">End of the reading direction — flips automatically in RTL. Prefer over <code>text-right</code>.</p>
       </div>
     </div>
-    <p class="fs-14-18 p-12-24 radius-4-8 demo-box text-center text-left-lg">
-      <code>text-center text-left-lg</code> — Centered on mobile, left-aligned from lg up.
+    <p class="fs-14-18 p-12-24 radius-4-8 demo-box text-center text-md-start mb-8-16">
+      <code>text-center text-md-start</code> — Centered on mobile, start-aligned from md up (breakpoint in the middle, Bootstrap-style).
     </p>
+    <p class="fs-14-18">Physical variants <code>text-left</code> / <code>text-right</code> still work for cases that must not flip in RTL.</p>
   </section>
 
   <section class="docs-section mt-40-80">
-    <h2 class="fs-24-48 mb-12-24">Position</h2>
-    <div class="grid cols-1 cols-md-2 gap-16-32">
+    <h2 class="fs-24-48 mb-12-24">Position &amp; Offsets</h2>
+    <div class="grid cols-1 cols-md-2 gap-16-32 mb-16-32">
       <div class="relative p-12-24 radius-4-8 demo-box--dashed minh-120">
         <p class="fs-14-18 mb-4-8"><code>relative</code> parent</p>
-        <div class="absolute p-8 radius-4-8 demo-box--red" style="bottom:8px;right:8px;">
-          <p class="fs-12-16"><code>absolute</code> child</p>
+        <div class="absolute bottom-8 end-8 p-8 radius-4-8 demo-box--red">
+          <p class="fs-12-16"><code>absolute bottom-8 end-8</code></p>
         </div>
       </div>
       <div class="p-12-24 radius-4-8 demo-box">
@@ -77,6 +78,48 @@
         <p class="fs-14-18"><code>sticky-md</code> — sticky from md up</p>
       </div>
     </div>
+    <h3 class="fs-18-24 mb-8-16">Offsets <code>top</code> / <code>bottom</code> / <code>start</code> / <code>end</code> / <code>inset</code></h3>
+    <div class="grid cols-1 cols-md-2 gap-16-32 mb-16-32">
+      <div class="relative radius-4-8 demo-box--dashed minh-120 overflow-hidden">
+        <div class="absolute inset-0 flex align-center justify-center demo-box--red">
+          <p class="fs-12-16"><code>absolute inset-0</code> — the overlay pattern</p>
+        </div>
+      </div>
+      <div class="relative radius-4-8 demo-box--dashed minh-120">
+        <div class="absolute top-10-30 start-16 p-8 radius-4-8 demo-box--red">
+          <p class="fs-12-16"><code>top-10-30 start-16</code> — fluid top offset</p>
+        </div>
+      </div>
+    </div>
+    <p class="fs-14-18">Offsets take fixed values (<code>top-0</code>), fluid ranges (<code>top-10-30</code>), negatives (<code>bottom-n10</code> — pull outside the parent), and breakpoints (<code>start-md-24</code>). <code>start</code> / <code>end</code> emit logical <code>inset-inline-start/end</code>, flipping automatically in RTL.</p>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Aspect Ratio <code>ratio-{w}/{h}</code></h2>
+    <div class="grid cols-1 cols-md-3 gap-16-32 mb-16-32">
+      <div class="ratio-16/9 radius-4-8 demo-box--purple flex align-center justify-center"><p class="fs-12-16">ratio-16/9</p></div>
+      <div class="ratio-1/1 radius-4-8 demo-box--purple flex align-center justify-center"><p class="fs-12-16">ratio-1/1</p></div>
+      <div class="ratio-4/3 ratio-md-21/9 radius-4-8 demo-box--purple flex align-center justify-center"><p class="fs-12-16">ratio-4/3 ratio-md-21/9</p></div>
+    </div>
+    <p class="fs-14-18">The class name is the literal CSS value: <code>ratio-16/9</code> → <code>aspect-ratio: 16 / 9</code>. Slash, not dots — dots stay reserved for <code>cols</code> ratios.</p>
+  </section>
+
+  <section class="docs-section mt-40-80">
+    <h2 class="fs-24-48 mb-12-24">Object Fit &amp; Text Utilities</h2>
+    <div class="grid cols-1 cols-md-2 gap-16-32 mb-16-32">
+      <div class="p-12-24 radius-4-8 demo-box">
+        <h3 class="fs-18-24 mb-8-16">Object fit</h3>
+        <p class="fs-14-18 mb-4-8"><code>object-cover</code> — fill the box, crop the overflow. Pair with <code>ratio-16/9</code> for uniform media cards.</p>
+        <p class="fs-14-18"><code>object-contain</code> — fit entirely inside the box.</p>
+      </div>
+      <div class="p-12-24 radius-4-8 demo-box overflow-hidden">
+        <h3 class="fs-18-24 mb-8-16">Truncate</h3>
+        <p class="fs-14-18 truncate"><code>truncate</code> — one line with an ellipsis: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+      </div>
+    </div>
+    <p class="fs-14-18 p-12-24 radius-4-8 demo-box">
+      <code>sr-only</code> hides content visually but keeps it for screen readers<span class="sr-only"> — like this sentence, which only assistive tech announces</span>. Use it for icon-button labels and skip links.
+    </p>
   </section>
 
   <section class="docs-section mt-40-80">
@@ -110,7 +153,7 @@
       <div class="absolute z-50 p-8 radius-4-8 demo-box--blue" style="top:70px;left:210px;box-shadow:2px 2px 4px rgba(0,0,0,0.1);"><p class="fs-12-16">z-50</p></div>
       <div class="absolute z-100 p-8 radius-4-8 demo-box--blue" style="top:80px;left:240px;box-shadow:2px 2px 4px rgba(0,0,0,0.1);"><p class="fs-12-16">z-100</p></div>
     </div>
-    <p class="fs-14-18 mt-16-32">Available: <code>z-0</code> through <code>z-5</code>, <code>z-10</code>, <code>z-50</code>, <code>z-100</code>. All support breakpoints.</p>
+    <p class="fs-14-18 mt-16-32">Any integer works — <code>z-999</code>, not just the values shown. Negatives via <code>n</code>: <code>z-n1</code> → <code>z-index: -1</code> (drop behind the parent). Breakpoints go after the prefix: <code>z-md-10</code>.</p>
   </section>
 
 </div>

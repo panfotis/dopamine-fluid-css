@@ -40,9 +40,9 @@
     <p class="fs-16-24 lh-1.5 mb-16-32">Containers, column tracks, item placement, gaps, and alignment — everything needed to build any grid layout.</p>
     <ul class="fs-14-18 lh-1.5 mb-40-80 ps-24">
       <li><code>cols-N</code> on the parent — N equal tracks. Any positive integer works: <code>cols-2</code>, <code>cols-12</code>, <code>cols-14</code>.</li>
-      <li><code>cols-1.3</code>, <code>cols-1.3.1</code> — dot notation for ratio tracks (1:3, 1:3:1, etc.).</li>
+      <li><code>cols-1.3</code> or <code>cols-1:3</code> — dots and colons both write ratio tracks (1:3, 1:3:1, etc.). Pick one style per project.</li>
       <li>Tracks emit <code>minmax(0, Nfr)</code>, not a bare <code>Nfr</code> — a wide child (long unbreakable word, large image) can't stretch its column and break the ratio.</li>
-      <li><code>span-N</code> / <code>rowspan-N</code> on children — item spans N column or row tracks.</li>
+      <li><code>span-N</code> / <code>rowspan-N</code> on children — item spans N column or row tracks. <code>colspan-N</code> is an explicit alias for <code>span-N</code>.</li>
       <li><code>gap-N</code> / <code>gapx-N</code> / <code>gapy-N</code> — spacing between tracks. Fluid-capable.</li>
       <li>Every class accepts breakpoint variants: <code>cols-md-3</code>, <code>span-lg-4</code>, <code>gap-xl-32</code>.</li>
     </ul>
@@ -98,7 +98,7 @@
 
   <!-- CUSTOM RATIOS -->
   <section class="docs-section mt-40-80 container-1200 px-16-48">
-    <h2 class="fs-24-48 mb-12-24">Column Ratios <code>cols-{ratio}</code> (dot notation)</h2>
+    <h2 class="fs-24-48 mb-12-24">Column Ratios <code>cols-{ratio}</code> (dots or colons)</h2>
     <h3 class="fs-18-24 mb-8-16">Sidebar <code>cols-1 cols-md-1.3</code></h3>
     <div class="grid cols-1 cols-md-1.3 gap-16-32 mb-24-40">
       <div class="p-12-24 radius-4-8"><p class="fs-14-18">Sidebar (1fr)</p></div>
@@ -111,9 +111,14 @@
       <div class="p-12-24 radius-4-8"><p class="fs-14-18">Right (1fr)</p></div>
     </div>
     <h3 class="fs-18-24 mb-8-16">Wide + Narrow <code>cols-1 cols-md-2.1</code></h3>
-    <div class="grid cols-1 cols-md-2.1 gap-16-32">
+    <div class="grid cols-1 cols-md-2.1 gap-16-32 mb-24-40">
       <div class="p-12-24 radius-4-8"><p class="fs-14-18">Wide (2fr)</p></div>
       <div class="p-12-24 radius-4-8"><p class="fs-14-18">Narrow (1fr)</p></div>
+    </div>
+    <h3 class="fs-18-24 mb-8-16">Colon spelling <code>cols-1 cols-md-1:3</code> — same output as <code>cols-md-1.3</code></h3>
+    <div class="grid cols-1 cols-md-1:3 gap-16-32">
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">Sidebar (1fr)</p></div>
+      <div class="p-12-24 radius-4-8"><p class="fs-14-18">Main (3fr)</p></div>
     </div>
   </section>
 

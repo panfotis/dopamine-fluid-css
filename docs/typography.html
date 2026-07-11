@@ -87,6 +87,7 @@
     <div class="mb-4-8"><span class="fs-20-28 fw-light">fw-light — 300</span></div>
     <div class="mb-4-8"><span class="fs-20-28 fw-normal">fw-normal — 400</span></div>
     <div class="mb-4-8"><span class="fs-20-28 fw-medium">fw-medium — 500</span></div>
+    <div class="mb-4-8"><span class="fs-20-28 fw-semibold">fw-semibold — 600</span></div>
     <div class="mb-4-8"><span class="fs-20-28 fw-bold">fw-bold — 700</span></div>
   </section>
 
@@ -125,7 +126,7 @@
 
   <section class="docs-section mt-40-80 mb-40-80">
     <h2 class="fs-24-48 mb-12-24">Letter Spacing <code>ls-{value}</code></h2>
-    <p class="fs-14-18 mb-16-32">Em-based, divisor 100, fixed only. <code>ls-5</code> &rarr; <code>0.05em</code>, <code>ls-10</code> &rarr; <code>0.1em</code>. Matches the common design-system scale (Tailwind <code>tracking-*</code>). Supports breakpoints: <code>ls-md-8</code>.</p>
+    <p class="fs-14-18 mb-16-32">The value is a <strong>percentage of the font size</strong>, fixed only. <code>ls-5</code> = 5% tracking &rarr; <code>0.05em</code>, <code>ls-10</code> = 10% &rarr; <code>0.1em</code> — and because it's em-based, it scales along with fluid <code>fs-*</code>. Matches the common design-system scale (Tailwind <code>tracking-*</code>). Supports breakpoints: <code>ls-md-8</code>.</p>
     <div class="grid cols-1 cols-md-3 gap-16-32">
       <div class="p-12-24 radius-4-8 demo-box">
         <h3 class="fs-18-24 mb-8-16">Subtle <code>ls-2</code></h3>
