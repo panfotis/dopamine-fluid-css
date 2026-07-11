@@ -190,7 +190,7 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 | `fs` | `font-size` | `fs-16` | `fs-16-48` | `fs-md-16` / `fs-md-16-48` |
 | `fw` | `font-weight` | `fw-700` | — | — |
 | `lh` | `line-height` | `lh-1.5` → 1.5 | — | `lh-md-1.5` |
-| `ls` | `letter-spacing` | `ls-5` → 0.05em | — | `ls-md-10` |
+| `ls` | `letter-spacing` | `ls-5` = 5% of font size → 0.05em | — | `ls-md-10` |
 | **Padding** | | | | |
 | `p` | `padding` | `p-16` | `p-16-48` | `p-md-16` / `p-md-16-48` |
 | `pt` | `padding-top` | `pt-16` | `pt-16-48` | `pt-md-16` / `pt-md-16-48` |
@@ -260,7 +260,8 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 > - `lh` is unitless, fixed only (no fluid range), and takes the **literal** value — decimals included: `lh-1.5` → `1.5`, `lh-0.8` → `0.8`, `lh-2` → `2`. The class name is the CSS value; nothing is divided. Unitless is deliberate — a unitless line-height inherits as a multiplier of each element's *own* font-size, so it pairs correctly with fluid `fs-*`. Supports breakpoints: `lh-md-1.2`
 >   - ⚠️ **Changed in 0.8.0** — `lh` used to divide by 10 (`lh-15` meant 1.5). It no longer does: `lh-15` now means `line-height: 15`. Rewrite old classes as `lh-1.5`.
 >   - The dot means different things per prefix: in `lh-1.5` it's a **decimal**; in `cols-1.3` it's a **ratio list** (`1fr 3fr`). Only `lh` accepts decimals — `fs-16.5` is rejected.
-> - `ls` uses divisor 100 and emits `em` — `ls-5` → `letter-spacing: 0.05em` (≈ Tailwind `tracking-wider`), `ls-10` → `0.1em` (≈ `tracking-widest`), `ls-25` → `0.25em`. Unlike `lh`, `ls` keeps its encoding on purpose: the literal form would be `ls-0.05`, which is unpleasant to type and read. Fixed-only; letter-spacing is idiomatically a per-breakpoint token, not a per-viewport one. Supports breakpoints: `ls-md-8`.
+> - `ls` is a **percentage of the font size** — `ls-5` = 5% tracking → `letter-spacing: 0.05em` (≈ Tailwind `tracking-wider`), `ls-10` = 10% → `0.1em` (≈ `tracking-widest`), `ls-n5` = −5%. `em` *is* percent-of-font-size in CSS, so the number reads directly as a percentage and scales with fluid `fs`. Fixed-only; letter-spacing is idiomatically a per-breakpoint token, not a per-viewport one. Supports breakpoints: `ls-md-8`.
+> - **The number rule, in one place:** length-ish numbers are **pixels converted to rem** (`fs-16` → `1rem`); unitless CSS values are **literal** (`lh-1.5`, `fw-700`, `order-2`, `z-10`); `ls` is a **percent of font size**; `cols` dots/colons are **ratio lists**; `ratio` slashes are the **literal CSS value**.
 > - `h`, `maxh`, `minh` are **fixed-only** (no fluid ranges). Fluid clamp scales by viewport width, which produces wrong results on portrait/narrow viewports. Use viewport units for responsive heights: `h-100dvh`, `minh-80svh`, `maxh-50vh`
 > - `cols` supports dot notation for ratios: `cols-1.3` = `minmax(0, 1fr) minmax(0, 3fr)`, `cols-1.2.1` = `minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr)`. Tracks use `minmax(0, Nfr)` rather than a bare `Nfr` so a wide child (long unbreakable word, large image) can't stretch its column and break the ratio
 > - `container` is standalone — any number works, containers can be nested

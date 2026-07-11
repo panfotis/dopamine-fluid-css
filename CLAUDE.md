@@ -44,7 +44,7 @@ When you need to change behavior, map it to this flow first — the right file i
 Load-bearing rules. Do not break without a strong reason.
 
 - **Numbers are pixels, converted to rem** (divided by 16). `fs-16` → `font-size: 1rem`.
-- **Fluid ranges with `-min-max`**. `fs-16-48` → `clamp()` across the viewport. Supported by `fs`, `p(xytbse)`, `m(xytbse)`, `gap(xy)`, `w`, `maxw`, `minw`, `radius`. *Not* height prefixes, `lh`, `ls`, or `order` (all `fixedOnly`).
+- **Fluid ranges with `-min-max`**. `fs-16-48` → `clamp()` across the viewport. Supported by `fs`, `p(xytbse)`, `m(xytbse)`, `gap(xy)`, `w`, `maxw`, `minw`, `radius`, and the position offsets (`top`, `bottom`, `start`, `end`, `inset`). *Not* height prefixes, `lh`, `ls`, `order`, or `z` (all `fixedOnly`).
 - **Inline viewport override with `--vpMin-vpMax`**. `fs-16-48--320-1440` overrides the default clamp range for that class. The `--` is literal.
 - **Unit suffix `-N<unit>`** for sizing prefixes only (`w`, `h`, `maxw`, `minw`, `maxh`, `minh` — gated by `allowsUnits: true` in `PREFIX_MAP`). Units: `%`, `vw`, `vh`, `vmin`, `vmax`, `svw`, `svh`, `lvw`, `lvh`, `dvw`, `dvh`. No fluid mode for units (`w-50%-80%` is rejected — semantically muddy).
 - **Breakpoint prefix `-sm-/-md-/-lg-/-xl-/-xxl-`** goes right after the prefix: `fs-md-24-48`. Wraps the rule in `@media (min-width: …)`. Keywords accept the breakpoint segment **anywhere after the first word** — `text-md-center` (middle, matches numeric position + Bootstrap) and `text-center-md` (end, legacy) both parse; `parseGridClass` strips the one segment that names a breakpoint and requires the remainder to be a known keyword, exact keyword match always winning first. Breakpoint-prefixed fluid classes use the **global viewport** for clamp math (they are NOT re-scoped to the breakpoint's own range — deliberate decision; see `resolveViewport` in `lib/parser.js`).
@@ -53,7 +53,7 @@ Load-bearing rules. Do not break without a strong reason.
 - **Negative values via `n` prefix** (`mt-n10` → `-0.625rem`, `ls-n5` → `-0.05em`, `order-n1` → `-1`). Opt-in per prefix via `allowsNegative: true` in `PREFIX_MAP` — currently on all margin prefixes, `ls`, `order`, and `z`. Regex-level: value capture is `n?\d+`; parsed via `parseSignedInt` (normalizes `-0` → `0`). The `n` was chosen over `--` to avoid colliding with the `--vpMin-vpMax` inline viewport override.
 - **Decimal values via `allowsDecimal: true`** in `PREFIX_MAP` — currently `lh` only (`lh-1.5` → `line-height: 1.5`). Every other prefix takes integers; `fs-16.5` is rejected. Gated in `parseClass` (`lib/parser.js`) for both the fixed and fluid value paths. Note `cols-1.3` is a **ratio** (`1fr 3fr`), not a decimal — different code path (`lib/grid-parser.js`).
 - **Heights are `fixedOnly`** — `h`, `maxh`, `minh` reject fluid ranges. Reason: fluid clamp scales by viewport *width*, which misbehaves on portrait viewports. Use viewport units instead (`h-100dvh`, `minh-80svh`).
-- **`ls` letter-spacing uses divisor 100 + unit='em'** — `ls-5` → `letter-spacing: 0.05em` (matches Tailwind tracking scale). `fixedOnly` by design — fluid letter-spacing mixes `em` and `vw` awkwardly.
+- **`ls` letter-spacing is percent-of-font-size** (divisor 100 + unit='em' — `em` *is* percent-of-font-size in CSS): `ls-5` = 5% tracking → `letter-spacing: 0.05em`. Matches the Tailwind tracking scale. `fixedOnly` by design — fluid letter-spacing mixes `em` and `vw` awkwardly. Frame it as percent in user-facing docs, never as "divide by 100".
 - **`order` is unitless + `fixedOnly`** — `order-1` → `order: 1`. Supports negatives via `allowsNegative`.
 - **`span` / `rowspan` (grid-child placement)** use `valuePrefix: 'span '` in `PREFIX_MAP` — generator prepends the keyword to the numeric output: `span-3` → `grid-column: span 3`. Any future prefix whose output needs a keyword+number shape can opt in the same way.
 - **Scanning sources** — `extractClasses` reads from three places, in this order:
@@ -62,7 +62,10 @@ Load-bearing rules. Do not break without a strong reason.
   3. `addClass(...)` call arguments (any shape — `['a', 'b']`, `'a b'`, or multi-arg with ternaries). Gated by `content.includes('addClass(')`.
 
   All three pipe through `parseClass`, so tokens that aren't class-shaped (`{{`, `?`, translation strings, identifier references) are silently dropped before reaching CSS or manifest. Bare prose, `<code>` tags, comments, and JS expressions remain ignored. Dynamic concatenation like `'block-' ~ slug` extracts only the literal prefix (dropped by `parseClass`) — runtime-computed final names still go in `dopamine-safelist.txt`.
-- **`cols-N` dot notation is a ratio list**: `cols-1.3` → `1fr 3fr`, `cols-1.2.1` → `1fr 2fr 1fr`. Dots ≠ decimals here.
+- **`cols-N` dot notation is a ratio list**: `cols-1.3` → `1fr 3fr`, `cols-1.2.1` → `1fr 2fr 1fr`. Dots ≠ decimals here. Colons are an equivalent spelling (`cols-1:3` ≡ `cols-1.3`) — normalized to dots at parse time, so generator/validator only ever see dots.
+- **`ratio` uses slash notation**: `ratio-16/9` → `aspect-ratio: 16 / 9`. Its PREFIX_MAP entry carries `special: true`, which (like `grid: true`) keeps the prefix out of the generic fixed/fluid numeric paths — it only parses via its own regexes.
+- **Position offsets are logical**: `start`/`end` → `inset-inline-start/end` (matching `ps`/`pe`); `top`/`bottom`/`inset` map 1:1. Fluid + negative capable. `absolute inset-0` is the overlay pattern — no dedicated keyword, the numeric path handles value 0.
+- **Multi-declaration keywords** use `props: [[prop, value], ...]` in `KEYWORD_MAP` (`truncate`, `sr-only`) instead of the single `prop`/`value` pair.
 
 ## Adding features — quick checklists
 
@@ -85,7 +88,7 @@ Load-bearing rules. Do not break without a strong reason.
 4. Update the README note listing supported units.
 
 **Add a new keyword:**
-1. `lib/grid-parser.js` — add entry to `KEYWORD_MAP`.
+1. `lib/grid-parser.js` — add entry to `KEYWORD_MAP`. Single declaration: `{ prop, value }`. Multiple declarations: `{ props: [[prop, value], ...] }` (see `truncate`, `sr-only`).
 2. Add the keyword (+ breakpoint variant) to `test/fixtures/golden.html`.
 3. `UPDATE_GOLDEN=1 npm test`.
 4. Update the Keyword Classes table in `README.md`.
@@ -104,10 +107,11 @@ Any change that alters emitted CSS (rounding, escaping, rule formatting, breakpo
 - **`test/fixtures/golden.html`** — every supported class shape in one file. Executable reference for "what syntax works right now."
 - **`test/fixtures/golden.expected.*`** — current compiled output, committed. Never hand-edit; regenerate via `UPDATE_GOLDEN=1`.
 - **`dopamine.config.json`** (root) — default breakpoints + viewport. `docs/dopamine.config.json` is a separate config for the docs site.
+- **`TO-DO.md`** — unscheduled backlog with design decisions and release batching notes. Check it before re-litigating a syntax decision (slash vs dots, colon alias, etc. are settled there).
 
 ## Testing workflow
 
-- **`npm test`** — runs 72 tests (unit + integration + golden + manifest v2 + negative-value gating + grid item span + flex children grow/shrink).
+- **`npm test`** — runs the full suite (unit + integration + golden + manifest + scaffolding).
 - **`UPDATE_GOLDEN=1 npm test`** — regenerates the three `test/fixtures/golden.expected.*` files when output intentionally changes.
 - **`prepublishOnly` hook** — `npm test` runs before `npm publish`. Can't ship a broken build.
 
