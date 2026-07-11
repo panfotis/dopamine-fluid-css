@@ -29,6 +29,9 @@ dopamine ./templates --ext twig --out ./scss/_dopamine.scss
 
 > Documentation: https://panfotis.github.io/dopamine-fluid-css/
 
+> [!IMPORTANT]
+> **Upgrading to 0.8.0?** Two breaking changes: `lh` values are now literal (`lh-15` meant 1.5, now means 15 — write `lh-1.5`), and `cols-*` emits `minmax(0, Nfr)` tracks so wide children can't break column ratios. See the [Changelog](#changelog).
+
 ---
 
 ## Features
@@ -1061,6 +1064,31 @@ p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
   }
 }
 ```
+
+---
+
+## Changelog
+
+### 0.8.0
+
+**Breaking**
+
+- **`lh` values are now literal.** `lh` used to divide by 10 above a cutoff and emit whole numbers below it, so `lh-15` meant `1.5` — and `lh-8` silently meant `line-height: 8`, with `0.8` impossible to express. The value is now exactly what you write: `lh-1.5` → `1.5`, `lh-0.8` → `0.8`, `lh-2` → `2`.
+
+  **Upgrading:** rewrite `lh-15` → `lh-1.5`, `lh-12` → `lh-1.2`, `lh-10` → `lh-1`. Single-digit values (`lh-1`, `lh-2`) already meant what they said and don't change. Old two-digit classes aren't rejected — `lh-15` now compiles to `line-height: 15`, which blows the leading out visibly so you can spot what's left to migrate.
+
+- **`cols-*` emits `minmax(0, Nfr)` tracks** instead of bare `Nfr`. A bare `fr` track is really `minmax(auto, Nfr)`, so a child's intrinsic minimum width (a long unbreakable word, a wide image) could stretch its column and break the ratio — `cols-3` stopped being three equal columns. Tracks now hold their ratio regardless of content. No source changes needed; the generated CSS just gets correct.
+
+**Added**
+
+- `modal` and `menu` ship a visible backdrop (50% black), overridable with `--modal-backdrop` / `--menu-backdrop`. Previously `.modal__overlay` was transparent, so every project had to patch in its own dim.
+- Decimal values are supported per-prefix via `allowsDecimal` — currently `lh` only. `fs-16.5` is still rejected, and `cols-1.3` remains a **ratio** (`1fr 3fr`), not a decimal.
+
+**Fixed**
+
+- A single typo'd inline viewport (`fs-16-48--1440-320`, min ≥ max) used to abort the entire build with no CSS written and no mention of the offending class — and in watch mode it killed the watcher. Such classes are now skipped like any other unrecognized class, with a diagnostic that names the fix. Inverted per-prefix viewports in `dopamine.config.json` are caught at load time.
+- Watch mode did nothing for single-file and glob inputs (it only ever worked for directories), so saves silently never rebuilt.
+- A positional input argument no longer discards `ext` / `out` from `dopamine.config.json` — `dopamine ./templates` was quietly writing to the default output path instead of your configured one. Explicit CLI flags still win.
 
 ---
 
