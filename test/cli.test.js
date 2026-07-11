@@ -799,6 +799,21 @@ test('cols colon alias and colspan alias', () => {
   assert.match(generateRule(colspan, null, NEG_CONFIG, false), /grid-column: span 3/);
 });
 
+test('cols-fit / cols-fill: RAM pattern with px→rem minimum and overflow guard', () => {
+  const fit = parseClass('cols-fit-250', NEG_CONFIG);
+  assert.deepEqual(fit?.gridFit, { kind: 'fit', minPx: 250 });
+  assert.match(generateRule(fit, null, NEG_CONFIG, false),
+    /grid-template-columns: repeat\(auto-fit, minmax\(min\(15\.625rem, 100%\), 1fr\)\)/);
+  assert.match(generateRule(parseClass('cols-fill-250', NEG_CONFIG), null, NEG_CONFIG, false),
+    /repeat\(auto-fill,/);
+  assert.equal(parseClass('cols-fit-md-300', NEG_CONFIG)?.breakpoint, 'md');
+  // Rejected shapes
+  assert.equal(parseClass('cols-fit-0', NEG_CONFIG),        null);  // min must be >= 1
+  assert.equal(parseClass('cols-fit-250-350', NEG_CONFIG),  null);  // no max — 1fr is the max
+  assert.equal(parseClass('cols-fit-xxxl-250', NEG_CONFIG), null);  // unknown bp
+  assert.match(diagnoseClass('cols-fit-250-350', NEG_CONFIG), /single minimum/i);
+});
+
 test('special/grid prefixes never take the generic numeric paths', () => {
   // Regression: cols-1-3 used to parse as a fluid range and emit
   // grid-template-columns: clamp(...) — invalid CSS.

@@ -231,6 +231,7 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 | **Other** | | | | |
 | `radius` | `border-radius` | `radius-8` | `radius-4-16` | `radius-md-8` / `radius-md-4-16` |
 | `cols` | `grid-template-columns` | `cols-3` / `cols-1.3` / `cols-1:3` | — | `cols-md-3` / `cols-md-1:3` |
+| `cols-fit` / `cols-fill` | `grid-template-columns` (auto-fit/fill) | `cols-fit-250` — as many ≥250px columns as fit | — | `cols-fit-md-300` |
 | `span` | `grid-column` | `span-3` → `span 3` | — | `span-md-4` |
 | `colspan` | `grid-column` | `colspan-3` → `span 3` (alias for `span`) | — | `colspan-md-4` |
 | `rowspan` | `grid-row` | `rowspan-2` → `span 2` | — | `rowspan-md-3` |
@@ -374,6 +375,17 @@ Any number works. Containers can be nested. Like every other numeric class, the 
 ```html
 <div class="grid cols-1 cols-md-2 cols-lg-4 gap-16-32">
 ```
+
+### Columns — auto-fit (no breakpoints needed)
+
+```html
+<!-- As many ≥250px columns as fit; they stretch to fill the row -->
+<div class="grid cols-fit-250 gap-16-32">
+```
+
+Emits `repeat(auto-fit, minmax(min(15.625rem, 100%), 1fr))` — the browser recomputes the column count at every width, so one class replaces a whole `cols-1 cols-sm-2 cols-md-3 cols-lg-4` chain. It also responds to the **container**, not just the viewport: the same cards get fewer columns in a sidebar than in the main area. The `min(…, 100%)` guard collapses to one full-width column when the container is narrower than the minimum. The number is the "my card still looks good this narrow" floor, px→rem as usual.
+
+`cols-fill-250` is the same but keeps empty tracks (`auto-fill`) — cards stay card-sized instead of stretching when there are only a few. No max value — `1fr` already caps growth by adding a column as soon as another minimum fits. Use `cols-N` when the design demands an exact column count.
 
 ### Columns — custom ratios (dot notation)
 
@@ -1094,6 +1106,7 @@ p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
 - **Position offsets**: `top` / `bottom` / `start` / `end` / `inset` — fluid ranges, negatives, and breakpoints (`top-10-30`, `bottom-n10`, `start-md-24`). `start`/`end` are logical (`inset-inline-start/end`), flipping automatically in RTL. `absolute inset-0` is the overlay pattern.
 - **`ratio-16/9`** → `aspect-ratio: 16 / 9`, with breakpoint variants (`ratio-md-4/3`). Slash notation — the class name is the literal CSS value.
 - **Keywords**: `text-start` / `text-end` (logical text-align — prefer these over `text-left`/`text-right`), `fw-semibold` (600), `object-cover` / `object-contain`, `truncate`, `sr-only`.
+- **`cols-fit-250` / `cols-fill-250`** — auto-fit/auto-fill grids: as many ≥250px columns as fit, stretched to fill the row, with a `min(…, 100%)` overflow guard. One class instead of a breakpoint chain, and it responds to the container, not just the viewport.
 - **`cols-1:3`** as an alias for `cols-1.3` — colons and dots both separate ratio parts.
 - **`colspan-3`** as an explicit alias for `span-3`.
 

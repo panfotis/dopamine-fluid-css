@@ -1,4 +1,4 @@
-⚠  Skipped 15 unrecognized classes:
+⚠  Skipped 16 unrecognized classes:
       w-300px — 'px' suffix isn't needed — bare numbers are already pixels (write 'w-300')
       maxw-600px — 'px' suffix isn't needed — bare numbers are already pixels (write 'maxw-600')
       fs-50dvh — unit suffix 'dvh' is only supported on sizing prefixes (w, h, maxw, minw, maxh, minh)
@@ -13,4 +13,5 @@
       fs-16-48--320-320 — inline viewport is a zero-width range — '--320-320' must have vpMin < vpMax
       z-10-md — breakpoint goes after the prefix — write 'z-md-10'
       ratio-16.9 — ratio uses a slash — write 'ratio-16/9'
+      cols-fit-250-350 — cols-fit takes a single minimum — columns already grow to fill the row via 1fr
       zzz-16 — unknown prefix 'zzz'

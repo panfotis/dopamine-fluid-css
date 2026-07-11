@@ -4,8 +4,8 @@
  *
  * Default viewport : 320px – 1440px
  * Breakpoints      : sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px, xxxl: 1600px, xxxxl: 1920px
- * Generated        : 7/11/2026, 5:32:50 PM
- * Rules            : 281
+ * Generated        : 7/11/2026, 5:55:43 PM
+ * Rules            : 284
  * ============================================== */
 /* Reset */
 *, *::before, *::after {
@@ -1051,6 +1051,18 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .mt-12-24 {
   margin-top: clamp(0.75rem, 1.0714vw + 0.5357rem, 1.5rem);
+}
+
+.cols-fit-250 {
+  grid-template-columns: repeat(auto-fit, minmax(min(15.625rem, 100%), 1fr));
+}
+
+.cols-fit-200 {
+  grid-template-columns: repeat(auto-fit, minmax(min(12.5rem, 100%), 1fr));
+}
+
+.cols-fill-200 {
+  grid-template-columns: repeat(auto-fill, minmax(min(12.5rem, 100%), 1fr));
 }
 
 .order-1 {

@@ -537,6 +537,14 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
 }
 
+.cols-fit-250 {
+  grid-template-columns: repeat(auto-fit, minmax(min(15.625rem, 100%), 1fr));
+}
+
+.cols-fill-200 {
+  grid-template-columns: repeat(auto-fill, minmax(min(12.5rem, 100%), 1fr));
+}
+
 .gap-16 {
   gap: 1rem;
 }
@@ -751,6 +759,10 @@
 
   .cols-md-1\:2\:1 {
     grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
+  }
+
+  .cols-fit-md-300 {
+    grid-template-columns: repeat(auto-fit, minmax(min(18.75rem, 100%), 1fr));
   }
 
   .span-md-3 {
