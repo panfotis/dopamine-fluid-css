@@ -366,6 +366,10 @@
   max-width: clamp(18.75rem, calc(44.6429vw + 9.8214rem), 50rem);
 }
 
+.maxw-65ch {
+  max-width: 65ch;
+}
+
 .fw-400 {
   font-weight: 400;
 }
@@ -714,6 +718,10 @@
 
   .minw-md-100-200 {
     min-width: clamp(6.25rem, calc(8.9286vw + 4.4643rem), 12.5rem);
+  }
+
+  .w-md-40ch {
+    width: 40ch;
   }
 
   .fs-md-24 {

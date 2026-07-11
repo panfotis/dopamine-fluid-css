@@ -4,8 +4,8 @@
  *
  * Default viewport : 320px – 1440px
  * Breakpoints      : sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px, xxxl: 1600px, xxxxl: 1920px
- * Generated        : 7/11/2026, 6:05:59 PM
- * Rules            : 288
+ * Generated        : 7/11/2026, 6:08:22 PM
+ * Rules            : 289
  * ============================================== */
 /* Reset */
 *, *::before, *::after {
@@ -858,6 +858,10 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .minh-50\% {
   min-height: 50%;
+}
+
+.maxw-65ch {
+  max-width: 65ch;
 }
 
 .gap-16 {

@@ -271,7 +271,7 @@ prefix-{min}-{max}--{vpMin}-{vpMax}   → fluid with custom viewport
 > - All pixel values are converted to `rem` (divided by 16) in the output
 > - Viewport override syntax: `fs-16-48--480-1920` uses 480px–1920px instead of config default
 > - **Unit suffixes** (sizing prefixes only — `w`, `h`, `maxw`, `minw`, `maxh`, `minh`):
->   append `%`, `vw`, `vh`, `vmin`, `vmax`, `svw`, `svh`, `lvw`, `lvh`, `dvw`, or `dvh` to emit that unit verbatim — no rem conversion.
+>   append `%`, `vw`, `vh`, `vmin`, `vmax`, `svw`, `svh`, `lvw`, `lvh`, `dvw`, `dvh`, or `ch` to emit that unit verbatim — no rem conversion. `ch` is the reading-measure unit: `maxw-65ch` caps prose at ~65 characters per line, which is the actual typographic rule that `maxw-600` only approximates.
 >   Examples: `w-50%` → `width: 50%`, `h-100dvh` → `height: 100dvh`, `minh-md-100svh` → `@media(md+) { min-height: 100svh }`.
 >   Fixed-only (no fluid ranges of units).
 
@@ -1110,6 +1110,7 @@ p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
 - **Keywords**: `text-start` / `text-end` (logical text-align — prefer these over `text-left`/`text-right`), `fw-semibold` (600), `object-cover` / `object-contain`, `truncate`, `sr-only`.
 - **`stack-16-32`** — fluid vertical rhythm between direct children via the owl selector (`:where(.stack-16-32) > * + * { margin-top: clamp(…) }`). One class on the parent spaces CMS body fields, form items, and card content without classing every child; zero specificity means any `mt-*` on a child overrides it.
 - **`cols-fit-250` / `cols-fill-250`** — auto-fit/auto-fill grids: as many ≥250px columns as fit, stretched to fill the row, with a `min(…, 100%)` overflow guard. One class instead of a breakpoint chain, and it responds to the container, not just the viewport.
+- **`ch` unit** on sizing prefixes — `maxw-65ch` for reading measure (~65 characters per line).
 - **`cols-1:3`** as an alias for `cols-1.3` — colons and dots both separate ratio parts.
 - **`colspan-3`** as an explicit alias for `span-3`.
 

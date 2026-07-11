@@ -77,7 +77,11 @@
       <div class="maxw-80% p-12-24 radius-4-8 demo-box--orange"><p class="fs-14-18">maxw-80% — capped at 80% of parent</p></div>
       <div class="minh-50% p-12-24 radius-4-8 demo-box--orange flex align-center justify-center"><p class="fs-14-18">minh-50% — at least half of parent height</p></div>
     </div>
-    <p class="fs-14-18 mt-16-32"><strong>Supported units:</strong> <code>%</code>, <code>vw</code>, <code>vh</code>, <code>vmin</code>, <code>vmax</code>, <code>svw</code>, <code>svh</code>, <code>lvw</code>, <code>lvh</code>, <code>dvw</code>, <code>dvh</code>.</p>
+    <p class="fs-14-18 mt-16-32"><strong>Supported units:</strong> <code>%</code>, <code>vw</code>, <code>vh</code>, <code>vmin</code>, <code>vmax</code>, <code>svw</code>, <code>svh</code>, <code>lvw</code>, <code>lvh</code>, <code>dvw</code>, <code>dvh</code>, <code>ch</code>.</p>
+    <h3 class="fs-18-24 mt-16-32 mb-8-16">Reading measure <code>maxw-65ch</code></h3>
+    <div class="maxw-65ch p-12-24 radius-4-8 demo-box--orange">
+      <p class="fs-14-18">A comfortable line of prose runs 45–75 characters. <code>ch</code> is the width of the font's <code>0</code> glyph, so <code>maxw-65ch</code> caps this paragraph at ~65 characters per line and adapts automatically when the font or its size changes — <code>maxw-600</code> only ever approximates that.</p>
+    </div>
     <p class="fs-14-18 mt-8-16">Common patterns: <code>minh-100dvh</code> for full-height heroes that respect the mobile address bar, <code>maxh-80svh</code> to pin against the small viewport, <code>w-100vw</code> for full-viewport overlays. Breakpoint variants work the same way — <code>minh-md-100dvh</code>, <code>w-lg-50%</code>.</p>
   </section>
 

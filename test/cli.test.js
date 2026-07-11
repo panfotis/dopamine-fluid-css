@@ -799,6 +799,13 @@ test('cols colon alias and colspan alias', () => {
   assert.match(generateRule(colspan, null, NEG_CONFIG, false), /grid-column: span 3/);
 });
 
+test('ch unit: reading measure on sizing prefixes only', () => {
+  assert.match(generateRule(parseClass('maxw-65ch', NEG_CONFIG), null, NEG_CONFIG, false), /max-width: 65ch/);
+  assert.equal(parseClass('w-md-40ch', NEG_CONFIG)?.breakpoint, 'md');
+  assert.equal(parseClass('fs-2ch', NEG_CONFIG), null);      // not a sizing prefix
+  assert.equal(parseClass('maxw-60ch-80ch', NEG_CONFIG), null);  // no fluid units
+});
+
 test('stack: owl-selector rhythm with zero-specificity wrapper', () => {
   const fluid = generateRule(parseClass('stack-16-32', NEG_CONFIG),
     { vpMin: 320, vpMax: 1440, source: 'default' }, NEG_CONFIG, false);
