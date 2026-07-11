@@ -117,6 +117,8 @@
   <section class="docs-section mt-40-80">
     <h2 class="fs-24-48 mb-12-24">Modal</h2>
     <p class="fs-14-18 mb-16-32">A modal dialog with overlay, ESC key support, and click-outside-to-close. Requires a tiny JS file (~15 lines). Two transition options: fade+scale or slide-down.</p>
+    <p class="fs-14-18 mb-8-16">The backdrop dims to 50% black out of the box. Override it with <code>--modal-backdrop</code> — no need to touch the component CSS:</p>
+    <pre class="p-16-32 radius-8-16 demo-box mb-16-32" style="overflow-x:auto;"><code class="fs-14-18 lh-1.5">:root { --modal-backdrop: rgb(0 0 0 / 0.8); }</code></pre>
 
     <h3 class="fs-18-24 mb-8-16">Demo — Fade</h3>
     <button data-modal-open="demo-fade" class="p-12-24 fs-14-18 fw-bold radius-8 mb-16-32">Open Fade Modal</button>
@@ -201,7 +203,7 @@
 &lt;/nav&gt;</code></pre>
 
     <p class="fs-14-18 mb-4-8"><code>menu__toggle</code> — burger button, hidden on desktop (≥768px)</p>
-    <p class="fs-14-18 mb-4-8"><code>menu__overlay</code> — backdrop, click to close</p>
+    <p class="fs-14-18 mb-4-8"><code>menu__overlay</code> — backdrop, click to close. Dims to 50% black by default; override with <code>--menu-backdrop</code></p>
     <p class="fs-14-18 mb-4-8"><code>menu__drawer</code> — side drawer, full width/height, slides from left</p>
     <p class="fs-14-18"><code>menu--open</code> — added/removed by JS to toggle the drawer</p>
   </section>
