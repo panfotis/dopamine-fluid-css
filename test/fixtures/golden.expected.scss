@@ -350,6 +350,14 @@
   min-height: 12.5rem;
 }
 
+.w-100-400 {
+  width: clamp(6.25rem, calc(26.7857vw + 0.8929rem), 25rem);
+}
+
+.maxw-300-800 {
+  max-width: clamp(18.75rem, calc(44.6429vw + 9.8214rem), 50rem);
+}
+
 .fw-400 {
   font-weight: 400;
 }
@@ -682,6 +690,10 @@
 
   .mb-md-24-48 {
     margin-bottom: clamp(1.5rem, calc(2.1429vw + 1.0714rem), 3rem);
+  }
+
+  .minw-md-100-200 {
+    min-width: clamp(6.25rem, calc(8.9286vw + 4.4643rem), 12.5rem);
   }
 
   .fs-md-24 {
