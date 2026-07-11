@@ -56,7 +56,16 @@ npm install --save-dev dopamine-fluid sass concurrently browser-sync
 npx dopamine-fluid init
 ```
 
-`dopamine init` copies a starter `templates/` folder, `scss/` entrypoint, `dopamine.config.json`, and `dopamine-safelist.txt` into your project. If a `package.json` already exists, it also adds missing `dopamine`, `sass`, `build`, and `dev` scripts without overwriting your existing scripts.
+`dopamine init` copies a starter `templates/` folder, `scss/` entrypoint, `dopamine.config.json`, `dopamine-safelist.txt`, and an `AGENTS.md` into your project. If a `package.json` already exists, it also adds missing `dopamine`, `sass`, `build`, and `dev` scripts without overwriting your existing scripts.
+
+### AI coding agents
+
+The scaffolded `AGENTS.md` tells AI assistants (Claude Code, Cursor, Copilot, …) that this project styles with dopamine classes, not plain CSS — with a syntax cheat sheet and the workflow rules that trip agents up (rebuild after adding classes, safelist for dynamic names, never edit the generated file, don't write Tailwind syntax). If your project already has an `AGENTS.md`, init keeps yours — copy the memo from `node_modules/dopamine-fluid/starter/AGENTS.md` and merge what you want, or reference it from your existing `AGENTS.md` / `CLAUDE.md`:
+
+```markdown
+This project uses Dopamine Fluid — see node_modules/dopamine-fluid/starter/AGENTS.md
+for the class syntax and workflow rules. Prefer dopamine classes over plain CSS.
+```
 
 Build the starter project:
 
@@ -79,7 +88,8 @@ The scaffolded project uses this structure. Files marked as generated appear aft
 your-project/
 ├── package.json                   # optional — if present, init adds missing scripts
 ├── dopamine.config.json           # scan/output configuration
-├── dopamine-safelist.txt                   # optional extra classes to compile
+├── dopamine-safelist.txt          # optional extra classes to compile
+├── AGENTS.md                      # memo for AI coding agents (kept if you have your own)
 ├── templates/
 │   └── index.html                 # starter markup
 ├── scss/

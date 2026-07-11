@@ -97,6 +97,32 @@ test('scaffoldProject keeps existing templates/index.html and still writes the r
   }
 });
 
+test('scaffoldProject ships AGENTS.md but never clobbers an existing one', () => {
+  const projectDir = makeTempDir();
+
+  try {
+    // Fresh project: memo is scaffolded and tells agents to prefer classes
+    const result = scaffoldProject('.', { cwd: projectDir });
+    assert.equal(result.files.written.includes('AGENTS.md'), true);
+    const memo = fs.readFileSync(path.join(projectDir, 'AGENTS.md'), 'utf8');
+    assert.match(memo, /Dopamine Fluid/);
+    assert.match(memo, /classes, not plain CSS/);
+  } finally {
+    fs.rmSync(projectDir, { recursive: true, force: true });
+  }
+
+  const projectDir2 = makeTempDir();
+  try {
+    // Project with its own AGENTS.md: kept, not a conflict
+    fs.writeFileSync(path.join(projectDir2, 'AGENTS.md'), '# my own agent rules\n');
+    const result = scaffoldProject('.', { cwd: projectDir2 });
+    assert.equal(result.files.keptExisting.includes('AGENTS.md'), true);
+    assert.equal(fs.readFileSync(path.join(projectDir2, 'AGENTS.md'), 'utf8'), '# my own agent rules\n');
+  } finally {
+    fs.rmSync(projectDir2, { recursive: true, force: true });
+  }
+});
+
 test('scaffoldProject supports dry-run mode', () => {
   const projectDir = makeTempDir();
 
