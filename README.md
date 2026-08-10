@@ -10,6 +10,8 @@
 
 **The CSS that makes you feel good.**
 
+Created and maintained by [Fotis Panokis](https://github.com/panfotis) (`@panfotis`).
+
 A Node.js CLI that scans your HTML/Twig templates and generates fluid CSS using `clamp()` — plus CSS Grid, flexbox, display, and layout utilities. All from class names. Zero runtime.
 
 ```html
