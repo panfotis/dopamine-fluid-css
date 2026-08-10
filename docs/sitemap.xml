@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://panfotis.github.io/dopamine-fluid-css/</loc><priority>1.0</priority></url>
+  <url><loc>https://panfotis.github.io/dopamine-fluid-css/typography.html</loc></url>
+  <url><loc>https://panfotis.github.io/dopamine-fluid-css/spacing.html</loc></url>
+  <url><loc>https://panfotis.github.io/dopamine-fluid-css/sizing.html</loc></url>
+  <url><loc>https://panfotis.github.io/dopamine-fluid-css/grid.html</loc></url>
+  <url><loc>https://panfotis.github.io/dopamine-fluid-css/flexbox.html</loc></url>
+  <url><loc>https://panfotis.github.io/dopamine-fluid-css/utilities.html</loc></url>
+  <url><loc>https://panfotis.github.io/dopamine-fluid-css/forms.html</loc></url>
+  <url><loc>https://panfotis.github.io/dopamine-fluid-css/components.html</loc></url>
+  <url><loc>https://panfotis.github.io/dopamine-fluid-css/sass.html</loc></url>
+  <url><loc>https://panfotis.github.io/dopamine-fluid-css/menu-drawer-demo.html</loc></url>
+</urlset>
