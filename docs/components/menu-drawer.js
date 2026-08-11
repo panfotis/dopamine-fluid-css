@@ -187,6 +187,9 @@
       if (!getDirectChild(li, '.menu-dropdown-0')) return;
 
       e.preventDefault();
+      // Hover mode (desktop): panels are hover/focus-revealed only — click is inert,
+      // so a click can never pin a panel open past mouse-out.
+      if (!isMobile() && root.classList.contains('menu-drawer-hover')) return;
       if (li.classList.contains('menu-drawer--open')) {
         closeLi(li);
       } else {

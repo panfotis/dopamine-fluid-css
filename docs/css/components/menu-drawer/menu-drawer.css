@@ -1,3 +1,7 @@
+.df-no-anim .menu.menu-level-0 > li.menu-item > .menu-dropdown-0 {
+  transition: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .menu.menu-level-0 > li.menu-item > .menu-dropdown-0 {
     transition: none;
@@ -21,7 +25,7 @@
     opacity: 1;
   }
   .menu.menu-level-0.menu-drawer-hover > li.menu-item:hover > .menu-dropdown-0,
-  .menu.menu-level-0.menu-drawer-hover > li.menu-item:focus-within > .menu-dropdown-0 {
+  .menu.menu-level-0.menu-drawer-hover > li.menu-item:has(:focus-visible) > .menu-dropdown-0 {
     visibility: visible;
     opacity: 1;
   }

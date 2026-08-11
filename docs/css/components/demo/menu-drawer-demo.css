@@ -1,32 +1,88 @@
-// Dopamine Fluid — Menu Drawer Component
-// Structure only — style with Dopamine classes in HTML
-// Requires menu-drawer.js for open/close + aria + focus management
-//
-// Override the breakpoint before importing:
-//   $menu-drawer-bp: 768px;
-//   @use 'dopamine-fluid/addons/components/menu-drawer/menu-drawer';
-// Also set window.DOPE_MENU_DRAWER_BP = <bp - 1> before the JS loads if you override it.
+.menu__toggle {
+  cursor: pointer;
+  background: none;
+  border: none;
+  line-height: 1;
+}
 
-$menu-drawer-bp: 992px !default;
+.menu__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: var(--menu-backdrop, rgba(0, 0, 0, 0.5));
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.3s, opacity 0.3s ease;
+}
 
-// Resize guard — menu.js (required dependency) puts .df-no-anim on <html> while the
-// viewport is resizing, so crossing the breakpoint doesn't animate the panels.
+.menu--open .menu__overlay {
+  visibility: visible;
+  opacity: 1;
+}
+
+.menu__drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  overflow-y: auto;
+  visibility: hidden;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease, visibility 0.3s;
+}
+
+.menu--open .menu__drawer {
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.df-no-anim .menu__drawer,
+.df-no-anim .menu__overlay {
+  transition: none !important;
+}
+
+.menu__close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  background: none;
+  border: none;
+  line-height: 1;
+}
+
+@media (min-width: 768px) {
+  .menu__toggle {
+    display: none;
+  }
+  .menu__overlay {
+    display: none;
+  }
+  .menu__close {
+    display: none;
+  }
+  .menu__drawer {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow-y: visible;
+    visibility: visible;
+    transform: none;
+    transition: none;
+  }
+}
 .df-no-anim .menu.menu-level-0 > li.menu-item > .menu-dropdown-0 {
   transition: none !important;
 }
 
-// Respect the user's motion preference — kill transitions if they asked for reduced motion.
 @media (prefers-reduced-motion: reduce) {
   .menu.menu-level-0 > li.menu-item > .menu-dropdown-0 {
     transition: none;
   }
 }
-
-// Desktop — behave as a classic dropdown.
-// Default: click toggles .menu-drawer--open (JS). Add .menu-drawer-hover on the root <ul>
-// to reveal on pointer hover / keyboard focus-within instead — click is then inert on
-// desktop (note: touch devices at desktop widths can't open dropdowns in hover mode).
-@media (min-width: $menu-drawer-bp) {
+@media (min-width: 768px) {
   .menu.menu-level-0 > li.menu-item {
     position: relative;
   }
@@ -43,18 +99,11 @@ $menu-drawer-bp: 992px !default;
     visibility: visible;
     opacity: 1;
   }
-  // Opt-in hover mode. :has(:focus-visible), not :focus-within — a mouse click on a
-  // trigger link leaves it focused after mouse-out, which would hold the panel open.
-  // :focus-visible only matches keyboard focus, which is the reveal we actually want.
   .menu.menu-level-0.menu-drawer-hover > li.menu-item:hover > .menu-dropdown-0,
   .menu.menu-level-0.menu-drawer-hover > li.menu-item:has(:focus-visible) > .menu-dropdown-0 {
     visibility: visible;
     opacity: 1;
   }
-
-  // Mega mode — add .menu-dropdown-mega on any .menu-dropdown-0 to make it span 100vw.
-  // Set --menu-mega-top to your nav's bottom-offset (e.g. 64px) so the dropdown sits
-  // flush under the nav; defaults to 0.
   .menu.menu-level-0 > li.menu-item > .menu-dropdown-0.menu-dropdown-mega {
     position: fixed;
     top: var(--menu-mega-top, 0);
@@ -62,12 +111,11 @@ $menu-drawer-bp: 992px !default;
     right: 0;
     width: 100vw;
   }
-
-  // Injected drawer header (back + title) is drawer-only — hide in dropdown mode.
-  .menu-drawer-header { display: none; }
+  .menu-drawer-header {
+    display: none;
+  }
 }
-
-@media (max-width: ($menu-drawer-bp - 1px)) {
+@media (max-width: 767px) {
   .menu.menu-level-0 > li.menu-item > .menu-dropdown-0 {
     position: fixed;
     top: var(--menu-drawer-top, 0);
@@ -80,13 +128,10 @@ $menu-drawer-bp: 992px !default;
     transform: translateX(100%);
     transition: transform 0.3s ease, visibility 0.3s;
   }
-
   .menu.menu-level-0 > li.menu-item.menu-drawer--open > .menu-dropdown-0 {
     visibility: visible;
     transform: translateX(0);
   }
-
-  // Sticky on top so the back + title stay visible while the drawer content scrolls.
   .menu-drawer-header {
     position: sticky;
     top: 0;
@@ -95,7 +140,6 @@ $menu-drawer-bp: 992px !default;
     align-items: center;
     padding: 0.75rem 1rem;
   }
-
   .menu-drawer-back-btn {
     display: flex;
     align-items: center;

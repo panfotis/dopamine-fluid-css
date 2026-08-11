@@ -1,0 +1,5 @@
+// Menu-drawer demo page — both components on ONE breakpoint (768px) so the burger,
+// inline nav, and drawer/dropdown modes all flip together. Pairs with
+// `window.DOPE_MENU_DRAWER_BP = 767` in menu-drawer-demo.html.
+@use '../../../../addons/components/menu/menu' with ($menu-bp: 768px);
+@use '../../../../addons/components/menu-drawer/menu-drawer' with ($menu-drawer-bp: 768px);

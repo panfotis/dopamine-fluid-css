@@ -38,6 +38,11 @@
   transform: translateX(0);
 }
 
+.df-no-anim .menu__drawer,
+.df-no-anim .menu__overlay {
+  transition: none !important;
+}
+
 .menu__close {
   position: absolute;
   top: 0;

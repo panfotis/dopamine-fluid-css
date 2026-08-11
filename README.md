@@ -611,7 +611,7 @@ The menu switches from drawer to inline at 768px by default. Override via Sass:
 @use 'dopamine-fluid/addons/components/menu/menu' with ($menu-bp: 992px);
 ```
 
-**Menu Drawer** (depends on `menu` — load `menu.js` on the same page) turns a multi-level nav's top-level dropdowns into right-sliding drawers on tablet/mobile (≤991px) and classic dropdowns on desktop. Triggers are detected by class structure — any `ul.menu.menu-level-0 > li` whose direct child is `.menu-dropdown-0` becomes a drawer. One drawer open at a time; auto-injects a back button + title with full ARIA and focus management on mobile; desktop is click-to-toggle by default, click-outside closes. Add `menu-drawer-hover` to the root `<ul>` to also reveal on hover / keyboard focus.
+**Menu Drawer** (depends on `menu` — load `menu.js` on the same page) turns a multi-level nav's top-level dropdowns into right-sliding drawers on tablet/mobile (≤991px) and classic dropdowns on desktop. Triggers are detected by class structure — any `ul.menu.menu-level-0 > li` whose direct child is `.menu-dropdown-0` becomes a drawer. One drawer open at a time; auto-injects a back button + title with full ARIA and focus management on mobile; desktop is click-to-toggle by default, click-outside closes. Add `menu-drawer-hover` to the root `<ul>` to reveal on hover / keyboard focus instead — click is then inert on desktop, and the panel closes on mouse-out (note: touch devices at desktop widths can't open dropdowns in hover mode).
 
 ```html
 <ul class="menu menu-level-0">
@@ -634,6 +634,8 @@ Override the breakpoint (default 992px, component active below it):
 Keep the JS in sync with the SCSS breakpoint by setting `window.DOPE_MENU_DRAWER_BP = <bp - 1>` before the script loads. For a sticky header, set `--menu-drawer-top: 64px` on `:root` and the drawer sizes itself to the remaining viewport (uses `visualViewport.height` to handle iOS URL-bar changes).
 
 **Mega dropdown (100vw on desktop)** — add `menu-dropdown-mega` to any `.menu-dropdown-0` and on desktop it becomes `position: fixed` spanning the full viewport width. Mobile is unchanged (still a right-slide drawer). Set `--menu-mega-top` on `:root` to your sticky nav's height so the dropdown sits flush below. Lay out the inside with dopamine grid/flex utilities — e.g. `<div class="grid cols-1 cols-md-4 gap-16-32 p-16-32">`.
+
+**Dropdown** is click-to-toggle by default. Add `dropdown-hover` next to `dropdown` to also open on hover / keyboard focus — pointer devices only (`@media (hover: hover)`), so touch stays click-only.
 
 Available components: `accordion`, `modal`, `menu`, `menu-drawer`, `tabs`, `dropdown`, `collapse`, `checkbox`, `radio`, `switch`, `input`.
 

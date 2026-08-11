@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Menu Drawer Demo</title>
   <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/components/menu/menu.css">
-  <link rel="stylesheet" href="css/components/menu-drawer/menu-drawer.css">
+  <!-- Demo-specific build: menu + menu-drawer compiled with a single 768px breakpoint -->
+  <link rel="stylesheet" href="css/components/demo/menu-drawer-demo.css">
   <link rel="stylesheet" href="css/components/forms/input.css">
+  <script>window.DOPE_MENU_DRAWER_BP = 767;</script>
   <script src="components/scroll-lock.js" defer></script>
   <script src="components/menu.js" defer></script>
   <script src="components/menu-drawer.js" defer></script>
@@ -46,7 +47,7 @@
     /* Dropdown panel visuals (applied in both drawer and dropdown modes). */
     .menu-dropdown-0 { background: #fff; min-width: 200px; }
     .menu-dropdown-0 ul li a { border-bottom: 1px solid #f0f0f0; }
-    @media (min-width: 992px) {
+    @media (min-width: 768px) {
       .menu-dropdown-0 { border: 1px solid #e5e5e5; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
     }
 
@@ -144,6 +145,18 @@
 </nav>
 
 <p class="demo-hint px-16 py-24 fs-14">Tap the ☰ burger to open the menu, then tap any item to slide its drawer in. Resize ≥768px to see the desktop inline layout. Scroll the page, open a drawer, confirm the body doesn't scroll underneath; close it, scroll position is restored.</p>
+
+<p class="px-16 fs-14">
+  Desktop dropdowns open on <strong id="mode-label">click</strong> —
+  <button id="hover-toggle" class="p-8-12 fs-14 radius-8" style="cursor:pointer;border:1px solid #ccc;background:#fff;">Enable hover mode</button>
+</p>
+<script>
+  document.getElementById('hover-toggle').addEventListener('click', function () {
+    const on = document.querySelector('ul.menu.menu-level-0').classList.toggle('menu-drawer-hover');
+    document.getElementById('mode-label').textContent = on ? 'hover (click inert)' : 'click';
+    this.textContent = on ? 'Disable hover mode' : 'Enable hover mode';
+  });
+</script>
 
 <div style="padding: 32px 16px; color: #888; font-size: 14px;">
   <p>↓ Scroll test filler ↓</p>

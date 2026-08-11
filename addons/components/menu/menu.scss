@@ -51,6 +51,13 @@ $menu-bp: 768px !default;
   transform: translateX(0);
 }
 
+// Resize guard — menu.js puts .df-no-anim on <html> while the viewport is resizing,
+// so crossing the breakpoint snaps to the new mode instead of animating the drawer.
+.df-no-anim .menu__drawer,
+.df-no-anim .menu__overlay {
+  transition: none !important;
+}
+
 // Close button inside drawer
 .menu__close {
   position: absolute;

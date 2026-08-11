@@ -15,6 +15,13 @@
   opacity: 1;
 }
 
+@media (hover: hover) {
+  .dropdown.dropdown-hover:hover .dropdown__menu,
+  .dropdown.dropdown-hover:focus-within .dropdown__menu {
+    visibility: visible;
+    opacity: 1;
+  }
+}
 .dropdown__toggle {
   background: #0f0f0f;
   color: #fff;

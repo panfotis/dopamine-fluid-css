@@ -212,7 +212,7 @@
     <h2 class="fs-24-48 mb-12-24">Menu Drawer <span class="fs-12-14 fw-bold px-8 py-4 radius-4" style="background:#fff3cd;color:#856404;vertical-align:middle;">Beta</span></h2>
     <p class="fs-12-14 mb-12-24" style="color:#856404;">⚠ Still in beta — API and class names may change before the stable release.</p>
     <p class="fs-12-14 mb-12-24" style="color:#856404;">ℹ Depends on the <code>menu</code> component — load <code>menu.js</code> (and optionally <code>scroll-lock.js</code>) on the same page. <code>menu-drawer</code> uses <code>df:menu:close</code> to cascade-close open drawers, and the outer burger owns the body scroll lock while mobile nav is in drawer mode.</p>
-    <p class="fs-14-18 mb-16-32">Turns a multi-level nav's top-level dropdowns into right-sliding drawers on tablet/mobile (≤991px). Built for Drupal-rendered mega-menus where markup cannot be changed — detects triggers purely by class structure (<code>ul.menu.menu-level-0 &gt; li</code> with a direct-child <code>.menu-dropdown-0</code>). One drawer open at a time. Auto-injects a back button + title, wires full ARIA (<code>role="dialog"</code>, <code>aria-modal</code>, <code>aria-expanded</code>, <code>aria-controls</code>), manages focus, and sizes the drawer to the viewport (with optional sticky-header offset). On desktop (≥992px) the same panels render as classic dropdowns — absolute-positioned under their parent. <strong>Click-to-toggle by default</strong> (clicking the trigger opens, clicking outside closes); add <code>menu-drawer-hover</code> to the root <code>&lt;ul&gt;</code> to also reveal on hover or keyboard focus.</p>
+    <p class="fs-14-18 mb-16-32">Turns a multi-level nav's top-level dropdowns into right-sliding drawers on tablet/mobile (≤991px). Built for Drupal-rendered mega-menus where markup cannot be changed — detects triggers purely by class structure (<code>ul.menu.menu-level-0 &gt; li</code> with a direct-child <code>.menu-dropdown-0</code>). One drawer open at a time. Auto-injects a back button + title, wires full ARIA (<code>role="dialog"</code>, <code>aria-modal</code>, <code>aria-expanded</code>, <code>aria-controls</code>), manages focus, and sizes the drawer to the viewport (with optional sticky-header offset). On desktop (≥992px) the same panels render as classic dropdowns — absolute-positioned under their parent. <strong>Click-to-toggle by default</strong> (clicking the trigger opens, clicking outside closes); add <code>menu-drawer-hover</code> to the root <code>&lt;ul&gt;</code> to reveal on hover or keyboard focus instead — click is then inert on desktop and the panel closes on mouse-out.</p>
 
     <h3 class="fs-18-24 mb-8-16">Demo</h3>
     <p class="fs-14-18 mb-8-16">Tap an item to open its drawer — back button, title, and ESC key all close it. The demo is rendered at mobile width inside an iframe, so the drawer stays inside the frame.</p>
@@ -301,7 +301,7 @@
     <p class="fs-14-18 mb-4-8"><code>menu-dropdown-0</code> — the panel that becomes the drawer on mobile</p>
     <p class="fs-14-18 mb-4-8"><code>menu-drawer--open</code> — added/removed by JS on the <code>&lt;li&gt;</code> to toggle the drawer (BEM-aligned with other component modifiers)</p>
     <p class="fs-14-18 mb-4-8"><code>menu-drawer-header</code> / <code>menu-drawer-back-btn</code> / <code>menu-drawer-title</code> — injected markup (or ship your own). Hidden on desktop.</p>
-    <p class="fs-14-18 mb-4-8"><code>menu-drawer-hover</code> — add to the root <code>&lt;ul.menu.menu-level-0&gt;</code> to enable hover/focus reveal on desktop (click still works too)</p>
+    <p class="fs-14-18 mb-4-8"><code>menu-drawer-hover</code> — add to the root <code>&lt;ul.menu.menu-level-0&gt;</code> to enable hover/focus reveal on desktop (click becomes inert; mobile drawer behavior unchanged)</p>
     <p class="fs-14-18 mb-4-8"><code>menu-dropdown-mega</code> — add to a <code>.menu-dropdown-0</code> to make that specific dropdown span 100vw on desktop (no change on mobile)</p>
     <p class="fs-14-18 mb-4-8"><code>data-menu-drawer-title="…"</code> — on a trigger, overrides the auto-derived drawer title</p>
     <p class="fs-14-18 mb-4-8"><code>--menu-drawer-top</code> / <code>--menu-drawer-height</code> — CSS vars for sticky-header offset (mobile drawer) and JS-computed height</p>
@@ -355,7 +355,7 @@
 
   <section class="docs-section mt-40-80">
     <h2 class="fs-24-48 mb-12-24">Dropdown</h2>
-    <p class="fs-14-18 mb-16-32">Click the toggle to open a menu. Click outside (anywhere not inside a dropdown menu) or press ESC to close all open dropdowns. Multiple dropdowns can be open at the same time. Requires a tiny JS file (~15 lines).</p>
+    <p class="fs-14-18 mb-16-32">Click the toggle to open a menu. Click outside (anywhere not inside a dropdown menu) or press ESC to close all open dropdowns. Multiple dropdowns can be open at the same time. Requires a tiny JS file (~15 lines). Add <code>dropdown-hover</code> next to <code>dropdown</code> to also reveal on hover / keyboard focus (pointer devices only — touch stays click-only).</p>
 
     <h3 class="fs-18-24 mb-8-16">Demo</h3>
     <div class="dropdown mb-16-32">

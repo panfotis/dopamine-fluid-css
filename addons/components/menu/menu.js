@@ -64,10 +64,14 @@
   // If the viewport crosses above the drawer breakpoint while the menu is open,
   // close it — otherwise the body scroll lock stays held and the `.menu--open`
   // state is visually irrelevant on desktop.
+  // While resizing, .df-no-anim on <html> kills drawer transitions (see menu.scss) —
+  // otherwise crossing the breakpoint animates the drawer sliding out in front of the user.
   let resizeTimer;
   window.addEventListener('resize', () => {
+    document.documentElement.classList.add('df-no-anim');
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
+      document.documentElement.classList.remove('df-no-anim');
       document.querySelectorAll('.menu--open').forEach(menu => {
         if (!inDrawerMode(menu)) close(menu);
       });
